@@ -1,0 +1,15 @@
+# Real Nexus (UAT) overrides, merged over selectors.yaml when the profile is "uat" (the command-line default).
+# Found by exploring https://uat.sentinel.unifo.in/sentinel-nexus/email with a saved session (view-only).
+login:
+  logged_in_marker: 'button:has-text("Pre Alert Documents")'      # top-left module switcher: only visible when signed in
+
+uat:
+  loading: 'text=Loading emails'
+  row_marker: 'span.truncate'                                      # exists once the email rows are rendered
+  subject_cell: 'span.truncate:has-text("{token}")'               # the email-subject cell; {token} = "| REG-001 |"
+  view_documents: 'View documents'                                 # aria-label of the eye icon on each Master/House record
+  viewer_url_part: '/jobs/view'
+  parent_search: 'Search parent...'                                # placeholder of the parent dropdown's search box
+  header_buttons_ignore: 'Verify|Re-classify|Save|unifo|^BA$'      # never clicked
+  left_headings: [LINKED DOCUMENTS, UNMATCHED DOCUMENTS, UNCLASSIFIED DOCUMENTS]
+  row_ancestor_levels: 8                                           # how far up from the subject cell to find the "IPA/..." id

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Runs the agent with the project's own Python, so it works from any terminal (no need to activate .venv).
+#   ./nx validate-master --cases REG-001
+#   ./nx validate --cases REG-001
+#   ./nx cases
+export PYTHONUNBUFFERED=1   # show output immediately, even through a pipe
+cd "$(dirname "$0")" || exit 1
+exec .venv/bin/python -m nexus_agent "$@"

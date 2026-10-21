@@ -1,0 +1,134 @@
+# Nexus Pre-Alert Agent - main settings
+# Paths are relative to the project root.
+
+gmail:
+  # Gmail search that identifies NEW pre-alert emails.
+  query: 'in:inbox subject:(pre-alert OR prealert) has:attachment -label:Nexus/Forwarded newer_than:2d'
+  forward_to: prealert.nexus@unifo.in
+  processed_label: Nexus/Forwarded
+  credentials_file: secrets/gmail_credentials.json   # OAuth client (Desktop app) from Google Cloud
+  token_file: secrets/gmail_token.json               # created on first authorisation
+  max_messages_per_run: 50
+
+references:
+  # Which reference is used to find the pre-alert in Nexus: hawb | mawb
+  match_by: hawb
+  # Regexes used to pull references out of the email subject, body and attachment names.
+  hawb_pattern: '\b(UNF\d{4,10})\b'           # TODO: replace with Unifo's real HAWB format
+  # Fallback reference for consolidated PDFs with no HAWB in the text: the job number in the file name.
+  job_pattern: '(?<![A-Za-z0-9])(FJ-\d{4,10})(?!\d)'
+  mawb_pattern: '\b(\d{3}-?\d{8})\b'
+
+nexus:
+  base_url: https://uat.sentinel.unifo.in       # override with env NEXUS_BASE_URL
+  home_path: /sentinel-nexus/email              # pre-alert (email) list
+  # Part of the URL that only the login page has (e.g. /login). Leave empty if unknown:
+  # the agent then relies on login.logged_in_marker in selectors.yaml.
+  login_path: ''
+  # To test against the bundled mock instead: base_url http://127.0.0.1:5055, home_path /prealerts, login_path /login
+  session_file: state/nexus_session.json
+  navigation_timeout_ms: 30000
+
+timing:
+  prealert_wait_seconds: 600      # how long to wait for the pre-alert to show up in Nexus
+  prealert_poll_seconds: 30
+  approval_wait_seconds: 900      # how long to wait for TMS push approval
+  approval_poll_seconds: 30
+  ui_retries: 2
+
+paths:
+  state_dir: state
+  runs_dir: runs
+  corrections_dir: corrections
+
+xml_capture:
+  # How to get the XML after approval: text | download | clipboard
+  mode: text
+
+local_docs:
+  # Knowledge base. Consolidated PDFs are NOT split: each one is screened and mailed as-is (one email).
+  #   consolidated/*.pdf   -> screening check -> one email with the original file -> moved to sent/<REF>/
+  #   individual/<REF>/*   -> documents that already come separately: one email per file
+  root: knowledge_base
+  consolidated_dir: consolidated
+  individual_dir: individual
+  # Agent: "Nexus E2E Regression QA Agent". The tag lets Nexus testers filter QA mail from real pre-alerts.
+  subject_tag: "QA agent trigger / Don't delete / Regression testing"
+  priority: high                      # sets X-Priority / Importance headers on every email
+  # The same documents are used again and again for regression, so nothing is moved or hidden after sending.
+  archive_after_send: false           # true = move each sent file to <root>/sent_dir/<REF>/ (sent_dir: sent)
+  sent_dir: sent                      # only used when archive_after_send is true
+  skip_already_sent: false            # true = never send the same file twice (the --resend flag then overrides)
+  consolidated_subject_template: '{tag} | Pre-Alert {ref} | CONSOLIDATED ({types})'   # types e.g. MASTER+MANIFEST+HOUSE
+  subject_template: '{tag} | Pre-Alert {ref} | INDIVIDUAL | {doc}'                   # one email per individual file
+  # How a document type is written in the subject (type -> label).
+  doc_labels: {MBL: MASTER, HBL: HOUSE, INVOICE: INVOICE, PACKING: PACKING LIST, MANIFEST: MANIFEST,
+               SHIPPERDOC: SHIPPER DOC, DEBITNOTE: DEBIT NOTE, DELIVERY: DELIVERY NOTE, OTHER: DOCUMENT}
+  # Words in an individual file name that identify its type (otherwise the PDF text is checked).
+  filename_types: {MASTER: MBL, MBL: MBL, MAWB: MBL, HOUSE: HBL, HBL: HBL, HAWB: HBL, INVOICE: INVOICE,
+                   PACKING: PACKING, PACKINGLIST: PACKING, PL: PACKING, PKL: PACKING, MANIFEST: MANIFEST, SHIPPERDOC: SHIPPERDOC,
+                   SLI: SHIPPERDOC, DEBITNOTE: DEBITNOTE, DELIVERY: DELIVERY, DELIVERYNOTE: DELIVERY}
+
+screening:
+  # A consolidated PDF is only sent if every type listed here is found in it (use --force to override).
+  # Page types come from pdf_split.keywords. Use [] to only warn.
+  required_types: [MBL, HBL]
+
+pdf_split:
+  # A page is given the FIRST type (in this order) whose phrases it contains (case-insensitive).
+  # Pages that match nothing continue the previous document. Tuned on real Quadance exports.
+  keywords:
+    MBL: ['MASTER AIR WAYBILL', 'MASTER AIR WAY BILL', 'MASTER BILL OF LADING', 'MASTER B/L', 'MBL NO']
+    AWBFORM: ["SHIPPER'S NAME AND ADDRESS", "SHIPPER’S NAME AND ADDRESS"]   # air waybill form (checked before manifest): house if it quotes a MAWB/HAWB, else master
+    MANIFEST: ['CARGO MANIFEST', 'FREIGHT MANIFEST', 'CONSOLIDATED CARGO MANIFEST', 'HOUSE AIRWAYBILL LIST', 'HOUSE AIR WAYBILL LIST']
+    DELIVERY: ['DELIVERY NOTE', 'DELIVERY CHALLAN']
+    INVOICE__1: ['COMMERCIAL INVOICE', 'TAX INVOICE']     # `__n` only keeps YAML keys unique; the type is INVOICE
+    PACKING: ['PACKING LIST']
+    INVOICE: ['INVOICE NO', 'INVOICE DATE', 'THIS INVOICE']
+    DEBITNOTE: ['DEBIT NOTE']
+    SHIPPERDOC: ["SHIPPER'S LETTER OF INSTRUCTION", 'SHIPPERS LETTER OF INSTRUCTION', 'SHIPPING INSTRUCTION']
+    HBL: ['HAWB', 'HOUSE AIR WAYBILL', 'HOUSE AIR WAY BILL', 'HOUSE BILL OF LADING', 'BILL OF LADING', 'HBL']
+    MBL_WEAK: ['MAWB', 'MASTER AWB']
+  # HAWB is read from the PDF text after one of these labels (token must contain a digit).
+  hawb_label_pattern: '\bHAWB\s*(?:NO\.?|NUMBER|#)?\s*[:：#]?\s*([A-Z0-9]+(?:\s?-\s?[A-Z0-9]+)*)'
+
+testsuite:
+  # Test cases are read from the Excel suite you export into knowledge_base/testcases/ (re-export when it changes).
+  workbook: 'knowledge_base/testcases/*.xlsx'
+  sheet_tab: 'AIr Master and House - Single'      # tab title prefix (case-insensitive)
+  id_pattern: '^REG-\d+$'                         # only rows whose test-case id matches (skips VAG-*, repeated headers)
+  # Scope: Consolidated and single-house Individual mapping scenarios.
+  scenarios: ['Consolidated Mapping', 'Individual Mapping']
+  exclude_doc_contains: ['multiple house']         # drops multi-house cases (e.g. REG-004)
+  sample_ref_pattern: '(FJ-\d{4,10})'             # sample (Quadance job) number inside the sheet cell / file name
+  samples_dir: samples                            # samples/_inbox/ (downloads) and samples/<CASE>/ (library)
+  case_interval_seconds: 300                      # wait between test cases (all emails of a case go together); 0 = no wait
+  subject_includes_case_id: true                  # <tag> | REG-001 | Pre-Alert ...
+  columns:
+    case_id: 'TC ID'
+    scenario: 'Scenario'
+    docs: 'Document Combination'
+    expected_mapping: 'Expected Mapping'
+    xml_rule: 'XML / CargoWise Validation'
+    expected_result: 'Expected Result'
+    quadance_job: 'Quadance Job no.'
+    nexus_job: 'NexusJob no.'
+
+validation:
+  # How Nexus' own type labels / document names are normalised to the canonical types used by the test cases.
+  type_aliases:
+    MASTER: [MASTER, MAWB, MBL, MASTER AWB, MASTER AIR WAYBILL]
+    HOUSE: [HOUSE, HAWB, HBL, HOUSE AWB, HOUSE AIR WAYBILL]
+    MANIFEST: [MANIFEST]
+    "PACKING LIST": [PACKING]
+    INVOICE: [INVOICE]
+    "DEBIT NOTE": [DEBIT]
+    "DELIVERY NOTE": [DELIVERY NOTE]
+    "SHIPPER DOCUMENT": [SHIPPER DOC, CERTIFICATE OF ORIGIN, DECLARATION]
+  # Timing after an email is sent (counted from the send time): wait the buffer, then poll until the pre-alert
+  # appears (typically 2-3 min, up to 5-7 min).
+  initial_wait_seconds: 180
+  poll_seconds: 20
+  max_wait_seconds: 420
+  fail_on_unexpected: false           # true = extra/unclassified documents also fail the case
+  evidence: true                      # screenshots in runs/<date>/<case>/

@@ -1,0 +1,22 @@
+# Nexus shipper field -> where it appears in the XML pushed to the TMS.
+# Matches the bundled mock's XML. Replace the XPaths using a real approved XML sample.
+# type: text | number | date     required: missing in XML = FAIL
+
+namespaces: {}            # e.g. {t: 'http://tms.example.com/schema'} then use 't:Shipment'
+
+defaults:
+  number_tolerance: 0.01
+
+fields:
+  mawb:             {xpath: '/TMSShipment/Header/MasterBill', type: text, required: true}
+  hawb:             {xpath: '/TMSShipment/Header/HouseBill', type: text, required: true}
+  shipper_name:     {xpath: '/TMSShipment/Shipper/Name', type: text, required: true}
+  shipper_address1: {xpath: '/TMSShipment/Shipper/Address1', type: text, required: true}
+  shipper_city:     {xpath: '/TMSShipment/Shipper/City', type: text, required: true}
+  shipper_country:  {xpath: '/TMSShipment/Shipper/Country', type: text, required: true}
+  consignee_name:   {xpath: '/TMSShipment/Consignee/Name', type: text, required: true}
+  pieces:           {xpath: '/TMSShipment/Cargo/Pieces', type: number, required: true}
+  gross_weight:     {xpath: '/TMSShipment/Cargo/GrossWeight', type: number, required: true}
+  origin:           {xpath: '/TMSShipment/Route/Origin', type: text, required: true}
+  destination:      {xpath: '/TMSShipment/Route/Destination', type: text, required: true}
+  etd:              {xpath: '/TMSShipment/Route/ETD', type: date, required: false}

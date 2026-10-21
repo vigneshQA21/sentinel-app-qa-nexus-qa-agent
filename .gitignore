@@ -1,0 +1,15 @@
+.env
+secrets/
+state/
+runs/
+__pycache__/
+.venv/
+.pytest_cache/
+knowledge_base/
+samples/
+
+# local / generated, never commit
+.claude/
+master_result.txt
+*.log
+run.log
