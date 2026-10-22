@@ -36,7 +36,7 @@ STEP 0 - Pre-checks (stop and report if any fails)
 STEP 1 - Dry-run (sends nothing)
   python -m nexus_agent suite --dry-run --force --cases REG-001 REG-002 REG-005 REG-009 REG-006 REG-007
   Show me a table: case, mode, subject, status. Check that:
-   - every subject starts with: QA agent trigger / Don't delete / Regression testing | <CASE> | Pre-Alert <ref> |
+   - every subject starts with: <CASE> | QA agent trigger / Don't delete / Regression testing | Pre-Alert <ref> |
    - consolidated cases say CONSOLIDATED (<types found>); individual cases say INDIVIDUAL | <TYPE>
      (MASTER, HOUSE, MANIFEST, INVOICE, PACKING LIST, DEBIT NOTE, DELIVERY NOTE)
    - expected email count: REG-001=1, REG-002=1, REG-005=1, REG-009=1, REG-006=6, REG-007=5 (total 15)

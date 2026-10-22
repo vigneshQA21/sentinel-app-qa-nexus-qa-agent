@@ -193,7 +193,7 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     sleep_s, wait = plan_wait(elapsed, v["initial_wait_seconds"], v["max_wait_seconds"], wait_seconds)
     _buffer(sleep_s, case.id)
     started = datetime.now()
-    cell, info = ui.wait_for_case(f"| {case.id} |", wait, v["poll_seconds"])
+    cell, info = ui.wait_for_case(f"{case.id} |", wait, v["poll_seconds"])
     if cell is None:
         if row["evidence"]:
             ui.screenshot(evidence / "not_received.png")

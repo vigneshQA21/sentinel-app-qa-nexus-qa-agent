@@ -86,9 +86,9 @@ def test_suite_dry_run_then_send_consolidated_and_individual(tmp_path):
     rows = T.run_suite(cfg, sender, cases)
     subjects = {email.message_from_bytes(base64.urlsafe_b64decode(r), policy=default)["Subject"] for r in fwd.svc.sent}
     assert subjects == {
-        TAG + " | REG-001 | Pre-Alert UNF1001 | CONSOLIDATED (MASTER+MANIFEST+HOUSE+INVOICE)",
-        TAG + " | REG-006 | Pre-Alert REG-006 | INDIVIDUAL | MASTER",
-        TAG + " | REG-006 | Pre-Alert REG-006 | INDIVIDUAL | HOUSE"}
+        "REG-001 | " + TAG + " | Pre-Alert UNF1001 | CONSOLIDATED (MASTER+MANIFEST+HOUSE+INVOICE)",
+        "REG-006 | " + TAG + " | Pre-Alert REG-006 | INDIVIDUAL | MASTER",
+        "REG-006 | " + TAG + " | Pre-Alert REG-006 | INDIVIDUAL | HOUSE"}
     by = {(r["case_id"], r["status"]) for r in rows}
     assert ("REG-001", "SENT") in by and ("REG-005", "SAMPLE_MISSING") in by
 

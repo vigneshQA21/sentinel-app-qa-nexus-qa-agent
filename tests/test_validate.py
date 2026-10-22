@@ -62,7 +62,7 @@ def test_compare_pass_wrong_section_missing_and_unexpected():
 
 def test_store_finds_reference_of_the_last_email_for_a_case(tmp_path):
     st = Store(tmp_path / "agent.db")
-    st.upsert(PreAlert(ref="TESTHAWB0001", subject="TAG | REG-001 | Pre-Alert TESTHAWB0001 | CONSOLIDATED (X)"),
+    st.upsert(PreAlert(ref="TESTHAWB0001", subject="REG-001 | TAG | Pre-Alert TESTHAWB0001 | CONSOLIDATED (X)"),
               Status.FORWARDED)
     assert st.ref_for_case("REG-001") == "TESTHAWB0001" and st.ref_for_case("REG-002") is None
 

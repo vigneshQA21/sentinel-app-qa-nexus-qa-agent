@@ -270,7 +270,7 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
     elapsed = (datetime.now() - sent_at).total_seconds() if sent_at else None
     sleep_s, wait = plan_wait(elapsed, v["initial_wait_seconds"], v["max_wait_seconds"], wait_seconds)
     _buffer(sleep_s, case.id)
-    cell, info = ui.wait_for_case(f"| {case.id} |", wait, v["poll_seconds"])
+    cell, info = ui.wait_for_case(f"{case.id} |", wait, v["poll_seconds"])
     if cell is None:
         res["message"] = f"no pre-alert for {case.id} in Nexus (checked the Pre-Alerts tab)"
         return res

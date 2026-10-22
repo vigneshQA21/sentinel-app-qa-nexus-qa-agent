@@ -69,11 +69,11 @@ class LocalSender:
         self.results: list[dict] = []                # one entry per email handled by send_all
 
     def _subject(self, template: str, path: Path, **kw) -> tuple[str, str | None]:
-        """Formats the subject; a test case id is inserted right after the tag so testers can trace the email."""
+        """Formats the subject; a test case id goes at the very start so testers can trace the email."""
         case = self.case_for_path.get(path)
         subject = template.format(tag=self.ld["subject_tag"], **kw)
         if case:
-            subject = subject.replace(self.ld["subject_tag"], f"{self.ld['subject_tag']} | {case}", 1)
+            subject = f"{case} | {subject}"
         return subject, case
 
     def _dir(self, key: str) -> Path:

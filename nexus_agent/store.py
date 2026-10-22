@@ -63,7 +63,7 @@ class Store:
     def ref_for_case(self, case_id: str) -> str | None:
         """Reference (HAWB / FJ) of the latest email sent for a test case, read from the stored subject."""
         row = self.db.execute("SELECT ref FROM shipments WHERE subject LIKE ? ORDER BY updated_at DESC LIMIT 1",
-                              (f"%| {case_id} |%",)).fetchone()
+                              (f"%{case_id} |%",)).fetchone()
         return row["ref"] if row else None
 
     def last_sent_at(self, ref: str) -> datetime | None:

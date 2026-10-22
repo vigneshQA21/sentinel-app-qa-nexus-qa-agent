@@ -6,7 +6,7 @@ login:
 uat:
   loading: 'text=Loading emails'
   row_marker: 'span.truncate'                                      # exists once the email rows are rendered
-  subject_cell: 'span.truncate:has-text("{token}")'               # the email-subject cell; {token} = "| REG-001 |"
+  subject_cell: 'span.truncate:has-text("{token}")'               # the email-subject cell; {token} = "REG-001 |"
   view_documents: 'View documents'                                 # aria-label of the eye icon on each Master/House record
   viewer_url_part: '/jobs/view'
   parent_search: 'Search parent...'                                # placeholder of the parent dropdown's search box
