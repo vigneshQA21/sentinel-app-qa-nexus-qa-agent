@@ -97,7 +97,7 @@ def test_compare_master_passes_when_nexus_matches_the_document_and_flags_differe
     rows = MC.compare_master(doc, map_master_panel(PANEL))
     assert MC.verdict(rows) == "PASS", [r for r in rows if r["result"] == "FAIL"]
     by = {r["field"]: r for r in rows}
-    assert by["Shipper · Address"]["result"] == "INFO"                       # party-master data, not compared
+    assert by["Shipper · Address"]["result"] == "REVIEW"                     # party-master address shares only some words with the document
     assert "COMPLEXSIDCO" in by["Consignee · Address"]["note"]                # glued lines are reported
 
     bad = [dict(i) for i in PANEL]
@@ -135,7 +135,7 @@ def test_every_panel_field_is_listed_in_panel_order_with_party_ids(tmp_path):
     by = {r["field"]: r for r in rows}
     assert by["Shipper · Party ID"]["shown_in_nexus"] == "QUADIMNIC" and by["Consignee · Party ID"]["result"] == "INFO"
     assert by["Segment 2 · Polname"]["result"] == "PASS"                                # equals segment 1's arrival airport
-    assert "fields in the Nexus Master panel" in MC.summary(rows)
+    assert "fields shown in Nexus" in MC.summary(rows)
     out = MC.format_report([{"case_id": "T", "verdict": "PASS", "ipa": "", "source": "", "message": "", "rows": rows}])
     assert f"ALL FIELDS SHOWN IN NEXUS ({len(rows)})" in out and "Shipper · Party ID : QUADIMNIC" in out
     assert f"=  {len(rows)} fields" in out and " 1. Air Waybill · Air Waybill Number : 999-12345678" in out
@@ -147,3 +147,75 @@ def test_internal_inconsistency_between_segments_is_a_fail(tmp_path):
     [i for i in items if i["label"] == "Polname"][1]["value"] = "Hamburg"          # segment 2 starts where segment 1 did not end
     rows = {r["field"]: r for r in MC.compare_master(doc, map_master_panel(items))}
     assert rows["Segment 2 · Polname"]["result"] == "FAIL"
+
+
+# --- Shipment Details table (Master row on the list page) ---------------------------------------------------
+HEADERS = [("Record Type", 67, 145), ("Job Number", 208, 285), ("Page Nos.", 340, 403), ("Bill No.", 475, 518),
+           ("Shipper", 641, 689), ("Shipper ID", 814, 878), ("Consignee", 971, 1039), ("Consignee ID", 1144, 1228),
+           ("Branch", 1299, 1344), ("Job Type", 1423, 1479), ("Status", 1477, 1515), ("Actions", 1631, 1678)]
+MASTER_LEAVES = [("Master", 54, 114), ("Job Number", 174, 251), ("1", 334, 339), ("999-12345678", 424, 517),
+                 ("ACME AIR SEA", 584, 679), ("QUADIMNIC", 784, 860), ("CONTOSO INDIA PVT . LTD .", 924, 1105),
+                 ("LIN_INMAA", 1124, 1193), ("MAA", 1264, 1294), ("New Job", 1394, 1450), ("CW Sync Pending", 1423, 1580)]
+
+
+def test_assign_columns_reads_each_cell_of_the_table_row():
+    from nexus_agent.nexus.uat import assign_columns
+    d = assign_columns(HEADERS, MASTER_LEAVES)
+    assert d["Bill No."] == "999-12345678" and d["Shipper"] == "ACME AIR SEA" and d["Shipper ID"] == "QUADIMNIC"
+    assert d["Consignee ID"] == "LIN_INMAA" and d["Branch"] == "MAA" and d["Job Type"] == "New Job"
+    assert d["Status"] == "CW Sync Pending" and d["Job Number"] == ""          # an empty input only shows its placeholder
+
+
+def _details():
+    from nexus_agent.nexus.uat import assign_columns
+    return assign_columns(HEADERS, MASTER_LEAVES)
+
+
+def test_master_row_checks_bill_no_parties_branch_job_type_and_status(tmp_path):
+    from nexus_agent.config import Config
+    cfg = Config()
+    doc = extract_master(awb_pdf(tmp_path))
+    ids = {"Shippers Name And Address": "QUADIMNIC", "Consignee Name And Address": "LIN_INMAA"}
+
+    def run(details):
+        ui = MC.attach_details(map_master_panel(PANEL, ids), details)         # a fresh panel each time
+        return {r["field"]: r for r in MC.compare_master(doc, ui, details, cfg.settings["validation"])}
+
+    rows = run(_details())
+    for f in ("Bill No.", "Shipper", "Consignee", "Shipper ID", "Consignee ID", "Branch", "Job Type", "Status"):
+        assert rows[f"Shipment Details · {f}"]["result"] == "PASS", rows[f"Shipment Details · {f}"]
+    assert "MAA = Chennai" in rows["Shipment Details · Branch"]["note"]            # MAA is Chennai (Madras)
+
+    rows = run(dict(_details(), **{"Bill No.": "999-00000000", "Branch": "BOM", "Job Type": "Existing Job", "Status": "Approved"}))
+    for f in ("Bill No.", "Branch", "Job Type", "Status"):
+        assert rows[f"Shipment Details · {f}"]["result"] == "FAIL", f
+    assert run(dict(_details(), **{"Shipper ID": "OTHERID"}))["Shipment Details · Shipper ID"]["result"] == "FAIL"
+
+
+def test_address_check_pass_review_and_fail():
+    doc = "FABRIKAM ELECTRIC SITE TWO POONAMALLEE 172 BYE PASS ROAD CHENNAI 111111 IN"
+    same = MC.address_check(doc, "172 Poonamallee Bye Pass Road Chennai 111111")
+    assert same["result"] == "PASS" and same["note"].startswith("7/7")
+    part = MC.address_check(doc, "172 Poonamallee Bye Pass Road Chennai Tamil Nadu 111111")
+    assert part["result"] == "REVIEW" and "NADU" in part["note"] and "TAMIL" in part["note"]          # same place, extra words
+    other = MC.address_check(doc, "SURVEY NO 4 AANGADU VILLAGE PONNERI TIRUVALLUR CHENNAI 33 IN")
+    assert other["result"] == "FAIL" and other["note"].startswith("different address")                # a different place
+    assert MC.address_check("", "x")["result"] == "NOT_VERIFIABLE" and MC.address_check(doc, "")["result"] == "INFO"
+
+
+def test_generic_reader_for_short_forwarder_form():
+    from nexus_agent.awb_extract import _generic_fill
+    text = ("Check B/L\n16012345678 CHJE000001\nACME SHIPPING\nSEOUL KOREA (01234)\n"
+            "INCHEON AIRPORT, KOREA FREIGHT COLLECT\nHKG CX BOM CX KRW CC CC N.V.\n"
+            "BOMBAY, INDIA CX035 2026-08-22 NIL\n(1) PLT ONLY WIDGETS TOTAL 1PALLET")
+    out = {}
+    _generic_fill(out, text)
+    assert out["awb_number"] == "160-12345678" and out["house_number"] == "CHJE000001"
+    assert out["seg_to"] == ["HKG", "BOM"] and out["charges_code"] == "CC"
+    assert out["destination_airport"] == "BOMBAY, INDIA" and out["executed_on"] == "2026-08-22"
+    assert "WIDGETS" in out["nature"]
+
+
+def test_parse_date_iso():
+    from nexus_agent.master_check import parse_date
+    assert parse_date("2026-08-22") == (22, 8, 2026)

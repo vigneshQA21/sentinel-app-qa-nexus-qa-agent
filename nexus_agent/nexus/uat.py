@@ -46,6 +46,19 @@ def parse_left_panel(text: str, headings: list[str]) -> dict:
             "unclassified": groups(sections.get(headings[2], []))}
 
 
+def assign_columns(headers: list[tuple], leaves: list[tuple]) -> dict:
+    """headers/leaves = [(text, x0, x1)]. Each text of a data row goes to the header whose centre is nearest to its own;
+    texts in the same column are joined. A cell that only repeats its header text (an empty input's placeholder,
+    e.g. 'Job Number') is returned as ''."""
+    cols = [(h[0], (h[1] + h[2]) / 2) for h in headers]
+    out: dict[str, list[str]] = {h[0]: [] for h in headers}
+    for text, x0, x1 in leaves:
+        centre = (x0 + x1) / 2
+        name = min(cols, key=lambda c: abs(c[1] - centre))[0]
+        out[name].append(text)
+    return {k: ("" if " ".join(v) == k else " ".join(v)) for k, v in out.items()}
+
+
 class UatPages:
     def __init__(self, page: Page, cfg: Config):
         self.page = page
@@ -61,7 +74,15 @@ class UatPages:
 
     # --- list ---------------------------------------------------------------------------
     def open_list(self) -> None:
-        self.page.goto(self.cfg.base_url + self.cfg.settings["nexus"]["home_path"])
+        url = self.cfg.base_url + self.cfg.settings["nexus"]["home_path"]
+        for attempt in (1, 2):                                   # Nexus is sometimes slow: wait for the content, retry once
+            try:
+                self.page.goto(url, wait_until="domcontentloaded", timeout=60000)
+                break
+            except Exception as exc:
+                if attempt == 2:
+                    raise
+                log.warning("Nexus was slow to load (%s), retrying", type(exc).__name__)
         try:
             self.page.locator(self.u["row_marker"]).first.wait_for(state="visible", timeout=60000)   # rows are on the page
             self.page.locator(self.u["loading"]).first.wait_for(state="hidden", timeout=60000)
@@ -101,9 +122,33 @@ class UatPages:
             time.sleep(poll_s)
 
     # --- viewer ---------------------------------------------------------------------------
-    def open_viewer(self, cell) -> None:
-        cell.click()
-        self.page.wait_for_timeout(2500)
+    def expand_row(self, cell) -> None:
+        """Expands the pre-alert's row so its records and 'View documents' buttons show. A click toggles the row, and Nexus can bring a
+        row back already expanded, so the result is checked and the click repeated once if the row ended up collapsed."""
+        view = self.page.get_by_label(self.u["view_documents"])
+        for _ in range(2):
+            cell.click()
+            self.page.wait_for_timeout(2500)
+            if view.count():
+                return
+
+    def read_shipment_details(self) -> list[dict]:
+        """The 'Shipment Details' table of the expanded row: one dict per record (Master / House), keyed by column."""
+        raw = self.page.get_by_text("Record Type", exact=True).first.evaluate("""h => {
+            let node = h.parentElement;
+            for (let i = 0; i < 8; i++) {
+              const sib = [...node.parentElement.children].filter(x => x !== node && /Master|House/.test(x.innerText));
+              if (sib.length) break; node = node.parentElement; }
+            const table = node.parentElement;
+            const leaves = root => [...root.querySelectorAll('*')].filter(e => e.children.length === 0 && (e.innerText || '').trim())
+                .map(e => { const r = e.getBoundingClientRect(); return [(e.innerText || '').replace(/\\s+/g, ' ').trim(), r.left, r.right]; });
+            const rows = [...table.children].filter(x => x !== node && /Master|House/.test(x.innerText));
+            return {headers: leaves(node), rows: rows.map(leaves)}; }""")
+        return [assign_columns([tuple(x) for x in raw["headers"]], [tuple(x) for x in r]) for r in raw["rows"]]
+
+    def open_viewer(self, cell, expanded: bool = False) -> None:
+        if not expanded:
+            self.expand_row(cell)
         self.page.get_by_label(self.u["view_documents"]).first.click()
         self.page.wait_for_url(f"**{self.u['viewer_url_part']}**", timeout=30000)
         self.page.wait_for_timeout(3000)
@@ -251,3 +296,111 @@ def read_party_ids(page: Page) -> dict:
         name = (b.get_attribute("aria-label") or "").replace(" — Party ID", "")
         out[name] = (b.inner_text() or "").replace("Party ID:", "").strip()
     return out
+
+
+def map_house_panel(items: list[dict], party_ids: dict | None = None) -> dict:
+    """The House record's 'Shipment Data' panel (a different layout from the Master's), every field in panel order.
+    Order in Nexus: house number (Top Right / Bottom Right), master AWB reference, shipper, consignee, a free-text agent box,
+    freight payment, airports, route + segments, cargo (pieces, weights, goods, volume), shipper's reference, dates, incoterm."""
+    out: dict = {"segments": [], "shipper": {}, "consignee": {}, "fields": []}
+    party_ids = party_ids or {}
+    seen: dict[str, int] = {}
+    stage = "head"
+    unl = 0                       # unlabelled fields met in the current stage
+
+    def add(section, label, value, readonly=False):
+        out["fields"].append({"section": section, "label": label, "value": value, "readonly": readonly})
+
+    for it in items:
+        label, value, ro = it["label"], it["value"], it["readonly"]
+        if label == "Top Right":
+            out["house_top"] = value; add("House Air Waybill", "House Number (top right)", value, ro)
+        elif label == "Bottom Right":
+            out["house_bottom"] = value; add("House Air Waybill", "House Number (bottom right)", value, ro)
+        elif not label and stage == "head" and "master_ref" not in out:
+            out["master_ref"] = value; add("House Air Waybill", "Master AWB Reference", value, ro)
+        elif label in ("Name", "Address", "Postal Code"):
+            n = seen[label] = seen.get(label, 0) + 1
+            who = "Shipper" if n == 1 else "Consignee"
+            party = out[who.lower()]
+            party[label.lower().replace(" ", "_")] = value
+            add(who, label, value, ro)
+            if label == "Postal Code":
+                pid = party_ids.get(PARTY_CARD[who], "")
+                party["party_id"] = pid
+                add(who, "Party ID", pid, True)
+        elif not label and it["tag"] == "TEXTAREA" and "agent_text" not in out and "freight_payment" not in out:
+            out["agent_text"] = value; add("Agent", "Agent / Origin Party (free text)", value, ro)
+        elif it["tag"] == "SELECT" and label == "Freight Payment":
+            out["freight_payment"] = value; add("Freight", "Freight Payment", value, ro)
+        elif label == "Airport Of Departure":
+            out["departure_airport"] = value; add("Routing", label, value, ro)
+        elif label == "Final Destination Airport":
+            out["destination_airport"] = value; add("Routing", label, value, ro)
+        elif label == "Type":
+            out["route_type"] = value; add("Flight Route", "Type", value, ro)
+        elif label == "From":
+            out["segments"].append({"from": value}); add(f"Segment {len(out['segments'])}", "From", value, ro)
+        elif label in ("To", "Polname", "Polctry", "Podname", "Podctry", "Carrier Name", "Carrier Code",
+                       "Flight Number", "Flight Date") and out["segments"]:
+            out["segments"][-1][label.lower().replace(" ", "_")] = value
+            add(f"Segment {len(out['segments'])}", label, value, ro)
+            if label == "Flight Date":
+                stage = "cargo"; unl = 0
+        elif stage == "cargo" and label == "Value" and "pieces" not in out:
+            out["pieces"] = value; add("Cargo", "Pieces", value, ro)
+        elif stage == "cargo" and label == "Unit" and "pieces_unit" not in out:
+            out["pieces_unit"] = value; add("Cargo", "Pieces Unit", value, ro)
+        elif stage == "cargo" and not label and "pieces_unit" in out and "volume" not in out:
+            names = ["gross_weight", "gross_unit", "chargeable_weight", "chargeable_unit", "nature"]
+            labels = ["Gross Weight", "Gross Weight Unit", "Chargeable Weight", "Chargeable Weight Unit", "Nature And Quantity Of Goods"]
+            if unl < len(names):
+                out[names[unl]] = value; add("Cargo", labels[unl], value, ro)
+            else:
+                add("Cargo", f"(unlabelled field {unl + 1})", value, ro)
+            unl += 1
+        elif stage == "cargo" and label == "Value" and "pieces" in out:
+            out["volume"] = value; add("Cargo", "Volume", value, ro)
+        elif stage == "cargo" and label == "Unit" and "volume" in out:
+            out["volume_unit"] = value; add("Cargo", "Volume Unit", value, ro)
+        elif label == "Shippers Reference":
+            out["reference"] = value; add("Reference", "Shippers Reference", value, ro); stage = "tail"; unl = 0
+        elif stage == "tail" and not label:
+            tail = [("(unlabelled, empty)", None), ("Executed On", "executed_on"), ("(unlabelled, empty)", None), ("Incoterm", "incoterm")]
+            lab, key = tail[unl] if unl < len(tail) else (f"(unlabelled field {unl + 1})", None)
+            if key:
+                out[key] = value
+            add("Reference", lab, value, ro)
+            unl += 1
+        else:
+            add("Other", label or "(unlabelled field)", value, ro)
+    return out
+
+
+def read_panel_fields(page: Page) -> list[dict]:
+    """Like read_panel_inputs, but an input without its own label gets the nearest heading above it
+    (Invoice Number, Grand Total ...). Used for Manifest / Invoice / Packing List panels."""
+    panel = page.get_by_text("Shipment Data", exact=True).first.locator("xpath=ancestor::div[2]")
+    return panel.evaluate("""p => [...p.querySelectorAll('input,textarea,select')].map(e => {
+        let label = '';
+        let n = e;
+        for (let k = 0; k < 5 && n.parentElement && !label; k++) {
+          n = n.parentElement;
+          const sp = [...n.querySelectorAll(':scope > span, :scope > label, :scope > div > span, :scope > legend')]
+              .map(x => x.innerText.trim()).filter(t => t && t !== e.value && t.length < 40);
+          if (sp.length) label = sp[0];
+        }
+        return {tag: e.tagName, label, value: e.tagName === 'SELECT' ? (e.selectedOptions[0] ? e.selectedOptions[0].text : e.value) : (e.value || ''),
+                readonly: !!(e.readOnly || e.disabled)}; })""")
+
+
+def open_document_page(page: Page, doc_name_pattern: str, page_no: int = 1) -> bool:
+    """Clicks the page thumbnail (never the 're-classify' checkbox) of a linked document, e.g. 'Invoice page 1'."""
+    import re as _re
+    rx = _re.compile(rf"^(?:{doc_name_pattern}) page {page_no}$", _re.IGNORECASE)
+    loc = page.get_by_label(rx)
+    if loc.count() == 0:
+        return False
+    loc.first.click()
+    page.wait_for_timeout(3500)
+    return True

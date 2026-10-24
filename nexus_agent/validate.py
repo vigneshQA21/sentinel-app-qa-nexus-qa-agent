@@ -23,11 +23,16 @@ log = logging.getLogger(__name__)
 
 # --- normalising names ---------------------------------------------------------------
 def canonical(text: str, aliases: dict[str, list[str]]) -> str:
-    """Canonical document type for a Nexus label / document name / test-case wording ('' if unknown)."""
+    """Canonical document type for a Nexus label / document name / test-case wording ('' if unknown). Short aliases (PO) only
+    match as a whole word, so 'PO' does not match 'POSTAL' or 'PORT'."""
     up = " ".join((text or "").upper().replace("_", " ").split())
     for canon, words in aliases.items():
-        if up == canon or any(w.upper() in up for w in words):
+        if up == canon:
             return canon
+        for w in words:
+            w = w.upper()
+            if (re.search(rf"(?<![A-Z0-9]){re.escape(w)}(?![A-Z0-9])", up) if len(w) <= 3 else w in up):
+                return canon
     return ""
 
 
@@ -55,9 +60,10 @@ def parse_expected(expected_mapping: str, docs: str, cfg: Config) -> dict[str, s
         if re.match(r"(other|remaining|all other)", left, re.IGNORECASE):
             others = sec
             continue
-        canon = canonical(left, aliases)
-        if canon:
-            rules[canon] = sec
+        for piece in re.split(r"\s*(?:/|&|\band\b)\s*", left, flags=re.IGNORECASE):     # 'Invoice/Packing List' = two document types
+            canon = canonical(piece, aliases)
+            if canon:
+                rules[canon] = sec
     expected: dict[str, str | None] = {}
     for d in re.split(r"\s*\+\s*", docs or ""):
         canon = canonical(d, aliases)
@@ -84,26 +90,30 @@ class Verdict:
     unexpected: list[str] = field(default_factory=list)
 
     def passed(self, fail_on_unexpected: bool = False) -> bool:
-        return all(r.status == "PASS" for r in self.results) and not (fail_on_unexpected and self.unexpected)
+        return all(r.status in ("PASS", "REVIEW") for r in self.results) and not (fail_on_unexpected and self.unexpected)
 
 
 def compare(expected: dict[str, str | None], actual: list[dict], aliases: dict[str, list[str]],
-            accept: dict[str, set[str]] | None = None) -> Verdict:
+            accept: dict[str, set[str]] | None = None, alternates: dict[str, list[str]] | None = None) -> Verdict:
     """actual = [{section, name, type}] from the Nexus page. accept = extra sections that count as correct for a
     type, e.g. {"MANIFEST": {"Manifest"}}: Nexus lists the manifest as its own parent, tied to the master."""
     accept = accept or {}
+    alternates = alternates or {}
     found: dict[str, list[tuple[str, str]]] = {}
     unexpected = []
     for d in actual:
         canon = canonical(d.get("type", ""), aliases) or canonical(d.get("name", ""), aliases)
-        if not canon or canon not in expected:
+        if not canon or (canon not in expected and not any(canon in alts for k, alts in alternates.items() if k in expected)):
             unexpected.append(f"{d.get('name') or d.get('type')} in {d['section']}")
             continue
         found.setdefault(canon, []).append((d["section"], d.get("name", "")))
     v = Verdict(unexpected=unexpected)
     for canon, want in expected.items():
         have = found.get(canon, [])
-        if not have:
+        alt = [(sec, nm) for a in alternates.get(canon, []) for sec, nm in found.get(a, [])]
+        if not have and alt and (want is None or any(sec == want for sec, _ in alt)):
+            v.results.append(DocResult(canon, want, "REVIEW", f"Nexus shows it as another type, in {alt[0][0]}"))
+        elif not have:
             v.results.append(DocResult(canon, want, "FAIL", "not found in Nexus"))
         elif want is None or any(sec == want or sec in accept.get(canon, set()) for sec, _ in have):
             where = ", ".join(sorted({sec for sec, _ in have}))
@@ -216,7 +226,8 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     if not expected:
         row.update(verdict="ERROR", details="could not read an expected mapping from the test case")
         return row
-    v = compare(expected, actual, cfg.settings["validation"]["type_aliases"], accept={"MANIFEST": {"Manifest"}})
+    alternates = {k: [x.upper() for x in vals] for k, vals in (cfg.settings["validation"].get("type_alternates") or {}).items()}
+    v = compare(expected, actual, cfg.settings["validation"]["type_aliases"], accept={"MANIFEST": {"Manifest"}}, alternates=alternates)
     ok = v.passed(cfg.settings["validation"].get("fail_on_unexpected", False))
     row["verdict"] = "PASS" if ok else "FAIL"
     seen = "; ".join(f"{p['parent']}: " + (", ".join(f"{g['label']}x{max(g['pages'],1)}" for g in p["linked"]) or "-") for p in parents)

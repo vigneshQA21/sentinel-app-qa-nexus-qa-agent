@@ -21,6 +21,26 @@ CREATE TABLE IF NOT EXISTS shipments (
     evidence_dir TEXT,
     updated_at TEXT
 );
+CREATE TABLE IF NOT EXISTS bugs (
+    fingerprint TEXT PRIMARY KEY,
+    case_id TEXT,
+    document TEXT,
+    field TEXT,
+    status TEXT,          -- PENDING | APPROVED (confirmed, waiting to be pasted) | LOGGED | NOT_A_BUG
+    data TEXT,            -- the candidate as JSON
+    found_at TEXT,
+    decided_at TEXT,
+    note TEXT
+);
+CREATE TABLE IF NOT EXISTS bug_history (
+    fingerprint TEXT,
+    ipa TEXT,             -- the Nexus pre-alert the finding was seen in: one occurrence per pre-alert, re-checking it does not repeat it
+    case_id TEXT,
+    document TEXT,
+    field TEXT,
+    seen_at TEXT,
+    PRIMARY KEY (fingerprint, ipa)
+);
 CREATE TABLE IF NOT EXISTS sent_docs (
     ref TEXT,
     filename TEXT,
@@ -46,6 +66,37 @@ class Store:
         self.db = sqlite3.connect(db_path)
         self.db.row_factory = sqlite3.Row
         self.db.executescript(SCHEMA)
+
+    # --- bug candidates (nothing is logged without the user's confirmation) -------------------
+    def bug_get(self, fingerprint: str) -> dict | None:
+        row = self.db.execute("SELECT * FROM bugs WHERE fingerprint=?", (fingerprint,)).fetchone()
+        return dict(row) if row else None
+
+    def bug_add_pending(self, fingerprint: str, case_id: str, document: str, field: str, data_json: str) -> bool:
+        """True if it is new. A candidate that was already decided (or is already pending) is left alone."""
+        if self.bug_get(fingerprint):
+            return False
+        self.db.execute("INSERT INTO bugs(fingerprint, case_id, document, field, status, data, found_at) VALUES (?,?,?,?,?,?,?)",
+                        (fingerprint, case_id, document, field, "PENDING", data_json, _now()))
+        self.db.commit()
+        return True
+
+    def history_add(self, fingerprint: str, ipa: str, case_id: str, document: str, field: str) -> bool:
+        """True if this finding was not yet seen in this pre-alert (a new occurrence)."""
+        cur = self.db.execute("INSERT OR IGNORE INTO bug_history(fingerprint, ipa, case_id, document, field, seen_at) VALUES (?,?,?,?,?,?)",
+                              (fingerprint, ipa or "(unknown)", case_id, document, field, _now()))
+        self.db.commit()
+        return cur.rowcount > 0
+
+    def history_rows(self) -> list[dict]:
+        return [dict(r) for r in self.db.execute("SELECT * FROM bug_history ORDER BY seen_at").fetchall()]
+
+    def bugs_by_status(self, status: str) -> list[dict]:
+        return [dict(r) for r in self.db.execute("SELECT * FROM bugs WHERE status=? ORDER BY found_at", (status,)).fetchall()]
+
+    def bug_set_status(self, fingerprint: str, status: str, note: str = "") -> None:
+        self.db.execute("UPDATE bugs SET status=?, decided_at=?, note=? WHERE fingerprint=?", (status, _now(), note, fingerprint))
+        self.db.commit()
 
     # --- Gmail dedupe ---------------------------------------------------
     def was_forwarded(self, gmail_id: str) -> bool:

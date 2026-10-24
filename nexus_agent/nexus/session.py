@@ -27,7 +27,7 @@ class NexusSession:
     def __enter__(self) -> "NexusSession":
         self._pw = sync_playwright().start()
         self.browser = self._pw.chromium.launch(headless=self.headless)
-        kwargs = {"accept_downloads": True}
+        kwargs = {"accept_downloads": True, "viewport": {"width": 1800, "height": 1000}}   # wide enough to draw the whole Shipment Details table
         if self.state_file.exists():
             kwargs["storage_state"] = str(self.state_file)
             log.info("Reusing saved Nexus session %s", self.state_file)
@@ -81,7 +81,7 @@ class NexusSession:
         user, pwd = self.cfg.nexus_user, self.cfg.nexus_password
         if not (user and pwd):
             raise SessionExpired("Nexus session expired and NEXUS_USER/NEXUS_PASSWORD are not set. "
-                                 "Run `python -m nexus_agent login` to log in again.")
+                                 "Run `./nx login` to log in again.")
         log.info("Session expired, logging in as %s", user)
         self.page.goto(self.cfg.base_url + self.cfg.settings["nexus"]["login_path"])
         self.page.fill(self.sel["username"], user)

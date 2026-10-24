@@ -63,11 +63,11 @@ local_docs:
   subject_template: '{tag} | Pre-Alert {ref} | INDIVIDUAL | {doc}'                   # one email per individual file
   # How a document type is written in the subject (type -> label).
   doc_labels: {MBL: MASTER, HBL: HOUSE, INVOICE: INVOICE, PACKING: PACKING LIST, MANIFEST: MANIFEST,
-               SHIPPERDOC: SHIPPER DOC, DEBITNOTE: DEBIT NOTE, DELIVERY: DELIVERY NOTE, OTHER: DOCUMENT}
+               SHIPPERDOC: SHIPPER DOC, DEBITNOTE: DEBIT NOTE, DELIVERY: DELIVERY NOTE, PO: PO, OTHER: DOCUMENT}
   # Words in an individual file name that identify its type (otherwise the PDF text is checked).
   filename_types: {MASTER: MBL, MBL: MBL, MAWB: MBL, HOUSE: HBL, HBL: HBL, HAWB: HBL, INVOICE: INVOICE,
                    PACKING: PACKING, PACKINGLIST: PACKING, PL: PACKING, PKL: PACKING, MANIFEST: MANIFEST, SHIPPERDOC: SHIPPERDOC,
-                   SLI: SHIPPERDOC, DEBITNOTE: DEBITNOTE, DELIVERY: DELIVERY, DELIVERYNOTE: DELIVERY}
+                   SLI: SHIPPERDOC, PO: PO, DEBITNOTE: DEBITNOTE, DELIVERY: DELIVERY, DELIVERYNOTE: DELIVERY}
 
 screening:
   # A consolidated PDF is only sent if every type listed here is found in it (use --force to override).
@@ -79,13 +79,14 @@ pdf_split:
   # Pages that match nothing continue the previous document. Tuned on real Quadance exports.
   keywords:
     MBL: ['MASTER AIR WAYBILL', 'MASTER AIR WAY BILL', 'MASTER BILL OF LADING', 'MASTER B/L', 'MBL NO']
-    AWBFORM: ["SHIPPER'S NAME AND ADDRESS", "SHIPPER’S NAME AND ADDRESS"]   # air waybill form (checked before manifest): house if it quotes a MAWB/HAWB, else master
+    AWBFORM: ["SHIPPER'S NAME AND ADDRESS", "SHIPPER’S NAME AND ADDRESS", "CHECK B/L"]   # air waybill form (checked before manifest): house if it quotes a MAWB/HAWB, else master
     MANIFEST: ['CARGO MANIFEST', 'FREIGHT MANIFEST', 'CONSOLIDATED CARGO MANIFEST', 'HOUSE AIRWAYBILL LIST', 'HOUSE AIR WAYBILL LIST']
     DELIVERY: ['DELIVERY NOTE', 'DELIVERY CHALLAN']
     INVOICE__1: ['COMMERCIAL INVOICE', 'TAX INVOICE']     # `__n` only keeps YAML keys unique; the type is INVOICE
     PACKING: ['PACKING LIST']
     INVOICE: ['INVOICE NO', 'INVOICE DATE', 'THIS INVOICE']
     DEBITNOTE: ['DEBIT NOTE']
+    PO: ['PO CONFIRMATION', 'PURCHASE ORDER', 'ORDER CONFIRMATION']
     SHIPPERDOC: ["SHIPPER'S LETTER OF INSTRUCTION", 'SHIPPERS LETTER OF INSTRUCTION', 'SHIPPING INSTRUCTION']
     HBL: ['HAWB', 'HOUSE AIR WAYBILL', 'HOUSE AIR WAY BILL', 'HOUSE BILL OF LADING', 'BILL OF LADING', 'HBL']
     MBL_WEAK: ['MAWB', 'MASTER AWB']
@@ -124,11 +125,38 @@ validation:
     INVOICE: [INVOICE]
     "DEBIT NOTE": [DEBIT]
     "DELIVERY NOTE": [DELIVERY NOTE]
-    "SHIPPER DOCUMENT": [SHIPPER DOC, CERTIFICATE OF ORIGIN, DECLARATION]
+    "SHIPPER DOCUMENT": [SHIPPER DOC, SHIPPERDOC, CERTIFICATE OF ORIGIN, DECLARATION]
+    PO: [PO CONFIRMATION, PURCHASE ORDER, ORDER CONFIRMATION, PO]
   # Timing after an email is sent (counted from the send time): wait the buffer, then poll until the pre-alert
   # appears (typically 2-3 min, up to 5-7 min).
   initial_wait_seconds: 180
   poll_seconds: 20
   max_wait_seconds: 420
+  # Master row of the 'Shipment Details' table (expanded list row)
+  expected_job_type: New Job
+  expected_master_status: CW Sync Pending
+  expected_house_status: CW Sync Pending       # a House still showing 'Invoice Mapping Pending' is reported as not final
+  airport_names: {MAA: [CHENNAI, MADRAS], BOM: [MUMBAI, BOMBAY], DEL: [DELHI], BLR: [BANGALORE, BENGALURU],
+                  HYD: [HYDERABAD], CCU: [KOLKATA, CALCUTTA], COK: [COCHIN, KOCHI], AMD: [AHMEDABAD]}   # branch code -> city
+  # A type Nexus has no class for is shown as another one: PO pages appear as 'Shipper Document' (result REVIEW, not FAIL)
+  type_alternates: {PO: [SHIPPER DOCUMENT]}
   fail_on_unexpected: false           # true = extra/unclassified documents also fail the case
   evidence: true                      # screenshots in runs/<date>/<case>/
+
+bugsheet:
+  # UAT functionality bug sheet. Nothing is EVER added without your confirmation (./nx bugs asks per bug).
+  spreadsheet_id: 1jZoh-xbEiENFSZN1t2Bh9fRfMlztY3Oaf-tJX939uBE
+  tab_gid: 11340084
+  tab_name: ''                  # the tab's title (only needed for backend: sheets)
+  backend: auto                 # auto = sheets once `./nx bugs --check-sheet` has succeeded, otherwise paste; or force paste / sheets
+                                # paste = writes a ready-to-paste file (no credentials); sheets = appends via the Google Sheets API
+  token_file: secrets/google_bugs_token.json     # one login for the sheet (Sheets) and the evidence folder (Drive)
+  evidence_folder_id: 1eHTlsLWfCO0zNkMFEdYvsLVppRdXZVYe   # the team's Drive folder for UAT bug evidence
+  evidence_path: [Regression testing, Reg - Air & Sea, '{date}']   # sub-folders under it, like 23-10-2026 (today's is created if missing)
+  reported_by: Vigneshwaran S
+  date_format: '%d/%m/%Y'       # the sheet writes 24/10/2026
+  defaults: {Status: Not Taken, Severity: High, MOT: Air, 'Reported Team': QA Team}   # a new bug: Status Not Taken; Priority/MOT are overridden per bug
+  # Column order of the bug sheet (header names). Unknown names stay empty. Fields available:
+  # Bug ID, Date, Module, Test Case ID, Quadance Job No, Nexus Job No, Document, Field, Bug Summary, Expected Result,
+  # Actual Result, Result, Note, Severity, Status, Evidence, Reported By
+  columns: [Bug ID, Date, Module, Test Case ID, Quadance Job No, Nexus Job No, Bug Summary, Expected Result, Actual Result, Severity, Status, Evidence, Reported By]

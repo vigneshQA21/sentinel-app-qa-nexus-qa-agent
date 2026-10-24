@@ -42,11 +42,18 @@ def parse_date(s: str | None) -> tuple[int, int, int] | None:
         y = int(m.group(3))
         return int(m.group(1)), MONTHS.get(m.group(2).upper(), 0), y + 2000 if y < 100 else y
     m = re.match(r"^(\d{1,2})/(\d{1,2})/(\d{4})$", s)
-    return (int(m.group(1)), int(m.group(2)), int(m.group(3))) if m else None
+    if m:
+        return int(m.group(1)), int(m.group(2)), int(m.group(3))
+    m = re.match(r"^(\d{4})-(\d{2})-(\d{2})$", s)                     # 2026-08-22
+    return (int(m.group(3)), int(m.group(2)), int(m.group(1))) if m else None
 
 
 def similar(a: str, b: str) -> float:
     return difflib.SequenceMatcher(None, norm(a), norm(b)).ratio()
+
+
+def info_row(field, expected, actual, note):
+    return row(field, expected, actual, "INFO", note)
 
 
 def row(field, expected, actual, result, note=""):
@@ -62,6 +69,10 @@ def _exact(field, exp, act, same=lambda a, b: norm(a) == norm(b)):
     return row(field, exp, act, "PASS" if same(str(exp), str(act)) else "FAIL")
 
 
+def tokens(s: str | None) -> set[str]:
+    return {t for t in re.sub(r"[^A-Z0-9 ]", " ", (s or "").upper()).split() if t}
+
+
 def _text(field, exp, act, note_pass=""):
     if not exp:
         return row(field, exp, act, "NOT_VERIFIABLE", "could not be read from the document")
@@ -69,6 +80,8 @@ def _text(field, exp, act, note_pass=""):
         return row(field, exp, act, "FAIL", "Nexus shows nothing")
     if norm(act) in norm(exp) or norm(exp) in norm(act):
         return row(field, exp, act, "PASS", note_pass)
+    if tokens(act) and tokens(act) <= tokens(exp):          # every word Nexus shows is on the document
+        return row(field, exp, act, "PASS", note_pass or "every word is on the document")
     r = similar(exp, act)
     return row(field, exp, act, "PASS" if r >= SIMILAR else "FAIL", f"similarity {r:.2f} (needs {SIMILAR})")
 
@@ -84,7 +97,28 @@ def glued_words(lines: list[str] | None, shown: str | None) -> list[str]:
     return out
 
 
-def compare_master(doc: dict, ui: dict) -> list[dict]:
+def address_check(doc_text: str, shown: str | None) -> dict:
+    """Compares the address Nexus shows with the address block on the document by the words they share. Nexus's own party-master
+    address is compared too: a different place is a mismatch, whoever holds the data."""
+    if not doc_text:
+        return row("", None, shown, "NOT_VERIFIABLE", "could not be read from the document")
+    if not (shown or "").strip():
+        return row("", "(on the document)", shown, "INFO", "empty in Nexus")
+    sig = lambda t: sorted(w for w in tokens(t) if len(w) >= 3 or (w.isdigit() and len(w) >= 2))      # sorted: stable output
+    mine, doc_tokens, doc_norm = sig(shown), tokens(doc_text), norm(doc_text)
+    hit = [w for w in mine if w in doc_tokens or (len(w) >= 5 and w in doc_norm)]
+    ratio = len(hit) / len(mine) if mine else 0.0
+    miss = [w for w in mine if w not in hit]
+    txt = f"{len(hit)}/{len(mine)} words of the Nexus address are on the document"
+    if ratio >= 0.9:
+        return row("", "(address on the document)", shown, "PASS", txt)
+    if ratio >= 0.5:
+        return row("", "(address on the document)", shown, "REVIEW", f"{txt}; not on the document: {', '.join(miss[:8])}")
+    return row("", "(address on the document)", shown, "FAIL",
+               f"different address: only {txt}; not on the document: {', '.join(miss[:8])}")
+
+
+def compare_master(doc: dict, ui: dict, details: dict | None = None, rules: dict | None = None) -> list[dict]:
     """One row per field of the Nexus 'Shipment Data' panel, in panel order. Each row says whether the value was
     compared with the document (PASS/FAIL), is data Nexus derives or holds itself (INFO), or could not be checked
     (NOT_VERIFIABLE). Checks the document expects but Nexus does not show are appended as FAIL."""
@@ -100,13 +134,41 @@ def compare_master(doc: dict, ui: dict) -> list[dict]:
 
     put("Air Waybill", "Air Waybill Number", _exact("", doc["awb_number"], ui.get("awb_number")))
 
+    if details is not None:                      # Master row of the Shipment Details table (list page)
+        rules = rules or {}
+        sec = "Shipment Details"
+        shipper_text, consignee_text = " ".join(doc["shipper_lines"] or []), " ".join(doc["consignee_lines"] or [])
+        put(sec, "Bill No.", _exact("", doc["awb_number"], details.get("Bill No.")))
+        put(sec, "Shipper", _text("", shipper_text, details.get("Shipper"), "shipper found in the document block"))
+        put(sec, "Consignee", _text("", consignee_text, details.get("Consignee"), "consignee found in the document block"))
+        for who, key in (("Shipper", "shipper"), ("Consignee", "consignee")):
+            pid, panel = details.get(f"{who} ID"), (ui.get(key) or {}).get("party_id")
+            put(sec, f"{who} ID", row("", panel, pid, "PASS" if pid and panel and pid == panel else "FAIL" if pid and panel else "INFO",
+                                      "same as the Party ID in the data panel" if pid and panel and pid == panel
+                                      else "differs from the Party ID in the data panel" if pid and panel
+                                      else "party-master ID, not printed on the document"))
+        code = (doc["seg_to"] or [None])[-1]
+        names = (rules or {}).get("airport_names", {}).get(code or "", [])
+        branch = details.get("Branch")
+        note = ""
+        if code and names:
+            ok_city = any(n in norm(doc["destination_airport"]) for n in map(norm, names)) if doc["destination_airport"] else False
+            note = f"{code} = {names[0].title()}" + (", matches the document's destination" if ok_city else "")
+        r = _exact("", code, branch)
+        r["note"] = note
+        put(sec, "Branch", r)
+        put(sec, "Job Type", _exact("", rules.get("expected_job_type", "New Job"), details.get("Job Type")))
+        put(sec, "Status", _exact("", rules.get("expected_master_status", "CW Sync Pending"), details.get("Status")))
+        info(sec, "Page Nos.", None, details.get("Page Nos."), "page of the master within its document group")
+        info(sec, "Job Number", None, details.get("Job Number"), "assigned later when the job is created" if not details.get("Job Number") else "")
+
     page = doc.get("text") or ""
     for who, lines in (("Shipper", doc["shipper_lines"]), ("Consignee", doc["consignee_lines"])):
         p = ui.get(who.lower(), {})
         text = " ".join(lines or [])
         put(who, "Name", _text("", text, p.get("name"), "name found in the document block"))
         if who == "Shipper":
-            info(who, "Address", text, p.get("address"), "party-master data (read-only in Nexus), not compared with the document")
+            put(who, "Address", address_check(text, p.get("address")))
         else:
             r = _text("", text, p.get("address"))
             glued = glued_words(lines, p.get("address"))
@@ -114,8 +176,10 @@ def compare_master(doc: dict, ui: dict) -> list[dict]:
                 r["note"] = "Nexus joins the document's address lines without a space: " + ", ".join(glued)
             put(who, "Address", r)
         pc = p.get("postal_code")
-        put(who, "Postal Code", row("", pc and "(in document block)", pc,
-                                    ("PASS" if pc and norm(pc) in norm(text) else "FAIL") if text else "NOT_VERIFIABLE",
+        ok_pc = bool(pc) and norm(pc) in norm(text)
+        printed = ", ".join(dict.fromkeys(re.findall(r"\b\d{4,6}\b", text))) or "(in document block)"
+        put(who, "Postal Code", row("", (pc if ok_pc else printed) if pc else None, pc,
+                                    ("PASS" if ok_pc else "FAIL") if text else "NOT_VERIFIABLE",
                                     "" if text else "could not be read from the document"))
         info(who, "Party ID", None, p.get("party_id"), "assigned by the Nexus party master, not printed on the document")
 
@@ -158,8 +222,10 @@ def compare_master(doc: dict, ui: dict) -> list[dict]:
                                      "PASS" if cn and norm(cn) in norm(page) else "INFO",
                                      "carrier name appears on the document" if cn and norm(cn) in norm(page)
                                      else "not printed on the document (airline master data)"))
-        put(sec, "Carrier Code", _exact("", doc["seg_carrier"][i] if has else None, s.get("carrier_code"),
-                                        lambda a, b: norm(a) in norm(b)))
+        cc = _exact("", doc["seg_carrier"][i] if has else None, s.get("carrier_code"), lambda a, b: norm(a) in norm(b))
+        if cc["result"] == "FAIL" and s.get("carrier_code"):
+            cc.update(result="INFO", note="Nexus airline-master code, not the IATA code printed on the document (see Carrier Name)")
+        put(sec, "Carrier Code", cc)
         fl = (doc["flights"] or [])
         put(sec, "Flight Number", _exact("", fl[i][0] if i < len(fl) else None, s.get("flight_number")))
         d = parse_date(s.get("flight_date"))
@@ -211,15 +277,16 @@ def verdict(rows: list[dict]) -> str:
 
 
 def summary(rows: list[dict]) -> str:
-    c = {k: sum(1 for r in rows if r["result"] == k) for k in ("PASS", "FAIL", "INFO", "NOT_VERIFIABLE")}
-    return (f"{len(rows)} fields in the Nexus Master panel | compared with the document: {c['PASS'] + c['FAIL']} "
-            f"(PASS {c['PASS']}, FAIL {c['FAIL']}) | INFO (no document value): {c['INFO']} | NOT_VERIFIABLE: {c['NOT_VERIFIABLE']}")
+    c = {k: sum(1 for r in rows if r["result"] == k) for k in ("PASS", "FAIL", "REVIEW", "INFO", "NOT_VERIFIABLE", "KNOWN")}
+    return (f"{len(rows)} fields shown in Nexus | compared with the document: {c['PASS'] + c['FAIL'] + c['REVIEW'] + c['KNOWN']} "
+            f"(PASS {c['PASS']}, FAIL {c['FAIL']}, REVIEW {c['REVIEW']}, KNOWN {c['KNOWN']}) | INFO (no document value): {c['INFO']} "
+            f"| NOT_VERIFIABLE: {c['NOT_VERIFIABLE']}")
 
 
-def format_report(results: list[dict]) -> str:
+def format_report(results: list[dict], title: str = "MASTER DATA") -> str:
     lines = []
     for r in results:
-        lines.append(f"\n{r['case_id']}  MASTER DATA  {r['verdict']}   {r['ipa']}   source: {r['source']}   {r['message']}".rstrip())
+        lines.append(f"\n{r['case_id']}  {title}  {r['verdict']}   {r['ipa']}   source: {r['source']}   {r['message']}".rstrip())
         if r["rows"]:
             lines.append(f"\n  ALL FIELDS SHOWN IN NEXUS ({len(r['rows'])})")
             per: dict[str, int] = {}
@@ -233,7 +300,8 @@ def format_report(results: list[dict]) -> str:
             if x["section"] != section:
                 section = x["section"]
                 lines.append(f"  [{section}]")
-            lines.append(f"    {x['result']:15} {x['label']:30} doc: {x['expected_from_document'][:40]:40} | nexus: {x['shown_in_nexus'][:42]}"
+            exp, act = " ".join(x["expected_from_document"].split()), " ".join(x["shown_in_nexus"].split())
+            lines.append(f"    {x['result']:15} {x['label']:30} doc: {exp[:40]:40} | nexus: {act[:42]}"
                          + (f"   [{x['note']}]" if x["note"] else ""))
         if r["rows"]:
             lines.append("\n  " + summary(r["rows"]))
@@ -256,6 +324,19 @@ def find_master_source(cfg: Config, case: Case) -> tuple[Path, int] | None:
 
 
 # --- the run -------------------------------------------------------------------------------------
+TABLE_ORDER = ["Job Number", "Page Nos.", "Bill No.", "Shipper", "Shipper ID", "Consignee", "Consignee ID",
+               "Branch", "Job Type", "Status"]
+
+
+def attach_details(fields: dict, mrec: dict | None) -> dict:
+    """Puts the Master row of the Shipment Details table in front of the data-panel fields (it is on the list page,
+    before the viewer), so it is listed, counted and compared like every other field."""
+    if mrec is not None:
+        fields["fields"] = [{"section": "Shipment Details", "label": k, "value": mrec.get(k, ""), "readonly": True}
+                            for k in TABLE_ORDER] + fields["fields"]
+    return fields
+
+
 def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds: float | None) -> dict:
     v = cfg.settings["validation"]
     res = {"case_id": case.id, "ipa": "", "source": "", "verdict": "ERROR", "rows": [], "message": ""}
@@ -275,7 +356,10 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
         res["message"] = f"no pre-alert for {case.id} in Nexus (checked the Pre-Alerts tab)"
         return res
     res["ipa"] = info["ipa"]
-    ui.open_viewer(cell)
+    ui.expand_row(cell)
+    records = ui.read_shipment_details()               # the Shipment Details table of the expanded row
+    mrec = next((r for r in records if r.get("Record Type", "").startswith("Master")), None)
+    ui.open_viewer(cell, expanded=True)
     master = next((o for o in ui.parent_options() if o.startswith("Master")), None)
     if master is None:
         res["message"] = "no Master parent in the viewer"
@@ -285,7 +369,10 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
     evidence = cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id
     ui.screenshot(evidence / "master_data.png")
     fields = map_master_panel(read_panel_inputs(ui.page), read_party_ids(ui.page))
-    res["rows"] = compare_master(doc, fields)
+    attach_details(fields, mrec)
+    res["rows"] = compare_master(doc, fields, mrec, cfg.settings["validation"])
+    if mrec is None:
+        res["message"] = "the Master row of the Shipment Details table was not found"
     res["verdict"] = verdict(res["rows"])
     return res
 
@@ -314,10 +401,10 @@ def run_master_check(cfg: Config, cases: list[Case], headless: bool = False, wai
     return results
 
 
-def write_report(cfg: Config, results: list[dict]) -> Path:
+def write_report(cfg: Config, results: list[dict], prefix: str = "master_data") -> Path:
     out = cfg.runs_dir / "_reports"
     out.mkdir(parents=True, exist_ok=True)
-    path = out / f"master_data_{datetime.now():%Y%m%d_%H%M%S}.csv"
+    path = out / f"{prefix}_{datetime.now():%Y%m%d_%H%M%S}.csv"
     with open(path, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
         w.writerow(["case_id", "ipa", "source", "section", "field", "expected_from_document", "shown_in_nexus", "result", "note"])
