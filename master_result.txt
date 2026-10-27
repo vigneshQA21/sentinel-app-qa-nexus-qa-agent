@@ -1,0 +1,110 @@
+
+REG-001  MASTER DATA  PASS   IPA/2135/2026-27   source: FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1
+
+  ALL FIELDS SHOWN IN NEXUS (45)
+     1. Air Waybill · Air Waybill Number : 020-27293980
+     2. Shipper · Name : QUALITAIR&SEA, DIMOTRANS GROUP
+     3. Shipper · Address : AEROPORT NICE COTE D'AZUR, ZONE DE FRET CEDEX 3, NICE, 06, FR
+     4. Shipper · Postal Code : 06200
+     5. Shipper · Party ID : QUADIMNIC
+     6. Consignee · Name : LOGISTEED INDIA PVT . LTD .
+     7. Consignee · Address : NO 25 32 READYMADE GARMENT COMPLEXSIDCO INDUSTRIAL ESTATE GUINDYCHENNAI TN 600032 INTE +914425234009
+     8. Consignee · Postal Code : 600032
+     9. Consignee · Party ID : LIN_INMAA
+    10. Flight Route · Type : connecting
+    11. Segment 1 · From : NCE
+    12. Segment 1 · To : FRA
+    13. Segment 1 · Polname : NICE
+    14. Segment 1 · Polctry : FR
+    15. Segment 1 · Podname : Frankfurt
+    16. Segment 1 · Podctry : DE
+    17. Segment 1 · Carrier Name : Lufthansa
+    18. Segment 1 · Carrier Code : CLH_WW
+    19. Segment 1 · Flight Number : LH1061
+    20. Segment 1 · Flight Date : 22/08/2026
+    21. Segment 2 · From : FRA
+    22. Segment 2 · To : MAA
+    23. Segment 2 · Polname : Frankfurt
+    24. Segment 2 · Polctry : DE
+    25. Segment 2 · Podname : Madras
+    26. Segment 2 · Podctry : IN
+    27. Segment 2 · Carrier Name : Lufthansa
+    28. Segment 2 · Carrier Code : CLH_WW
+    29. Segment 2 · Flight Number : LH758
+    30. Segment 2 · Flight Date : 23/08/2026
+    31. Routing · Airport Of Departure : NICE
+    32. Routing · Final Destination Airport : CHENNAI ( EX MADRAS )
+    33. Freight · Freight Payment : FREIGHT PREPAID
+    34. Cargo · Pieces : 1
+    35. Cargo · Pieces Unit : PCS
+    36. Cargo · Gross Weight : 24
+    37. Cargo · Gross Weight Unit : KGS
+    38. Cargo · Chargeable Weight : 60
+    39. Cargo · Chargeable Weight Unit : KGS
+    40. Cargo · Nature And Quantity Of Goods : Consolidation as per attached listNot RestrictedHS Code: 8537109199DIMS 80x60x75 CM x 1VOL 0.36 M3
+    41. Cargo · Volume : 0.36
+    42. Cargo · Volume Unit : CBM
+    43. Cargo · Executed On : 21/08/2026
+    44. Cargo · (unlabelled field 11) : (empty)
+    45. Cargo · (unlabelled field 12) : (empty)
+    count per section: Air Waybill 1, Shipper 4, Consignee 4, Flight Route 1, Segment 1 10, Segment 2 10, Routing 2, Freight 1, Cargo 12  =  45 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Air Waybill]
+    PASS            Air Waybill Number             doc: 020-27293980                             | nexus: 020-27293980
+  [Shipper]
+    PASS            Name                           doc: QUALITAIR SEA DIMOTRANS GROUP ZONE DE FR | nexus: QUALITAIR&SEA, DIMOTRANS GROUP   [name found in the document block]
+    INFO            Address                        doc: QUALITAIR SEA DIMOTRANS GROUP ZONE DE FR | nexus: AEROPORT NICE COTE D'AZUR, ZONE DE FRET CE   [party-master data (read-only in Nexus), not compared with the document]
+    PASS            Postal Code                    doc: (in document block)                      | nexus: 06200
+    INFO            Party ID                       doc:                                          | nexus: QUADIMNIC   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: LOGISTEED INDIA PVT. LTD. NO 25 32 READY | nexus: LOGISTEED INDIA PVT . LTD .   [name found in the document block]
+    PASS            Address                        doc: LOGISTEED INDIA PVT. LTD. NO 25 32 READY | nexus: NO 25 32 READYMADE GARMENT COMPLEXSIDCO IN   [Nexus joins the document's address lines without a space: COMPLEXSIDCO, GUINDYCHENNAI, INTE]
+    PASS            Postal Code                    doc: (in document block)                      | nexus: 600032
+    INFO            Party ID                       doc:                                          | nexus: LIN_INMAA   [assigned by the Nexus party master, not printed on the document]
+  [Flight Route]
+    PASS            Type                           doc: connecting                               | nexus: connecting
+  [Segment 1]
+    PASS            From                           doc: NCE                                      | nexus: NCE
+    PASS            To                             doc: FRA                                      | nexus: FRA
+    PASS            Polname                        doc: NICE                                     | nexus: NICE   [same as the airport of departure]
+    INFO            Polctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Frankfurt   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: DE   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: Lufthansa   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: LH                                       | nexus: CLH_WW
+    PASS            Flight Number                  doc: LH1061                                   | nexus: LH1061
+    PASS            Flight Date                    doc: day 22                                   | nexus: 22/08/2026   [only the day is printed on the AWB]
+  [Segment 2]
+    PASS            From                           doc: FRA                                      | nexus: FRA
+    PASS            To                             doc: MAA                                      | nexus: MAA
+    PASS            Polname                        doc: Frankfurt                                | nexus: Frankfurt   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: DE   [country of the airport (Nexus airport master)]
+    PASS            Podname                        doc: CHENNAI (EX MADRAS)                      | nexus: Madras   [contained in the document's airport of destination]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: Lufthansa   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: LH                                       | nexus: CLH_WW
+    PASS            Flight Number                  doc: LH758                                    | nexus: LH758
+    PASS            Flight Date                    doc: day 23                                   | nexus: 23/08/2026   [only the day is printed on the AWB]
+  [Routing]
+    PASS            Airport Of Departure           doc: NICE                                     | nexus: NICE
+    PASS            Final Destination Airport      doc: CHENNAI (EX MADRAS)                      | nexus: CHENNAI ( EX MADRAS )
+  [Freight]
+    PASS            Freight Payment                doc: FREIGHT PREPAID (code PP)                | nexus: FREIGHT PREPAID
+  [Cargo]
+    PASS            Pieces                         doc: 1                                        | nexus: 1
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: 24.0                                     | nexus: 24
+    PASS            Gross Weight Unit              doc: KGS                                      | nexus: KGS
+    PASS            Chargeable Weight              doc: 60.0                                     | nexus: 60
+    PASS            Chargeable Weight Unit         doc: KGS                                      | nexus: KGS
+    PASS            Nature And Quantity Of Goods   doc: Consolidation as per attached list Not R | nexus: Consolidation as per attached listNot Rest
+    PASS            Volume                         doc: 0.36                                     | nexus: 0.36
+    PASS            Volume Unit                    doc: CBM                                      | nexus: CBM
+    PASS            Executed On                    doc: 21-Aug-26                                | nexus: 21/08/2026
+    INFO            (unlabelled field 11)          doc:                                          | nexus:    [empty field, no label]
+    INFO            (unlabelled field 12)          doc:                                          | nexus:    [empty field, no label]
+
+  45 fields in the Nexus Master panel | compared with the document: 34 (PASS 34, FAIL 0) | INFO (no document value): 11 | NOT_VERIFIABLE: 0
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/master_data_20261021_160440.csv
