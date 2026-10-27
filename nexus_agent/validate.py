@@ -43,6 +43,12 @@ def section_in(text: str, sections: list[str]) -> str | None:
     return None
 
 
+# Where each document belongs when the test case does not spell it out (REG-005 "mapped to the correct shipment",
+# REG-006/007 "other documents -> corresponding House")
+DEFAULT_SECTION = {"MASTER": "Master", "HOUSE": "House", "MANIFEST": "Master", "INVOICE": "House", "PACKING LIST": "House",
+                   "DELIVERY NOTE": "House", "DEBIT NOTE": "Master", "SHIPPER DOCUMENT": "House", "PO": "House"}
+
+
 def parse_expected(expected_mapping: str, docs: str, cfg: Config) -> dict[str, str | None]:
     """{canonical type: expected section} for the documents of a case.
     expected_mapping looks like 'Master → Master, House → House, Manifest → Master, Invoice → House';
@@ -71,6 +77,8 @@ def parse_expected(expected_mapping: str, docs: str, cfg: Config) -> dict[str, s
             continue                                   # e.g. 'random/unclassified document', 'PO'
         if canon in rules:
             expected[canon] = rules[canon]
+        elif canon in DEFAULT_SECTION:
+            expected[canon] = DEFAULT_SECTION[canon]
         elif others:
             expected[canon] = others
     return expected
@@ -145,6 +153,35 @@ def _buffer(seconds: float, label: str) -> None:
 
 
 # --- the run ---------------------------------------------------------------------------
+def root_causes(ref: str | None, ipa: str, parents: list[dict], results: list, in_pre: list[str], in_others: list[str]) -> list[str]:
+    """Probable root cause of what the mapping check saw, from what the pages show (hints for the tester, not a verdict)."""
+    out: list[str] = []
+    house_ids = [m.group(1) for p in parents if p["kind"] == "House" for m in [re.search(r"\(([^)]+)\)", p["parent"])] if m]
+    wrong_house = bool(ref and house_ids and all(norm_id(h) != norm_id(ref) for h in house_ids) and not str(ref).startswith("FJ-"))
+    if wrong_house:
+        out.append(f"The House number Nexus extracted ({house_ids[0]}) is not the HAWB number sent ({ref}): Nexus read the wrong value from the "
+                   f"House Air Waybill (check the document for a phone / reference number printed near the HAWB number).")
+    unmatched = sorted({g["label"] for p in parents for g in p["unmatched"]})
+    if unmatched:
+        out.append(f"{', '.join(unmatched)} were classified but left under UNMATCHED documents: Nexus could not tie them to a Master/House"
+                   + (" (consequence of the wrong House number above)." if wrong_house else "."))
+    missing = [r.doc_type for r in results if r.status == "FAIL" and "not found" in r.detail]
+    others = [i for i in in_pre if i and i != ipa]
+    if "MASTER" in missing and others:
+        out.append(f"The Master is not in {ipa}: it arrived as its own pre-alert ({', '.join(others)}). Nexus failed to match the master number "
+                   f"across the emails (dev finding on the REG-006 bug: the MAWB number is normalised inconsistently, e.g. a missing '-', when the job is "
+                   f"first created by the Manifest and the Master arrives later in a different email).")
+    if in_others:
+        out.append(f"Follow-up emails of this case went to the Others tab ({', '.join(sorted(set(in_others)))}): they were not linked to the pre-alert.")
+    for d in sorted(set(missing) - {"MASTER"}):
+        out.append(f"{d} not found anywhere in the pre-alert: look at the classification of the matching page (e.g. another type under the House).")
+    return out
+
+
+def norm_id(x: str) -> str:
+    return re.sub(r"[^A-Z0-9]", "", (x or "").upper())
+
+
 def validate_case(cfg: Config, pages, store: Store, case: Case, ref: str | None = None,
                   wait_seconds: float | None = None) -> dict:
     ref = ref or store.ref_for_case(case.id) or case.sample_ref
@@ -215,8 +252,17 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     store.upsert(PreAlert(ref=key), Status.CREATED_IN_NEXUS, f"{case.id}: {info['ipa']} seen {row['appeared_after_s']}s after sending")
     if row["evidence"]:
         ui.screenshot(evidence / "list.png")
+    cells = ui.page.locator(ui.u["subject_cell"].format(token=f"{case.id} |"))
+    pre_ipas = [ui.row_info(cells.nth(i)).get("ipa", "") for i in range(cells.count())]     # all pre-alerts of this case (Pre-Alerts tab)
     ui.open_viewer(cell)
     parents = ui.read_parents(evidence if row["evidence"] else None)
+    in_pre = pre_ipas
+    in_others = ui.capture_others(f"{case.id} |") if row["evidence"] else []      # follow-ups / duplicates of this case
+    in_others = [i for i in in_others if i and i != info["ipa"]]
+    linked_anywhere = {g["label"] for p in parents for g in p["linked"]}
+    for p in parents:                          # a parent's Unmatched list repeats documents linked under other parents: those are not unmatched
+        for k in ("unmatched", "unclassified"):
+            p[k] = [g for g in p[k] if g["label"] not in linked_anywhere]
     actual = []
     for p in parents:
         for group, section in (("linked", p["kind"]), ("unmatched", "Unmatched"), ("unclassified", "Unclassified")):
@@ -234,7 +280,11 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     lines = [f"{r.doc_type}: {r.status} ({r.detail})" for r in v.results]
     if v.unexpected:
         lines.append("unexpected: " + "; ".join(v.unexpected))
-    row["details"] = " | ".join(lines + [f"{info['ipa']} seen -> {seen}"])
+    causes = root_causes(ref, info["ipa"], parents, v.results, in_pre, in_others) if not ok else []
+    if causes:
+        ui.set_trace_notes(causes)
+        lines += [f"PROBABLE ROOT CAUSE: {c}" for c in causes]
+    row["details"] = " | ".join(lines + [f"{info['ipa']} seen -> {seen}"] + ([f"also in Others tab: {', '.join(in_others)}"] if in_others else []))
     store.upsert(PreAlert(ref=key), Status.MAPPING_PASS if ok else Status.MAPPING_FAIL, f"{case.id}: {row['details']}")
     return row
 
@@ -269,7 +319,7 @@ def write_report(cfg: Config, rows: list[dict]) -> Path:
     path = out / f"validate_{datetime.now():%Y%m%d_%H%M%S}.csv"
     fields = ["case_id", "ref", "ipa", "nexus_status", "verdict", "appeared_after_s", "details", "evidence"]
     with open(path, "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=fields)
+        w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
     return path

@@ -12,3 +12,4 @@ reportlab>=4.0
 fonttools>=4.0
 openpyxl>=3.1
 pdfplumber>=0.11
+rapidocr-onnxruntime>=1.2   # OCR for scanned documents (CPU, pip only)

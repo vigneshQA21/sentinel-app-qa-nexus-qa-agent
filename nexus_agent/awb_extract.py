@@ -82,11 +82,21 @@ def extract_master(pdf_path: Path, page_index: int = 0) -> dict:
     out: dict = {k: None for k in ("awb_number", "origin_code", "shipper_lines", "consignee_lines", "departure_airport",
                                     "destination_airport", "seg_to", "seg_carrier", "currency", "charges_code",
                                     "flights", "pieces", "gross_weight", "gross_unit", "chargeable_weight", "nature",
-                                    "volume", "executed_on", "text", "reference", "incoterm", "house_number", "generic")}
+                                    "volume", "executed_on", "text", "reference", "incoterm", "house_number", "generic", "ocr")}
     with pdfplumber.open(str(pdf_path)) as pdf:
         pg = pdf.pages[page_index]
         words = pg.extract_words()
         text = pg.extract_text() or ""
+        if len(text.strip()) < 25:                                  # a scan: read it with OCR, and treat it like a free-form page
+            from . import ocr as _ocr
+            text = _ocr.page_text(Path(pdf_path).read_bytes(), page_index)
+            out["text"], out["ocr"] = text, True
+            m = re.search(r"\b(\d{3})[- ]?(\d{8})\b", text)
+            out["awb_number"] = f"{m.group(1)}-{m.group(2)}" if m else None
+            m = re.search(r"\bHAWB\s*(?:No\.?)?\s*[:.]?\s*([A-Z]{2,5}\d{4,9})\b", text, re.I)
+            out["house_number"] = m.group(1) if m else None
+            _generic_fill(out, text)
+            return out
         out["text"] = text
         W = pg.width
 

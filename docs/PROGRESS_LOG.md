@@ -3,28 +3,38 @@
 Newest status first, then one section per day in order. Add a note any time with `./nx log "what changed"`.
 The agent (Claude) also adds an entry whenever we finish a piece of work.
 
-## WHERE WE LEFT OFF  (last updated 2026-10-24)
+## WHERE WE LEFT OFF  (last updated 2026-10-26, end of day)
 
-**Done and working for REG-001 (air, consolidated, single house):**
-send the test pre-alert -> wait for Nexus -> check the 5 documents are mapped to the right place -> compare every field Nexus
-extracted (Master 55, House 60, Manifest 8, Invoice 19, Packing List 16) with the source PDF -> turn FAIL/REVIEW into bug
-candidates -> you confirm each -> bug row in the Google UAT sheet with the evidence as Drive chips.
+**Regression status (air, single house):**
+| Case | Mode | Status | Nexus job | Bugs in the sheet |
+|---|---|---|---|---|
+| REG-001 | Consolidated | Fully validated (mapping + 5 documents, field by field) | IPA/2144 | rows 230-233 |
+| REG-002 | Consolidated | Fully validated (+ Debit Note, PO / Shipper Document) | IPA/2185 | rows 234-236 |
+| REG-003 | Consolidated | Validated (House number read as a phone number; documents left unmatched; invoice not classified) | IPA/2191 | rows 237, 238 |
+| REG-005 | Consolidated | Validated after the sample was de-duplicated (invoice was in the PDF 3 times); differences were party-master / checker artefacts, no bug | IPA/2204 | none |
+| REG-006 | Individual | Mapping checked: Master arrived as its own pre-alert (IPA/2210), Manifest linked with the House, not the Master. Data checks not built for several pre-alerts | IPA/2206 + 2210 | rows 240, 241 (High) |
+| REG-009 | Consolidated (scan) | Mapping PASS (random document stays Unclassified, as expected); data now validated from the scan with OCR (2026-10-27): Master 41 fields (32 PASS, 9 REVIEW), House 42 (30 / 12), Manifest 8 (7 / 1) | IPA/2218 | none |
+| REG-007 | Individual | NOT RUN: shares house ORAE26040499 with REG-003 (IPA/2191 must be deleted first) | - | - |
+| REG-011, REG-016 | Individual | NOT RUN: no sample documents | - | - |
 
-**Waiting on:** PO decision on the consignee party-master data (name, address, postal code). Logged with status
-*Discussion needed* in the bug sheet.
+**Waiting on:**
+- You: delete IPA/2191 (REG-003) in Nexus, then REG-007 can be sent and validated.
+- You: decide the pending candidates (REG-002 Invoice Gross Weight is parked as "RECHECK after the packing-list fix"; the old House-missing candidate from the deleted IPA/2124; the REG-001 House shipper items).
+- Developers: the 11 bugs logged in the UAT sheet (re-test every day with `./run_regression.sh <CASE> --validate`; every run prints "STILL THERE xN" for raised bugs and "possibly FIXED" when one no longer shows).
 
-**Next ideas (in the order we talked about):**
-1. Run the same full flow on the other consolidated cases (REG-002, REG-005, REG-009), then the individual cases (REG-006, REG-007: several emails per shipment need a different lookup).
-2. Auto-delete the test pre-alert after validation (planned last; you delete by hand today).
-3. Make it stand out: one-page HTML run report with annotated evidence, "known issue" baseline so only NEW problems turn a run red, write results back to the test-suite sheet, nightly run with a summary.
-4. Optional AI assist (bug triage and drafting). PASS/FAIL stays rule-based.
-5. Sea shipments; samples still missing for REG-003, REG-011, REG-016; scanned PDFs cannot be read (no OCR).
-6. CargoWise / XML push check (in the very first plan).
-7. Housekeeping: the GitHub repo is public. Make it private (the config and docs contain internal addresses and real-looking test values) before it is shared.
+**Built on 2026-10-26:** Debit Note / Shipper Document (PO) checks; reader for short "Check B/L" forms; known-issue baseline; `./nx history` (bug repeat tracker); `./nx casedoc` (validations written into the test-case Excel); per-case TRACE folder with `index.html` and PROBABLE ROOT CAUSE lines; Pre-Alerts page, expanded row and Others tab captured on every check; default mapping when the Excel text has no arrows; Unmatched/Unclassified sections are now read.
+
+**Next ideas:**
+1. REG-007 (after IPA/2191 is deleted); samples for REG-011 and REG-016.
+2. Data checks for individual cases (Master, House, documents that live in several pre-alerts). (OCR for scanned samples: DONE 2026-10-27.)
+3. Data-level root cause ("party-master value, not the document"); fix the checker flaws seen today (multi-value PO numbers, volume / destination reads on non-IATA layouts, K = KGS).
+4. XML / CargoWise check (Debit Note must not be sent in XML); auto-delete after validation (planned last); HTML run report; nightly run.
+5. Housekeeping: the GitHub repo is public. Make it private before it is shared.
 
 **Things to remember every day:**
 - The Nexus login lasts only a few days: when a run says "session expired", run `./nx login` (log in, close the window).
-- Delete the old pre-alerts of a case in Nexus before re-running it (otherwise the new email goes to *Others* as a duplicate).
+- Delete the old pre-alerts of a case in Nexus before re-running it; check first (`./nx validate --cases <CASE> --wait 0` must say NOT_RECEIVED). Nexus can take ~10 minutes to show a new pre-alert, so wait before re-sending.
+- Nexus search filters by ID only; the list page renders only the ~25 newest rows.
 - If someone edits the pre-alert in Nexus after it was created, the checks can report differences that are not product bugs.
 
 ## Working rules we agreed (so nobody has to repeat them)
@@ -83,3 +93,37 @@ candidates -> you confirm each -> bug row in the Google UAT sheet with the evide
 - REG-002 decisions: logged 3 bugs (rows 234-236): House consignee address and House pieces '1PALLET' (Medium, Discussion needed), Packing List shown as Invoice (Medium, Not Taken). PO as Shipper Document = expected (no bug); Shipper Document shipper name = not a bug. Next: REG-003.
 - Baseline + test-case documentation: logged bugs and 'not a bug' items are now KNOWN (visible, they do not fail a case; only NEW differences fail; a bug whose field now matches is reported as possibly FIXED). New command ./nx casedoc writes every validation of REG-001/REG-002 into a new tab of Air_Single_House_Daily_Regression.xlsx (backup first).
 - Internal bug history added: table bug_history (one occurrence per finding per Nexus pre-alert), ./nx history shows bugs found, repeats and status. 85 tests pass.
+
+## 2026-10-26
+
+- Check-only run of REG-001 + REG-002 on existing pre-alerts (IPA/2144, IPA/2185), nothing sent. Baseline worked (known issues shown as KNOWN). Glitch: validate-house with two cases could not find the 2nd pre-alert (passed when run alone); to investigate.
+- REG-002 Invoice Currency Code was a checker miss (invoice prints US$): fixed, candidate closed. Gross Weight 63 is on the Packing List page 7, not the invoice: consequence of the Packing-List-as-Invoice bug (row 236).
+- REG-002 Invoice Gross Weight 63 accepted as not a bug: root cause is the Packing-List-as-Invoice classification bug (row 236). Marked RECHECK: shown as KNOWN with a reminder on every run until the fix; re-verify after it.
+- REG-003 sent (1 consolidated email, subject ref ORAE26040499) at 12:24; REG-007 not touched. Screening found MASTER+MANIFEST+INVOICE+HOUSE; the Delivery Note was not detected (pages 5-6 of the sample have no text). Validation after Nexus processes it (3 min buffer).
+- REG-003 in Nexus as IPA/2190/2026-27 (~12 min after send): only a House (TEL0635070676: HAWB + Shipper Document); Master, Manifest, Invoice and Delivery Note not found; subject ref was ORAE26040499. 4 mapping candidates pending your decision, nothing added to the bug sheet.
+- REG-003 (IPA/2190/2026-27) analysed against the sample (all 5 docs present: Master p1, Manifest p2, Invoice p3, House p4 ORAE26040499, scanned Delivery Note p5-6). Nexus read the House bill number as TEL0635070676 (the shipper phone number) instead of 'HAWB No: ORAE26040499'; Master, Air Manifest and Delivery Note (correctly classified) sit under UNMATCHED documents; Invoice not classified (Missing Docs: Invoice, job progress stuck at 67%); a Shipper Document is linked under the House (probably the invoice page). TODO: make the mapping check read the Unmatched/Unclassified sections so it says 'unmatched' instead of 'not found'. IPA/2073 (REG-007) was still listed in Nexus. Nothing added to the bug sheet.
+- Mapping check now opens the Unmatched/Unclassified sections (they were never read: the page shows headings in capitals by CSS, so an exact-text click missed them) and recognises DELIVERYNOTE. REG-003 re-checked: Master, Manifest, Delivery Note under Unmatched. Waiting for the user to delete IPA/2190 before the REG-003 re-send.
+- REG-003 evidence screenshot saved (house number TEL0635070676 vs HAWB No ORAE26040499, documents under Unmatched). Candidate kept pending: to be added to the bug sheet only if the issue persists after the re-run (user's instruction).
+- REG-003 re-executed (IPA/2191, nothing duplicated: IPA/2190 and 2073 had been deleted). House number still read as TEL0635070676, so the bug was added to the sheet (row 237, Medium, Not Taken; seen in 2 pre-alerts). This time Master, Manifest and Delivery Note were linked correctly; Invoice still missing (Shipper Document under House). Checker issues to review: unit K vs KGS, nature of goods text, Packing List expected-but-absent error.
+- REG-003 first attempt (IPA/2190) logged as one bug (sheet row 238, Medium, Not Taken): Master, Manifest and Delivery Note left under Unmatched, Invoice missing, Shipper Document under House. The 2190 mapping candidates are closed as covered by that row.
+- REG-003 row 238: evidence replaced with a cropped screenshot of the viewer's left panel (HAWB, Shipper Document linked; MAWB, Air Manifest, Delivery Note under Unmatched; Unclassified empty). The row had shown the full viewer where the house number dominated.
+- REG-003 row 238: screenshot chip removed from the File Name cell at the user's request (only the source-PDF chip remains). Screenshot files stay in Drive; nothing deleted.
+- Evidence: every check now saves the Pre-Alerts page (prealerts_list.png) and the expanded row (prealert_expanded.png), and archives every screenshot under runs/<date>/<case>/archive/<time>_<IPA>_<name>.png so later runs never overwrite earlier evidence.
+- Daily re-test view: already-raised bugs do not fail a case but every run now prints 'STILL THERE xN' for each (N = pre-alerts it was seen in, with the bug-sheet row) and 'possibly FIXED' when a logged bug no longer shows. Fixed: parent dropdown retry, CSV writer ignoring extra keys.
+- Run for 4:30 deadline: REG-005 and REG-009 started (send+validate, background) 15:22; REG-006 (6 individual emails) sent 15:28 (old IPA/551 confirmed absent via Nexus ID search). REG-007 held: same house as REG-003 (IPA/2191 still in Nexus). Nexus search box filters by ID only; the list page renders only ~25 recent rows.
+- REG-005 re-triggered 15:34 (IPA/2203/2026-27). Mapping PASS (Master, House, Manifest, Invoice, Shipper Document). Default mapping added for cases whose Excel text has no arrows (REG-005/006/007/009). Data checks: Master 7 FAIL, House 5 FAIL + 2 REVIEW, Invoice 2 FAIL (PO/Order no); many look like reader limits on non-IATA layouts (destination 'Bangalore 963/28.08', volume 21.407, KGS), to review by eye. Nothing added to the bug sheet. REG-006/009 (sent 15:26-15:28) are not in Nexus any more (user deleted); REG-007 still blocked by REG-003 IPA/2191.
+- REG-005 sample de-duplicated: the invoice EI268002192 was in the PDF three times (text copy p4-5, scans p6-7 and p8-9). Kept the text copy: sample is now 6 pages (Master, Manifest scan, House, Invoice 2 pages, Insurance certificate). Original backed up in samples/_backup_original/REG-005/; Regression Set copy updated. Waiting for the user to delete the existing pre-alert (IPA/2203) before the re-run.
+- REG-005 re-run with the de-duplicated sample (IPA/2204/2026-27, appeared 183s after sending): mapping PASS, Invoice pages under House 4 -> 2 and no Unmatched copy. Data checks unchanged: Master 7 FAIL, House 5 FAIL + 2 REVIEW, Invoice 1 FAIL (PO number 'EN15481, EN15455' joined with comma = checker issue), Manifest/Packing List errors (manifest is a scan). Nothing added to the bug sheet.
+- REG-006 (6 individual emails, 16:08): Nexus did not keep them in one shipment. Pre-Alerts tab: IPA/2206 (Manifest email, with House, Invoice, Packing List linked) and a SEPARATE pre-alert IPA/2210 (Master email). Others tab holds IPA/2207-2209, 2211 (Invoice, Packing List, Debit Note, House emails as follow-ups). Mapping check on IPA/2206: Master and Debit Note not found. Screenshots of both tabs saved. Nothing added to the bug sheet.
+- REG-006: user confirmed two mapping bugs (House not linked to Master although the House carries the master number 160-15585765; Manifest linked with the House instead of the Master). Prepared as pending candidates with the Pre-Alerts tab evidence; waiting for the user's yes to add them to the sheet.
+- REG-006: two mapping bugs logged in the bug sheet at the user's request, Priority High, Status Not Taken, with the Pre-Alerts page screenshots: (1) House not linked to Master although it carries the master number 160-15585765 (Master created as separate pre-alert IPA/2210); (2) Manifest linked with the House instead of the Master.
+- REG-006 row 241: evidence replaced with the user's screenshot of the IPA/2206 viewer (parent dropdown lists only House (FLD6445) and Air Manifest, no Master).
+- REG-006 row 240: evidence replaced with the user's Pre-Alerts page screenshot (IPA/2206 and IPA/2210 as separate pre-alerts, IPA/2210 expanded showing the Master 160-15585765).
+- Trace + root cause: every check now writes a numbered trace folder per case/pre-alert (runs/<date>/<case>/trace_<time>_<IPA>/ with index.html) covering the Pre-Alerts page, expanded row, each viewer parent, the Others tab and the data panels; the mapping check prints PROBABLE ROOT CAUSE lines (wrong house number, unmatched docs, Master as own pre-alert, follow-ups in Others, unclassified doc). Fixed: open_list always selects the Pre-Alerts tab; Unmatched counts only documents linked under no parent.
+- REG-009 (scanned sample, FJ-0001132) sent 17:15 and validated: IPA/2218/2026-27 appeared 184s after sending. Mapping PASS: Master 932-78831771, House SUSAO008522, Air Manifest (2 pages); the random document stays under Unclassified, as the test case expects. Data checks cannot run: the sample has no readable text (scan), so Master/House/Manifest/Invoice/Packing checks report 'no page found'. Nothing added to the bug sheet. Next: REG-007 after IPA/2191 (REG-003) is deleted.
+- End of day 2026-10-26: documentation brought up to date (where we left off, README scope, commands). Manager update prepared for the Zoho ticket.
+
+## 2026-10-27
+
+- Bug sheet read-only analysis (27-Oct): of our 11 rows, 1 Development Completed (230), 1 Discussion needed (231), 4 Not an issue (232-235: party master / '1 Pallet'), 1 In development (236), 2 Code Review (240, 241: dev root cause = MAWB normalisation, missing '-'), 2 Not Taken (237; 238 'not reproducible now, check backend DB'). Rows 234-236 were logged on 24-Oct, not 26-Oct. Manager update redrafted; root-cause hint for 'Master as own pre-alert' corrected to the dev finding.
+- OCR for scanned documents implemented (rapidocr-onnxruntime, auto-orientation, disk cache, used only when checking): REG-009 Master/House/Manifest now compared field by field (differences on a scan are REVIEW, never FAIL), REG-005 scanned manifest 8/8 PASS; case-listed documents only (no Invoice/Packing errors for REG-009). 87 tests pass.

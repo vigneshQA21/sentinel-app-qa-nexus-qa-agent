@@ -283,6 +283,55 @@ def summary(rows: list[dict]) -> str:
             f"| NOT_VERIFIABLE: {c['NOT_VERIFIABLE']}")
 
 
+_MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+_UNITS = {"KGS": {"K", "KG", "KGS"}, "KG": {"K", "KG", "KGS"}, "LBS": {"L", "LB", "LBS"}, "CBM": {"CBM", "M3"}, "PCS": {"PCS", "PC", "PKG", "PKGS"}}
+
+
+def _found_in_scan(shown: str, flat: str, toks: set[str], nums: set[float]) -> tuple[bool, str]:
+    """Is what Nexus shows somewhere in the OCR text of the page? Handles dates printed as 08AUG, units printed as K, numbers, and
+    names / addresses where most (75%) of the words are found (OCR drops or garbles some)."""
+    m = re.fullmatch(r"(\d{1,2})/(\d{1,2})/(\d{4})", shown)
+    if m:
+        d, mo, y = int(m.group(1)), int(m.group(2)), m.group(3)
+        pats = [rf"\b0?{d}\s*[-/. ]?\s*{_MON[mo - 1]}\w*\s*[-/. ]?\s*(?:{y}|{y[2:]})?", rf"\b0?{d}\s*[-/.]\s*0?{mo}\s*[-/.]\s*(?:{y}|{y[2:]})"]
+        return any(re.search(p, flat) for p in pats), "date"
+    if shown.upper() in _UNITS:
+        return bool(_UNITS[shown.upper()] & toks), "unit"
+    a = num(shown)
+    if a is not None and re.fullmatch(r"[\d.,]+", shown):
+        return a in nums, "number"
+    t = tokens(shown)
+    if not t:
+        return False, "text"
+    hit = len(t & toks) / len(t)
+    return (hit >= 0.75 or shown.upper() in flat), f"{len(t & toks)}/{len(t)} words"
+
+
+def ocr_adjust(rows: list[dict], text: str) -> list[dict]:
+    """The document page is a scan read with OCR, which can misread characters: nothing is a hard FAIL. What Nexus shows is looked up in
+    the OCR text of the page (PASS if found, REVIEW if not); a FAIL on a scan becomes PASS when found there, REVIEW when not."""
+    flat = " ".join((text or "").upper().split())
+    toks = tokens(text)
+    nums = {float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*\.?\d*", text or "") if x.replace(",", "").replace(".", "", 1).isdigit()}
+    for r in rows:
+        shown = (r.get("shown_in_nexus") or "").strip()
+        if r["result"] in ("NOT_VERIFIABLE", "FAIL", "REVIEW") and shown:
+            ok, how = _found_in_scan(shown, flat, toks, nums)
+            if r["result"] != "NOT_VERIFIABLE" and not ok:
+                r["result"], r["note"] = "REVIEW", "scanned page read with OCR (may be misread): " + (r.get("note") or "")
+                continue
+            if r["result"] == "NOT_VERIFIABLE" or ok:
+                r["result"] = "PASS" if ok else "REVIEW"
+                r["expected_from_document"] = r["expected_from_document"] if r["result"] != "NOT_VERIFIABLE" and r["expected_from_document"] \
+                    else ("(found in the scan)" if ok else "(not found in the scan)")
+                r["note"] = (f"found in the OCR text of the scanned page ({how})" if ok
+                             else "not found in the OCR text of the scanned page: look at the scan by eye")
+        elif r["result"] == "FAIL":
+            r["result"] = "REVIEW"
+            r["note"] = "scanned page read with OCR (may be misread): " + (r.get("note") or "")
+    return rows
+
+
 def format_report(results: list[dict], title: str = "MASTER DATA") -> str:
     lines = []
     for r in results:
@@ -317,7 +366,7 @@ def find_master_source(cfg: Config, case: Case) -> tuple[Path, int] | None:
     for f in files:
         if case.mode == "individual" and sender.individual_type(f, case.sample_ref or case.id) != "MBL":
             continue
-        labels = page_labels(page_texts(f.read_bytes()), kw)
+        labels = page_labels(page_texts(f.read_bytes(), ocr=True), kw)
         if "MBL" in labels:
             return f, labels.index("MBL")
     return None
@@ -371,6 +420,9 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
     fields = map_master_panel(read_panel_inputs(ui.page), read_party_ids(ui.page))
     attach_details(fields, mrec)
     res["rows"] = compare_master(doc, fields, mrec, cfg.settings["validation"])
+    if doc.get("ocr"):
+        res["rows"] = ocr_adjust(res["rows"], doc.get("text") or "")
+        res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
     if mrec is None:
         res["message"] = "the Master row of the Shipment Details table was not found"
     res["verdict"] = verdict(res["rows"])

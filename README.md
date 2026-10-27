@@ -51,7 +51,7 @@ Quadance PDF -> samples/<CASE>/ -> Gmail send -> (3 min buffer, poll) -> Nexus U
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-playwright install chromium
+playwright install chromium     # OCR (rapidocr-onnxruntime) comes with requirements.txt
 ```
 1. **Gmail:** Google Cloud project, Gmail API, OAuth client "Desktop app" saved as `secrets/gmail_credentials.json`; the first send asks you to authorise the sending mailbox.
 2. **Nexus login:** `./nx login` (log in by hand, close the window; only the browser session is saved, never a password). Repeat when a run says the session expired (every few days).
@@ -76,14 +76,17 @@ See [regression_prompts/EXECUTE_CMD.md](regression_prompts/EXECUTE_CMD.md). The 
 - It never adds a bug to the sheet without your yes for that bug, and never changes an existing row.
 - Evidence files are uploaded into the dated folder under `UAT Bugs > Regression testing > Reg - Air & Sea`, and nothing is overwritten or deleted.
 
-## Current scope and status
-- **Complete for REG-001** (air, consolidated, single house): mapping plus five document data checks plus the bug flow.
-- Other cases with samples: REG-002, 005, 009 (consolidated), REG-006, 007 (individual; sending works, the UI checks for several emails per shipment are not built yet).
-- Not done yet: auto-delete after validation, sea shipments, CargoWise/XML check, HTML run report. See the next ideas in [docs/PROGRESS_LOG.md](docs/PROGRESS_LOG.md).
+## Current scope and status (2026-10-26)
+- **Fully validated:** REG-001, REG-002 (consolidated: mapping plus every field of Master, House, Manifest, Invoice, Packing List, Debit Note, PO).
+- **Validated:** REG-003, REG-005, REG-009 (consolidated), REG-006 (individual, mapping only: the emails split into several pre-alerts).
+- **Not run:** REG-007 (shares a house with REG-003), REG-011 and REG-016 (no samples).
+- Every check writes a numbered **trace** (`runs/<date>/<case>/trace_<time>_<IPA>/index.html`) with the probable root cause; already-raised bugs show as KNOWN ("STILL THERE xN"), and `./nx history` tracks how often each bug repeats.
+- **Scanned samples are now validated with OCR** (REG-009 Master / House / Manifest, the REG-005 manifest); differences on a scan are REVIEW, not FAIL.
+- Not done yet: data checks for individual cases, auto-delete after validation, sea shipments, CargoWise/XML check, HTML run report. See [docs/PROGRESS_LOG.md](docs/PROGRESS_LOG.md).
 
 ## Tests
 ```bash
-.venv/bin/python -m pytest -q       # 85 tests, including a Playwright run against the bundled mock Nexus
+.venv/bin/python -m pytest -q       # 86 tests, including a Playwright run against the bundled mock Nexus
 ```
 `mock_nexus/app.py` is a small stand-in for Nexus used by the tests.
 

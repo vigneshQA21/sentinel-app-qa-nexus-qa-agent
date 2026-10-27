@@ -81,6 +81,20 @@ Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same 
 - Every finding is also counted in the **bug history** (one occurrence per Nexus pre-alert; re-checking the same pre-alert is not a repeat). `./nx history` shows the totals, the bugs that came back and how many times.
 - `./nx casedoc` writes the full validation list (mapping + every field, expected, last result, baseline, bug-sheet row) into the tab "Validations REG-001 & REG-002" of `Air_Single_House_Daily_Regression.xlsx`.
 
+## Screenshots (every check, nothing overwritten)
+- Every check saves the **Pre-Alerts page** (`prealerts_list.png`) and the **expanded row** with Shipment Details (`prealert_expanded.png`), plus the viewer and data screenshots, in `runs/<date>/<case>/`.
+- Each screenshot is also copied to `runs/<date>/<case>/archive/<run time>_<IPA>_<name>.png`, so a later run never overwrites an earlier one (e.g. a pre-alert you delete afterwards).
+
+## Trace of every check (pick the exact screenshot for a bug) and root cause
+- Each check writes ONE trace per case and pre-alert: `runs/<date>/<case>/trace_<run time>_<IPA>/` with the screenshots numbered in the order they were taken (Pre-Alerts page, row expanded, each viewer parent with Unmatched/Unclassified open, the Others tab, then the data panels) and an **`index.html`** that shows them all with captions. Open the index in a browser.
+- The index starts with **Probable root cause**, and the mapping report prints the same lines (`PROBABLE ROOT CAUSE: ...`): wrong house number read by Nexus, documents left Unmatched, a Master received as its own pre-alert, follow-ups in the Others tab, a document not classified anywhere. They are hints for the tester, not a verdict.
+- A document counts as Unmatched only if it is linked under no parent (a parent's Unmatched list repeats documents linked elsewhere).
+
+## Scanned documents (OCR)
+- A page without a text layer (a scan) is read with OCR when it is CHECKED (never when sending): the right orientation is found, the text is cached in `state/ocr_cache/` (first read ~10 s per page, then instant).
+- Every value Nexus shows is looked up in the OCR text (dates printed as `08AUG`, units printed as `K`, numbers, 75% of the words of a name or address). Found = PASS; not found = **REVIEW** ("look at the scan by eye"). OCR can misread characters, so a scan never produces a FAIL or a bug candidate on its own.
+- Documents a case does not list (e.g. no Invoice in REG-009) are skipped instead of reported as errors.
+
 ## Where to look afterwards
 | What | Where |
 |---|---|
@@ -106,7 +120,7 @@ Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same 
 ./nx cases                                   # list the cases and how many samples each has
 ./nx ingest                                  # file downloads from samples/_inbox/ under their case
 .venv/bin/python scripts/check_session.py    # LOGGED IN / SESSION EXPIRED (Nexus)
-.venv/bin/python -m pytest -q                # run the tests (85)
+.venv/bin/python -m pytest -q                # run the tests (86)
 ```
 
 ## Good to know
@@ -120,4 +134,4 @@ Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same 
 - The check looks in Nexus's **Pre-Alerts** tab only. A duplicate in *Others* shows as NOT_RECEIVED.
 - Same flow with Claude: say "Execute AIR_SINGLE_HOUSE_DAILY" (uses many more tokens; see `air/AIR_SINGLE_HOUSE_DAILY.md`).
 
-_Last updated 2026-10-24: Google Sheets + Drive integration, evidence chips, `./nx log`, progress log and README added._
+_Last updated 2026-10-26: trace folders, root cause, baseline, bug history, case documentation, default mapping._

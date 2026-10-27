@@ -37,7 +37,7 @@ def find_house_source(cfg: Config, case: Case) -> tuple[Path, int, str | None] |
     for f in [x for x in sample_files(cfg, case) if x.suffix.lower() == ".pdf"]:
         if case.mode == "individual" and sender.individual_type(f, case.sample_ref or case.id) != "HBL":
             continue
-        texts = page_texts(f.read_bytes())
+        texts = page_texts(f.read_bytes(), ocr=True)
         labels = page_labels(texts, kw)
         if "HBL" in labels:
             i = labels.index("HBL")
@@ -241,6 +241,10 @@ def check_house_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_se
     ui.screenshot(cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id / "house_data.png")
     fields = attach_details(map_house_panel(read_panel_inputs(ui.page), read_party_ids(ui.page)), rec)
     res["rows"] = compare_house(doc, src[2] or doc.get("house_number"), mdoc, fields, rec, v)
+    if doc.get("ocr"):
+        from .master_check import ocr_adjust
+        res["rows"] = ocr_adjust(res["rows"], doc.get("text") or "")
+        res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
     res["verdict"] = verdict(res["rows"])
     if rec is None:
         res["message"] = "the House row of the Shipment Details table was not found"

@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import re
 import time
+from datetime import datetime
 from pathlib import Path
 
 from playwright.sync_api import Page
@@ -35,6 +36,8 @@ def parse_left_panel(text: str, headings: list[str]) -> dict:
     def groups(items: list[str]) -> list[dict]:
         out: list[dict] = []
         for it in items:
+            if it.upper() == "NO DOCUMENTS":                   # placeholder of an empty section
+                continue
             if out and is_page_code(it.upper(), out[-1]["label"]) and it.upper() != out[-1]["label"]:
                 out[-1]["pages"] += 1
             else:
@@ -59,6 +62,9 @@ def assign_columns(headers: list[tuple], leaves: list[tuple]) -> dict:
     return {k: ("" if " ".join(v) == k else " ".join(v)) for k, v in out.items()}
 
 
+RUN_STAMP = datetime.now().strftime("%H%M%S")        # one stamp per run, in the archive file names
+
+
 class UatPages:
     def __init__(self, page: Page, cfg: Config):
         self.page = page
@@ -66,11 +72,79 @@ class UatPages:
         self.u = cfg.selectors["uat"]
 
     def screenshot(self, path: Path) -> None:
+        """Saves the screenshot at `path` (the latest of that name, which the bug flow looks for) and ALSO keeps
+        - a copy in <folder>/archive/<run time>_<IPA>_<name>, so a later run never overwrites earlier evidence, and
+        - a numbered copy in the case's TRACE folder (trace_<run time>_<IPA>/NN_<name>.png) with an index.html,
+          so the whole path of a check can be read in order and the exact screenshot for a bug picked."""
         path.parent.mkdir(parents=True, exist_ok=True)
         try:
             self.page.screenshot(path=str(path))
+            data = path.read_bytes()
+            keep = path.parent / "archive"
+            keep.mkdir(exist_ok=True)
+            ipa = re.sub(r"[^A-Za-z0-9]+", "-", getattr(self, "ipa", "") or "no-ipa").strip("-")
+            (keep / f"{RUN_STAMP}_{ipa}_{path.name}").write_bytes(data)
+            tdir = path.parent / f"trace_{RUN_STAMP}_{ipa}"
+            tdir.mkdir(exist_ok=True)
+            self.trace_dir = tdir
+            n = len(list(tdir.glob("[0-9][0-9]_*.png"))) + 1
+            (tdir / f"{n:02d}_{path.stem}.png").write_bytes(data)
+            self._write_trace_index(tdir, ipa)
         except Exception as exc:
             log.warning("screenshot failed: %s", exc)
+
+    TRACE_CAPTIONS = {
+        "prealerts_list": "Pre-Alerts tab: the row of this case (Pages, Missing Docs, Job Progress, CW Status)",
+        "list": "Pre-Alerts tab: the row of this case",
+        "prealert_expanded": "Pre-Alerts tab, row expanded: Shipment Details (Master / House records, Bill No., status)",
+        "parent_Master": "Viewer, parent Master: Linked / Unmatched / Unclassified documents and the Master data",
+        "parent_House": "Viewer, parent House: Linked / Unmatched / Unclassified documents and the House data",
+        "parent_Manifest": "Viewer, parent Air Manifest: Linked / Unmatched / Unclassified documents and the Manifest data",
+        "others_tab": "Others tab: follow-up emails and duplicates of this case",
+        "master_data": "Master data panel (checked against the document)", "house_data": "House data panel (checked against the document)",
+        "manifest_data": "Manifest data panel", "invoice_data": "Invoice data panel", "packing_data": "Packing List data panel",
+        "debitnote_data": "Debit Note data panel", "shipperdoc_data": "Shipper Document data panel",
+        "not_received": "Pre-Alerts tab: the pre-alert was not found",
+    }
+
+    def _write_trace_index(self, tdir: Path, ipa: str) -> None:
+        shots = sorted(tdir.glob("[0-9][0-9]_*.png"))
+        notes = "".join(f"<li>{x}</li>" for x in getattr(self, "trace_notes", []))
+        head = (f'<section style="border-color:#c2410c"><h3>Probable root cause</h3><ul>{notes}</ul></section>' if notes else "")
+        rows = "\n".join(
+            f'<section><h3>{f.stem[:2]}. {self.TRACE_CAPTIONS.get(f.stem[3:], f.stem[3:].replace("_", " "))}</h3>'
+            f'<p class="n">{f.name}</p><a href="{f.name}"><img src="{f.name}" loading="lazy"></a></section>' for f in shots)
+        (tdir / "index.html").write_text(
+            f"<!doctype html><meta charset=utf-8><title>Trace {tdir.parent.name} {ipa}</title>"
+            "<style>body{font:15px system-ui;margin:24px;background:#f5f6f8;color:#1c2330}section{background:#fff;border:1px solid #d9dde3;"
+            "border-radius:8px;padding:12px 16px;margin:0 0 18px}h1{font-size:20px}h3{margin:0 0 2px}.n{margin:0 0 8px;color:#6b7280;font-size:12px}"
+            "img{max-width:100%;border:1px solid #d9dde3}</style>"
+            f"<h1>Trace of {tdir.parent.name} - {ipa} ({len(shots)} screenshots, in the order they were taken)</h1>" + head + rows, encoding="utf-8")
+
+    def set_trace_notes(self, notes: list[str]) -> None:
+        """Probable root causes found by the check; shown at the top of the trace index."""
+        self.trace_notes = notes
+        if getattr(self, "trace_dir", None):
+            self._write_trace_index(self.trace_dir, re.sub(r"[^A-Za-z0-9]+", "-", getattr(self, "ipa", "") or "no-ipa").strip("-"))
+
+    def capture_others(self, token: str) -> list[str]:
+        """Screenshot of the Others tab (follow-up emails and duplicates) and the IPA ids of this case's rows there."""
+        found: list[str] = []
+        try:
+            self.open_list()
+            self.page.get_by_text("Others (", exact=False).first.click()
+            self.page.wait_for_timeout(3500)
+            self.page.mouse.move(5, 5)
+            cells = self.page.locator(self.u["subject_cell"].format(token=token))
+            found = [self.row_info(cells.nth(i)).get("ipa", "") for i in range(cells.count())]
+            if getattr(self, "case_dir", None):
+                self.screenshot(self.case_dir / "others_tab.png")
+        except Exception as exc:
+            log.warning("could not capture the Others tab: %s", exc)
+        return found
+
+    def case_evidence_dir(self, token: str) -> Path:
+        return self.cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / token.split()[0]
 
     # --- list ---------------------------------------------------------------------------
     def open_list(self) -> None:
@@ -83,6 +157,11 @@ class UatPages:
                 if attempt == 2:
                     raise
                 log.warning("Nexus was slow to load (%s), retrying", type(exc).__name__)
+        try:
+            self.page.get_by_text("Pre-Alerts (", exact=False).first.click(timeout=5000)      # always the Pre-Alerts tab (a check may have left Others open)
+            self.page.wait_for_timeout(1500)
+        except Exception:
+            pass
         try:
             self.page.locator(self.u["row_marker"]).first.wait_for(state="visible", timeout=60000)   # rows are on the page
             self.page.locator(self.u["loading"]).first.wait_for(state="hidden", timeout=60000)
@@ -114,6 +193,8 @@ class UatPages:
             cell = self.find_case_row(token)
             if cell is not None:
                 info = self.row_info(cell)
+                self.ipa, self.case_dir = info.get("ipa", ""), self.case_evidence_dir(token)
+                self.screenshot(self.case_dir / "prealerts_list.png")          # the Pre-Alerts page with the row, on every check
                 if not need_progress or info["progress"] is None or info["progress"] >= 100 or time.monotonic() >= deadline:
                     return cell, info
             if time.monotonic() >= deadline:
@@ -130,6 +211,10 @@ class UatPages:
             cell.click()
             self.page.wait_for_timeout(2500)
             if view.count():
+                if getattr(self, "case_dir", None):
+                    self.page.mouse.move(5, 5)                                # no hover tooltip over the table
+                    self.page.wait_for_timeout(400)
+                    self.screenshot(self.case_dir / "prealert_expanded.png")   # the row expanded: Shipment Details and View documents
                 return
 
     def read_shipment_details(self) -> list[dict]:
@@ -169,11 +254,18 @@ class UatPages:
         box = self.page.get_by_placeholder(self.u["parent_search"])
         if box.count():
             return
-        btn = self._parent_button()
-        if btn is None:
-            raise RuntimeError("parent dropdown button not found in the viewer header")
-        btn.click()
-        box.first.wait_for(state="visible", timeout=10000)
+        for attempt in range(3):                              # the first click is sometimes swallowed while the viewer settles
+            btn = self._parent_button()
+            if btn is None:
+                self.page.wait_for_timeout(1500)
+                continue
+            btn.click()
+            try:
+                box.first.wait_for(state="visible", timeout=5000)
+                return
+            except Exception:
+                self.page.wait_for_timeout(1000)
+        raise RuntimeError("parent dropdown did not open in the viewer header")
 
     def parent_options(self) -> list[str]:
         self._open_dropdown()
@@ -185,16 +277,29 @@ class UatPages:
         self.page.get_by_text(name, exact=True).last.click()        # the option (the header button shows the same text first)
         self.page.wait_for_timeout(2500)
 
-    def read_left_panel(self) -> dict:
+    def _panel(self) -> dict:
         heads = self.u["left_headings"]
-        for h in heads[1:]:                                   # expand Unmatched / Unclassified
+        box = self.page.locator("div").filter(has_text=heads[0]).filter(has_text=heads[2]).last
+        return parse_left_panel(box.inner_text(), heads)
+
+    def _toggle_sections(self) -> None:
+        for h in self.u["left_headings"][1:]:                 # Unmatched / Unclassified
             try:
-                self.page.get_by_text(h, exact=True).first.click()
+                self.page.get_by_text(h, exact=False).first.click()   # the page shows the heading in capitals by CSS only
                 self.page.wait_for_timeout(500)
             except Exception:
                 pass
-        box = self.page.locator("div").filter(has_text=heads[0]).filter(has_text=heads[2]).last
-        return parse_left_panel(box.inner_text(), heads)
+
+    def read_left_panel(self) -> dict:
+        """The sections open or closed depending on earlier clicks, and a click toggles: read both states, keep the fuller one."""
+        count = lambda p: sum(len(p[k]) for k in ("linked", "unmatched", "unclassified"))
+        first = self._panel()
+        self._toggle_sections()
+        second = self._panel()
+        if count(first) > count(second):
+            self._toggle_sections()                          # back to the state that showed more
+            return first
+        return second
 
     def read_parents(self, evidence: Path | None = None) -> list[dict]:
         """[{parent, kind, linked: [...], unmatched: [...], unclassified: [...]}] for every parent in the dropdown."""

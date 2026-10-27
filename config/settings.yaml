@@ -124,7 +124,7 @@ validation:
     "PACKING LIST": [PACKING]
     INVOICE: [INVOICE]
     "DEBIT NOTE": [DEBIT]
-    "DELIVERY NOTE": [DELIVERY NOTE]
+    "DELIVERY NOTE": [DELIVERY NOTE, DELIVERYNOTE, DLV]
     "SHIPPER DOCUMENT": [SHIPPER DOC, SHIPPERDOC, CERTIFICATE OF ORIGIN, DECLARATION]
     PO: [PO CONFIRMATION, PURCHASE ORDER, ORDER CONFIRMATION, PO]
   # Timing after an email is sent (counted from the send time): wait the buffer, then poll until the pre-alert

@@ -219,3 +219,14 @@ def test_generic_reader_for_short_forwarder_form():
 def test_parse_date_iso():
     from nexus_agent.master_check import parse_date
     assert parse_date("2026-08-22") == (22, 8, 2026)
+
+
+def test_ocr_adjust_finds_values_in_scan_text():
+    from nexus_agent.master_check import ocr_adjust
+    text = "932-78831771 DATE 07AUG26 GROSS 112.5 K SKYFER LOGISTIC INC 33 WOOD AVENUE SOUTH ISELIN"
+    rows = [{"field": "x", "label": "Executed On", "shown_in_nexus": "07/08/2026", "expected_from_document": "", "result": "NOT_VERIFIABLE", "note": ""},
+            {"field": "x", "label": "Gross Weight Unit", "shown_in_nexus": "KGS", "expected_from_document": "", "result": "NOT_VERIFIABLE", "note": ""},
+            {"field": "x", "label": "Address", "shown_in_nexus": "33 WOOD AVENUE SOUTH ISELIN", "expected_from_document": "a", "result": "FAIL", "note": ""},
+            {"field": "x", "label": "Name", "shown_in_nexus": "OTHER PARTY LTD", "expected_from_document": "a", "result": "FAIL", "note": ""}]
+    out = ocr_adjust(rows, text)
+    assert [r["result"] for r in out] == ["PASS", "PASS", "PASS", "REVIEW"]

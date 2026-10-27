@@ -33,6 +33,8 @@ def _short(text: str, n: int = 90) -> str:
 
 def two_lines(c: dict) -> str:
     """The bug in two lines: where it is and what Nexus shows, then what was expected."""
+    if c.get("description"):                      # a bug that spans several documents is written by hand
+        return c["description"]
     tag = "Needs review: " if c["result"] == "REVIEW" else ""
     l1 = (f"{tag}Nexus job {c['ipa'] or '(unknown)'} (Quadance {c['fj'] or '(unknown)'}, {c['case_id']}), {c['document']}, "
           f"field {c['field']}: Nexus shows `{_short(c['shown'])}`.")
@@ -340,6 +342,8 @@ def evidence_name(c: dict) -> str:
 
 def sheet_description(c: dict) -> str:
     """The bug text in the way the team writes it: what Nexus shows, then 'Expected : ...'."""
+    if c.get("description"):
+        return c["description"]
     parts = [x.strip() for x in c["field"].split("\u00b7")]
     label = f"{parts[0]} {parts[1]}" if len(parts) == 2 and parts[0] != c["document"] else parts[-1]
     exp = f"Expected : `{_short(c['expected'])}`, as printed on the document." if c["expected"] and not c["expected"].startswith("(") \

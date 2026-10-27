@@ -22,6 +22,7 @@ from .testsuite import Case, sample_files
 from .validate import _buffer, plan_wait
 
 log = logging.getLogger(__name__)
+CURRENCY_SIGNS = {"USD": ("US$", "US $", "$"), "EUR": ("€",), "GBP": ("£",), "JPY": ("¥",), "INR": ("₹", "Rs.", "Rs "), "CNY": ("RMB", "CN¥")}
 MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 ID_TAIL = r"([A-Z0-9][A-Z0-9/-]{3,})"
 
@@ -67,7 +68,8 @@ PATTERNS = {"INVOICE": "Invoice", "PACKING": r"Packing\s*List", "DEBITNOTE": r"D
 
 def kinds_for(cfg: Config, case: Case) -> tuple[str, ...]:
     """Manifest, Invoice and Packing List always; Debit Note / Shipper Document when the sample contains them."""
-    out = ["MANIFEST", "INVOICE", "PACKING"]
+    wanted = (case.docs or "").lower()
+    out = [k for k, word in (("MANIFEST", "manifest"), ("INVOICE", "invoice"), ("PACKING", "packing")) if not wanted or word in wanted]   # only what the case lists
     for extra in ("DEBITNOTE", "SHIPPERDOC"):
         try:
             if doc_text(cfg, case, extra):
@@ -137,6 +139,8 @@ def check_value(rtype: str, anchor, ui_value: str, raw: str) -> dict:
         ok = norm(shown) in nm
     elif rtype == "code":
         ok = (bool(tokens(shown)) and tokens(shown) <= tokens(raw)) or (len(norm(shown)) >= 3 and norm(shown) in nm)
+        if not ok and shown.strip().upper() in CURRENCY_SIGNS:          # a currency code printed as a sign: USD -> US$
+            ok = any(sign in raw for sign in CURRENCY_SIGNS[shown.strip().upper()])
     elif rtype == "amount":
         ok = amount(shown) is not None and f"{amount(shown):.2f}" in sq
     elif rtype in ("weight", "count"):
@@ -206,15 +210,22 @@ def doc_text(cfg: Config, case: Case, kind: str) -> tuple[str, str] | None:
         if case.mode == "individual":
             if sender.individual_type(f, case.sample_ref or case.id) != kind:
                 continue
-            pages = list(range(len(page_texts(f.read_bytes()))))
+            pages = list(range(len(page_texts(f.read_bytes(), ocr=True))))
         else:
-            texts = page_texts(f.read_bytes())
+            texts = page_texts(f.read_bytes(), ocr=True)
             want = {"SHIPPERDOC": ("SHIPPERDOC", "PO")}.get(kind, (kind,))
             pages = [i for part in detect_parts(texts, kw) if part.label in want for i in part.pages]   # incl. continuation pages
         if pages:
+            data = f.read_bytes()
             with pdfplumber.open(str(f)) as pdf:
-                text = "\n".join((pdf.pages[i].extract_text() or "") for i in pages)
-            return text, f"{f.name} page {pages[0] + 1}" + (f"-{pages[-1] + 1}" if len(pages) > 1 else "")
+                got = [(pdf.pages[i].extract_text() or "") for i in pages]
+            scanned = False
+            for k, i in enumerate(pages):
+                if len(got[k].strip()) < 25:                                  # a scanned page: OCR
+                    from . import ocr as _ocr
+                    got[k], scanned = _ocr.page_text(data, i), True
+            where = f"{f.name} page {pages[0] + 1}" + (f"-{pages[-1] + 1}" if len(pages) > 1 else "") + (" (scan, OCR)" if scanned else "")
+            return "\n".join(got), where
     return None
 
 
@@ -273,6 +284,11 @@ def check_docs_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_sec
             items = read_panel_fields(ui.page)
             shown[kind] = items
             res["rows"] = compare_doc(kind, items, raw)
+            if "(scan, OCR)" in where:                                       # OCR may misread: a difference is REVIEW, not FAIL
+                for r in res["rows"]:
+                    if r["result"] == "FAIL":
+                        r["result"], r["note"] = "REVIEW", "scanned page read with OCR (may be misread): " + (r.get("note") or "")
+                res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
             res["verdict"] = "FAIL" if any(r["result"] == "FAIL" for r in res["rows"]) else "PASS"
         except SessionExpired:
             raise

@@ -91,3 +91,9 @@ def test_packing_and_manifest_panels():
     # the first unlabelled manifest input is the master AWB
     first = DC.compare_doc("MANIFEST", [it("", "999-12345678")], MANIFEST_TEXT)[0]
     assert first["label"] == "Master Air Waybill" and first["result"] == "PASS"
+
+
+def test_currency_code_found_as_sign():
+    from nexus_agent.docs_check import check_value
+    r = check_value("code", None, "USD", "Total US$1,140.00")
+    assert r["result"] == "PASS"

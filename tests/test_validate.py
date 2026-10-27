@@ -34,8 +34,10 @@ def test_parse_expected_other_wording():
     cfg = Config()
     exp = V.parse_expected("Debit Note → Master;\n other documents → corresponding House",
                            "Master + House + Manifest + Debit Note + Invoice + random/unclassified document", cfg)
-    assert exp == {"DEBIT NOTE": "Master", "MASTER": "House", "HOUSE": "House", "MANIFEST": "House", "INVOICE": "House"}
-    assert V.parse_expected("Master -> Master", "Master + House", cfg) == {"MASTER": "Master"}
+    assert exp == {"DEBIT NOTE": "Master", "MASTER": "Master", "HOUSE": "House", "MANIFEST": "Master", "INVOICE": "House"}   # standard mapping
+    assert V.parse_expected("Master -> Master", "Master + House", cfg) == {"MASTER": "Master", "HOUSE": "House"}
+    assert V.parse_expected("Each document mapped to the correct shipment", "Master + House + Shipper Document", cfg) == \
+        {"MASTER": "Master", "HOUSE": "House", "SHIPPER DOCUMENT": "House"}
 
 
 def test_compare_pass_wrong_section_missing_and_unexpected():

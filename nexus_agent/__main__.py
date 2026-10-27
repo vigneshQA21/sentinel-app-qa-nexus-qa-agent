@@ -49,7 +49,8 @@ def _note_bugs(cfg, mapping_rows=None, groups=None) -> None:
 
 
 def _baseline(cfg, results=None, title="", mapping_rows=None) -> None:
-    """Marks findings that are already logged (or accepted as not a bug) as KNOWN so only NEW differences fail the case."""
+    """Marks findings that are already logged (or accepted as not a bug) as KNOWN so only NEW differences fail the case, and
+    prints which of them are STILL THERE (with how many pre-alerts they were seen in) and which look FIXED."""
     from . import baseline as BL
     from .store import Store
     try:
@@ -57,9 +58,12 @@ def _baseline(cfg, results=None, title="", mapping_rows=None) -> None:
         n, fixed = BL.apply_checks(store, results, title) if results is not None else (0, [])
         if mapping_rows:
             n += BL.apply_mapping(store, mapping_rows)
-        if n:
-            print(f"(baseline) {n} known issue(s) in {title or 'mapping'} shown as KNOWN: logged or accepted earlier, they do not fail the case")
-        for f in fixed:
+        both = (results or []) + (mapping_rows or [])
+        lines = BL.reseen_lines(store, both)
+        if lines:
+            print(f"(baseline) {len(lines)} already-raised issue(s) still there in {title or 'mapping'}; they do not fail the case but are NOT fixed yet:")
+            print("\n".join(lines))
+        for f in fixed + [f for r in both for f in r.get("fixed", [])]:
             print(f"(baseline) {f}")
     except Exception as exc:
         print(f"(baseline could not be applied: {type(exc).__name__}: {exc})")

@@ -21,8 +21,13 @@ class Part:
         return f"{self.pages[0] + 1}-{self.pages[-1] + 1}" if len(self.pages) > 1 else str(self.pages[0] + 1)
 
 
-def page_texts(pdf_bytes: bytes) -> list[str]:
-    return [(p.extract_text() or "") for p in PdfReader(io.BytesIO(pdf_bytes)).pages]
+def page_texts(pdf_bytes: bytes, ocr: bool = False) -> list[str]:
+    """Text of every page. ocr=True reads pages that have no text layer (scans) with OCR (used when checking, not when sending)."""
+    texts = [(p.extract_text() or "") for p in PdfReader(io.BytesIO(pdf_bytes)).pages]
+    if ocr:
+        from . import ocr as _ocr
+        texts = [t if len(t.strip()) >= 25 else (_ocr.page_text(pdf_bytes, i) or t) for i, t in enumerate(texts)]
+    return texts
 
 
 def classify_page(text: str, keywords: dict[str, list[str]]) -> str | None:
