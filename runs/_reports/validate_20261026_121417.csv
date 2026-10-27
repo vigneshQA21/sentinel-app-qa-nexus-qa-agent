@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-003,FJ-0000498,,NOT_RECEIVED,FAIL,,no pre-alert for REG-003 after 0s,/home/unifo/Downloads/nexus_agent/runs/2026-10-26/REG-003

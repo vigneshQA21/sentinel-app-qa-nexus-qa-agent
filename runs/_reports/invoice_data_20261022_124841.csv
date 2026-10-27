@@ -1,0 +1,300 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Invoice Number,9148743274,9148743274,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Invoice Date,11AUG2026,11/08/2026,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Grand Total,"1,742.44","1, 742.44",PASS,"same as the value printed on the document (Nexus formats it with a space: '1, 742.44')"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Currency Code,USD,USD,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Po Number,(found on the document),1107380830,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Gross Weight,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Seller,Seller · Name,"INVOICE Original Page1/4
+Invoice-To
+DocumentNumber: 9148743274 SCHNEIDERELECTRICINFRASTRUCTURE
+DocumentDate: 11AUG2026 LIMITED
+IN62
+Currency: USD
+172PoonamalleeByPassRoad
+CustomerNumber: CIN01520
+600056 Chennai
+GSTNo: FR04954503439
+YourTaxNumber:
+Contact: Ship-To
+SCHNEIDERELECTRICINFRASTRUCTURE
+LIMITED
+172PoonamalleeByePassRoad
+CHENNAI
+TamilNadu600056
+INDIA
+Termsofsales:
+This invoice is issued in accordance with the order referenced here above which is governed by Schneider Electric offer including the
+corresponding Schneider Electric General Conditions of Sale available on the following website:
+https://www.se.com/fr/fr/about-us/legal/terms-of-sales.jsp
+TMSSOrderNumber From CustomerOrderNumber From
+243170288 02JUN2026 1107380830 02JUN2026
+Item Material Description Qty UoM
+CustomerMaterialNr. ListPrice Surcharge UnitNetPrice Per UoM TotalNetPrice Curr.
+10 GCR_MICOM_P391 P391 Generator Rotor Earth Fault Module 2 PCE
+P39191RAAB 871.22 1 PCE 1,742.44 USD
+CommodityCode:8537109199 OriginFR
+TotalNetAmount 1,742.44
+Tax Rate: 0.00% TaxedValue: 1,742.44 0.00
+TotalAmountofinvoice 1,742.44
+TotalAmount 1,742.44 USD
+TermsofPayment: Upto25.11.2026
+TermsofDelivery: FCACarros-France
+VATexemption-art.146Dir2006/112/CE
+CountriesofOrigin Manufacturer City
+FRFrance
+SchneiderElectricIndustriesSAS
+SASaucapitalde928298512euros
+35rueJosephMonier
+CS30323
+92506RueilMalmaisonCedex(France)
+954503439RCSNanterre
+N°TVA:FR04954503439
+N°Siret:95450343901719APE2712Z
+www.schneider-electric.com
+SCHNEIDERELECTRICINFRASTRUCTURE DocumentDate / Number Page
+600056Chennai 11Aug2026/9148743274 2/4
+In case of payment delay,
+For any customer subject to the French Public Procurement Code(""code de la commande publique""), from the day following the expiry of the
+payment period or the due date provided for by the contract, any delay in payment by the public customer shall automatically and without
+further formality incur default interest (""int閞阾s moratoires""), at a rate equal to the interest rate applied by the European Central Bank
+to its most recent refinancing operations, in force on the first day of the six-month period of the calendar year in which default interest
+began to accrue, increased by eight percentage points. In addition, the customer will be required, for each invoice, to pay a lump sum
+compensation for recovery costs of forty (40) euros, in accordance with the applicable mandatory legal provisions.
+For any customer under private law, in the event of late payment of this invoice the day after the expiry of the payment period, the
+customer will be required to pay a late payment interest calculated by application to the amounts due, interest equals to one percent per
+month of delay, and in any case at least equal to three (3) times the legal interest rate. In addition, the customer will be required, for
+each invoice, to pay a lump sum compensation for recovery costs of forty (40) euros, in accordance with the applicable mandatory legal
+provisions. However, if the recovery costs actually incurred by the seller are higher than the aforesaid amount, the seller reserves the
+right to claim for additional compensation to the customer.
+SchneiderElectricIndustriesSAS
+SASaucapitalde928298512euros
+35rueJosephMonier
+CS30323
+92506RueilMalmaisonCedex(France)
+954503439RCSNanterre
+N°TVA:FR04954503439
+N°Siret:95450343901719APE2712Z
+www.schneider-electric.com",Schneider Electric Industries SAS,PASS,found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Seller,Seller · Address,"INVOICE Original Page1/4
+Invoice-To
+DocumentNumber: 9148743274 SCHNEIDERELECTRICINFRASTRUCTURE
+DocumentDate: 11AUG2026 LIMITED
+IN62
+Currency: USD
+172PoonamalleeByPassRoad
+CustomerNumber: CIN01520
+600056 Chennai
+GSTNo: FR04954503439
+YourTaxNumber:
+Contact: Ship-To
+SCHNEIDERELECTRICINFRASTRUCTURE
+LIMITED
+172PoonamalleeByePassRoad
+CHENNAI
+TamilNadu600056
+INDIA
+Termsofsales:
+This invoice is issued in accordance with the order referenced here above which is governed by Schneider Electric offer including the
+corresponding Schneider Electric General Conditions of Sale available on the following website:
+https://www.se.com/fr/fr/about-us/legal/terms-of-sales.jsp
+TMSSOrderNumber From CustomerOrderNumber From
+243170288 02JUN2026 1107380830 02JUN2026
+Item Material Description Qty UoM
+CustomerMaterialNr. ListPrice Surcharge UnitNetPrice Per UoM TotalNetPrice Curr.
+10 GCR_MICOM_P391 P391 Generator Rotor Earth Fault Module 2 PCE
+P39191RAAB 871.22 1 PCE 1,742.44 USD
+CommodityCode:8537109199 OriginFR
+TotalNetAmount 1,742.44
+Tax Rate: 0.00% TaxedValue: 1,742.44 0.00
+TotalAmountofinvoice 1,742.44
+TotalAmount 1,742.44 USD
+TermsofPayment: Upto25.11.2026
+TermsofDelivery: FCACarros-France
+VATexemption-art.146Dir2006/112/CE
+CountriesofOrigin Manufacturer City
+FRFrance
+SchneiderElectricIndustriesSAS
+SASaucapitalde928298512euros
+35rueJosephMonier
+CS30323
+92506RueilMalmaisonCedex(France)
+954503439RCSNanterre
+N°TVA:FR04954503439
+N°Siret:95450343901719APE2712Z
+www.schneider-electric.com
+SCHNEIDERELECTRICINFRASTRUCTURE DocumentDate / Number Page
+600056Chennai 11Aug2026/9148743274 2/4
+In case of payment delay,
+For any customer subject to the French Public Procurement Code(""code de la commande publique""), from the day following the expiry of the
+payment period or the due date provided for by the contract, any delay in payment by the public customer shall automatically and without
+further formality incur default interest (""int閞阾s moratoires""), at a rate equal to the interest rate applied by the European Central Bank
+to its most recent refinancing operations, in force on the first day of the six-month period of the calendar year in which default interest
+began to accrue, increased by eight percentage points. In addition, the customer will be required, for each invoice, to pay a lump sum
+compensation for recovery costs of forty (40) euros, in accordance with the applicable mandatory legal provisions.
+For any customer under private law, in the event of late payment of this invoice the day after the expiry of the payment period, the
+customer will be required to pay a late payment interest calculated by application to the amounts due, interest equals to one percent per
+month of delay, and in any case at least equal to three (3) times the legal interest rate. In addition, the customer will be required, for
+each invoice, to pay a lump sum compensation for recovery costs of forty (40) euros, in accordance with the applicable mandatory legal
+provisions. However, if the recovery costs actually incurred by the seller are higher than the aforesaid amount, the seller reserves the
+right to claim for additional compensation to the customer.
+SchneiderElectricIndustriesSAS
+SASaucapitalde928298512euros
+35rueJosephMonier
+CS30323
+92506RueilMalmaisonCedex(France)
+954503439RCSNanterre
+N°TVA:FR04954503439
+N°Siret:95450343901719APE2712Z
+www.schneider-electric.com",35 rue Joseph Monier CS 30323 92506 Rueil Malmaison Cedex France,PASS,found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Seller,Seller · Postal Code,(found on the document),92506,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Buyer,Buyer · Name,"INVOICE Original Page1/4
+Invoice-To
+DocumentNumber: 9148743274 SCHNEIDERELECTRICINFRASTRUCTURE
+DocumentDate: 11AUG2026 LIMITED
+IN62
+Currency: USD
+172PoonamalleeByPassRoad
+CustomerNumber: CIN01520
+600056 Chennai
+GSTNo: FR04954503439
+YourTaxNumber:
+Contact: Ship-To
+SCHNEIDERELECTRICINFRASTRUCTURE
+LIMITED
+172PoonamalleeByePassRoad
+CHENNAI
+TamilNadu600056
+INDIA
+Termsofsales:
+This invoice is issued in accordance with the order referenced here above which is governed by Schneider Electric offer including the
+corresponding Schneider Electric General Conditions of Sale available on the following website:
+https://www.se.com/fr/fr/about-us/legal/terms-of-sales.jsp
+TMSSOrderNumber From CustomerOrderNumber From
+243170288 02JUN2026 1107380830 02JUN2026
+Item Material Description Qty UoM
+CustomerMaterialNr. ListPrice Surcharge UnitNetPrice Per UoM TotalNetPrice Curr.
+10 GCR_MICOM_P391 P391 Generator Rotor Earth Fault Module 2 PCE
+P39191RAAB 871.22 1 PCE 1,742.44 USD
+CommodityCode:8537109199 OriginFR
+TotalNetAmount 1,742.44
+Tax Rate: 0.00% TaxedValue: 1,742.44 0.00
+TotalAmountofinvoice 1,742.44
+TotalAmount 1,742.44 USD
+TermsofPayment: Upto25.11.2026
+TermsofDelivery: FCACarros-France
+VATexemption-art.146Dir2006/112/CE
+CountriesofOrigin Manufacturer City
+FRFrance
+SchneiderElectricIndustriesSAS
+SASaucapitalde928298512euros
+35rueJosephMonier
+CS30323
+92506RueilMalmaisonCedex(France)
+954503439RCSNanterre
+N°TVA:FR04954503439
+N°Siret:95450343901719APE2712Z
+www.schneider-electric.com
+SCHNEIDERELECTRICINFRASTRUCTURE DocumentDate / Number Page
+600056Chennai 11Aug2026/9148743274 2/4
+In case of payment delay,
+For any customer subject to the French Public Procurement Code(""code de la commande publique""), from the day following the expiry of the
+payment period or the due date provided for by the contract, any delay in payment by the public customer shall automatically and without
+further formality incur default interest (""int閞阾s moratoires""), at a rate equal to the interest rate applied by the European Central Bank
+to its most recent refinancing operations, in force on the first day of the six-month period of the calendar year in which default interest
+began to accrue, increased by eight percentage points. In addition, the customer will be required, for each invoice, to pay a lump sum
+compensation for recovery costs of forty (40) euros, in accordance with the applicable mandatory legal provisions.
+For any customer under private law, in the event of late payment of this invoice the day after the expiry of the payment period, the
+customer will be required to pay a late payment interest calculated by application to the amounts due, interest equals to one percent per
+month of delay, and in any case at least equal to three (3) times the legal interest rate. In addition, the customer will be required, for
+each invoice, to pay a lump sum compensation for recovery costs of forty (40) euros, in accordance with the applicable mandatory legal
+provisions. However, if the recovery costs actually incurred by the seller are higher than the aforesaid amount, the seller reserves the
+right to claim for additional compensation to the customer.
+SchneiderElectricIndustriesSAS
+SASaucapitalde928298512euros
+35rueJosephMonier
+CS30323
+92506RueilMalmaisonCedex(France)
+954503439RCSNanterre
+N°TVA:FR04954503439
+N°Siret:95450343901719APE2712Z
+www.schneider-electric.com",SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED,PASS,found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Buyer,Buyer · Address,"INVOICE Original Page1/4
+Invoice-To
+DocumentNumber: 9148743274 SCHNEIDERELECTRICINFRASTRUCTURE
+DocumentDate: 11AUG2026 LIMITED
+IN62
+Currency: USD
+172PoonamalleeByPassRoad
+CustomerNumber: CIN01520
+600056 Chennai
+GSTNo: FR04954503439
+YourTaxNumber:
+Contact: Ship-To
+SCHNEIDERELECTRICINFRASTRUCTURE
+LIMITED
+172PoonamalleeByePassRoad
+CHENNAI
+TamilNadu600056
+INDIA
+Termsofsales:
+This invoice is issued in accordance with the order referenced here above which is governed by Schneider Electric offer including the
+corresponding Schneider Electric General Conditions of Sale available on the following website:
+https://www.se.com/fr/fr/about-us/legal/terms-of-sales.jsp
+TMSSOrderNumber From CustomerOrderNumber From
+243170288 02JUN2026 1107380830 02JUN2026
+Item Material Description Qty UoM
+CustomerMaterialNr. ListPrice Surcharge UnitNetPrice Per UoM TotalNetPrice Curr.
+10 GCR_MICOM_P391 P391 Generator Rotor Earth Fault Module 2 PCE
+P39191RAAB 871.22 1 PCE 1,742.44 USD
+CommodityCode:8537109199 OriginFR
+TotalNetAmount 1,742.44
+Tax Rate: 0.00% TaxedValue: 1,742.44 0.00
+TotalAmountofinvoice 1,742.44
+TotalAmount 1,742.44 USD
+TermsofPayment: Upto25.11.2026
+TermsofDelivery: FCACarros-France
+VATexemption-art.146Dir2006/112/CE
+CountriesofOrigin Manufacturer City
+FRFrance
+SchneiderElectricIndustriesSAS
+SASaucapitalde928298512euros
+35rueJosephMonier
+CS30323
+92506RueilMalmaisonCedex(France)
+954503439RCSNanterre
+N°TVA:FR04954503439
+N°Siret:95450343901719APE2712Z
+www.schneider-electric.com
+SCHNEIDERELECTRICINFRASTRUCTURE DocumentDate / Number Page
+600056Chennai 11Aug2026/9148743274 2/4
+In case of payment delay,
+For any customer subject to the French Public Procurement Code(""code de la commande publique""), from the day following the expiry of the
+payment period or the due date provided for by the contract, any delay in payment by the public customer shall automatically and without
+further formality incur default interest (""int閞阾s moratoires""), at a rate equal to the interest rate applied by the European Central Bank
+to its most recent refinancing operations, in force on the first day of the six-month period of the calendar year in which default interest
+began to accrue, increased by eight percentage points. In addition, the customer will be required, for each invoice, to pay a lump sum
+compensation for recovery costs of forty (40) euros, in accordance with the applicable mandatory legal provisions.
+For any customer under private law, in the event of late payment of this invoice the day after the expiry of the payment period, the
+customer will be required to pay a late payment interest calculated by application to the amounts due, interest equals to one percent per
+month of delay, and in any case at least equal to three (3) times the legal interest rate. In addition, the customer will be required, for
+each invoice, to pay a lump sum compensation for recovery costs of forty (40) euros, in accordance with the applicable mandatory legal
+provisions. However, if the recovery costs actually incurred by the seller are higher than the aforesaid amount, the seller reserves the
+right to claim for additional compensation to the customer.
+SchneiderElectricIndustriesSAS
+SASaucapitalde928298512euros
+35rueJosephMonier
+CS30323
+92506RueilMalmaisonCedex(France)
+954503439RCSNanterre
+N°TVA:FR04954503439
+N°Siret:95450343901719APE2712Z
+www.schneider-electric.com",172 Poonamallee ByPass Road 600056 Chennai India,FAIL,similarity 0.03 (needs 0.9)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Buyer,Buyer · Postal Code,(found on the document),600056,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Order No,(found on the document),243170288,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Customer No,(found on the document),CIN01520,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Delivery No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Reference No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-5",Invoice,Invoice · Incoterm,,FCA,FAIL,this value is not on the document

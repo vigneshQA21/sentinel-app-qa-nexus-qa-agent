@@ -1,0 +1,229 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Packing List No,1779430 -1,1779430-1,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Date,10 Aug 2026,"1779430 -1, 10 Aug 2026",FAIL,the date is right but Nexus adds extra text to the value
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Invoice No,(found on the document),1779430 -1,REVIEW,differs from the Invoice's number 9148743274 (the Packing List's own number appears here)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Gross Weight,24,24,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Customer No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Order No,(found on the document),1107380830,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Po Number,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Incoterm,(found on the document),FCA,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Shipper,Shipper · Name,"Page 1/1
+PACKING LIST Page 1/1
+Document Number 1779430 -1
+Document Date 10 Aug 2026
+Shipper Ship-To
+Horizon manuf. SCHNEIDER ELECTRIC INFRASTRUCTURE
+8ème RUE LIMITED
+FR-06516 CARROS CEDEX 172 Poonamallee Bye Pass Road
+CHENNAI
+Tamil Nadu 600056
+INDIA
+Carrier Sold-To
+SCHNEIDER ELECTRIC INDUSTRIES SAS
+Rue Roland Garros
+FR-27930 EVREUX
+Contact
+Mode: Shuttle
+Incoterm: FCA Carros - France
+Loading Place Number of Handling Units: 1
+Schneider Electic Number of Parcels: 1
+ZI de Carros, 1ère avenue - 18ième rue Total Net Weight : 17 KG
+FR-06510 CARROS CEDEX Total Gross Weight: 24 KG
+Total Volume: 0,360 M3
+Delivery/Handling Instruction:
+0842959834- CUSTOMER REF : 1107380830 HUB FRANCE REF : 243170288 TO ADD THE SERIAL
+NUMBER OF PRODUCTS ON ALL PAPERWORK AND BY EMAIL End Destination: IN
+______________________________________________________________________________________________________________________________________________________________
+SECTION 1: CONTENT
+______________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________
+Handling Unit Delivery Parcel no Material O* Qty Our Reference EAN/UPCcode PC
+______________________________________________________________________________________________________________________________________________________________
+842959834 636064806112439436 E39191R00A ORIGIN FR 2 PCE 243624892 - 000010 3606480550614
+BU
+______________________________________________________________________________________________________________________________________________________________
+SECTION 2: WEIGHT & VOLUME
+______________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________
+Handling Unit Carrier Ref Total Weight(KG) Net Weight(KG) Length(CM) Width(CM) Height(CM) Volume(M3)
+______________________________________________________________________________________________________________________________________________________________
+636064806112439436 636064806112439436 24,000 17,000 80,000 60,000 75,000 0,360
+Schneider Electric France Schneider Electric France
+O : Country of Origin Schneider Electric France-SAS au capital de 370.000.000 SAS au capital de 370.000.000 eurosN° Siret : 421 106 709
+euros 00940
+35 rue Joseph Monier -CS 3032392506 Rueil Malmaison Code APE : 3320CCFR04900-FRD5-Carros HorizonN° TVA: FR
+Cedex (France) 93 421 106 709
+421 106 709 RCS Nanterre -N° TVA: FR 93 421 106 35 rue Joseph Monier CS 30323
+709www.schneider-electric.com 92506 Rueil Malmaison CedexFr-France
+N° Siret : 421 106 709 00668 APE 2712Z
+-www.schneider-electric.comwww.schneider-electric.com
+* Disclaimer: By accepting any shipment hereunder, the Consignee acknowledges that the items shipped hereunder may be subject to export-control and economic-sanctions laws and
+regulations including, but not limited to those of the European Union and member states thereof, the United States, or the United Kingdom. This includes, but is not limited to shipment or
+transfer to Russia, Belarus, Crimea and other Covered Regions of Ukraine including Donetsk and Luhansk, Cuba, Iran, Syria, and North Korea. The Consignee agrees and warrants that the
+items will not be transferred or reexported in any manner that violates, or causes the Shipper to violate, such laws or regulations.",Horizon manuf .,PASS,found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Shipper,Shipper · Address,"Page 1/1
+PACKING LIST Page 1/1
+Document Number 1779430 -1
+Document Date 10 Aug 2026
+Shipper Ship-To
+Horizon manuf. SCHNEIDER ELECTRIC INFRASTRUCTURE
+8ème RUE LIMITED
+FR-06516 CARROS CEDEX 172 Poonamallee Bye Pass Road
+CHENNAI
+Tamil Nadu 600056
+INDIA
+Carrier Sold-To
+SCHNEIDER ELECTRIC INDUSTRIES SAS
+Rue Roland Garros
+FR-27930 EVREUX
+Contact
+Mode: Shuttle
+Incoterm: FCA Carros - France
+Loading Place Number of Handling Units: 1
+Schneider Electic Number of Parcels: 1
+ZI de Carros, 1ère avenue - 18ième rue Total Net Weight : 17 KG
+FR-06510 CARROS CEDEX Total Gross Weight: 24 KG
+Total Volume: 0,360 M3
+Delivery/Handling Instruction:
+0842959834- CUSTOMER REF : 1107380830 HUB FRANCE REF : 243170288 TO ADD THE SERIAL
+NUMBER OF PRODUCTS ON ALL PAPERWORK AND BY EMAIL End Destination: IN
+______________________________________________________________________________________________________________________________________________________________
+SECTION 1: CONTENT
+______________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________
+Handling Unit Delivery Parcel no Material O* Qty Our Reference EAN/UPCcode PC
+______________________________________________________________________________________________________________________________________________________________
+842959834 636064806112439436 E39191R00A ORIGIN FR 2 PCE 243624892 - 000010 3606480550614
+BU
+______________________________________________________________________________________________________________________________________________________________
+SECTION 2: WEIGHT & VOLUME
+______________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________
+Handling Unit Carrier Ref Total Weight(KG) Net Weight(KG) Length(CM) Width(CM) Height(CM) Volume(M3)
+______________________________________________________________________________________________________________________________________________________________
+636064806112439436 636064806112439436 24,000 17,000 80,000 60,000 75,000 0,360
+Schneider Electric France Schneider Electric France
+O : Country of Origin Schneider Electric France-SAS au capital de 370.000.000 SAS au capital de 370.000.000 eurosN° Siret : 421 106 709
+euros 00940
+35 rue Joseph Monier -CS 3032392506 Rueil Malmaison Code APE : 3320CCFR04900-FRD5-Carros HorizonN° TVA: FR
+Cedex (France) 93 421 106 709
+421 106 709 RCS Nanterre -N° TVA: FR 93 421 106 35 rue Joseph Monier CS 30323
+709www.schneider-electric.com 92506 Rueil Malmaison CedexFr-France
+N° Siret : 421 106 709 00668 APE 2712Z
+-www.schneider-electric.comwww.schneider-electric.com
+* Disclaimer: By accepting any shipment hereunder, the Consignee acknowledges that the items shipped hereunder may be subject to export-control and economic-sanctions laws and
+regulations including, but not limited to those of the European Union and member states thereof, the United States, or the United Kingdom. This includes, but is not limited to shipment or
+transfer to Russia, Belarus, Crimea and other Covered Regions of Ukraine including Donetsk and Luhansk, Cuba, Iran, Syria, and North Korea. The Consignee agrees and warrants that the
+items will not be transferred or reexported in any manner that violates, or causes the Shipper to violate, such laws or regulations.","8ème RUE FR-06516 CARROS CEDEX, 1779430 -",PASS,found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Shipper,Shipper · Postal Code,(found on the document),06516,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Consignee,Consignee · Name,"Page 1/1
+PACKING LIST Page 1/1
+Document Number 1779430 -1
+Document Date 10 Aug 2026
+Shipper Ship-To
+Horizon manuf. SCHNEIDER ELECTRIC INFRASTRUCTURE
+8ème RUE LIMITED
+FR-06516 CARROS CEDEX 172 Poonamallee Bye Pass Road
+CHENNAI
+Tamil Nadu 600056
+INDIA
+Carrier Sold-To
+SCHNEIDER ELECTRIC INDUSTRIES SAS
+Rue Roland Garros
+FR-27930 EVREUX
+Contact
+Mode: Shuttle
+Incoterm: FCA Carros - France
+Loading Place Number of Handling Units: 1
+Schneider Electic Number of Parcels: 1
+ZI de Carros, 1ère avenue - 18ième rue Total Net Weight : 17 KG
+FR-06510 CARROS CEDEX Total Gross Weight: 24 KG
+Total Volume: 0,360 M3
+Delivery/Handling Instruction:
+0842959834- CUSTOMER REF : 1107380830 HUB FRANCE REF : 243170288 TO ADD THE SERIAL
+NUMBER OF PRODUCTS ON ALL PAPERWORK AND BY EMAIL End Destination: IN
+______________________________________________________________________________________________________________________________________________________________
+SECTION 1: CONTENT
+______________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________
+Handling Unit Delivery Parcel no Material O* Qty Our Reference EAN/UPCcode PC
+______________________________________________________________________________________________________________________________________________________________
+842959834 636064806112439436 E39191R00A ORIGIN FR 2 PCE 243624892 - 000010 3606480550614
+BU
+______________________________________________________________________________________________________________________________________________________________
+SECTION 2: WEIGHT & VOLUME
+______________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________
+Handling Unit Carrier Ref Total Weight(KG) Net Weight(KG) Length(CM) Width(CM) Height(CM) Volume(M3)
+______________________________________________________________________________________________________________________________________________________________
+636064806112439436 636064806112439436 24,000 17,000 80,000 60,000 75,000 0,360
+Schneider Electric France Schneider Electric France
+O : Country of Origin Schneider Electric France-SAS au capital de 370.000.000 SAS au capital de 370.000.000 eurosN° Siret : 421 106 709
+euros 00940
+35 rue Joseph Monier -CS 3032392506 Rueil Malmaison Code APE : 3320CCFR04900-FRD5-Carros HorizonN° TVA: FR
+Cedex (France) 93 421 106 709
+421 106 709 RCS Nanterre -N° TVA: FR 93 421 106 35 rue Joseph Monier CS 30323
+709www.schneider-electric.com 92506 Rueil Malmaison CedexFr-France
+N° Siret : 421 106 709 00668 APE 2712Z
+-www.schneider-electric.comwww.schneider-electric.com
+* Disclaimer: By accepting any shipment hereunder, the Consignee acknowledges that the items shipped hereunder may be subject to export-control and economic-sanctions laws and
+regulations including, but not limited to those of the European Union and member states thereof, the United States, or the United Kingdom. This includes, but is not limited to shipment or
+transfer to Russia, Belarus, Crimea and other Covered Regions of Ukraine including Donetsk and Luhansk, Cuba, Iran, Syria, and North Korea. The Consignee agrees and warrants that the
+items will not be transferred or reexported in any manner that violates, or causes the Shipper to violate, such laws or regulations.",SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED,PASS,found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Consignee,Consignee · Address,"Page 1/1
+PACKING LIST Page 1/1
+Document Number 1779430 -1
+Document Date 10 Aug 2026
+Shipper Ship-To
+Horizon manuf. SCHNEIDER ELECTRIC INFRASTRUCTURE
+8ème RUE LIMITED
+FR-06516 CARROS CEDEX 172 Poonamallee Bye Pass Road
+CHENNAI
+Tamil Nadu 600056
+INDIA
+Carrier Sold-To
+SCHNEIDER ELECTRIC INDUSTRIES SAS
+Rue Roland Garros
+FR-27930 EVREUX
+Contact
+Mode: Shuttle
+Incoterm: FCA Carros - France
+Loading Place Number of Handling Units: 1
+Schneider Electic Number of Parcels: 1
+ZI de Carros, 1ère avenue - 18ième rue Total Net Weight : 17 KG
+FR-06510 CARROS CEDEX Total Gross Weight: 24 KG
+Total Volume: 0,360 M3
+Delivery/Handling Instruction:
+0842959834- CUSTOMER REF : 1107380830 HUB FRANCE REF : 243170288 TO ADD THE SERIAL
+NUMBER OF PRODUCTS ON ALL PAPERWORK AND BY EMAIL End Destination: IN
+______________________________________________________________________________________________________________________________________________________________
+SECTION 1: CONTENT
+______________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________
+Handling Unit Delivery Parcel no Material O* Qty Our Reference EAN/UPCcode PC
+______________________________________________________________________________________________________________________________________________________________
+842959834 636064806112439436 E39191R00A ORIGIN FR 2 PCE 243624892 - 000010 3606480550614
+BU
+______________________________________________________________________________________________________________________________________________________________
+SECTION 2: WEIGHT & VOLUME
+______________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________
+Handling Unit Carrier Ref Total Weight(KG) Net Weight(KG) Length(CM) Width(CM) Height(CM) Volume(M3)
+______________________________________________________________________________________________________________________________________________________________
+636064806112439436 636064806112439436 24,000 17,000 80,000 60,000 75,000 0,360
+Schneider Electric France Schneider Electric France
+O : Country of Origin Schneider Electric France-SAS au capital de 370.000.000 SAS au capital de 370.000.000 eurosN° Siret : 421 106 709
+euros 00940
+35 rue Joseph Monier -CS 3032392506 Rueil Malmaison Code APE : 3320CCFR04900-FRD5-Carros HorizonN° TVA: FR
+Cedex (France) 93 421 106 709
+421 106 709 RCS Nanterre -N° TVA: FR 93 421 106 35 rue Joseph Monier CS 30323
+709www.schneider-electric.com 92506 Rueil Malmaison CedexFr-France
+N° Siret : 421 106 709 00668 APE 2712Z
+-www.schneider-electric.comwww.schneider-electric.com
+* Disclaimer: By accepting any shipment hereunder, the Consignee acknowledges that the items shipped hereunder may be subject to export-control and economic-sanctions laws and
+regulations including, but not limited to those of the European Union and member states thereof, the United States, or the United Kingdom. This includes, but is not limited to shipment or
+transfer to Russia, Belarus, Crimea and other Covered Regions of Ukraine including Donetsk and Luhansk, Cuba, Iran, Syria, and North Korea. The Consignee agrees and warrants that the
+items will not be transferred or reexported in any manner that violates, or causes the Shipper to violate, such laws or regulations.",172 Poonamallee Bye Pass Road CHENNAI Tamil Nadu 600056 INDIA,PASS,found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Consignee,Consignee · Postal Code,(found on the document),600056,PASS,value found on the document

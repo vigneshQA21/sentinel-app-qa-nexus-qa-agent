@@ -1,0 +1,29 @@
+case_id,ipa,source,field,expected_from_document,shown_in_nexus,result,note
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",AWB number,020-27293980,020-27293980,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",shipper name,QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET AEROPORT DE NICE NICE 06 06200 FR,"QUALITAIR&SEA, DIMOTRANS GROUP",PASS,name found in the document block
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",shipper address,QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET AEROPORT DE NICE NICE 06 06200 FR,"AEROPORT NICE COTE D'AZUR, ZONE DE FRET CEDEX 3, NICE, 06, FR",INFO,"party-master data (read-only in Nexus), not compared with the document"
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",shipper postal code,(in document block),06200,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",consignee name,LOGISTEED INDIA PVT. LTD. NO 25 32 READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE GUINDY CHENNAI TN 600032 IN,LOGISTEED INDIA PVT . LTD .,PASS,name found in the document block
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",consignee address,LOGISTEED INDIA PVT. LTD. NO 25 32 READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE GUINDY CHENNAI TN 600032 IN,NO 25 32 READYMADE GARMENT COMPLEXSIDCO INDUSTRIAL ESTATE GUINDYCHENNAI TN 600032 INTE +914425234009,FAIL,similarity 0.81 (needs 0.9)
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",consignee postal code,(in document block),600032,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",number of flight segments,2,2,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",origin airport,NCE,NCE,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",segment 1 to,FRA,FRA,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",segment 1 carrier,LH,CLH_WW,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",segment 2 to,MAA,MAA,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",segment 2 carrier,LH,CLH_WW,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",segment 1 flight number,LH1061,LH1061,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",segment 1 flight day,22,22/08/2026,PASS,only the day is printed on the AWB
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",segment 2 flight number,LH758,LH758,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",segment 2 flight day,23,23/08/2026,PASS,only the day is printed on the AWB
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",airport of departure,NICE,NICE,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",final destination airport,CHENNAI (EX MADRAS),CHENNAI ( EX MADRAS ),PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",freight payment,FREIGHT PREPAID (code PP),FREIGHT PREPAID,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",pieces,1,1,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",gross weight,24.0,24,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",gross weight unit,KGS,KGS,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",chargeable weight,60.0,60,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",volume,0.36,0.36,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",volume unit,CBM,CBM,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",nature of goods,Consolidation as per attached list Not Restricted HS Code: 8537109199 DIMS 80x60x75 CM x 1 VOL 0.36 M3,Consolidation as per attached listNot RestrictedHS Code: 8537109199DIMS 80x60x75 CM x 1VOL 0.36 M3,PASS,
+REG-001,IPA/2134/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",executed on,21-Aug-26,21/08/2026,PASS,

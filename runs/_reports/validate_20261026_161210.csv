@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-006,FLD6445,IPA/2206/2026-27,CREATED_IN_NEXUS,FAIL,183,"MASTER: FAIL (not found in Nexus) | HOUSE: PASS (in House) | MANIFEST: PASS (in Manifest) | DEBIT NOTE: FAIL (not found in Nexus) | INVOICE: PASS (in House) | PACKING LIST: PASS (in House) | IPA/2206/2026-27 seen -> House (FLD6445): HAWBx1, INVOICEx1, PACKINGLISTx1; Air Manifest: AIRMANIFESTx1",/home/unifo/Downloads/nexus_agent/runs/2026-10-26/REG-006

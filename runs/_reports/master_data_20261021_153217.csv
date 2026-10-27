@@ -1,0 +1,2 @@
+case_id,ipa,source,field,expected_from_document,shown_in_nexus,result,note
+REG-001,,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",,,,ERROR,no pre-alert for REG-001 in Nexus (checked the Pre-Alerts tab)

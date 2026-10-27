@@ -1,0 +1,22 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · House Bill No,CHJE262335,CHJE262335,PASS,same as the value printed on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Master Bill No,(found on the document),160-15776084,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Invoice Number,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Invoice Date,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Grand Total,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Currency Code,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Po Number,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Gross Weight,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Shipper,Shipper · Name,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Shipper,Shipper · Address,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Shipper,Shipper · Postal Code,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Consignee,Consignee · Name,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Consignee,Consignee · Address,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Consignee,Consignee · Postal Code,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Order No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Account No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Customer No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Delivery No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Supplier No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Reference No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4,Debit Note,Debit Note · Incoterm,,,INFO,empty in Nexus

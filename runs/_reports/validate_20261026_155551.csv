@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-005,FJ-0000883,IPA/2204/2026-27,CREATED_IN_NEXUS,PASS,183,"MASTER: PASS (in Master) | HOUSE: PASS (in House) | MANIFEST: PASS (in Manifest) | INVOICE: PASS (in House) | SHIPPER DOCUMENT: PASS (in House) | IPA/2204/2026-27 seen -> Master (057-05262084): MAWBx1; House (SNY06007868): HAWBx1, INVOICEx2, SHIPPERDOCx1; Air Manifest: AIRMANIFESTx1",/home/unifo/Downloads/nexus_agent/runs/2026-10-26/REG-005

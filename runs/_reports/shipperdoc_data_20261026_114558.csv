@@ -1,0 +1,15 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper Document,Shipper Document · Reference No,(found on the document),3CTNS,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper Document,Shipper Document · Invoice No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper Document,Shipper Document · Delivery Note No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper Document,Shipper Document · Order No,(found on the document),4502231928,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper Document,Shipper Document · Customer No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper Document,Shipper Document · Account No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper Document,Shipper Document · Gross Weight,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper Document,Shipper Document · Supplier No,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper,Shipper · Name,(not found on the document),"INSUKE Insuko Co., Ltd.",KNOWN,"KNOWN ISSUE (accepted, not a bug); 3/4 words found on the document"
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper,Shipper · Address,(found on the document),"108 Donyu - 2ro, Paju - eup, Paju - si, Gyeonggi - do, Korea",PASS,10/10 words found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Shipper,Shipper · Postal Code,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Consignee,Consignee · Name,(found on the document),Hitachi Energy India Limited,PASS,4/4 words found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Consignee,Consignee · Address,,,INFO,empty in Nexus
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8,Consignee,Consignee · Postal Code,,,INFO,empty in Nexus; no value located on the document

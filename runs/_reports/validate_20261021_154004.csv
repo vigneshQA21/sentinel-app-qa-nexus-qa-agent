@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-001,ONAE26049373,IPA/2135/2026-27,CREATED_IN_NEXUS,PASS,183,"MASTER: PASS (in Master) | HOUSE: PASS (in House) | MANIFEST: PASS (in Manifest) | INVOICE: PASS (in House) | PACKING LIST: PASS (in House) | IPA/2135/2026-27 seen -> Master (020-27293980): MAWBx1; House (ONAE26049373): HAWBx1, INVOICEx3, PACKINGLISTx1; Air Manifest: AIRMANIFESTx1",/home/unifo/Downloads/nexus_agent/runs/2026-10-21/REG-001

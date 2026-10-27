@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 7-9,,,,,FAIL,packing expected under House but Nexus has none linked

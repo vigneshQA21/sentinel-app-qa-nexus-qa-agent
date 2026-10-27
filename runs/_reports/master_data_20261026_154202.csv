@@ -1,0 +1,56 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Bill No.,,057-05262084,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Shipper,SNY INT'L CARGO SERVICES LTD. 8 HACHORTIM ST. I.A HOLON 5881147 ISRAEL TEL:972-3-5585117 FAX:972-3-5585118 WWW.SNY-CARGO.COM,SNY INTERNATIONAL CARGO SERVICES LT,FAIL,similarity 0.34 (needs 0.9)
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Shipper ID,SNYINTTLV,SNYINTTLV,PASS,same as the Party ID in the data panel
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Consignee,"LOGISTEED India Pvt. Ltd. F-102, 1st Floor, Touchdown Building, Namjoshi Road, Industrial area HAL, Bengaluru, Karnataka-560037, India***",LOGISTEED India Pvt. Ltd.,PASS,consignee found in the document block
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Consignee ID,LIN_INBLR,LIN_INBLR,PASS,same as the Party ID in the data panel
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Branch,,BLR,NOT_VERIFIABLE,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,,057-05262084,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipper,Shipper · Name,SNY INT'L CARGO SERVICES LTD. 8 HACHORTIM ST. I.A HOLON 5881147 ISRAEL TEL:972-3-5585117 FAX:972-3-5585118 WWW.SNY-CARGO.COM,SNY INTERNATIONAL CARGO SERVICES LT,FAIL,similarity 0.34 (needs 0.9)
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipper,Shipper · Address,(address on the document),"8 HACHORTIM STREET, TEXTILE BUILDING, ST.HOLON, TEXTILE BUILDING, ST.HOLON,, TEL AVIV, IL",FAIL,"different address: only 3/7 words of the Nexus address are on the document; not on the document: AVIV, BUILDING, STREET, TEXTILE"
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipper,Shipper · Postal Code,(in document block),58812,FAIL,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipper,Shipper · Party ID,,SNYINTTLV,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Consignee,Consignee · Name,"LOGISTEED India Pvt. Ltd. F-102, 1st Floor, Touchdown Building, Namjoshi Road, Industrial area HAL, Bengaluru, Karnataka-560037, India***",LOGISTEED India Pvt. Ltd.,PASS,name found in the document block
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Consignee,Consignee · Address,"LOGISTEED India Pvt. Ltd. F-102, 1st Floor, Touchdown Building, Namjoshi Road, Industrial area HAL, Bengaluru, Karnataka-560037, India***","F-102, 1st Floor, Touchdown Building, Namjoshi Road, Industrial area HAL, Bengaluru, Karnataka-560037, India",PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Consignee,Consignee · Postal Code,560037,560037,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Consignee,Consignee · Party ID,,LIN_INBLR,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Flight Route,Flight Route · Type,,connecting,NOT_VERIFIABLE,routing line not found in the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · From,,TLV,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · To,,CDG,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Polname,Tel-Aviv,Tel-Aviv,PASS,same as the airport of departure
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Polctry,,IL,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Podname,,Paris,INFO,airport name from the Nexus airport master
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Podctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),AIR FRANCE,PASS,carrier name appears on the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Carrier Code,,AFR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Flight Number,,963,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Flight Date,,28/08/2026,NOT_VERIFIABLE,flight date not found in the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · From,,CDG,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · To,,BLR,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Polname,Paris,Paris,PASS,equals the previous segment's arrival airport (consistency)
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Podname,,Bangalore,INFO,airport name from the Nexus airport master
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Carrier Name,(printed on the document),AIR FRANCE,PASS,carrier name appears on the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Carrier Code,,AFR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Flight Number,,,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Flight Date,,,NOT_VERIFIABLE,flight date not found in the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Routing,Routing · Airport Of Departure,Tel-Aviv,Tel-Aviv,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Routing,Routing · Final Destination Airport,Bangalore 963/28.08 194/29.08,Bangalore,FAIL,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT PREPAID,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Pieces,3,3,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Gross Weight,21.00,21,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Chargeable Weight,21.50,21.5,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,Min 350.00 Consol Freight As Per Attached Manifest REF :6105647 H.S. CODE: 8504.40 DIM: 2(38X32X21)CMS 1(51X37X41)CMS AS VOL 21.407 KGS .1284 CBM,Consol Freight As Per Attached Manifest REF :6105647 H.S. CODE: 8504.40 DIM: 2(38X32X21)CMS 1(51X37X41)CMS AS VOL 21.407 KGS .1284 CBM,PASS,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Volume,21.407,0.1284,FAIL,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Volume Unit,KGS,CBM,FAIL,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Executed On,,28/08/2026,NOT_VERIFIABLE,
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-005,IPA/2203/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"

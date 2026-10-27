@@ -1,0 +1,56 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Bill No.,098-31251603,098-31251603,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Shipper,QUALITAIR SEA DIMOTRANS GROUP 200 RUE LEONARD DE VINCI SEMOY 45 45400 FR TE +33238708990,"QUALITAIR&SEA, DIMOTRANS GROUP",PASS,shipper found in the document block
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Shipper ID,QUADIMLEH,QUADIMLEH,PASS,same as the Party ID in the data panel
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Consignee,LOGISTEED INDIA PRIVATE LIMITED VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROAD ANDHERI EAST GST NO 27AABCF2133M1ZP MUMBAI 400099 IN TE +912230904800,LOGISTEED INDIA,PASS,consignee found in the document block
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Consignee ID,LIN_INBOM,LIN_INBOM,PASS,same as the Party ID in the data panel
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Branch,BOM,BOM,PASS,"BOM = Mumbai, matches the document's destination"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,098-31251603,098-31251603,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipper,Shipper · Name,QUALITAIR SEA DIMOTRANS GROUP 200 RUE LEONARD DE VINCI SEMOY 45 45400 FR TE +33238708990,"QUALITAIR&SEA, DIMOTRANS GROUP",PASS,name found in the document block
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipper,Shipper · Address,(address on the document),"150, BOULEVARD, AMIRAL MOUCHEZ, BOULEVARD,, LE HAVRE, FR",FAIL,"different address: only 0/5 words of the Nexus address are on the document; not on the document: 150, AMIRAL, BOULEVARD, HAVRE, MOUCHEZ"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipper,Shipper · Postal Code,45400,76064,FAIL,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Shipper,Shipper · Party ID,,QUADIMLEH,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Consignee,Consignee · Name,LOGISTEED INDIA PRIVATE LIMITED VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROAD ANDHERI EAST GST NO 27AABCF2133M1ZP MUMBAI 400099 IN TE +912230904800,LOGISTEED INDIAPRIVATE LIMITED,PASS,name found in the document block
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Consignee,Consignee · Address,LOGISTEED INDIA PRIVATE LIMITED VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROAD ANDHERI EAST GST NO 27AABCF2133M1ZP MUMBAI 400099 IN TE +912230904800,VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROADANDHERI EAST GST NO 27AABCF2133M1ZPMUMBAI 400099 IN,PASS,"Nexus joins the document's address lines without a space: ROADANDHERI, 27AABCF2133M1ZPMUMBAI"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Consignee,Consignee · Postal Code,400099,400099,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Consignee,Consignee · Party ID,,LIN_INBOM,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Flight Route,Flight Route · Type,connecting,connecting,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · From,CDG,CDG,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · To,DEL,DEL,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · Polname,CHARLES-DE-GAULLE APT/PARIS,Paris,INFO,airport name differs from the document's airport of departure
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · Podname,,Delhi,INFO,airport name from the Nexus airport master
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),Air India,PASS,carrier name appears on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · Carrier Code,AI,AIC_WW,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · Flight Number,AI142,Al142,FAIL,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 1,Segment 1 · Flight Date,day 15,15/07/2026,PASS,only the day is printed on the AWB
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · From,DEL,DEL,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · To,BOM,BOM,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · Polname,Delhi,Delhi,PASS,equals the previous segment's arrival airport (consistency)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · Polctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · Podname,MUMBAI (EX BOMBAY),Mumbai,PASS,contained in the document's airport of destination
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · Carrier Name,(printed on the document),Air India,PASS,carrier name appears on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · Carrier Code,AI,AIC_WW,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · Flight Number,AI441,Al441,FAIL,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Segment 2,Segment 2 · Flight Date,day 17,17/07/2026,PASS,only the day is printed on the AWB
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Routing,Routing · Airport Of Departure,CHARLES-DE-GAULLE APT/PARIS,CHARLES-DE-GAULLE APT / PARIS,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Routing,Routing · Final Destination Airport,MUMBAI (EX BOMBAY),MUMBAI ( EX BOMBAY ),PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Freight,Freight · Freight Payment,FREIGHT PREPAID (code PP),FREIGHT PREPAID,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Pieces,2,2,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Gross Weight,589.0,589,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Chargeable Weight,589.0,589,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,Consolidation as per attached list Preeti Rao Not Restricted Mobile - +917715080167 HS Code: 75296309000 Email-preetir.bom@flyjaclogistics.com DIMS 80x60x35 CM x 1 DIMS 120x80x40 CM x 1 VOL 0.56 M3,Consolidation as per attached listNot RestrictedHS Code : 75296309000DIMS 80x60x35 CM x 1DIMS 120x80x40 CM x 1VOL 0.56 M3,FAIL,similarity 0.77 (needs 0.9)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Volume,0.56,0.56,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Volume Unit,CBM,CBM,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · Executed On,09-Jul-26,09/07/2026,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 1,Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"

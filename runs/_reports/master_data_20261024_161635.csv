@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-002,,,,,,,ERROR,no master page found in samples/REG-002/

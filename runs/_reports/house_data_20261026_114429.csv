@@ -1,0 +1,62 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the house within its document group
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Bill No.,ONAE26049373,ONAE26049373,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Shipper,SCHNEIDER ELECTRIC SCHELECTINCE QUAI D'EXPÉDITION HORIZON MANUF. BP 147 1ERE AVENUE 2621M - ZI CARROS CARROS 06516 FR TE +33492088237,SCHNEIDER ELECTRIC,PASS,shipper found in the document block
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Shipper ID,SCHELEPAR1,SCHELEPAR1,PASS,same as the Party ID in the data panel
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Consignee,"SCHNEIDER ELECTRIC SCHELECTRMAA INFRASTRUCTURE LTD POONAMALLEE,172 POONAMALLEE BYE PASS ROAD ,POONAMALLEE CHENNAI 600056 IN TE 91000000000",SCHNEIDER ELECTRIC IT BUSINESS (I),FAIL,similarity 0.32 (needs 0.9)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Consignee ID,SCHELEMAA6,SCHELEMAA6,PASS,same as the Party ID in the data panel
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Branch,MAA,MAA,PASS,"MAA = Chennai, matches the document's destination"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",House Air Waybill,House Air Waybill · House Number (top right),ONAE26049373,ONAE26049373,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",House Air Waybill,House Air Waybill · House Number (bottom right),ONAE26049373,ONAE26049373,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",House Air Waybill,House Air Waybill · Master AWB Reference,020-27293980,020-27293980,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipper,Shipper · Name,SCHNEIDER ELECTRIC SCHELECTINCE QUAI D'EXPÉDITION HORIZON MANUF. BP 147,SCHNEIDER ELECTRIC,PASS,name found in the document block
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipper,Shipper · Address,1ERE AVENUE 2621M - ZI CARROS CARROS 06516 FR,"(FOC) 57 RUE DE LA VERRERIE -, FR",FAIL,"different address: only 0/4 words of the Nexus address are on the document; not on the document: 57, FOC, RUE, VERRERIE"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipper,Shipper · Postal Code,06516,38120,FAIL,the party master's postal code is not the one printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Shipper,Shipper · Party ID,,SCHELEPAR1,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Consignee,Consignee · Name,SCHNEIDER ELECTRIC SCHELECTRMAA INFRASTRUCTURE LTD,SCHNEIDER ELECTRIC IT BUSINESS (I),KNOWN,"KNOWN ISSUE (logged in the bug sheet); starts like the document's name but Nexus adds: BUSINESS, I, IT"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Consignee,Consignee · Address,"POONAMALLEE,172 POONAMALLEE BYE PASS ROAD ,POONAMALLEE CHENNAI 600056 IN","SURVEY NO.4, AANGADU VILLAGE, SURVEY NO.181/1, SIRUNIYUM VILLAGE, PONNERI TIRUVALLUR, CHENNAI, 33, IN",KNOWN,"KNOWN ISSUE (logged in the bug sheet); different address: only 1/9 words of the Nexus address are on the document; not on the document: 181, 33, AANGADU, PONNERI, SIRUNIYUM, SURVEY, TIRUVALLUR, VILLAGE"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Consignee,Consignee · Postal Code,600056,600067,KNOWN,KNOWN ISSUE (logged in the bug sheet); the party master's postal code is not the one printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Consignee,Consignee · Party ID,,SCHELEMAA6,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Agent,Agent · Agent / Origin Party (free text),QUALITAIR SEA DIMOTRANS GROUP,"QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET AEROPORT DE NICE, 06200, NICE, 06, FRANCE",PASS,same party as the Master's shipper (origin agent)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Freight,Freight · Freight Payment,FREIGHT COLLECT (code CC),FREIGHT COLLECT,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Routing,Routing · Airport Of Departure,NICE,NICE,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Routing,Routing · Final Destination Airport,CHENNAI (EX MADRAS),CHENNAI (EX MADRAS),PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Flight Route,Flight Route · Type,connecting,connecting,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · From,NCE,NCE,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · To,FRA,FRA,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · Polname,NICE,NICE,PASS,same as the airport of departure
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · Podname,,Frankfurt,INFO,airport name from the Nexus airport master
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · Podctry,,DE,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · Carrier Name,(printed on the document),LUFTHANSA CARGO AG,PASS,carrier name appears on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · Carrier Code,LH,GEC_WW,INFO,"Nexus airline-master code, not the IATA code printed on the document"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · Flight Number,LH1061,LH1061,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 1,Segment 1 · Flight Date,day 22,22/08/2026,PASS,only the day is printed on the AWB
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · From,FRA,FRA,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · To,MAA,MAA,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · Polname,Frankfurt,Frankfurt,PASS,equals the previous segment's arrival airport (consistency)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · Polctry,,DE,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · Podname,CHENNAI (EX MADRAS),Madras,PASS,contained in the document's airport of destination
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · Carrier Name,,LUFTHANSA CITYLINE GMBH,INFO,not printed on the document (airline master data)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · Carrier Code,LH,CLH_WW,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · Flight Number,LH758,LH758,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Segment 2,Segment 2 · Flight Date,day 23,23/08/2026,PASS,only the day is printed on the AWB
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Pieces,1,1,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Gross Weight,24.0,24,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Chargeable Weight,60.0,60,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Nature And Quantity Of Goods,P391 Generator Rotor Earth Fault Module Not Restricted 9148743274 HS Codes: 8537109199 DIMS 80x60x75 CM x 1 VOL 0.360 M3,P391 Generator Rotor Earth Fault Module Not Restricted 9148743274 HS Codes: 8537109199 DIMS 80x60x75 CM x 1 VOL 0.360 M3,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Volume,0.360,0.36,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Cargo,Cargo · Volume Unit,CBM,CBM,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Reference,Reference · Shippers Reference,C00401666,C00401666,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Reference,Reference · Executed On,19-Aug-26,19/08/2026,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3",Reference,Reference · Incoterm,EXW,EXW,PASS,
+REG-002,,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 5,,,,,ERROR,no pre-alert for REG-002 in Nexus (checked the Pre-Alerts tab)

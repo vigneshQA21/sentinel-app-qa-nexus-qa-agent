@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-003,ORAE26040499,IPA/2190/2026-27,CREATED_IN_NEXUS,FAIL,1380,"MASTER: FAIL (found in Unmatched, expected Master) | HOUSE: PASS (in House) | MANIFEST: FAIL (found in Unmatched, expected Master) | DELIVERY NOTE: FAIL (not found in Nexus) | INVOICE: FAIL (not found in Nexus) | unexpected: SHIPPERDOC in House; DELIVERYNOTE in Unmatched | IPA/2190/2026-27 seen -> House (TEL0635070676): HAWBx1, SHIPPERDOCx1",/home/unifo/Downloads/nexus_agent/runs/2026-10-26/REG-003

@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-005,IPA/2204/2026-27,,,,,,ERROR,no packing pages found in the sample for REG-005

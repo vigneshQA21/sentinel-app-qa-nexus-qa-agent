@@ -1,0 +1,20 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Invoice Number,9148743274,9148743274,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Invoice Date,11AUG2026,11/08/2026,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Grand Total,"1,742.44","1, 742.44",PASS,"same as the value printed on the document (Nexus formats it with a space: '1, 742.44')"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Currency Code,USD,USD,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Po Number,(found on the document),1107380830,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Gross Weight,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Seller,Seller · Name,(found on the document),Schneider Electric Industries SAS,PASS,4/4 words found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Seller,Seller · Address,(found on the document),35 rue Joseph Monier CS 30323 92506 Rueil Malmaison Cedex France,PASS,11/11 words found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Seller,Seller · Postal Code,(found on the document),92506,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Buyer,Buyer · Name,(found on the document),SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED,PASS,4/4 words found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Buyer,Buyer · Address,(found on the document),172 Poonamallee ByPass Road 600056 Chennai India,PASS,7/7 words found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Buyer,Buyer · Postal Code,(found on the document),600056,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Order No,(found on the document),243170288,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Customer No,(found on the document),CIN01520,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Delivery No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Reference No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6",Invoice,Invoice · Incoterm,(found on the document),FCA,PASS,value found on the document

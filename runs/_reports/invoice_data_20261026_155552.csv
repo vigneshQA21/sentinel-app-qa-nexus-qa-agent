@@ -1,0 +1,20 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Invoice Number,(found on the document),EI268002192,PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Invoice Date,(found on the document),24/08/2026,PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Grand Total,(found on the document),"42, 522.00",PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Currency Code,(found on the document),USD,PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Po Number,,"EN15481, EN15455",FAIL,this value is not on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Gross Weight,(found on the document),21,PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Seller,Seller · Name,(found on the document),ELMO MOTION CONTROL LTD.,PASS,4/4 words found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Seller,Seller · Address,(found on the document),"60 AMAL ST., P.O.B: 3078 PETACH TIKVA 4951360, Israel",PASS,11/11 words found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Seller,Seller · Postal Code,(found on the document),4951360,PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Buyer,Buyer · Name,(found on the document),SIKA INTERPLANT SYSTEMS LIMITED,PASS,4/4 words found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Buyer,Buyer · Address,(found on the document),"3 Gangadhar Chetty Road Bangalore, 560042 India",PASS,7/7 words found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Buyer,Buyer · Postal Code,(found on the document),560042,PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Order No,,,INFO,empty in Nexus; no value located on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Account No,(found on the document),660346,PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Customer No,(found on the document),30046-0,PASS,value found on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Delivery No,,,INFO,empty in Nexus; no value located on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Reference No,,,INFO,empty in Nexus; no value located on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 4-6,Invoice,Invoice · Incoterm,,,INFO,empty in Nexus; no value located on the document

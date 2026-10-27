@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-002,FJ-0000602,IPA/2185/2026-27,CREATED_IN_NEXUS,FAIL,184,"MASTER: PASS (in Master) | HOUSE: PASS (in House) | MANIFEST: PASS (in Manifest) | DEBIT NOTE: PASS (in Master) | PACKING LIST: FAIL (not found in Nexus) | unexpected: INVOICE in House; SHIPPERDOC in House | IPA/2185/2026-27 seen -> Master (160-15776084): MAWBx1, DEBITNOTEx1; House (CHJE262335): HAWBx1, INVOICEx4, SHIPPERDOCx1; Air Manifest: AIRMANIFESTx1",/home/unifo/Downloads/nexus_agent/runs/2026-10-24/REG-002

@@ -1,0 +1,18 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Packing List No,1779430 -1,1779430-1,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Date,10 Aug 2026,"1779430 -1, 10 Aug 2026",KNOWN,KNOWN ISSUE (logged in the bug sheet); the date is right but Nexus adds extra text to the value
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Invoice No,(found on the document),1779430 -1,REVIEW,differs from the Invoice's number 9148743274 (the Packing List's own number appears here)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Gross Weight,24,24,PASS,same as the value printed on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Customer No,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Order No,(found on the document),1107380830,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Po Number,,,INFO,empty in Nexus; no value located on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Packing List,Packing List · Incoterm,(found on the document),FCA,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Shipper,Shipper · Name,(found on the document),Horizon manuf .,PASS,2/2 words found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Shipper,Shipper · Address,(found on the document),"8ème RUE FR-06516 CARROS CEDEX, 1779430 -",PASS,8/8 words found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Shipper,Shipper · Postal Code,(found on the document),06516,PASS,value found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Consignee,Consignee · Name,(found on the document),SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED,PASS,4/4 words found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Consignee,Consignee · Address,(found on the document),172 Poonamallee Bye Pass Road CHENNAI Tamil Nadu 600056 INDIA,PASS,10/10 words found on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7",Consignee,Consignee · Postal Code,(found on the document),600056,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 7-9,,,,,FAIL,packing expected under House but Nexus has none linked

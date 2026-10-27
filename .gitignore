@@ -1,12 +1,10 @@
+# private: Google tokens, the Nexus session and the local database never go to GitHub
 .env
 secrets/
 state/
-runs/
 __pycache__/
 .venv/
 .pytest_cache/
-knowledge_base/
-samples/
 
 # local / generated, never commit
 .claude/

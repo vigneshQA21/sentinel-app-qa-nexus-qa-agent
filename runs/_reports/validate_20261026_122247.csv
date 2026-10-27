@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-007,ORAE26040499,IPA/2073/2026-27,CREATED_IN_NEXUS,FAIL,858247,"DELIVERY NOTE: FAIL (not found in Nexus) | unexpected: MAWB in Master; HAWB in House; SHIPPERDOC in House; AIRMANIFEST in Manifest | IPA/2073/2026-27 seen -> Master (098-31251603): MAWBx1; House (ORAE26040499): HAWBx1, SHIPPERDOCx1; Air Manifest: AIRMANIFESTx1",/home/unifo/Downloads/nexus_agent/runs/2026-10-26/REG-007

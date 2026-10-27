@@ -1,0 +1,73 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the house within its document group
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Bill No.,ORAE26040499,TEL0635070676,FAIL,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Shipper,ANVIS DECIZE SAS 12 RUE HENRI DARCY DECIZE 58 58300 FR TEL 0635070676,ANVIS DECIZE SAS,PASS,shipper found in the document block
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Shipper ID,ANVDECPAR,ANVDECPAR,PASS,same as the Party ID in the data panel
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Consignee,HDFC BANK LTD PUNE BRANCH FORTUNE SQUARE DEEP BUNGALOW CHOWK 411 016 PUNE INDIA,HDFC BANK LTD PUNE BRANCH,PASS,consignee found in the document block
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Consignee ID,HDFBANPNQ,HDFBANPNQ,PASS,same as the Party ID in the data panel
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Branch,BOM,BOM,PASS,"BOM = Mumbai, matches the document's destination"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipment Details,Shipment Details · Status,CW Sync Pending,Invoice Mapping Pending,FAIL,not the final status yet: Nexus is still processing this House
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,House Air Waybill,House Air Waybill · House Number (top right),ORAE26040499,TEL0635070676,FAIL,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,House Air Waybill,House Air Waybill · House Number (bottom right),ORAE26040499,TEL0635070676,FAIL,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,House Air Waybill,House Air Waybill · Master AWB Reference,098-31251603,098-31251603,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipper,Shipper · Name,ANVIS DECIZE SAS 12 RUE HENRI DARCY,ANVIS DECIZE SAS,PASS,name found in the document block
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipper,Shipper · Address,DECIZE 58 58300 FR,"12 RUE HENRI DARCY, DECIZE 58 FR, TEL 0635070676, FR",PASS,8/8 words of the Nexus address are on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipper,Shipper · Postal Code,58300,58300,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Shipper,Shipper · Party ID,,ANVDECPAR,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Consignee,Consignee · Name,HDFC BANK LTD PUNE BRANCH,HDFC BANK LTDPUNE BRANCH,PASS,name found in the document block
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Consignee,Consignee · Address,FORTUNE SQUARE DEEP BUNGALOW CHOWK 411 016 PUNE INDIA,"FORTUNE SQUARE DEEP BUNGALOW CHOWK, Pune, MH, IN",PASS,6/6 words of the Nexus address are on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Consignee,Consignee · Postal Code,411016,411016,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Consignee,Consignee · Party ID,,HDFBANPNQ,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Agent,Agent · Agent / Origin Party (free text),QUALITAIR SEA DIMOTRANS GROUP,"QUALITAIR SEA DIMOTRANS GROUP
+200 RUE LEONARD DE VINCI
+45400, SEMOY, 45, FRANCE",PASS,same party as the Master's shipper (origin agent)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Freight,Freight · Freight Payment,FREIGHT COLLECT (code CC),FREIGHT COLLECT,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Routing,Routing · Airport Of Departure,"PARIS AIRPORT, FRANCE","PARIS AIRPORT, FRANCE",PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Routing,Routing · Final Destination Airport,"MUMBAI AIRPORT, INDIA","MUMBAI AIRPORT, INDIA",PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Flight Route,Flight Route · Type,connecting,connecting,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · From,CDG,CDG,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · To,DEL,DEL,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · Polname,"PARIS AIRPORT, FRANCE",Paris,INFO,airport name differs from the document's departure airport
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · Podname,,Delhi,INFO,airport name from the Nexus airport master
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · Carrier Name,(printed on the document),AIR INDIA,PASS,carrier name appears on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · Carrier Code,AI,AIC_WW,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · Flight Number,AI142,AI142,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 1,Segment 1 · Flight Date,day 15,15/07/2026,PASS,only the day is printed on the AWB
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · From,DEL,DEL,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · To,BOM,BOM,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · Polname,Delhi,Delhi,PASS,equals the previous segment's arrival airport (consistency)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · Polctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · Podname,"MUMBAI AIRPORT, INDIA",Mumbai,PASS,contained in the document's airport of destination
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · Carrier Name,(printed on the document),Air India,PASS,carrier name appears on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · Carrier Code,AI,AIC_WW,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · Flight Number,AI441,AI441,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Segment 2,Segment 2 · Flight Date,day 17,17/07/2026,PASS,only the day is printed on the AWB
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Pieces,2,2,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Gross Weight,589.0,589,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Gross Weight Unit,KGS,K,FAIL,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Chargeable Weight,589.0,589,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Chargeable Weight Unit,KGS,K,FAIL,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Nature And Quantity Of Goods,"+75.293.09.0.00 ANTI VIBRATION THE DOCUMENTARY CREDIT N0. 064LC01261080002 ISSUED BY HDFC BANK MOUNTS QTY-10 LTD. 1ST FLOOR, NAKSHATRA LAWNS, PIPE LINE ROAD, ANANDVALLI, DIST. AS PER PO 2/2 4892 DATED NASHIK, MAHARASHTRA-422013 INDIA 08.04.2026 AIRPORT OF LOADING: PARIS AIRPORT, FRANCE INCOTERMS 2020 FCA DECIZE, AIRPORT OF DISCHARGE: MUMBAI AIRPORT, INDIA FRANCE PARTIAL SHIPMENT ALLOWED TRANSSHIPMENT ALLOWED HS CODE 401699919 FREIGHT COLLECT DIMS 80x60x35 CM x 1","+75.293.09.0.00 ANTI VIBRATION
+MOUNTS QTY-10
+AS PER PO 2/2 4892 DATED
+08.04.2026
+INCOTERMS 2020 FCA DECIZE,
+FRANCE
+HS CODE 401699919
+DIMS 80x60x35 CM x 1
+DIMS 120x80x40 CM x 1
+VOL 0.552 M3
+NOT RESTRICTED",FAIL,similarity 0.44 (needs 0.9)
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Volume,,0.552,NOT_VERIFIABLE,could not be read from the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Cargo,Cargo · Volume Unit,,CBM,NOT_VERIFIABLE,could not be read from the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Reference,Reference · Shippers Reference,C00395017,C00395017,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Reference,Reference · Executed On,08-Jul-26,08/07/2026,PASS,
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 4,Reference,Reference · Incoterm,FCA,FCA,PASS,

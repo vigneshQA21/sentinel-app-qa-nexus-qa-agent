@@ -1,0 +1,56 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Bill No.,020-27293980,020-27293980,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Shipper,QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET AEROPORT DE NICE NICE 06 06200 FR TE 0489985285,"QUALITAIR&SEA, DIMOTRANS GROUP",PASS,shipper found in the document block
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Shipper ID,QUADIMNIC,QUADIMNIC,PASS,same as the Party ID in the data panel
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Consignee,LOGISTEED INDIA PVT. LTD. NO 25 32 READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE GUINDY CHENNAI TN 600032 IN TE +914425234009,LOGISTEED INDIA PVT . LTD .,PASS,consignee found in the document block
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Consignee ID,LIN_INMAA,LIN_INMAA,PASS,same as the Party ID in the data panel
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Branch,MAA,MAA,PASS,"MAA = Chennai, matches the document's destination"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Air Waybill,Air Waybill · Air Waybill Number,020-27293980,020-27293980,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipper,Shipper · Name,QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET AEROPORT DE NICE NICE 06 06200 FR TE 0489985285,"QUALITAIR&SEA, DIMOTRANS GROUP",PASS,name found in the document block
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipper,Shipper · Address,QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET AEROPORT DE NICE NICE 06 06200 FR TE 0489985285,"AEROPORT NICE COTE D'AZUR, ZONE DE FRET CEDEX 3, NICE, 06, FR",INFO,"party-master data (read-only in Nexus), not compared with the document"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipper,Shipper · Postal Code,06200,06200,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipper,Shipper · Party ID,,QUADIMNIC,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Consignee,Consignee · Name,LOGISTEED INDIA PVT. LTD. NO 25 32 READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE GUINDY CHENNAI TN 600032 IN TE +914425234009,LOGISTEED INDIA PVT . LTD .,PASS,name found in the document block
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Consignee,Consignee · Address,LOGISTEED INDIA PVT. LTD. NO 25 32 READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE GUINDY CHENNAI TN 600032 IN TE +914425234009,NO 25 32 READYMADE GARMENT COMPLEXSIDCO INDUSTRIAL ESTATE GUINDYCHENNAI TN 600032 INTE +914425234009,PASS,"Nexus joins the document's address lines without a space: COMPLEXSIDCO, GUINDYCHENNAI, INTE"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Consignee,Consignee · Postal Code,600032,600032,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Consignee,Consignee · Party ID,,LIN_INMAA,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Flight Route,Flight Route · Type,connecting,connecting,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · From,NCE,NCE,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · To,FRA,FRA,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Polname,NICE,NICE,PASS,same as the airport of departure
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Podname,,Frankfurt,INFO,airport name from the Nexus airport master
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Podctry,,DE,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Carrier Name,(printed on the document),Lufthansa,PASS,carrier name appears on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Carrier Code,LH,CLH_WW,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Flight Number,LH1061,LH1061,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Flight Date,day 22,22/08/2026,PASS,only the day is printed on the AWB
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · From,FRA,FRA,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · To,MAA,MAA,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Polname,Frankfurt,Frankfurt,PASS,equals the previous segment's arrival airport (consistency)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Polctry,,DE,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Podname,CHENNAI (EX MADRAS),Madras,PASS,contained in the document's airport of destination
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Carrier Name,(printed on the document),Lufthansa,PASS,carrier name appears on the document
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Carrier Code,LH,CLH_WW,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Flight Number,LH758,LH758,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Flight Date,day 23,23/08/2026,PASS,only the day is printed on the AWB
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Routing,Routing · Airport Of Departure,NICE,NICE,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Routing,Routing · Final Destination Airport,CHENNAI (EX MADRAS),CHENNAI ( EX MADRAS ),PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Freight,Freight · Freight Payment,FREIGHT PREPAID (code PP),FREIGHT PREPAID,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Pieces,1,1,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Gross Weight,24.0,24,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Chargeable Weight,60.0,60,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Nature And Quantity Of Goods,Consolidation as per attached list Not Restricted HS Code: 8537109199 DIMS 80x60x75 CM x 1 VOL 0.36 M3,Consolidation as per attached listNot RestrictedHS Code: 8537109199DIMS 80x60x75 CM x 1VOL 0.36 M3,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Volume,0.36,0.36,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Volume Unit,CBM,CBM,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Executed On,21-Aug-26,21/08/2026,PASS,
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-001,IPA/2144/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"

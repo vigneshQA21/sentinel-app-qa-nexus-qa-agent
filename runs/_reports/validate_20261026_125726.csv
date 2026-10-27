@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-003,ORAE26040499,IPA/2191/2026-27,CREATED_IN_NEXUS,FAIL,183,"MASTER: PASS (in Master) | HOUSE: PASS (in House) | MANIFEST: PASS (in Manifest) | DELIVERY NOTE: PASS (in House) | INVOICE: FAIL (not found in Nexus) | unexpected: SHIPPERDOC in House | IPA/2191/2026-27 seen -> Master (098-31251603): MAWBx1; House (TEL0635070676): HAWBx1, SHIPPERDOCx1, DELIVERYNOTEx2; Air Manifest: AIRMANIFESTx1",/home/unifo/Downloads/nexus_agent/runs/2026-10-26/REG-003

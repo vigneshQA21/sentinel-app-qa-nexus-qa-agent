@@ -1,0 +1,61 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the house within its document group
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Bill No.,,SNY06007868,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Shipper,"ELMO MOTION CONTROL LTD. 60 AMAL ST., P.O.B: 3078, 4951601 PETACH TIKVA 4951360, ISRAEL TEL: 972-3-9292300",ELMO MOTION CONTROL LTD,PASS,shipper found in the document block
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Shipper ID,ELMMOTTLV,ELMMOTTLV,PASS,same as the Party ID in the data panel
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Consignee,"SIKA INTERPLANTS SYSTEMS LIMITED 3 GANGADHAR CHETTY ROAD BANGALORE, 560042 INDIA VAT:29AACCS9654B1Z6 TEL:+91(80)25599144",SIKA INTERPLANT SYSTEMS LIMITED,FAIL,similarity 0.43 (needs 0.9)
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Consignee ID,SIKINTBLR,SIKINTBLR,PASS,same as the Party ID in the data panel
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Branch,,BLR,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,House Air Waybill,House Air Waybill · House Number (top right),,SNY06007868,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,House Air Waybill,House Air Waybill · House Number (bottom right),,SNY06007868,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,House Air Waybill,House Air Waybill · Master AWB Reference,,057-05262084,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipper,Shipper · Name,"ELMO MOTION CONTROL LTD. 60 AMAL ST., P.O.B: 3078,",ELMO MOTION CONTROL LTD,PASS,name found in the document block
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipper,Shipper · Address,"4951601 PETACH TIKVA 4951360, ISRAEL","60 AMAL ST.,, IL",PASS,2/2 words of the Nexus address are on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipper,Shipper · Postal Code,3078,11714,FAIL,the party master's postal code is not the one printed on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Shipper,Shipper · Party ID,,ELMMOTTLV,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Consignee,Consignee · Name,"SIKA INTERPLANTS SYSTEMS LIMITED 3 GANGADHAR CHETTY ROAD BANGALORE,",SIKA INTERPLANT SYSTEMS LIMITED,REVIEW,starts like the document's name but Nexus adds: INTERPLANT
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Consignee,Consignee · Address,560042 INDIA VAT:29AACCS9654B1Z6,"GANGADHAR CHETTY ROAD DR. SHARMA BUILDING, DR. SHARMA BUILDING, Bangalore, 29, IN",REVIEW,"4/7 words of the Nexus address are on the document; not on the document: 29, BUILDING, SHARMA"
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Consignee,Consignee · Postal Code,560042,560042,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Consignee,Consignee · Party ID,,SIKINTBLR,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Agent,Agent · Agent / Origin Party (free text),SNY INT'L CARGO SERVICES,SNY INT'L CARGO SERVICES LTD. I.A HOLON 5881147 ISRAEL,PASS,same party as the Master's shipper (origin agent)
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Freight,Freight · Freight Payment,,FREIGHT COLLECT,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Routing,Routing · Airport Of Departure,Tel-Aviv,Tel-Aviv,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Routing,Routing · Final Destination Airport,Bangalore 963/28.08 194/29.08,Bangalore,FAIL,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Flight Route,Flight Route · Type,,connecting,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · From,,TLV,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · To,,CDG,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · Polname,Tel-Aviv,Tel-Aviv,PASS,same as the airport of departure
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · Polctry,,IL,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · Podname,,Paris,INFO,airport name from the Nexus airport master
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · Podctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · Carrier Name,(printed on the document),AIR FRANCE,PASS,carrier name appears on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · Carrier Code,,AFR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · Flight Number,,963,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 1,Segment 1 · Flight Date,,28/08/2026,NOT_VERIFIABLE,flight date not found in the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · From,,CDG,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · To,,BLR,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · Polname,Paris,Paris,PASS,equals the previous segment's arrival airport (consistency)
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · Podname,,Bangalore,INFO,airport name from the Nexus airport master
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · Carrier Name,(printed on the document),AIR FRANCE,PASS,carrier name appears on the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · Carrier Code,,AFR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · Flight Number,,,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Segment 2,Segment 2 · Flight Date,,,NOT_VERIFIABLE,flight date not found in the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Pieces,3,3,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Gross Weight,21.00,21,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Chargeable Weight,21.50,21.5,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Nature And Quantity Of Goods,SERVO DRIVES H.S. CODE: 8504.40 DIM: 1(51X37X41)CMS 2(38X32X21)CMS AS VOL 21.407 KGS .1284 CBM,SERVO DRIVES H.S. CODE: 8504.40 DIM: 1(51X37X41)CMS 2(38X32X21)CMS AS VOL 21.407 KGS .1284 CBM Inv.No:E1268002192,PASS,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Volume,21.407,0.1284,FAIL,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Cargo,Cargo · Volume Unit,KGS,CBM,FAIL,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Reference,Reference · Shippers Reference,,,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Reference,Reference · Executed On,,28/08/2026,NOT_VERIFIABLE,
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-005,IPA/2204/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 3,Reference,Reference · Incoterm,,,NOT_VERIFIABLE,could not be read from the document

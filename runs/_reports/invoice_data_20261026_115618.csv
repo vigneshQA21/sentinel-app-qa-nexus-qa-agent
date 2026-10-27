@@ -1,0 +1,20 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Invoice Number,(found on the document),HK260810-HEIND,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Invoice Date,(found on the document),10/08/2026,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Grand Total,(found on the document),"1, 140.00",PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Currency Code,(found on the document),USD,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Po Number,(found on the document),4502231928,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Gross Weight,,63,KNOWN,"KNOWN ISSUE (accepted, not a bug); root cause is the Packing-List-as-Invoice classification bug (bug sheet row 236); re-verify after that fix; this value is not on the document"
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Seller,Seller · Name,(found on the document),"Hankuk Electrical Insulating (INSUKO) Co., Ltd.",PASS,6/6 words found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Seller,Seller · Address,(found on the document),"108 Donyu2-Ro, Paju-Eup Paju-Si, Gyeonggi-Do, KOREA",PASS,10/10 words found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Seller,Seller · Postal Code,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Buyer,Buyer · Name,(found on the document),Hitachi Energy India Limited,PASS,4/4 words found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Buyer,Buyer · Address,(found on the document),"PPTR-Dry Transformer, Vadodara Plot No.25 & 26, Majusar GIDC Estate Savli 391775 Gujarat India",PASS,15/15 words found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Buyer,Buyer · Postal Code,(found on the document),391775,PASS,value found on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Order No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Customer No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Delivery No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Reference No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2185/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Incoterm,(found on the document),FCA,PASS,value found on the document

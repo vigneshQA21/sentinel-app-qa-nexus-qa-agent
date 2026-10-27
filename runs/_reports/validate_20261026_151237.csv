@@ -1,0 +1,5 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-003,,,ERROR,ERROR,,"TimeoutError: Locator.wait_for: Timeout 10000ms exceeded.
+Call log:
+  - waiting for get_by_placeholder(""Search parent..."").first to be visible
+",

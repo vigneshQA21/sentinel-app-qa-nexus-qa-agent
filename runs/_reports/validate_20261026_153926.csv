@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-005,FJ-0000883,IPA/2203/2026-27,CREATED_IN_NEXUS,ERROR,250,could not read an expected mapping from the test case,/home/unifo/Downloads/nexus_agent/runs/2026-10-26/REG-005

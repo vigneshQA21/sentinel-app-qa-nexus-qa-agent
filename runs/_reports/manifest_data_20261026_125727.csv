@@ -1,0 +1,9 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 2,Manifest,Manifest · Master Air Waybill,098-31251603,098-31251603,PASS,same as the value printed on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 2,Manifest,Manifest · Air Waybill No,ORAE26040499,ORAE26040499,PASS,same as the value printed on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 2,Manifest,Manifest · Pieces,2,2,PASS,same as the value printed on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 2,Manifest,Manifest · Weight,589.000,589,PASS,same as the value printed on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 2,Shipper,Shipper · Name,(found on the document),ANVIS DECIZE SAS,PASS,3/3 words found on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 2,Shipper,Shipper · Address,(found on the document),"12 RUE HENRI DARCY 58300 DECIZE , 58 FRANCE",PASS,8/8 words found on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 2,Consignee,Consignee · Name,(found on the document),KIRLOSKAR OIL ENGINES LTD,PASS,4/4 words found on the document
+REG-003,IPA/2191/2026-27,FJ-0018765 - Consolidated- Delivery note.pdf page 2,Consignee,Consignee · Address,(found on the document),722 A11 / 1 MIDC AMBAD NASHIK MH 422010 INDIA,PASS,9/9 words found on the document
