@@ -1,0 +1,9 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-011,IPA/2323/2026-27,FJ-0001012 - Manifest.pdf page 1,Manifest,Manifest · Master Air Waybill,(found on the document),157-69714304,PASS,value found on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - Manifest.pdf page 1,Manifest,Manifest · Air Waybill No,(found on the document),6007 5340 1,PASS,value found on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - Manifest.pdf page 1,Manifest,Manifest · Pieces,(found on the document),1,PASS,value found on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - Manifest.pdf page 1,Manifest,Manifest · Weight,(found on the document),172,PASS,value found on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - Manifest.pdf page 1,Shipper,Shipper · Name,(found on the document),LINDAUER DORNIER GMBH,PASS,3/3 words found on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - Manifest.pdf page 1,Shipper,Shipper · Address,(found on the document),RICKENBACHER STR . 119 D 88129 LINDAU,PASS,6/6 words found on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - Manifest.pdf page 1,Consignee,Consignee · Name,(found on the document),UFLEX LIMITED,PASS,2/2 words found on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - Manifest.pdf page 1,Consignee,Consignee · Address,(found on the document),"PLOT NO. 20 MUMMIGATTI , INDUSTRIAL AREA 580011 DHARWAD , KARNATAKA INDIA",PASS,10/10 words found on the document

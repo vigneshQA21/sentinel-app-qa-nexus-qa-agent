@@ -1,0 +1,4 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-006,,,,SKIPPED,,UI validation of individual cases is not built yet,
+REG-007,,,,SKIPPED,,UI validation of individual cases is not built yet,
+REG-009,FJ-0001132,IPA/2282/2026-27,CREATED_IN_NEXUS,PASS,190,MASTER: PASS (in Master) | HOUSE: PASS (in House) | MANIFEST: PASS (in Manifest) | unexpected: UNCLASSIFIED in Unclassified; ? in Unclassified; UNCLASSIFIED in Unclassified; ? in Unclassified | IPA/2282/2026-27 seen -> Master (932-78831771): MAWBx1; House (SUSAO008522): HAWBx1; Air Manifest: AIRMANIFESTx2,/home/unifo/Downloads/nexus_agent/runs/2026-10-28/REG-009

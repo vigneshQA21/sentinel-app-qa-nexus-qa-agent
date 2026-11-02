@@ -1,0 +1,24 @@
+2026-10-29 12:52:58,279 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1868a5b9e633ef)
+2026-10-29 12:52:58,279 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-10-29 12:53:30,211 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | DEBIT NOTE' to prealert.nexus@unifo.in (message id 1a1868ad91ab426b)
+2026-10-29 12:53:30,211 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-10-29 12:54:01,967 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | HOUSE' to prealert.nexus@unifo.in (message id 1a1868b5427be70f)
+2026-10-29 12:54:01,967 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-10-29 12:54:33,598 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | INVOICE' to prealert.nexus@unifo.in (message id 1a1868bd1e256d4f)
+2026-10-29 12:54:33,599 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-10-29 12:55:05,124 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MASTER' to prealert.nexus@unifo.in (message id 1a1868c4d9fa6a67)
+2026-10-29 12:55:05,124 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-10-29 12:55:36,710 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | PACKING LIST' to prealert.nexus@unifo.in (message id 1a1868cc865931c3)
+REG-006  SENT              REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MANIFEST
+REG-006  SENT              REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | DEBIT NOTE
+REG-006  SENT              REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | HOUSE
+REG-006  SENT              REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | INVOICE
+REG-006  SENT              REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MASTER
+REG-006  SENT              REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | PACKING LIST
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261029_125536.csv
+
+UI VALIDATION
+REG-006  SKIPPED                    
+           UI validation of individual cases is not built yet
+Validation report: /home/unifo/Downloads/nexus_agent/runs/_reports/validate_20261029_125536.csv

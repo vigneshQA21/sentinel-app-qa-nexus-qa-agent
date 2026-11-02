@@ -74,7 +74,7 @@ Settings: `config/settings.yaml` -> `bugsheet:` (`spreadsheet_id`, `tab_gid`, `e
 ./run_regression.sh air-daily --validate           # REG-001, 002, 005, 009 validated (006, 007 are sent; their UI checks are not built yet)
 ./run_regression.sh air-daily                      # send only, 5-minute gap between cases
 ```
-Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same shipment as REG-007); REG-011 and REG-016 have no sample.
+Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same shipment as REG-007); REG-016 is a hypothetical case with no sample (not executable). REG-011 uses a sample split from FJ-0001012 plus a dummy unclassified document (its own shipment, no collision with other cases): `./run_regression.sh REG-011 --validate`.
 
 ## Known-issue baseline and bug history
 - A finding that is already logged in the bug sheet (or marked "not a bug") is shown as **KNOWN**: visible, but it does not fail the case. Only NEW differences fail. If a logged bug's field matches the document again, the run prints "possibly FIXED".
@@ -86,7 +86,7 @@ Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same 
 - Each screenshot is also copied to `runs/<date>/<case>/archive/<run time>_<IPA>_<name>.png`, so a later run never overwrites an earlier one (e.g. a pre-alert you delete afterwards).
 
 ## Trace of every check (pick the exact screenshot for a bug) and root cause
-- Each check writes ONE trace per case and pre-alert: `runs/<date>/<case>/trace_<run time>_<IPA>/` with the screenshots numbered in the order they were taken (Pre-Alerts page, row expanded, each viewer parent with Unmatched/Unclassified open, the Others tab, then the data panels) and an **`index.html`** that shows them all with captions. Open the index in a browser.
+- Each check writes ONE trace per case and pre-alert: `runs/<date>/<case>/trace_<run time>_<IPA>/` with the screenshots numbered in the order they were taken (Pre-Alerts page, row expanded, each viewer parent with Unmatched/Unclassified open, each other linked document opened in the viewer such as SHIPPERDOC and DELIVERYNOTE, the row's "Unresolved Documents" block when it has one, the Others tab, then the data panels) and an **`index.html`** that shows them all with captions. Open the index in a browser.
 - The index starts with **Probable root cause**, and the mapping report prints the same lines (`PROBABLE ROOT CAUSE: ...`): wrong house number read by Nexus, documents left Unmatched, a Master received as its own pre-alert, follow-ups in the Others tab, a document not classified anywhere. They are hints for the tester, not a verdict.
 - A document counts as Unmatched only if it is linked under no parent (a parent's Unmatched list repeats documents linked elsewhere).
 
@@ -135,3 +135,21 @@ Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same 
 - Same flow with Claude: say "Execute AIR_SINGLE_HOUSE_DAILY" (uses many more tokens; see `air/AIR_SINGLE_HOUSE_DAILY.md`).
 
 _Last updated 2026-10-26: trace folders, root cause, baseline, bug history, case documentation, default mapping._
+
+## Run report (today's run only)
+`./nx runreport [--date yyyy-mm-dd]` prints observations per case, the bugs found in the run, raised bugs still there, and previously raised bugs that passed in this run. `run_regression.sh` prints it automatically at the end of every run (not on `--dry-run`) and saves `runs/_reports/runreport_<date>_<time>.md`.
+
+## Live view of a run
+Every `suite` and `validate*` run opens **runs/_live/index.html** in the browser: a table of the cases with their state (sending, waiting for Nexus, validating, PASS/FAIL) and the checks as they finish, plus the log, refreshing every 3 seconds. The same text is kept in `runs/_live/live.log`. Turn it off with `NEXUS_NO_LIVE=1`.
+
+## Detailed report in the browser
+When a `suite` or `validate*` run ends, **runs/_reports/runreport_<date>.html** opens in the browser: every case executed that day with verdict, mapping and data results, the fields that did not match (document value vs Nexus value), probable root causes, embedded screenshots, links to the traces, and the bug sections (new, still there, passed and not re-tested, to re-test). `./nx runreport` writes the text report and opens the same page. `NEXUS_NO_LIVE=1` turns the browser pages off.
+
+
+## Sea single house (draft: send only)
+- Cases: `SEA-REG-001` to `SEA-REG-008` in `knowledge_base/testcases/Sea_Single_House_Daily_Regression.xlsx`; samples in `samples/SEA-REG-00x/`.
+- Preview, nothing sent: `./run_regression.sh sea-daily --dry-run --no-wait` (one case: `./run_regression.sh SEA-REG-002 --dry-run`).
+- Send (only on request, after the old pre-alerts are deleted): `./run_regression.sh SEA-REG-002`. The subject is `SEA-REG-002 | QA agent trigger ... | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)`.
+- `--validate` in the suite is still refused for Sea; run the checks after sending, one case at a time: `./nx validate --cases SEA-REG-001`, then `validate-master`, `validate-house`, `validate-docs` with the same `--cases`.
+- Sea data checks (`nexus_agent/sea_check.py`): every Nexus field is looked up in the text of its own bill (MBL pages for the Master, HBL pages for the House); PASS = printed on the document, FAIL = not printed, REVIEW = partly, or a scan read with OCR. Invoice / Packing List use the usual docs check on the Sea parts.
+- Screening reads Sea bills with `pdf_split_sea` (config): the carrier form is the MASTER, a bill starting with the forwarder reference is the HOUSE; scanned pages are read with OCR (about 2 minutes for SEA-REG-005).

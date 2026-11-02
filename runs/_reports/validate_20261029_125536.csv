@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-006,,,,SKIPPED,,UI validation of individual cases is not built yet,

@@ -1,0 +1,14 @@
+2026-11-02 13:03:40,974 INFO nexus_agent.local_sender: SCREENING FJ-0018765 - Consolidated- Delivery note.pdf: 6 page(s): MBL pages 1; MANIFEST pages 2; INVOICE pages 3; HBL pages 4-6
+2026-11-02 13:03:40,974 INFO nexus_agent.local_sender:     WARNING: 2 HAWBs found ['ORAE26040499', 'AI142']; subject uses the first
+2026-11-02 13:03:40,974 INFO nexus_agent.local_sender: [dry-run] would send 'REG-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | CONSOLIDATED (MASTER+MANIFEST+INVOICE+HOUSE)' (FJ-0018765 - Consolidated- Delivery note.pdf) to prealert.nexus@unifo.in
+2026-11-02 13:03:41,098 INFO nexus_agent.local_sender: [dry-run] would send 'REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | HOUSE' (FJ-0001012 - House.pdf) to prealert.nexus@unifo.in
+2026-11-02 13:03:41,099 INFO nexus_agent.local_sender: [dry-run] would send 'REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | MANIFEST' (FJ-0001012 - Manifest.pdf) to prealert.nexus@unifo.in
+2026-11-02 13:03:41,099 INFO nexus_agent.local_sender: [dry-run] would send 'REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | MASTER' (FJ-0001012 - Master.pdf) to prealert.nexus@unifo.in
+2026-11-02 13:03:41,099 INFO nexus_agent.local_sender: [dry-run] would send 'REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | DOCUMENT' (Orchid_Meadow_Notes_7Q4X.pdf) to prealert.nexus@unifo.in
+REG-003  DRY_RUN           REG-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | CONSOLIDATED (MASTER+MANIFEST+INVOICE+HOUSE)
+REG-011  DRY_RUN           REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | HOUSE
+REG-011  DRY_RUN           REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | MANIFEST
+REG-011  DRY_RUN           REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | MASTER
+REG-011  DRY_RUN           REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | DOCUMENT
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261102_130341.csv

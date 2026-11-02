@@ -12,7 +12,7 @@ FLIGHT = re.compile(r"\b([A-Z0-9]{2}\d{2,4})/(\d{1,2})\b")
 
 
 def _left(words, text_start: str, after: float = -1.0, x_max: float = 70):
-    cands = [w for w in words if w["x0"] < x_max and w["text"].startswith(text_start) and w["top"] > after]
+    cands = [w for w in words if w["x0"] < x_max and w["text"].replace("\u2019", "'").startswith(text_start) and w["top"] > after]
     return min(cands, key=lambda w: w["top"]) if cands else None
 
 
@@ -21,6 +21,47 @@ def _lines(page, x0, top, x1, bottom) -> list[str]:
         return []
     txt = page.within_bbox((x0, max(top, 0), x1, min(bottom, page.height))).extract_text() or ""      # strict: only text fully inside
     return [ln.strip() for ln in txt.splitlines() if ln.strip()]
+
+
+def _gutter(words, top: float, bottom: float, width: float) -> float | None:
+    """x where the party column ends: the widest empty vertical strip (>= 10 pt) between the left text and the right-hand text
+    (Air Waybill title, 'Copies 1, 2 and 3 ...', conditions) inside the shipper / consignee area, or None when there is none."""
+    iv = sorted((w["x0"], w["x1"]) for w in words if top < w["top"] < bottom)
+    cover: list[list[float]] = []
+    for x0, x1 in iv:
+        if cover and x0 <= cover[-1][1] + 0.5:
+            cover[-1][1] = max(cover[-1][1], x1)
+        else:
+            cover.append([x0, x1])
+    gaps = [(b[0] - a[1], a[1]) for a, b in zip(cover, cover[1:]) if 0.3 * width <= a[1] <= 0.75 * width and b[0] - a[1] >= 10]
+    return max(gaps)[1] + 3 if gaps else None
+
+
+def _nature_column(words, rest: str):
+    """Nature-and-quantity text read from its own column: from the first word of the goods description (right of the rate / charge
+    columns) down to the volume line, ignoring words that sit left of that column. Returns (text, volume) or None."""
+    first = rest.split()[0] if rest.split() else ""
+    starts = [w for w in words if w["text"] == first] if first else []
+    if not starts:
+        return None
+    st = min(starts, key=lambda w: w["top"])
+    stop = min([w["top"] for w in words if w["text"].startswith("Prepaid") and w["top"] > st["top"]] or [1e9])
+    col = [w for w in words if w["x0"] >= st["x0"] - 2 and st["top"] - 1 <= w["top"] < stop - 1]
+    rows: list[list[dict]] = []
+    for w in sorted(col, key=lambda w: (round(w["top"]), w["x0"])):
+        if rows and abs(rows[-1][0]["top"] - w["top"]) < 2.5:
+            rows[-1].append(w)
+        else:
+            rows.append([w])
+    out, vol = [], None
+    for r in rows:
+        ln = " ".join(w["text"] for w in sorted(r, key=lambda w: w["x0"]))
+        out.append(ln)
+        v = re.search(r"\bVOL\s*([\d.,]+)\s*([A-Z0-9]+)", ln)
+        if v:
+            vol = (v.group(1), v.group(2))
+            break
+    return (" ".join(out), vol) if out else None
 
 
 def _generic_fill(out: dict, text: str) -> None:
@@ -113,12 +154,15 @@ def extract_master(pdf_path: Path, page_index: int = 0) -> dict:
         dest = _left(words, "Airport", after=to_hdr["top"] if to_hdr else -1)
         hand = _left(words, "Handling", after=dest["top"] if dest else -1)
         issued = next((w for w in words if w["text"] == "Issued" and ship and ship["top"] <= w["top"] <= (cons["top"] if cons else 1e9)), None)
-        x1 = issued["x0"] - 2 if issued else W * 0.55
+        x1 = issued["x0"] - 2 if issued else None
+        if x1 is None and ship and agent:                         # no 'Issued' anchor (e.g. lower-case 'issued by'): find the gap between the columns
+            x1 = _gutter(words, ship["top"], agent["top"], W)
+        x1 = x1 or W * 0.55
 
         if ship and cons:
-            out["shipper_lines"] = _lines(pg, 0, ship["bottom"] + 2, x1, cons["top"] - 1)
+            out["shipper_lines"] = _lines(pg, 0, ship["bottom"] - 0.5, x1, cons["top"] - 1)
         if cons and agent:
-            out["consignee_lines"] = _lines(pg, 0, cons["bottom"] + 2, x1, agent["top"] - 1)
+            out["consignee_lines"] = _lines(pg, 0, cons["bottom"] - 0.5, x1, agent["top"] - 1)
         if dep and to_hdr:
             ln = _lines(pg, 0, dep["bottom"] + 2, x1, to_hdr["top"] - 1)
             out["departure_airport"] = ln[0] if ln else None
@@ -163,6 +207,10 @@ def extract_master(pdf_path: Path, page_index: int = 0) -> dict:
                         out["volume"] = (v.group(1), v.group(2))
                         break                                    # the goods description ends with the volume line
                 out["nature"] = " ".join(x for x in nature if x)
+                col = _nature_column(words, rest)
+                if col:                                              # text of OTHER columns can sit on the same lines (bank / credit text): read only this column
+                    out["nature"] = col[0]
+                    out["volume"] = col[1] or out["volume"]
                 break
         m = re.search(r"\b(\d{1,2}-[A-Za-z]{3}-\d{2,4})\b", text[text.find("Currency Conversion"):] if "Currency Conversion" in text else "")
         out["executed_on"] = m.group(1) if m else None

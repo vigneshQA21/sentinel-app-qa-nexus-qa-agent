@@ -171,3 +171,11 @@ def test_validation_runs_right_after_each_case_is_sent_in_order(tmp_path):
         f"validate {case.id} sent={[r['status'] for r in rows]}"))
     # REG-006 has no samples: nothing was sent, so there is nothing to validate and no callback
     assert events == ["send", "validate REG-001 sent=['SENT']", "send", "validate REG-005 sent=['SENT']"]
+
+
+def test_root_cause_row_unresolved_but_viewer_linked():
+    from nexus_agent.validate import root_causes
+    parents = [{"parent": "House (ORAE26040499)", "kind": "House", "linked": [{"label": "HAWB", "pages": 0}, {"label": "DELIVERYNOTE", "pages": 1}],
+                "unmatched": [], "unclassified": []}]
+    out = root_causes("ORAE26040499", "IPA/1", parents, [], [], [], {"count": 1, "rows": [{"document": "DeliveryNote", "remark": "Not yet linked to a house bill"}]})
+    assert any("Inconsistent" in x and "DELIVERYNOTE" in x for x in out)

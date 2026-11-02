@@ -30,6 +30,17 @@ def page_texts(pdf_bytes: bytes, ocr: bool = False) -> list[str]:
     return texts
 
 
+def page_texts_layout(pdf_bytes: bytes, ocr: bool = False) -> list[str]:
+    """Like page_texts but read with pdfplumber, which keeps the reading order of Sea bills (pypdf scrambles the first lines)."""
+    import pdfplumber
+    with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+        texts = [(pg.extract_text() or "") for pg in pdf.pages]
+    if ocr:
+        from . import ocr as _ocr
+        texts = [t if len(t.strip()) >= 25 else (_ocr.page_text(pdf_bytes, i) or t) for i, t in enumerate(texts)]
+    return texts
+
+
 def classify_page(text: str, keywords: dict[str, list[str]]) -> str | None:
     """First type (config order) whose phrase occurs on the page. A `_WEAK` / `__n` suffix only sets priority."""
     flat = " ".join(text.split())
@@ -58,6 +69,55 @@ def detect_parts(texts: list[str], keywords: dict[str, list[str]]) -> list[Part]
     """Consecutive pages of the same type form one document. Unmatched pages continue the previous document."""
     parts: list[Part] = []
     for i, label in enumerate(page_labels(texts, keywords)):
+        label = label or (parts[-1].label if parts else "OTHER")
+        if parts and parts[-1].label == label:
+            parts[-1].pages.append(i)
+        else:
+            parts.append(Part(label, [i]))
+    return parts
+
+
+def sea_page_labels(texts: list[str], sea: dict) -> list[str | None]:
+    """Per-page type for a Sea PDF. The first carrier form is the MASTER; a later carrier form that is not a
+    continuation or a copy of the master's first page is a HOUSE, and so is a page that starts with the
+    forwarder's own reference or says HOUSE BILL OF LADING. Blank pages return None (they continue the previous document)."""
+    house_ref = re.compile(sea["house_ref_pattern"])
+    n = sea.get("head_chars", 300)
+    has = lambda phrases, text: any(re.search(r"(?<![A-Z0-9])" + re.escape(p) + r"(?![A-Z0-9])", text, re.IGNORECASE) for p in phrases)
+    labels: list[str | None] = []
+    master_first = None
+    for t in texts:
+        lines = [l.strip() for l in t.splitlines() if l.strip()]
+        if not lines:
+            labels.append(None)
+            continue
+        first, head = lines[0], " ".join(t.split())[:n]
+        if has(sea["debitnote"], head):
+            labels.append("DEBITNOTE")
+        elif has(sea["packing"], head):
+            labels.append("PACKING")
+        elif has(sea["invoice"], head):
+            labels.append("INVOICE")
+        elif has(sea["manifest"], head) and not has(sea["carrier_form"], head):
+            labels.append("MANIFEST")
+        elif house_ref.match(first) or re.search(r"HOUSE\s+BILL\s+OF\s+LAD", head, re.IGNORECASE):
+            labels.append("HBL")
+        elif any(first.upper().startswith(c.upper()) for c in sea["continuation_starts"]):
+            labels.append(None)                                  # page 2+ of the previous bill
+        elif any(c in t[:600].upper() for c in sea["carrier_form"]):      # plain substring: SEAWAYBILL, WAYBILL, BILL OF LADING
+            if master_first is None:
+                master_first = first
+                labels.append("MBL")
+            else:
+                labels.append("MBL" if first == master_first else "HBL")
+        else:
+            labels.append(None)
+    return labels
+
+
+def detect_parts_sea(texts: list[str], sea: dict) -> list[Part]:
+    parts: list[Part] = []
+    for i, label in enumerate(sea_page_labels(texts, sea)):
         label = label or (parts[-1].label if parts else "OTHER")
         if parts and parts[-1].label == label:
             parts[-1].pages.append(i)

@@ -41,9 +41,10 @@ def parse_date(s: str | None) -> tuple[int, int, int] | None:
     if m:
         y = int(m.group(3))
         return int(m.group(1)), MONTHS.get(m.group(2).upper(), 0), y + 2000 if y < 100 else y
-    m = re.match(r"^(\d{1,2})/(\d{1,2})/(\d{4})$", s)
+    m = re.match(r"^(\d{1,2})/(\d{1,2})/(\d{2}|\d{4})$", s)           # 30/12/2025 or 30/12/25
     if m:
-        return int(m.group(1)), int(m.group(2)), int(m.group(3))
+        y = int(m.group(3))
+        return int(m.group(1)), int(m.group(2)), y + 2000 if y < 100 else y
     m = re.match(r"^(\d{4})-(\d{2})-(\d{2})$", s)                     # 2026-08-22
     return (int(m.group(3)), int(m.group(2)), int(m.group(1))) if m else None
 
@@ -73,14 +74,23 @@ def tokens(s: str | None) -> set[str]:
     return {t for t in re.sub(r"[^A-Z0-9 ]", " ", (s or "").upper()).split() if t}
 
 
+def _legal(s: str | None) -> str:
+    """PVT. LTD. = PRIVATE LIMITED (and the like): the document and the party master spell company suffixes differently."""
+    t = re.sub(r"\bPVT\b\.?", " PRIVATE ", (s or "").upper())
+    t = re.sub(r"\bLTD\b\.?", " LIMITED ", t)
+    t = re.sub(r"\bCORP\b\.?", " CORPORATION ", t)
+    return re.sub(r"\bCO\b\.?", " COMPANY ", t)
+
+
 def _text(field, exp, act, note_pass=""):
     if not exp:
         return row(field, exp, act, "NOT_VERIFIABLE", "could not be read from the document")
     if not act:
         return row(field, exp, act, "FAIL", "Nexus shows nothing")
-    if norm(act) in norm(exp) or norm(exp) in norm(act):
+    e2, a2 = _legal(exp), _legal(act)
+    if norm(act) in norm(exp) or norm(exp) in norm(act) or norm(a2) in norm(e2):        # incl. a value Nexus's table cell cut short
         return row(field, exp, act, "PASS", note_pass)
-    if tokens(act) and tokens(act) <= tokens(exp):          # every word Nexus shows is on the document
+    if tokens(act) and (tokens(act) <= tokens(exp) or tokens(a2) <= tokens(e2)):          # every word Nexus shows is on the document
         return row(field, exp, act, "PASS", note_pass or "every word is on the document")
     r = similar(exp, act)
     return row(field, exp, act, "PASS" if r >= SIMILAR else "FAIL", f"similarity {r:.2f} (needs {SIMILAR})")
@@ -287,24 +297,52 @@ _MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "N
 _UNITS = {"KGS": {"K", "KG", "KGS"}, "KG": {"K", "KG", "KGS"}, "LBS": {"L", "LB", "LBS"}, "CBM": {"CBM", "M3"}, "PCS": {"PCS", "PC", "PKG", "PKGS"}}
 
 
-def _found_in_scan(shown: str, flat: str, toks: set[str], nums: set[float]) -> tuple[bool, str]:
-    """Is what Nexus shows somewhere in the OCR text of the page? Handles dates printed as 08AUG, units printed as K, numbers, and
-    names / addresses where most (75%) of the words are found (OCR drops or garbles some)."""
+_LOOKALIKE = str.maketrans({"O": "0", "Q": "0", "I": "1", "L": "1", "|": "1", "S": "5", "B": "8"})
+_ABBREV = {"PRIVATE": ("PVT",), "LIMITED": ("LTD",), "COMPANY": ("CO",), "INCORPORATED": ("INC",), "CORPORATION": ("CORP",)}
+_DERIVED = ("Flight Route · Type",)      # Nexus derives these from other data; nothing is printed on the document
+
+
+def _found_in_scan(shown: str, flat: str, toks: set[str], nums: set[float], field: str = "") -> tuple[bool, str]:
+    """Is what Nexus shows somewhere in the OCR text of the page? OCR often drops the spaces ('LABTESTKITSANDREAGENTS'), so words are also
+    looked up in the text without spaces. Handles dates printed as 08AUG or as a day after the flight number (VS0104/08), units printed as
+    kg / K, PP / PPD for prepaid, carrier codes (VIR_WW = VIRGIN ...), numbers, and names / addresses where most (75%) of the words are found."""
+    ns = re.sub(r"[^A-Z0-9]", "", flat)                                                  # no spaces or dots: 'M.I.D.C' = 'MIDC'
     m = re.fullmatch(r"(\d{1,2})/(\d{1,2})/(\d{4})", shown)
     if m:
         d, mo, y = int(m.group(1)), int(m.group(2)), m.group(3)
-        pats = [rf"\b0?{d}\s*[-/. ]?\s*{_MON[mo - 1]}\w*\s*[-/. ]?\s*(?:{y}|{y[2:]})?", rf"\b0?{d}\s*[-/.]\s*0?{mo}\s*[-/.]\s*(?:{y}|{y[2:]})"]
-        return any(re.search(p, flat) for p in pats), "date"
+        pats = [rf"\b0?{d}\s*[-/. ]?\s*{_MON[mo - 1]}\w*\s*[-/. ]?\s*(?:{y}|{y[2:]})?", rf"\b0?{d}\s*[-/.]\s*0?{mo}(?:\s*[-/.]\s*(?:{y}|{y[2:]}))?\b"]
+        if any(re.search(p, flat) for p in pats):
+            return True, "date"
+        if re.search(rf"\b[A-Z0-9]{{2}}\s?0*\d{{2,4}}\s?/\s?0?{d}\b", flat):          # Requested Flight/Date box: 'VS0104/08' = flight VS0104 on day 08
+            return True, "day printed after the flight number"
+        return False, "date"
     if shown.upper() in _UNITS:
-        return bool(_UNITS[shown.upper()] & toks), "unit"
+        u = _UNITS[shown.upper()]
+        return bool(u & toks) or bool(re.search(r"\b(?:" + "|".join(sorted(u, key=len, reverse=True)) + r")\b", flat)), "unit"
+    up = shown.upper()
+    if "PREPAID" in up or "COLLECT" in up:                                              # FREIGHT PREPAID: the document marks PP / PPD or says Prepaid
+        word = "PREPAID" if "PREPAID" in up else "COLLECT"
+        mark = r"\bPPD?\b" if word == "PREPAID" else r"\bCC\b"
+        return (word in flat or bool(re.search(mark, flat))), "payment terms"
+    if "_" in shown and re.fullmatch(r"[A-Z]{2,4}_[A-Z0-9]+", up):                      # carrier code VIR_WW: the airline's name starts with VIR
+        pre = up.split("_")[0]
+        return (any(t.startswith(pre) for t in toks) or pre in ns), "carrier code from the airline name"
     a = num(shown)
     if a is not None and re.fullmatch(r"[\d.,]+", shown):
         return a in nums, "number"
     t = tokens(shown)
     if not t:
         return False, "text"
-    hit = len(t & toks) / len(t)
-    return (hit >= 0.75 or shown.upper() in flat), f"{len(t & toks)}/{len(t)} words"
+    def has(x: str) -> bool:
+        if x in toks or (len(x) >= 4 and x in ns) or (x.isdigit() and len(x) >= 3 and x in ns):
+            return True
+        return any(short in toks or short in ns for short in _ABBREV.get(x, ()) if len(short) >= 3)     # PRIVATE printed as PVT, LIMITED as LTD
+    hit = sum(1 for x in t if has(x))
+    if hit / len(t) >= 0.75 or up in flat or norm(shown) in ns:
+        return True, f"{hit}/{len(t)} words"
+    if len(norm(shown)) >= 6 and norm(shown).translate(_LOOKALIKE) in ns.translate(_LOOKALIKE):
+        return False, "look-alike: matches when O/0 or I/1 are treated alike, check the scan"
+    return False, f"{hit}/{len(t)} words"
 
 
 def ocr_adjust(rows: list[dict], text: str) -> list[dict]:
@@ -315,17 +353,21 @@ def ocr_adjust(rows: list[dict], text: str) -> list[dict]:
     nums = {float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*\.?\d*", text or "") if x.replace(",", "").replace(".", "", 1).isdigit()}
     for r in rows:
         shown = (r.get("shown_in_nexus") or "").strip()
+        if r["result"] in ("NOT_VERIFIABLE", "FAIL", "REVIEW") and shown and r["field"] in _DERIVED:
+            r["result"], r["expected_from_document"] = "INFO", "(derived by Nexus)"
+            r["note"] = "Nexus works this out from the routing segments; it is not printed on the document"
+            continue
         if r["result"] in ("NOT_VERIFIABLE", "FAIL", "REVIEW") and shown:
-            ok, how = _found_in_scan(shown, flat, toks, nums)
+            ok, how = _found_in_scan(shown, flat, toks, nums, r["field"])
             if r["result"] != "NOT_VERIFIABLE" and not ok:
-                r["result"], r["note"] = "REVIEW", "scanned page read with OCR (may be misread): " + (r.get("note") or "")
+                r["result"], r["note"] = "REVIEW", "scanned page read with OCR (may be misread): " + (how + ". " if how.startswith("look-alike") else "") + (r.get("note") or "")
                 continue
             if r["result"] == "NOT_VERIFIABLE" or ok:
                 r["result"] = "PASS" if ok else "REVIEW"
                 r["expected_from_document"] = r["expected_from_document"] if r["result"] != "NOT_VERIFIABLE" and r["expected_from_document"] \
                     else ("(found in the scan)" if ok else "(not found in the scan)")
                 r["note"] = (f"found in the OCR text of the scanned page ({how})" if ok
-                             else "not found in the OCR text of the scanned page: look at the scan by eye")
+                             else (how.capitalize() if how.startswith("look-alike") else "not found in the OCR text of the scanned page: look at the scan by eye"))
         elif r["result"] == "FAIL":
             r["result"] = "REVIEW"
             r["note"] = "scanned page read with OCR (may be misread): " + (r.get("note") or "")

@@ -153,7 +153,8 @@ def _buffer(seconds: float, label: str) -> None:
 
 
 # --- the run ---------------------------------------------------------------------------
-def root_causes(ref: str | None, ipa: str, parents: list[dict], results: list, in_pre: list[str], in_others: list[str]) -> list[str]:
+def root_causes(ref: str | None, ipa: str, parents: list[dict], results: list, in_pre: list[str], in_others: list[str],
+                unresolved: dict | None = None) -> list[str]:
     """Probable root cause of what the mapping check saw, from what the pages show (hints for the tester, not a verdict)."""
     out: list[str] = []
     house_ids = [m.group(1) for p in parents if p["kind"] == "House" for m in [re.search(r"\(([^)]+)\)", p["parent"])] if m]
@@ -171,6 +172,14 @@ def root_causes(ref: str | None, ipa: str, parents: list[dict], results: list, i
         out.append(f"The Master is not in {ipa}: it arrived as its own pre-alert ({', '.join(others)}). Nexus failed to match the master number "
                    f"across the emails (dev finding on the REG-006 bug: the MAWB number is normalised inconsistently, e.g. a missing '-', when the job is "
                    f"first created by the Manifest and the Master arrives later in a different email).")
+    linked_labels = {g["label"] for p in parents for g in p["linked"]}
+    for r in (unresolved or {}).get("rows", []):
+        doc = re.sub(r"[^A-Z]", "", r["document"].upper())
+        if doc and doc in linked_labels:
+            out.append(f"Inconsistent: the Pre-Alerts row lists {r['document']} under 'Unresolved Documents' ({r['remark'] or 'not linked'}) but the viewer "
+                       f"shows {doc} under Linked documents (intermittent: the row and the viewer disagree).")
+        elif doc:
+            out.append(f"The Pre-Alerts row lists {r['document']} under 'Unresolved Documents' ({r['remark'] or 'not linked'}).")
     if in_others:
         out.append(f"Follow-up emails of this case went to the Others tab ({', '.join(sorted(set(in_others)))}): they were not linked to the pre-alert.")
     for d in sorted(set(missing) - {"MASTER"}):
@@ -280,7 +289,7 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     lines = [f"{r.doc_type}: {r.status} ({r.detail})" for r in v.results]
     if v.unexpected:
         lines.append("unexpected: " + "; ".join(v.unexpected))
-    causes = root_causes(ref, info["ipa"], parents, v.results, in_pre, in_others) if not ok else []
+    causes = root_causes(ref, info["ipa"], parents, v.results, in_pre, in_others, getattr(ui, "unresolved", None)) if not ok else []
     if causes:
         ui.set_trace_notes(causes)
         lines += [f"PROBABLE ROOT CAUSE: {c}" for c in causes]

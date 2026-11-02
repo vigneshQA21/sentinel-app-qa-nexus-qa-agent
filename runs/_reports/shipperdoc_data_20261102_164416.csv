@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 2,,,,,ERROR,shipperdoc expected under House but Nexus has none linked

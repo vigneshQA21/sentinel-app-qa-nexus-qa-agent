@@ -1,0 +1,20 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Invoice Number,149335506,149335506,PASS,same as the value printed on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Invoice Date,(found on the document),14/08/2026,PASS,value found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Grand Total,(found on the document),11273.41,PASS,value found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Currency Code,(found on the document),USD,PASS,value found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Po Number,(found on the document),2026-08,PASS,value found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Gross Weight,2683 (on the document),2.683,REVIEW,"Nexus shows the document's weight divided by 1000 (kg printed, tonnes shown?): check the unit"
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Seller,Seller · Name,(found on the document),"ARCONIC (KUNSHAN) ALUMINUM PRODUCTS CO., LTD.",PASS,6/6 words found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Seller,Seller · Address,(found on the document),"NO.111, YANHU ROAD, HUAQIAO TOWN, KUNSHAN CITY CHINA",PASS,9/9 words found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Seller,Seller · Postal Code,(found on the document),215332,PASS,value found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Buyer,Buyer · Name,(found on the document),MODINE THERMAL SYSTEMS PVT.LTD.,PASS,5/5 words found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Buyer,Buyer · Address,(found on the document),"K-7, SIPCOT INDUSTRIAL PARK, MAMBAKKAM VILLAGE, SUNGUVARCHATIRAM, KANCHEEPURAM DIST, TAMIL NADU",PASS,12/12 words found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Buyer,Buyer · Postal Code,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Order No,(found on the document),1062778,PASS,value found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Customer No,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Delivery No,(found on the document),149335506,PASS,value found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Reference No,(found on the document),7461825,PASS,value found on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - IN-6.pdf page 1,Invoice,Invoice · Incoterm,,,INFO,empty in Nexus; no value located on the document

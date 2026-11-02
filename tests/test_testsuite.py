@@ -37,6 +37,7 @@ def setup(tmp_path):
         ws.append(r)
     wb.save(tmp_path / "knowledge_base" / "testcases" / "suite.xlsx")
     fwd = FakeFwd()
+    cfg.settings["local_docs"]["email_gap_seconds"] = 0     # no waiting between emails in tests
     return cfg, LocalSender(cfg, Store(tmp_path / "state" / "agent.db"), fwd), fwd
 
 

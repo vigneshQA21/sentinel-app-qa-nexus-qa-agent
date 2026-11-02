@@ -81,11 +81,12 @@ def kinds_for(cfg: Config, case: Case) -> tuple[str, ...]:
 
 # --- helpers ---------------------------------------------------------------------------------------------
 def date_in(raw: str, d: tuple[int, int, int]) -> bool:
-    sq = re.sub(r"[\s.,]", "", raw.upper())
+    sq = re.sub(r"[\s.,]", "", re.sub("[\u2212\u2013\u2014]", "-", raw).upper())          # 2026−08−14 (a real minus sign) = 2026-08-14
     day, mon, yr = d
     forms = {f"{day:02d}{MON[mon - 1]}{yr}", f"{day}{MON[mon - 1]}{yr}", f"{day:02d}{MON[mon - 1]}{yr % 100:02d}",
              f"{yr}-{mon:02d}-{day:02d}", f"{day:02d}/{mon:02d}/{yr}", f"{day}/{mon}/{yr}", f"{day:02d}-{mon:02d}-{yr}", f"{day:02d}-{MON[mon - 1]}-{yr % 100:02d}",
-             f"{day:02d}-{MON[mon - 1].title()}-{yr % 100:02d}".upper()}
+             f"{day:02d}-{MON[mon - 1].title()}-{yr % 100:02d}".upper(), f"{day:02d}-{MON[mon - 1]}-{yr}", f"{day}-{MON[mon - 1]}-{yr}",
+             f"{day:02d}-{mon:02d}-{yr % 100:02d}", f"{yr}/{mon:02d}/{day:02d}", f"{day:02d}/{mon:02d}/{yr % 100:02d}"}
     return any(f.upper() in sq for f in forms)
 
 
@@ -104,7 +105,18 @@ def find_date(s: str | None) -> tuple[tuple[int, int, int] | None, bool]:
 
 
 def amount(s) -> float | None:
-    return num(re.sub(r"[\s,]", "", str(s or "")))
+    """1,218.41 / 1.218,41 / '1 218,41' / '1 218, 41' -> 1218.41 (the last separator with 1-2 digits after it is the decimal point)."""
+    t = re.sub(r"\s+", "", str(s or ""))
+    m = re.fullmatch(r"([\d.,]*\d)[.,](\d{1,2})", t)
+    if m and re.search(r"[.,]", t) and not re.fullmatch(r"\d{1,3}(?:[.,]\d{3})+", t):
+        return num(re.sub(r"[.,]", "", m.group(1)) + "." + m.group(2))
+    return num(re.sub(r"[,]", "", t))
+
+
+def amounts_in(raw: str) -> set[float]:
+    """Every amount printed in the document text, whatever the number format."""
+    found = re.findall(r"\d{1,3}(?:[ \u00a0.,]\d{3})+(?:[.,]\d{1,2})?|\d+(?:[.,]\d{1,2})?", raw or "")
+    return {v for v in (amount(x) for x in found) if v is not None}
 
 
 def check_value(rtype: str, anchor, ui_value: str, raw: str) -> dict:
@@ -142,10 +154,14 @@ def check_value(rtype: str, anchor, ui_value: str, raw: str) -> dict:
         if not ok and shown.strip().upper() in CURRENCY_SIGNS:          # a currency code printed as a sign: USD -> US$
             ok = any(sign in raw for sign in CURRENCY_SIGNS[shown.strip().upper()])
     elif rtype == "amount":
-        ok = amount(shown) is not None and f"{amount(shown):.2f}" in sq
+        ok = amount(shown) is not None and (f"{amount(shown):.2f}" in sq or any(abs(a - amount(shown)) < 0.005 for a in amounts_in(raw)))
     elif rtype in ("weight", "count"):
         v = amount(shown)
-        ok = v is not None and any(abs(float(n) - v) < 1e-6 for n in re.findall(r"\d+(?:\.\d+)?", sq))
+        nums = {float(n.replace(",", "")) for n in re.findall(r"\d+(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?", raw)}     # numbers as printed: '3 2683' is two numbers
+        ok = v is not None and any(abs(n - v) < 1e-6 for n in nums)
+        if not ok and rtype == "weight" and v is not None and any(abs(n - v * 1000) < 1e-3 for n in nums):
+            return row("", f"{v * 1000:g} (on the document)", shown, "REVIEW",
+                       "Nexus shows the document's weight divided by 1000 (kg printed, tonnes shown?): check the unit")
     elif rtype == "date":
         d, clean = find_date(shown)
         ok = d is not None and date_in(raw, d)
@@ -170,8 +186,25 @@ def words_found(shown: str, raw: str, need: float = 0.9) -> tuple[bool, str]:
     return hit / len(words) >= need, f"{hit}/{len(words)} words found on the document"
 
 
+def table_row_values(raw: str) -> str:
+    """Layouts that print a header row ('CustomerNumber OrderNumber PurchaseOrderNumber InvoiceNumber') and the values on the next row:
+    returns 'Invoice Number: <value under that header>' lines, put in front of the text so the label search finds the right value."""
+    lines, out = [ln.strip() for ln in raw.splitlines()], []
+    for i, ln in enumerate(lines[:-1]):
+        heads = re.findall(r"[A-Z][a-z]+(?:[A-Z][a-z]+)*", ln) if ln and " " in ln and ln.count(" ") >= 1 else []
+        vals = lines[i + 1].split()
+        if len(heads) >= 2 and len(heads) == len(vals) and all(re.fullmatch(r"[A-Za-z][A-Za-z]+", h) for h in ln.split()):
+            for h, v in zip(ln.split(), vals):
+                label = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", h)
+                out.append(f"{label}: {v}")
+    return "\n".join(out)
+
+
 def compare_doc(kind: str, items: list[dict], raw: str) -> list[dict]:
     """Rows for every field of a Manifest / Invoice / Packing List panel, in panel order."""
+    extra = table_row_values(raw)
+    if extra:
+        raw = extra + "\n" + raw
     rules, party_names, _ = SPECS[kind]
     rows, seen = [], {}
     for it in items:
@@ -212,9 +245,15 @@ def doc_text(cfg: Config, case: Case, kind: str) -> tuple[str, str] | None:
                 continue
             pages = list(range(len(page_texts(f.read_bytes(), ocr=True))))
         else:
-            texts = page_texts(f.read_bytes(), ocr=True)
             want = {"SHIPPERDOC": ("SHIPPERDOC", "PO")}.get(kind, (kind,))
-            pages = [i for part in detect_parts(texts, kw) if part.label in want for i in part.pages]   # incl. continuation pages
+            if case.id.upper().startswith("SEA-"):          # Sea bills of lading are told apart by their layout (pdf_split_sea)
+                from .pdf_split import detect_parts_sea, page_texts_layout
+                texts = page_texts_layout(f.read_bytes(), ocr=True)
+                parts = detect_parts_sea(texts, cfg.settings["pdf_split_sea"])
+            else:
+                texts = page_texts(f.read_bytes(), ocr=True)
+                parts = detect_parts(texts, kw)
+            pages = [i for part in parts if part.label in want for i in part.pages]   # incl. continuation pages
         if pages:
             data = f.read_bytes()
             with pdfplumber.open(str(f)) as pdf:
@@ -285,9 +324,8 @@ def check_docs_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_sec
             shown[kind] = items
             res["rows"] = compare_doc(kind, items, raw)
             if "(scan, OCR)" in where:                                       # OCR may misread: a difference is REVIEW, not FAIL
-                for r in res["rows"]:
-                    if r["result"] == "FAIL":
-                        r["result"], r["note"] = "REVIEW", "scanned page read with OCR (may be misread): " + (r.get("note") or "")
+                from .master_check import ocr_adjust                              # a value Nexus shows is looked up in the OCR text first
+                res["rows"] = ocr_adjust(res["rows"], raw)
                 res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
             res["verdict"] = "FAIL" if any(r["result"] == "FAIL" for r in res["rows"]) else "PASS"
         except SessionExpired:

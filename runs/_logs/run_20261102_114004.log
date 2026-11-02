@@ -1,0 +1,6 @@
+2026-11-02 11:40:10,107 INFO nexus_agent.local_sender: SCREENING FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf: 7 page(s): MBL pages 1; MANIFEST pages 2; HBL pages 3; INVOICE pages 4-6; PACKING pages 7
+2026-11-02 11:40:14,258 INFO nexus_agent.local_sender: Sent 'REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ONAE26049373 | CONSOLIDATED (MASTER+MANIFEST+HOUSE+INVOICE+PACKING LIST)' to prealert.nexus@unifo.in (message id 1a19ae13580eb086)
+
+REG-001: sent, now validating in Nexus ...
+2026-11-02 11:40:14,260 INFO nexus_agent.validate: REG-001: waiting 179s for Nexus to process the email before checking
+2026-11-02 11:40:44,260 INFO nexus_agent.validate: REG-001: waiting 149s for Nexus to process the email before checking

@@ -1,0 +1,6 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-002,FJ-0000602,,NOT_RECEIVED,FAIL,,no pre-alert for REG-002 after 60s,/home/unifo/Downloads/nexus_agent/runs/2026-10-29/REG-002
+REG-005,FJ-0000883,,NOT_RECEIVED,FAIL,,no pre-alert for REG-005 after 60s,/home/unifo/Downloads/nexus_agent/runs/2026-10-29/REG-005
+REG-006,FLD6445,,NOT_RECEIVED,FAIL,,no pre-alert for REG-006 after 60s,/home/unifo/Downloads/nexus_agent/runs/2026-10-29/REG-006
+REG-007,ORAE26040499,,NOT_RECEIVED,FAIL,,no pre-alert for REG-007 after 60s,/home/unifo/Downloads/nexus_agent/runs/2026-10-29/REG-007
+REG-009,FJ-0001132,,NOT_RECEIVED,FAIL,,no pre-alert for REG-009 after 60s,/home/unifo/Downloads/nexus_agent/runs/2026-10-29/REG-009

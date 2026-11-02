@@ -1,0 +1,1335 @@
+2026-11-02 11:44:49,256 INFO nexus_agent.local_sender: SCREENING FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf: 7 page(s): MBL pages 1; MANIFEST pages 2; HBL pages 3; INVOICE pages 4-6; PACKING pages 7
+2026-11-02 11:44:52,451 INFO nexus_agent.local_sender: Sent 'REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ONAE26049373 | CONSOLIDATED (MASTER+MANIFEST+HOUSE+INVOICE+PACKING LIST)' to prealert.nexus@unifo.in (message id 1a19ae57506de90c)
+
+REG-001: sent, now validating in Nexus ...
+2026-11-02 11:44:52,452 INFO nexus_agent.validate: REG-001: waiting 179s for Nexus to process the email before checking
+2026-11-02 11:45:22,452 INFO nexus_agent.validate: REG-001: waiting 149s for Nexus to process the email before checking
+2026-11-02 11:45:52,453 INFO nexus_agent.validate: REG-001: waiting 119s for Nexus to process the email before checking
+2026-11-02 11:46:22,453 INFO nexus_agent.validate: REG-001: waiting 89s for Nexus to process the email before checking
+2026-11-02 11:46:52,453 INFO nexus_agent.validate: REG-001: waiting 59s for Nexus to process the email before checking
+2026-11-02 11:47:22,454 INFO nexus_agent.validate: REG-001: waiting 29s for Nexus to process the email before checking
+REG-001: PASS CREATED_IN_NEXUS IPA/2358/2026-27 (seen 184s after sending)
+REG-001: checking the Master data against the document ...
+
+REG-001  MASTER DATA  PASS   IPA/2358/2026-27   source: FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1
+
+  ALL FIELDS SHOWN IN NEXUS (55)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : 020-27293980
+     4. Shipment Details · Shipper : QUALITAIR&SEA, DIMOTRANS GROUP
+     5. Shipment Details · Shipper ID : QUADIMNIC
+     6. Shipment Details · Consignee : LOGISTEED INDIA PVT . LTD .
+     7. Shipment Details · Consignee ID : LIN_INMAA
+     8. Shipment Details · Branch : MAA
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. Air Waybill · Air Waybill Number : 020-27293980
+    12. Shipper · Name : QUALITAIR&SEA, DIMOTRANS GROUP
+    13. Shipper · Address : AEROPORT NICE COTE D'AZUR, ZONE DE FRET CEDEX 3, NICE, 06, FR
+    14. Shipper · Postal Code : 06200
+    15. Shipper · Party ID : QUADIMNIC
+    16. Consignee · Name : LOGISTEED INDIA PVT . LTD .
+    17. Consignee · Address : NO 25 32 READYMADE GARMENT COMPLEXSIDCO INDUSTRIAL ESTATE GUINDYCHENNAI TN 600032 INTE +914425234009
+    18. Consignee · Postal Code : 600032
+    19. Consignee · Party ID : LIN_INMAA
+    20. Flight Route · Type : connecting
+    21. Segment 1 · From : NCE
+    22. Segment 1 · To : FRA
+    23. Segment 1 · Polname : NICE
+    24. Segment 1 · Polctry : FR
+    25. Segment 1 · Podname : Frankfurt
+    26. Segment 1 · Podctry : DE
+    27. Segment 1 · Carrier Name : Lufthansa
+    28. Segment 1 · Carrier Code : CLH_WW
+    29. Segment 1 · Flight Number : LH1061
+    30. Segment 1 · Flight Date : 22/08/2026
+    31. Segment 2 · From : FRA
+    32. Segment 2 · To : MAA
+    33. Segment 2 · Polname : Frankfurt
+    34. Segment 2 · Polctry : DE
+    35. Segment 2 · Podname : Madras
+    36. Segment 2 · Podctry : IN
+    37. Segment 2 · Carrier Name : Lufthansa
+    38. Segment 2 · Carrier Code : CLH_WW
+    39. Segment 2 · Flight Number : LH758
+    40. Segment 2 · Flight Date : 23/08/2026
+    41. Routing · Airport Of Departure : NICE
+    42. Routing · Final Destination Airport : CHENNAI ( EX MADRAS )
+    43. Freight · Freight Payment : FREIGHT PREPAID
+    44. Cargo · Pieces : 1
+    45. Cargo · Pieces Unit : PCS
+    46. Cargo · Gross Weight : 24
+    47. Cargo · Gross Weight Unit : KGS
+    48. Cargo · Chargeable Weight : 60
+    49. Cargo · Chargeable Weight Unit : KGS
+    50. Cargo · Nature And Quantity Of Goods : Consolidation as per attached listNot RestrictedHS Code: 8537109199DIMS 80x60x75 CM x 1VOL 0.36 M3
+    51. Cargo · Volume : 0.36
+    52. Cargo · Volume Unit : CBM
+    53. Cargo · Executed On : 21/08/2026
+    54. Cargo · (unlabelled field 11) : (empty)
+    55. Cargo · (unlabelled field 12) : (empty)
+    count per section: Shipment Details 10, Air Waybill 1, Shipper 4, Consignee 4, Flight Route 1, Segment 1 10, Segment 2 10, Routing 2, Freight 1, Cargo 12  =  55 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the master within its document group]
+    PASS            Bill No.                       doc: 020-27293980                             | nexus: 020-27293980
+    PASS            Shipper                        doc: QUALITAIR SEA DIMOTRANS GROUP ZONE DE FR | nexus: QUALITAIR&SEA, DIMOTRANS GROUP   [shipper found in the document block]
+    PASS            Shipper ID                     doc: QUADIMNIC                                | nexus: QUADIMNIC   [same as the Party ID in the data panel]
+    PASS            Consignee                      doc: LOGISTEED INDIA PVT. LTD. NO 25 32 READY | nexus: LOGISTEED INDIA PVT . LTD .   [consignee found in the document block]
+    PASS            Consignee ID                   doc: LIN_INMAA                                | nexus: LIN_INMAA   [same as the Party ID in the data panel]
+    PASS            Branch                         doc: MAA                                      | nexus: MAA   [MAA = Chennai, matches the document's destination]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [Air Waybill]
+    PASS            Air Waybill Number             doc: 020-27293980                             | nexus: 020-27293980
+  [Shipper]
+    PASS            Name                           doc: QUALITAIR SEA DIMOTRANS GROUP ZONE DE FR | nexus: QUALITAIR&SEA, DIMOTRANS GROUP   [name found in the document block]
+    REVIEW          Address                        doc: (address on the document)                | nexus: AEROPORT NICE COTE D'AZUR, ZONE DE FRET CE   [5/8 words of the Nexus address are on the document; not on the document: AZUR, CEDEX, COTE]
+    PASS            Postal Code                    doc: 06200                                    | nexus: 06200
+    INFO            Party ID                       doc:                                          | nexus: QUADIMNIC   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: LOGISTEED INDIA PVT. LTD. NO 25 32 READY | nexus: LOGISTEED INDIA PVT . LTD .   [name found in the document block]
+    PASS            Address                        doc: LOGISTEED INDIA PVT. LTD. NO 25 32 READY | nexus: NO 25 32 READYMADE GARMENT COMPLEXSIDCO IN   [Nexus joins the document's address lines without a space: COMPLEXSIDCO, GUINDYCHENNAI, INTE]
+    PASS            Postal Code                    doc: 600032                                   | nexus: 600032
+    INFO            Party ID                       doc:                                          | nexus: LIN_INMAA   [assigned by the Nexus party master, not printed on the document]
+  [Flight Route]
+    PASS            Type                           doc: connecting                               | nexus: connecting
+  [Segment 1]
+    PASS            From                           doc: NCE                                      | nexus: NCE
+    PASS            To                             doc: FRA                                      | nexus: FRA
+    PASS            Polname                        doc: NICE                                     | nexus: NICE   [same as the airport of departure]
+    INFO            Polctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Frankfurt   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: DE   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: Lufthansa   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: LH                                       | nexus: CLH_WW
+    PASS            Flight Number                  doc: LH1061                                   | nexus: LH1061
+    PASS            Flight Date                    doc: day 22                                   | nexus: 22/08/2026   [only the day is printed on the AWB]
+  [Segment 2]
+    PASS            From                           doc: FRA                                      | nexus: FRA
+    PASS            To                             doc: MAA                                      | nexus: MAA
+    PASS            Polname                        doc: Frankfurt                                | nexus: Frankfurt   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: DE   [country of the airport (Nexus airport master)]
+    PASS            Podname                        doc: CHENNAI (EX MADRAS)                      | nexus: Madras   [contained in the document's airport of destination]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: Lufthansa   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: LH                                       | nexus: CLH_WW
+    PASS            Flight Number                  doc: LH758                                    | nexus: LH758
+    PASS            Flight Date                    doc: day 23                                   | nexus: 23/08/2026   [only the day is printed on the AWB]
+  [Routing]
+    PASS            Airport Of Departure           doc: NICE                                     | nexus: NICE
+    PASS            Final Destination Airport      doc: CHENNAI (EX MADRAS)                      | nexus: CHENNAI ( EX MADRAS )
+  [Freight]
+    PASS            Freight Payment                doc: FREIGHT PREPAID (code PP)                | nexus: FREIGHT PREPAID
+  [Cargo]
+    PASS            Pieces                         doc: 1                                        | nexus: 1
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: 24.0                                     | nexus: 24
+    PASS            Gross Weight Unit              doc: KGS                                      | nexus: KGS
+    PASS            Chargeable Weight              doc: 60.0                                     | nexus: 60
+    PASS            Chargeable Weight Unit         doc: KGS                                      | nexus: KGS
+    PASS            Nature And Quantity Of Goods   doc: Consolidation as per attached list Not R | nexus: Consolidation as per attached listNot Rest
+    PASS            Volume                         doc: 0.36                                     | nexus: 0.36
+    PASS            Volume Unit                    doc: CBM                                      | nexus: CBM
+    PASS            Executed On                    doc: 21-Aug-26                                | nexus: 21/08/2026
+    INFO            (unlabelled field 11)          doc:                                          | nexus:    [empty field, no label]
+    INFO            (unlabelled field 12)          doc:                                          | nexus:    [empty field, no label]
+
+  55 fields shown in Nexus | compared with the document: 43 (PASS 42, FAIL 0, REVIEW 1, KNOWN 0) | INFO (no document value): 12 | NOT_VERIFIABLE: 0
+REG-001: checking the House data against the document ...
+(baseline) 3 already-raised issue(s) still there in House; they do not fail the case but are NOT fixed yet:
+  STILL THERE x3  REG-001 · House · Consignee · Name  [bug sheet row 232]
+  STILL THERE x3  REG-001 · House · Consignee · Address  [bug sheet row 233]
+  STILL THERE x3  REG-001 · House · Consignee · Postal Code  [bug sheet row 231]
+
+REG-001  HOUSE DATA  FAIL   IPA/2358/2026-27   source: FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 3
+
+  ALL FIELDS SHOWN IN NEXUS (60)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : ONAE26049373
+     4. Shipment Details · Shipper : SCHNEIDER ELECTRIC
+     5. Shipment Details · Shipper ID : SCHELEPAR2
+     6. Shipment Details · Consignee : SCHNEIDER ELECTRIC IT BUSINESS (I)
+     7. Shipment Details · Consignee ID : SCHELEMAA6
+     8. Shipment Details · Branch : MAA
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. House Air Waybill · House Number (top right) : ONAE26049373
+    12. House Air Waybill · House Number (bottom right) : ONAE26049373
+    13. House Air Waybill · Master AWB Reference : 020-27293980
+    14. Shipper · Name : SCHNEIDER ELECTRIC
+    15. Shipper · Address : 22 RUE DES GARINES NEWLOG QUAI CANALIS, FR
+    16. Shipper · Postal Code : 38430
+    17. Shipper · Party ID : SCHELEPAR2
+    18. Consignee · Name : SCHNEIDER ELECTRIC IT BUSINESS (I)
+    19. Consignee · Address : SURVEY NO.4, AANGADU VILLAGE, SURVEY NO.181/1, SIRUNIYUM VILLAGE, PONNERI TIRUVALLUR, CHENNAI, 33, IN
+    20. Consignee · Postal Code : 600067
+    21. Consignee · Party ID : SCHELEMAA6
+    22. Agent · Agent / Origin Party (free text) : QUALITAIR SEA DIMOTRANS GROUP
+ZONE DE FRET
+AEROPORT DE NICE, 06200, NICE, 06, FRANCE
+    23. Freight · Freight Payment : FREIGHT COLLECT
+    24. Routing · Airport Of Departure : NICE
+    25. Routing · Final Destination Airport : CHENNAI (EX MADRAS)
+    26. Flight Route · Type : connecting
+    27. Segment 1 · From : NCE
+    28. Segment 1 · To : FRA
+    29. Segment 1 · Polname : NICE
+    30. Segment 1 · Polctry : FR
+    31. Segment 1 · Podname : Frankfurt
+    32. Segment 1 · Podctry : DE
+    33. Segment 1 · Carrier Name : LUFTHANSA CARGO AG
+    34. Segment 1 · Carrier Code : GEC_WW
+    35. Segment 1 · Flight Number : LH1061
+    36. Segment 1 · Flight Date : 22/08/2026
+    37. Segment 2 · From : FRA
+    38. Segment 2 · To : MAA
+    39. Segment 2 · Polname : Frankfurt
+    40. Segment 2 · Polctry : DE
+    41. Segment 2 · Podname : Madras
+    42. Segment 2 · Podctry : IN
+    43. Segment 2 · Carrier Name : LUFTHANSA CITYLINE GMBH
+    44. Segment 2 · Carrier Code : CLH_WW
+    45. Segment 2 · Flight Number : LH758
+    46. Segment 2 · Flight Date : 23/08/2026
+    47. Cargo · Pieces : 1
+    48. Cargo · Pieces Unit : PCS
+    49. Cargo · Gross Weight : 24
+    50. Cargo · Gross Weight Unit : KGS
+    51. Cargo · Chargeable Weight : 60
+    52. Cargo · Chargeable Weight Unit : KGS
+    53. Cargo · Nature And Quantity Of Goods : P391 Generator Rotor Earth Fault Module
+Not Restricted 9148743274
+HS Codes: 8537109199
+DIMS 80x60x75 CM x 1
+VOL 0.360 M3
+    54. Cargo · Volume : 0.36
+    55. Cargo · Volume Unit : CBM
+    56. Reference · Shippers Reference : C00401666
+    57. Reference · (unlabelled, empty) : (empty)
+    58. Reference · Executed On : 19/08/2026
+    59. Reference · (unlabelled, empty) : (empty)
+    60. Reference · Incoterm : EXW
+    count per section: Shipment Details 10, House Air Waybill 3, Shipper 4, Consignee 4, Agent 1, Freight 1, Routing 2, Flight Route 1, Segment 1 10, Segment 2 10, Cargo 9, Reference 5  =  60 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the house within its document group]
+    PASS            Bill No.                       doc: ONAE26049373                             | nexus: ONAE26049373
+    PASS            Shipper                        doc: SCHNEIDER ELECTRIC SCHELECTINCE QUAI D'E | nexus: SCHNEIDER ELECTRIC   [shipper found in the document block]
+    PASS            Shipper ID                     doc: SCHELEPAR2                               | nexus: SCHELEPAR2   [same as the Party ID in the data panel]
+    FAIL            Consignee                      doc: SCHNEIDER ELECTRIC SCHELECTRMAA INFRASTR | nexus: SCHNEIDER ELECTRIC IT BUSINESS (I)   [similarity 0.32 (needs 0.9)]
+    PASS            Consignee ID                   doc: SCHELEMAA6                               | nexus: SCHELEMAA6   [same as the Party ID in the data panel]
+    PASS            Branch                         doc: MAA                                      | nexus: MAA   [MAA = Chennai, matches the document's destination]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [House Air Waybill]
+    PASS            House Number (top right)       doc: ONAE26049373                             | nexus: ONAE26049373
+    PASS            House Number (bottom right)    doc: ONAE26049373                             | nexus: ONAE26049373
+    PASS            Master AWB Reference           doc: 020-27293980                             | nexus: 020-27293980
+  [Shipper]
+    PASS            Name                           doc: SCHNEIDER ELECTRIC SCHELECTINCE QUAI D'E | nexus: SCHNEIDER ELECTRIC   [name found in the document block]
+    FAIL            Address                        doc: 1ERE AVENUE 2621M - ZI CARROS CARROS 065 | nexus: 22 RUE DES GARINES NEWLOG QUAI CANALIS, FR   [different address: only 1/7 words of the Nexus address are on the document; not on the document: 22, CANALIS, DES, GARINES, NEWLOG, RUE]
+    FAIL            Postal Code                    doc: 06516                                    | nexus: 38430   [the party master's postal code is not the one printed on the document]
+    INFO            Party ID                       doc:                                          | nexus: SCHELEPAR2   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    KNOWN           Name                           doc: SCHNEIDER ELECTRIC SCHELECTRMAA INFRASTR | nexus: SCHNEIDER ELECTRIC IT BUSINESS (I)   [KNOWN ISSUE (logged in the bug sheet); starts like the document's name but Nexus adds: BUSINESS, I, IT]
+    KNOWN           Address                        doc: POONAMALLEE,172 POONAMALLEE BYE PASS ROA | nexus: SURVEY NO.4, AANGADU VILLAGE, SURVEY NO.18   [KNOWN ISSUE (logged in the bug sheet); different address: only 1/9 words of the Nexus address are on the document; not on the document: 181, 33, AANGADU, PONNERI, SIRUNIYUM, SURVEY, TIRUVALLUR, VILLAGE]
+    KNOWN           Postal Code                    doc: 600056                                   | nexus: 600067   [KNOWN ISSUE (logged in the bug sheet); the party master's postal code is not the one printed on the document]
+    INFO            Party ID                       doc:                                          | nexus: SCHELEMAA6   [assigned by the Nexus party master, not printed on the document]
+  [Agent]
+    PASS            Agent / Origin Party (free text) doc: QUALITAIR SEA DIMOTRANS GROUP            | nexus: QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET   [same party as the Master's shipper (origin agent)]
+  [Freight]
+    PASS            Freight Payment                doc: FREIGHT COLLECT (code CC)                | nexus: FREIGHT COLLECT
+  [Routing]
+    PASS            Airport Of Departure           doc: NICE                                     | nexus: NICE
+    PASS            Final Destination Airport      doc: CHENNAI (EX MADRAS)                      | nexus: CHENNAI (EX MADRAS)
+  [Flight Route]
+    PASS            Type                           doc: connecting                               | nexus: connecting
+  [Segment 1]
+    PASS            From                           doc: NCE                                      | nexus: NCE
+    PASS            To                             doc: FRA                                      | nexus: FRA
+    PASS            Polname                        doc: NICE                                     | nexus: NICE   [same as the airport of departure]
+    INFO            Polctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Frankfurt   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: DE   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: LUFTHANSA CARGO AG   [carrier name appears on the document]
+    INFO            Carrier Code                   doc: LH                                       | nexus: GEC_WW   [Nexus airline-master code, not the IATA code printed on the document]
+    PASS            Flight Number                  doc: LH1061                                   | nexus: LH1061
+    PASS            Flight Date                    doc: day 22                                   | nexus: 22/08/2026   [only the day is printed on the AWB]
+  [Segment 2]
+    PASS            From                           doc: FRA                                      | nexus: FRA
+    PASS            To                             doc: MAA                                      | nexus: MAA
+    PASS            Polname                        doc: Frankfurt                                | nexus: Frankfurt   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: DE   [country of the airport (Nexus airport master)]
+    PASS            Podname                        doc: CHENNAI (EX MADRAS)                      | nexus: Madras   [contained in the document's airport of destination]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    INFO            Carrier Name                   doc:                                          | nexus: LUFTHANSA CITYLINE GMBH   [not printed on the document (airline master data)]
+    PASS            Carrier Code                   doc: LH                                       | nexus: CLH_WW
+    PASS            Flight Number                  doc: LH758                                    | nexus: LH758
+    PASS            Flight Date                    doc: day 23                                   | nexus: 23/08/2026   [only the day is printed on the AWB]
+  [Cargo]
+    PASS            Pieces                         doc: 1                                        | nexus: 1
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: 24.0                                     | nexus: 24
+    PASS            Gross Weight Unit              doc: KGS                                      | nexus: KGS
+    PASS            Chargeable Weight              doc: 60.0                                     | nexus: 60
+    PASS            Chargeable Weight Unit         doc: KGS                                      | nexus: KGS
+    PASS            Nature And Quantity Of Goods   doc: P391 Generator Rotor Earth Fault Module  | nexus: P391 Generator Rotor Earth Fault Module No
+    PASS            Volume                         doc: 0.360                                    | nexus: 0.36
+    PASS            Volume Unit                    doc: CBM                                      | nexus: CBM
+  [Reference]
+    PASS            Shippers Reference             doc: C00401666                                | nexus: C00401666
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    PASS            Executed On                    doc: 19-Aug-26                                | nexus: 19/08/2026
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    PASS            Incoterm                       doc: EXW                                      | nexus: EXW
+
+  60 fields shown in Nexus | compared with the document: 46 (PASS 40, FAIL 3, REVIEW 0, KNOWN 3) | INFO (no document value): 14 | NOT_VERIFIABLE: 0
+REG-001: checking the Manifest, Invoice and Packing List data against the documents ...
+(baseline) REG-001 Packing List · Packing List · Date now matches the document: bug possibly FIXED (bug sheet row 230)
+
+REG-001  MANIFEST DATA  PASS   IPA/2358/2026-27   source: FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 2
+
+  ALL FIELDS SHOWN IN NEXUS (8)
+     1. Manifest · Master Air Waybill : 020-27293980
+     2. Manifest · Air Waybill No : ONAE26049373
+     3. Manifest · Pieces : 1
+     4. Manifest · Weight : 24
+     5. Shipper · Name : SCHNEIDER ELECTRIC
+     6. Shipper · Address : QUAI D'EXPÉDITION HORIZON MANUF . BP 147 POONAMALLEE , 172 POONAMALLEE BYE PASS ROAD 1ERE AVENUE 2621M - ZI CARROS , 06516 CARROS FRANCE
+     7. Consignee · Name : SCHNEIDER ELECTRIC INFRASTRUCTURE LTD
+     8. Consignee · Address : POONAMALLEE , 172 POONAMALLEE BYE PASS ROAD , POONAMALLEE CHENNAI 600056 INDIA
+    count per section: Manifest 4, Shipper 2, Consignee 2  =  8 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Manifest]
+    PASS            Master Air Waybill             doc: 020-27293980                             | nexus: 020-27293980   [same as the value printed on the document]
+    PASS            Air Waybill No                 doc: ONAE26049373                             | nexus: ONAE26049373   [same as the value printed on the document]
+    PASS            Pieces                         doc: 1                                        | nexus: 1   [same as the value printed on the document]
+    PASS            Weight                         doc: 24.000                                   | nexus: 24   [same as the value printed on the document]
+  [Shipper]
+    PASS            Name                           doc: (found on the document)                  | nexus: SCHNEIDER ELECTRIC   [2/2 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: QUAI D'EXPÉDITION HORIZON MANUF . BP 147 P   [22/22 words found on the document]
+  [Consignee]
+    PASS            Name                           doc: (found on the document)                  | nexus: SCHNEIDER ELECTRIC INFRASTRUCTURE LTD   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: POONAMALLEE , 172 POONAMALLEE BYE PASS ROA   [10/10 words found on the document]
+
+  8 fields shown in Nexus | compared with the document: 8 (PASS 8, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 0 | NOT_VERIFIABLE: 0
+
+REG-001  INVOICE DATA  PASS   IPA/2358/2026-27   source: FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6
+
+  ALL FIELDS SHOWN IN NEXUS (19)
+     1. Invoice · Invoice Number : 9148743274
+     2. Invoice · Invoice Date : 11/08/2026
+     3. Invoice · Grand Total : 1, 742.44
+     4. Invoice · Currency Code : USD
+     5. Invoice · Po Number : 1107380830
+     6. Invoice · Gross Weight : (empty)
+     7. Seller · Name : Schneider Electric Industries SAS
+     8. Seller · Address : 35 rue Joseph Monier CS 30323 92506 Rueil Malmaison Cedex France
+     9. Seller · Postal Code : 92506
+    10. Buyer · Name : SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED
+    11. Buyer · Address : 172 Poonamallee ByPass Road 600056 Chennai India
+    12. Buyer · Postal Code : 600056
+    13. Invoice · Order No : 243170288
+    14. Invoice · Account No : (empty)
+    15. Invoice · Customer No : CIN01520
+    16. Invoice · Delivery No : (empty)
+    17. Invoice · Supplier No : (empty)
+    18. Invoice · Reference No : (empty)
+    19. Invoice · Incoterm : FCA
+    count per section: Invoice 13, Seller 3, Buyer 3  =  19 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Invoice]
+    PASS            Invoice Number                 doc: 9148743274                               | nexus: 9148743274   [same as the value printed on the document]
+    PASS            Invoice Date                   doc: 11AUG2026                                | nexus: 11/08/2026   [same as the value printed on the document]
+    PASS            Grand Total                    doc: 1,742.44                                 | nexus: 1, 742.44   [same as the value printed on the document (Nexus formats it with a space: '1, 742.44')]
+    PASS            Currency Code                  doc: USD                                      | nexus: USD   [same as the value printed on the document]
+    PASS            Po Number                      doc: (found on the document)                  | nexus: 1107380830   [value found on the document]
+    INFO            Gross Weight                   doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Seller]
+    PASS            Name                           doc: (found on the document)                  | nexus: Schneider Electric Industries SAS   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 35 rue Joseph Monier CS 30323 92506 Rueil    [11/11 words found on the document]
+    PASS            Postal Code                    doc: (found on the document)                  | nexus: 92506   [value found on the document]
+  [Buyer]
+    PASS            Name                           doc: (found on the document)                  | nexus: SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 172 Poonamallee ByPass Road 600056 Chennai   [7/7 words found on the document]
+    PASS            Postal Code                    doc: (found on the document)                  | nexus: 600056   [value found on the document]
+  [Invoice]
+    PASS            Order No                       doc: (found on the document)                  | nexus: 243170288   [value found on the document]
+    INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Customer No                    doc: (found on the document)                  | nexus: CIN01520   [value found on the document]
+    INFO            Delivery No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Reference No                   doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Incoterm                       doc: (found on the document)                  | nexus: FCA   [value found on the document]
+
+  19 fields shown in Nexus | compared with the document: 14 (PASS 14, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 5 | NOT_VERIFIABLE: 0
+
+REG-001  PACKING LIST DATA  PASS   IPA/2358/2026-27   source: FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7
+
+  ALL FIELDS SHOWN IN NEXUS (16)
+     1. Packing List · Packing List No : 1779430-1
+     2. Packing List · Date : 10/08/2026
+     3. Packing List · Invoice No : (empty)
+     4. Packing List · Gross Weight : 24
+     5. Packing List · Supplier No : (empty)
+     6. Packing List · Account No : (empty)
+     7. Packing List · Customer No : (empty)
+     8. Packing List · Order No : 1107380830
+     9. Packing List · Po Number : (empty)
+    10. Packing List · Incoterm : FCA
+    11. Shipper · Name : Horizon manuf .
+    12. Shipper · Address : 8ème RUE FR-06516 CARROS CEDEX
+    13. Shipper · Postal Code : 06516
+    14. Consignee · Name : SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED
+    15. Consignee · Address : 172 Poonamallee Bye Pass Road CHENNAI Tamil Nadu 600056 INDIA
+    16. Consignee · Postal Code : 600056
+    count per section: Packing List 10, Shipper 3, Consignee 3  =  16 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Packing List]
+    PASS            Packing List No                doc: 1779430 -1                               | nexus: 1779430-1   [same as the value printed on the document]
+    PASS            Date                           doc: 10 Aug 2026                              | nexus: 10/08/2026   [same as the value printed on the document]
+    INFO            Invoice No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Gross Weight                   doc: 24                                       | nexus: 24   [same as the value printed on the document]
+    INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Order No                       doc: (found on the document)                  | nexus: 1107380830   [value found on the document]
+    INFO            Po Number                      doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Incoterm                       doc: (found on the document)                  | nexus: FCA   [value found on the document]
+  [Shipper]
+    PASS            Name                           doc: (found on the document)                  | nexus: Horizon manuf .   [2/2 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 8ème RUE FR-06516 CARROS CEDEX   [7/7 words found on the document]
+    PASS            Postal Code                    doc: (found on the document)                  | nexus: 06516   [value found on the document]
+  [Consignee]
+    PASS            Name                           doc: (found on the document)                  | nexus: SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 172 Poonamallee Bye Pass Road CHENNAI Tami   [10/10 words found on the document]
+    PASS            Postal Code                    doc: (found on the document)                  | nexus: 600056   [value found on the document]
+
+  16 fields shown in Nexus | compared with the document: 11 (PASS 11, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 5 | NOT_VERIFIABLE: 0
+2026-11-02 11:49:59,718 INFO nexus_agent.local_sender: SCREENING FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf: 10 page(s): MBL pages 1; MANIFEST pages 2-3; DEBITNOTE pages 4; HBL pages 5; INVOICE pages 6; PACKING pages 7; PO pages 8; PACKING pages 9; INVOICE pages 10
+2026-11-02 11:49:59,719 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0000602
+2026-11-02 11:52:59,888 WARNING nexus_agent.local_sender: send attempt 1/3 failed: The write operation timed out
+2026-11-02 11:53:08,478 INFO nexus_agent.local_sender: Sent 'REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0000602 | CONSOLIDATED (MASTER+MANIFEST+DEBIT NOTE+HOUSE+INVOICE+PACKING LIST+PO)' to prealert.nexus@unifo.in (message id 1a19aed062c66322)
+
+REG-002: sent, now validating in Nexus ...
+2026-11-02 11:53:08,479 INFO nexus_agent.validate: REG-002: waiting 179s for Nexus to process the email before checking
+2026-11-02 11:53:38,479 INFO nexus_agent.validate: REG-002: waiting 149s for Nexus to process the email before checking
+2026-11-02 11:54:08,480 INFO nexus_agent.validate: REG-002: waiting 119s for Nexus to process the email before checking
+2026-11-02 11:54:38,480 INFO nexus_agent.validate: REG-002: waiting 89s for Nexus to process the email before checking
+2026-11-02 11:55:08,481 INFO nexus_agent.validate: REG-002: waiting 59s for Nexus to process the email before checking
+2026-11-02 11:55:38,481 INFO nexus_agent.validate: REG-002: waiting 29s for Nexus to process the email before checking
+(baseline) REG-002 Mapping · PACKING LIST is now placed correctly: bug possibly FIXED (bug sheet row 236)
+REG-002: PASS CREATED_IN_NEXUS IPA/2359/2026-27 (seen 184s after sending)
+REG-002: checking the Master data against the document ...
+
+REG-002  MASTER DATA  PASS   IPA/2359/2026-27   source: FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 1
+
+  ALL FIELDS SHOWN IN NEXUS (55)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : 160-15776084
+     4. Shipment Details · Shipper : CHUNJEE SHIPPING CO . , LTD .
+     5. Shipment Details · Shipper ID : CHUSHISEL
+     6. Shipment Details · Consignee : LOGISTEED INDIA PVT. LTD.
+     7. Shipment Details · Consignee ID : LIN_INBOM
+     8. Shipment Details · Branch : BOM
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. Air Waybill · Air Waybill Number : 160-15776084
+    12. Shipper · Name : CHUNJEE SHIPPING CO . , LTD .
+    13. Shipper · Address : 14F, BORYUNG BLDG, 136, CHANGGYEONGGUNG - RO, JONGNO -, KR
+    14. Shipper · Postal Code : 03127
+    15. Shipper · Party ID : CHUSHISEL
+    16. Consignee · Name : LOGISTEED INDIA PVT. LTD.
+    17. Consignee · Address : 1ST FLOOR VAIBHAV APARTMENT SAHAR PIPE LINE ROAD ANDHERI (EAST) MUMBAI- 400 059 TEL: 91 22 30904900 **
+    18. Consignee · Postal Code : 400 059
+    19. Consignee · Party ID : LIN_INBOM
+    20. Flight Route · Type : connecting
+    21. Segment 1 · From : ICN
+    22. Segment 1 · To : HKG
+    23. Segment 1 · Polname : Seoul
+    24. Segment 1 · Polctry : KR
+    25. Segment 1 · Podname : Hong Kong
+    26. Segment 1 · Podctry : HK
+    27. Segment 1 · Carrier Name : Cathay Pacific
+    28. Segment 1 · Carrier Code : CPA_WW
+    29. Segment 1 · Flight Number : CX035
+    30. Segment 1 · Flight Date : 22/08/2026
+    31. Segment 2 · From : HKG
+    32. Segment 2 · To : BOM
+    33. Segment 2 · Polname : Hong Kong
+    34. Segment 2 · Polctry : HK
+    35. Segment 2 · Podname : Mumbai
+    36. Segment 2 · Podctry : IN
+    37. Segment 2 · Carrier Name : Cathay Pacific
+    38. Segment 2 · Carrier Code : CPA_WW
+    39. Segment 2 · Flight Number : (empty)
+    40. Segment 2 · Flight Date : (empty)
+    41. Routing · Airport Of Departure : INCHEON AIRPORT, KOREA
+    42. Routing · Final Destination Airport : BOMBAY, INDIA
+    43. Freight · Freight Payment : FREIGHT PREPAID
+    44. Cargo · Pieces : (empty)
+    45. Cargo · Pieces Unit : (empty)
+    46. Cargo · Gross Weight : (empty)
+    47. Cargo · Gross Weight Unit : KGS
+    48. Cargo · Chargeable Weight : (empty)
+    49. Cargo · Chargeable Weight Unit : KGS
+    50. Cargo · Nature And Quantity Of Goods : (empty)
+    51. Cargo · Volume : 0.1
+    52. Cargo · Volume Unit : CBM
+    53. Cargo · Executed On : 22/08/2026
+    54. Cargo · (unlabelled field 11) : (empty)
+    55. Cargo · (unlabelled field 12) : (empty)
+    count per section: Shipment Details 10, Air Waybill 1, Shipper 4, Consignee 4, Flight Route 1, Segment 1 10, Segment 2 10, Routing 2, Freight 1, Cargo 12  =  55 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the master within its document group]
+    PASS            Bill No.                       doc: 160-15776084                             | nexus: 160-15776084
+    PASS            Shipper                        doc: Check B/L 16015776084 CHUNJEE SHIPPING C | nexus: CHUNJEE SHIPPING CO . , LTD .   [shipper found in the document block]
+    PASS            Shipper ID                     doc: CHUSHISEL                                | nexus: CHUSHISEL   [same as the Party ID in the data panel]
+    PASS            Consignee                      doc: Check B/L 16015776084 CHUNJEE SHIPPING C | nexus: LOGISTEED INDIA PVT. LTD.   [consignee found in the document block]
+    PASS            Consignee ID                   doc: LIN_INBOM                                | nexus: LIN_INBOM   [same as the Party ID in the data panel]
+    PASS            Branch                         doc: BOM                                      | nexus: BOM   [BOM = Mumbai, matches the document's destination]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [Air Waybill]
+    PASS            Air Waybill Number             doc: 160-15776084                             | nexus: 160-15776084
+  [Shipper]
+    PASS            Name                           doc: Check B/L 16015776084 CHUNJEE SHIPPING C | nexus: CHUNJEE SHIPPING CO . , LTD .   [name found in the document block]
+    PASS            Address                        doc: (address on the document)                | nexus: 14F, BORYUNG BLDG, 136, CHANGGYEONGGUNG -    [6/6 words of the Nexus address are on the document]
+    PASS            Postal Code                    doc: 03127                                    | nexus: 03127
+    INFO            Party ID                       doc:                                          | nexus: CHUSHISEL   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: Check B/L 16015776084 CHUNJEE SHIPPING C | nexus: LOGISTEED INDIA PVT. LTD.   [name found in the document block]
+    PASS            Address                        doc: Check B/L 16015776084 CHUNJEE SHIPPING C | nexus: 1ST FLOOR VAIBHAV APARTMENT SAHAR PIPE LIN
+    PASS            Postal Code                    doc: 400 059                                  | nexus: 400 059
+    INFO            Party ID                       doc:                                          | nexus: LIN_INBOM   [assigned by the Nexus party master, not printed on the document]
+  [Flight Route]
+    PASS            Type                           doc: connecting                               | nexus: connecting
+  [Segment 1]
+    NOT_VERIFIABLE  From                           doc:                                          | nexus: ICN   [could not be read from the document]
+    PASS            To                             doc: HKG                                      | nexus: HKG
+    INFO            Polname                        doc: INCHEON AIRPORT, KOREA                   | nexus: Seoul   [airport name differs from the document's airport of departure]
+    INFO            Polctry                        doc:                                          | nexus: KR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Hong Kong   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: HK   [country of the airport (Nexus airport master)]
+    INFO            Carrier Name                   doc:                                          | nexus: Cathay Pacific   [not printed on the document (airline master data)]
+    INFO            Carrier Code                   doc: CX                                       | nexus: CPA_WW   [Nexus airline-master code, not the IATA code printed on the document (see Carrier Name)]
+    PASS            Flight Number                  doc: CX035                                    | nexus: CX035
+    PASS            Flight Date                    doc: day 22                                   | nexus: 22/08/2026   [only the day is printed on the AWB]
+  [Segment 2]
+    PASS            From                           doc: HKG                                      | nexus: HKG
+    PASS            To                             doc: BOM                                      | nexus: BOM
+    PASS            Polname                        doc: Hong Kong                                | nexus: Hong Kong   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: HK   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc: BOMBAY, INDIA                            | nexus: Mumbai   [airport name differs from the document's destination (airport master naming)]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    INFO            Carrier Name                   doc:                                          | nexus: Cathay Pacific   [not printed on the document (airline master data)]
+    INFO            Carrier Code                   doc: CX                                       | nexus: CPA_WW   [Nexus airline-master code, not the IATA code printed on the document (see Carrier Name)]
+    NOT_VERIFIABLE  Flight Number                  doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Flight Date                    doc:                                          | nexus:    [flight date not found in the document]
+  [Routing]
+    PASS            Airport Of Departure           doc: INCHEON AIRPORT, KOREA                   | nexus: INCHEON AIRPORT, KOREA
+    PASS            Final Destination Airport      doc: BOMBAY, INDIA                            | nexus: BOMBAY, INDIA
+  [Freight]
+    PASS            Freight Payment                doc: FREIGHT PREPAID (code PP)                | nexus: FREIGHT PREPAID
+  [Cargo]
+    NOT_VERIFIABLE  Pieces                         doc:                                          | nexus:    [could not be read from the document]
+    INFO            Pieces Unit                    doc:                                          | nexus:    [unit not printed on the AWB (PCS is the Nexus default)]
+    NOT_VERIFIABLE  Gross Weight                   doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Gross Weight Unit              doc:                                          | nexus: KGS   [could not be read from the document]
+    NOT_VERIFIABLE  Chargeable Weight              doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Chargeable Weight Unit         doc:                                          | nexus: KGS   [could not be read from the document]
+    NOT_VERIFIABLE  Nature And Quantity Of Goods   doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Volume                         doc:                                          | nexus: 0.1   [could not be read from the document]
+    NOT_VERIFIABLE  Volume Unit                    doc:                                          | nexus: CBM   [could not be read from the document]
+    PASS            Executed On                    doc: 2026-08-22                               | nexus: 22/08/2026
+    INFO            (unlabelled field 11)          doc:                                          | nexus:    [empty field, no label]
+    INFO            (unlabelled field 12)          doc:                                          | nexus:    [empty field, no label]
+
+  55 fields shown in Nexus | compared with the document: 26 (PASS 26, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 18 | NOT_VERIFIABLE: 11
+REG-002: checking the House data against the document ...
+(baseline) 2 already-raised issue(s) still there in House; they do not fail the case but are NOT fixed yet:
+  STILL THERE x3  REG-002 · House · Consignee · Address  [bug sheet row 234]
+  STILL THERE x3  REG-002 · House · Cargo · Pieces  [bug sheet row 235]
+
+REG-002  HOUSE DATA  PASS   IPA/2359/2026-27   source: FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 5
+
+  ALL FIELDS SHOWN IN NEXUS (60)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : CHJE262335
+     4. Shipment Details · Shipper : HANKUK ELECTRICAL INSULATING (INSUKO) CO.,LTD
+     5. Shipment Details · Shipper ID : HANELEMAA
+     6. Shipment Details · Consignee : HITACHI ENERGY INDIA LIMITED
+     7. Shipment Details · Consignee ID : HITENEBDQ
+     8. Shipment Details · Branch : BOM
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. House Air Waybill · House Number (top right) : CHJE262335
+    12. House Air Waybill · House Number (bottom right) : CHJE262335
+    13. House Air Waybill · Master AWB Reference : 160-15776084
+    14. Shipper · Name : HANKUK ELECTRICAL INSULATING (INSUKO) CO.,LTD
+    15. Shipper · Address : 108 DONYU2 RO PAJU-EUP PAJU-SI, GYEONGGI-DO, KR
+    16. Shipper · Postal Code : (empty)
+    17. Shipper · Party ID : HANELEMAA
+    18. Consignee · Name : HITACHI ENERGY INDIA LIMITED
+    19. Consignee · Address : PGHV-Ckt Breakers, Vadodara National Highway No.8, Maneja, Vadodara, GJ, IN
+    20. Consignee · Postal Code : 391775
+    21. Consignee · Party ID : HITENEBDQ
+    22. Agent · Agent / Origin Party (free text) : CHUN JEE SHIPPING CO.,LTD
+14F, BORYUNG BLDG,
+CHANGGYEONGGUNG-RO 136,
+JONGNO-GU, SEOUL, KOREA
+    23. Freight · Freight Payment : FREIGHT COLLECT
+    24. Routing · Airport Of Departure : INCHEON AIRPORT, KOREA
+    25. Routing · Final Destination Airport : BOMBAY, INDIA
+    26. Flight Route · Type : connecting
+    27. Segment 1 · From : ICN
+    28. Segment 1 · To : HKG
+    29. Segment 1 · Polname : Seoul
+    30. Segment 1 · Polctry : KR
+    31. Segment 1 · Podname : Hong Kong
+    32. Segment 1 · Podctry : HK
+    33. Segment 1 · Carrier Name : Cathay Pacific
+    34. Segment 1 · Carrier Code : CPA_WW
+    35. Segment 1 · Flight Number : CX035
+    36. Segment 1 · Flight Date : 22/08/2026
+    37. Segment 2 · From : HKG
+    38. Segment 2 · To : BOM
+    39. Segment 2 · Polname : Hong Kong
+    40. Segment 2 · Polctry : HK
+    41. Segment 2 · Podname : Mumbai
+    42. Segment 2 · Podctry : IN
+    43. Segment 2 · Carrier Name : Cathay Pacific
+    44. Segment 2 · Carrier Code : CPA_WW
+    45. Segment 2 · Flight Number : (empty)
+    46. Segment 2 · Flight Date : (empty)
+    47. Cargo · Pieces : 1PALLET
+    48. Cargo · Pieces Unit : PCS
+    49. Cargo · Gross Weight : (empty)
+    50. Cargo · Gross Weight Unit : KGS
+    51. Cargo · Chargeable Weight : (empty)
+    52. Cargo · Chargeable Weight Unit : KGS
+    53. Cargo · Nature And Quantity Of Goods : 150 RL OF
+GLASS NET TYING THREAD
+INV NO:HK260810-TEIND
+P.O NO:4502231928
+    54. Cargo · Volume : 0.1
+    55. Cargo · Volume Unit : CBM
+    56. Reference · Shippers Reference : (empty)
+    57. Reference · (unlabelled, empty) : HK260810-TEIND
+    58. Reference · Executed On : 22/08/2026
+    59. Reference · (unlabelled, empty) : (empty)
+    60. Reference · Incoterm : (empty)
+    count per section: Shipment Details 10, House Air Waybill 3, Shipper 4, Consignee 4, Agent 1, Freight 1, Routing 2, Flight Route 1, Segment 1 10, Segment 2 10, Cargo 9, Reference 5  =  60 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the house within its document group]
+    PASS            Bill No.                       doc: CHJE262335                               | nexus: CHJE262335
+    PASS            Shipper                        doc: Check B/L 16015776084 CHJE262335 CHUN JE | nexus: HANKUK ELECTRICAL INSULATING (INSUKO) CO.,   [shipper found in the document block]
+    PASS            Shipper ID                     doc: HANELEMAA                                | nexus: HANELEMAA   [same as the Party ID in the data panel]
+    PASS            Consignee                      doc: Check B/L 16015776084 CHJE262335 CHUN JE | nexus: HITACHI ENERGY INDIA LIMITED   [consignee found in the document block]
+    PASS            Consignee ID                   doc: HITENEBDQ                                | nexus: HITENEBDQ   [same as the Party ID in the data panel]
+    PASS            Branch                         doc: BOM                                      | nexus: BOM   [BOM = Mumbai, matches the document's destination]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [House Air Waybill]
+    PASS            House Number (top right)       doc: CHJE262335                               | nexus: CHJE262335
+    PASS            House Number (bottom right)    doc: CHJE262335                               | nexus: CHJE262335
+    PASS            Master AWB Reference           doc: 160-15776084                             | nexus: 160-15776084
+  [Shipper]
+    PASS            Name                           doc: Check B/L 16015776084 CHJE262335         | nexus: HANKUK ELECTRICAL INSULATING (INSUKO) CO.,   [name found in the document block]
+    PASS            Address                        doc: CHUN JEE SHIPPING CO.,LTD HANKUK ELECTRI | nexus: 108 DONYU2 RO PAJU-EUP PAJU-SI, GYEONGGI-D   [5/5 words of the Nexus address are on the document]
+    INFO            Postal Code                    doc: (see document block)                     | nexus:    [empty in the party master]
+    INFO            Party ID                       doc:                                          | nexus: HANELEMAA   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: Check B/L 16015776084 CHJE262335         | nexus: HITACHI ENERGY INDIA LIMITED   [name found in the document block]
+    KNOWN           Address                        doc: CHUN JEE SHIPPING CO.,LTD HANKUK ELECTRI | nexus: PGHV-Ckt Breakers, Vadodara National Highw   [KNOWN ISSUE (logged in the bug sheet); different address: only 1/7 words of the Nexus address are on the document; not on the document: BREAKERS, CKT, HIGHWAY, MANEJA, NATIONAL, PGHV]
+    PASS            Postal Code                    doc: 391775                                   | nexus: 391775
+    INFO            Party ID                       doc:                                          | nexus: HITENEBDQ   [assigned by the Nexus party master, not printed on the document]
+  [Agent]
+    INFO            Agent / Origin Party (free text) doc: Check B/L 16015776084 CHUNJEE            | nexus: CHUN JEE SHIPPING CO.,LTD 14F, BORYUNG BLD   [not printed on the House page; no document value to compare]
+  [Freight]
+    PASS            Freight Payment                doc: FREIGHT COLLECT (code CC)                | nexus: FREIGHT COLLECT
+  [Routing]
+    PASS            Airport Of Departure           doc: INCHEON AIRPORT, KOREA                   | nexus: INCHEON AIRPORT, KOREA
+    PASS            Final Destination Airport      doc: BOMBAY, INDIA                            | nexus: BOMBAY, INDIA
+  [Flight Route]
+    PASS            Type                           doc: connecting                               | nexus: connecting
+  [Segment 1]
+    NOT_VERIFIABLE  From                           doc:                                          | nexus: ICN   [could not be read from the document]
+    PASS            To                             doc: HKG                                      | nexus: HKG
+    INFO            Polname                        doc: INCHEON AIRPORT, KOREA                   | nexus: Seoul   [airport name differs from the document's departure airport]
+    INFO            Polctry                        doc:                                          | nexus: KR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Hong Kong   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: HK   [country of the airport (Nexus airport master)]
+    INFO            Carrier Name                   doc:                                          | nexus: Cathay Pacific   [not printed on the document (airline master data)]
+    INFO            Carrier Code                   doc: CX                                       | nexus: CPA_WW   [Nexus airline-master code, not the IATA code printed on the document]
+    PASS            Flight Number                  doc: CX035                                    | nexus: CX035
+    PASS            Flight Date                    doc: day 22                                   | nexus: 22/08/2026   [only the day is printed on the AWB]
+  [Segment 2]
+    PASS            From                           doc: HKG                                      | nexus: HKG
+    PASS            To                             doc: BOM                                      | nexus: BOM
+    PASS            Polname                        doc: Hong Kong                                | nexus: Hong Kong   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: HK   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc: BOMBAY, INDIA                            | nexus: Mumbai   [airport name differs from the document's destination]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    INFO            Carrier Name                   doc:                                          | nexus: Cathay Pacific   [not printed on the document (airline master data)]
+    INFO            Carrier Code                   doc: CX                                       | nexus: CPA_WW   [Nexus airline-master code, not the IATA code printed on the document]
+    NOT_VERIFIABLE  Flight Number                  doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Flight Date                    doc:                                          | nexus:    [flight date not found in the document]
+  [Cargo]
+    KNOWN           Pieces                         doc: 1                                        | nexus: 1PALLET   [KNOWN ISSUE (logged in the bug sheet)]
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    NOT_VERIFIABLE  Gross Weight                   doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Gross Weight Unit              doc:                                          | nexus: KGS   [could not be read from the document]
+    NOT_VERIFIABLE  Chargeable Weight              doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Chargeable Weight Unit         doc:                                          | nexus: KGS   [could not be read from the document]
+    PASS            Nature And Quantity Of Goods   doc: (1) PLT ONLY 150 RL OF GLASS NET TYING T | nexus: 150 RL OF GLASS NET TYING THREAD INV NO:HK   [every word is on the document]
+    NOT_VERIFIABLE  Volume                         doc:                                          | nexus: 0.1   [could not be read from the document]
+    NOT_VERIFIABLE  Volume Unit                    doc:                                          | nexus: CBM   [could not be read from the document]
+  [Reference]
+    NOT_VERIFIABLE  Shippers Reference             doc:                                          | nexus:    [could not be read from the document]
+    INFO            (unlabelled, empty)            doc:                                          | nexus: HK260810-TEIND   [shown by Nexus, no document value to compare]
+    PASS            Executed On                    doc: 2026-08-22                               | nexus: 22/08/2026
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    NOT_VERIFIABLE  Incoterm                       doc:                                          | nexus:    [could not be read from the document]
+
+  60 fields shown in Nexus | compared with the document: 29 (PASS 27, FAIL 0, REVIEW 0, KNOWN 2) | INFO (no document value): 20 | NOT_VERIFIABLE: 11
+REG-002: checking the Manifest, Invoice and Packing List data against the documents ...
+(baseline) 1 already-raised issue(s) still there in Shipper Document; they do not fail the case but are NOT fixed yet:
+  STILL THERE x3  REG-002 · Shipper Document · Shipper · Name  [not a bug]
+
+REG-002  MANIFEST DATA  PASS   IPA/2359/2026-27   source: FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 2-3
+
+  ALL FIELDS SHOWN IN NEXUS (8)
+     1. Manifest · Master Air Waybill : 160-15776084
+     2. Manifest · Air Waybill No : CHJE262335
+     3. Manifest · Pieces : 1
+     4. Manifest · Weight : 83
+     5. Shipper · Name : HANKUK ELECTRICAL INSULATING ( INSUKO ) CO . , LTD
+     6. Shipper · Address : 108 DONYU2 - RO . PAJU - EUP PAJU - SI , GYEONGGI - DO , KOREA TEL : 82-31-945-3532 FAX : 82-31-945-1047
+     7. Consignee · Name : HITACHI ENERGY INDIA LIMITED
+     8. Consignee · Address : PLOT NO.25 & 26 , MAJUSAR GIDC ESTATE SAVLI 391775 GUJARAT INDIA SANDEEP YADAV < SANDEEP.Y@HITACHI ENERGY.COM >
+    count per section: Manifest 4, Shipper 2, Consignee 2  =  8 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Manifest]
+    PASS            Master Air Waybill             doc: (found on the document)                  | nexus: 160-15776084   [value found on the document]
+    PASS            Air Waybill No                 doc: (found on the document)                  | nexus: CHJE262335   [value found on the document]
+    PASS            Pieces                         doc: (found on the document)                  | nexus: 1   [value found on the document]
+    PASS            Weight                         doc: (found on the document)                  | nexus: 83   [value found on the document]
+  [Shipper]
+    PASS            Name                           doc: (found on the document)                  | nexus: HANKUK ELECTRICAL INSULATING ( INSUKO ) CO   [6/6 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 108 DONYU2 - RO . PAJU - EUP PAJU - SI , G   [20/20 words found on the document]
+  [Consignee]
+    PASS            Name                           doc: (found on the document)                  | nexus: HITACHI ENERGY INDIA LIMITED   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: PLOT NO.25 & 26 , MAJUSAR GIDC ESTATE SAVL   [18/18 words found on the document]
+
+  8 fields shown in Nexus | compared with the document: 8 (PASS 8, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 0 | NOT_VERIFIABLE: 0
+
+REG-002  INVOICE DATA  PASS   IPA/2359/2026-27   source: FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10
+
+  ALL FIELDS SHOWN IN NEXUS (19)
+     1. Invoice · Invoice Number : HK260810-HEIND
+     2. Invoice · Invoice Date : 10/08/2026
+     3. Invoice · Grand Total : 1140.00
+     4. Invoice · Currency Code : USD
+     5. Invoice · Po Number : 4502231928
+     6. Invoice · Gross Weight : (empty)
+     7. Seller · Name : Hankuk Electrical Insulating (INSUKO) Co., Ltd.
+     8. Seller · Address : 108 Donyu2-Ro, Paju-Eup, Paju-Si, Gyeonggi-Do, KOREA
+     9. Seller · Postal Code : (empty)
+    10. Buyer · Name : Hitachi Energy India Limited
+    11. Buyer · Address : PPTR-Dry Transformer, Vadodara Plot No.25 & 26, Majusar GIDC Estate, Savli 391775 Gujarat India
+    12. Buyer · Postal Code : 391775
+    13. Invoice · Order No : (empty)
+    14. Invoice · Account No : (empty)
+    15. Invoice · Customer No : (empty)
+    16. Invoice · Delivery No : (empty)
+    17. Invoice · Supplier No : (empty)
+    18. Invoice · Reference No : (empty)
+    19. Invoice · Incoterm : FCA
+    count per section: Invoice 13, Seller 3, Buyer 3  =  19 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Invoice]
+    PASS            Invoice Number                 doc: (found on the document)                  | nexus: HK260810-HEIND   [value found on the document]
+    PASS            Invoice Date                   doc: (found on the document)                  | nexus: 10/08/2026   [value found on the document]
+    PASS            Grand Total                    doc: (found on the document)                  | nexus: 1140.00   [value found on the document]
+    PASS            Currency Code                  doc: (found on the document)                  | nexus: USD   [value found on the document]
+    PASS            Po Number                      doc: (found on the document)                  | nexus: 4502231928   [value found on the document]
+    INFO            Gross Weight                   doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Seller]
+    PASS            Name                           doc: (found on the document)                  | nexus: Hankuk Electrical Insulating (INSUKO) Co.,   [6/6 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 108 Donyu2-Ro, Paju-Eup, Paju-Si, Gyeonggi   [10/10 words found on the document]
+    INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Buyer]
+    PASS            Name                           doc: (found on the document)                  | nexus: Hitachi Energy India Limited   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: PPTR-Dry Transformer, Vadodara Plot No.25    [15/15 words found on the document]
+    PASS            Postal Code                    doc: (found on the document)                  | nexus: 391775   [value found on the document]
+  [Invoice]
+    INFO            Order No                       doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Delivery No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Reference No                   doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Incoterm                       doc: (found on the document)                  | nexus: FCA   [value found on the document]
+
+  19 fields shown in Nexus | compared with the document: 11 (PASS 11, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 8 | NOT_VERIFIABLE: 0
+
+REG-002  PACKING LIST DATA  FAIL   IPA/2359/2026-27   source: FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 7-9
+
+  ALL FIELDS SHOWN IN NEXUS (16)
+     1. Packing List · Packing List No : HK260810-HEIND
+     2. Packing List · Date : HK260810, 10. Aug. 2026
+     3. Packing List · Invoice No : HK260810 - HEIND
+     4. Packing List · Gross Weight : 69.3
+     5. Packing List · Supplier No : HK260810 - HEIND
+     6. Packing List · Account No : (empty)
+     7. Packing List · Customer No : (empty)
+     8. Packing List · Order No : 4502231928
+     9. Packing List · Po Number : 4502231928
+    10. Packing List · Incoterm : FCA
+    11. Shipper · Name : Hankuk Electrical Insulating ( INSUKO ) Co., Ltd.
+    12. Shipper · Address : (empty)
+    13. Shipper · Postal Code : (empty)
+    14. Consignee · Name : Hitachi Energy India Limited
+    15. Consignee · Address : HK260810-HEIND, Hitachi Energy India Limited, PPTR-Dry Transformer, Vadodara Plot No.25 & 26, Majusar GIDC Estate Savli 391775 Gujarat India, 391775
+    16. Consignee · Postal Code : 391775
+    count per section: Packing List 10, Shipper 3, Consignee 3  =  16 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Packing List]
+    PASS            Packing List No                doc: (found on the document)                  | nexus: HK260810-HEIND   [value found on the document]
+    FAIL            Date                           doc:                                          | nexus: HK260810, 10. Aug. 2026   [this value is not on the document]
+    PASS            Invoice No                     doc: (found on the document)                  | nexus: HK260810 - HEIND   [value found on the document]
+    PASS            Gross Weight                   doc: (found on the document)                  | nexus: 69.3   [value found on the document]
+    PASS            Supplier No                    doc: (found on the document)                  | nexus: HK260810 - HEIND   [value found on the document]
+    INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Order No                       doc: (found on the document)                  | nexus: 4502231928   [value found on the document]
+    PASS            Po Number                      doc: (found on the document)                  | nexus: 4502231928   [value found on the document]
+    PASS            Incoterm                       doc: (found on the document)                  | nexus: FCA   [value found on the document]
+  [Shipper]
+    PASS            Name                           doc: (found on the document)                  | nexus: Hankuk Electrical Insulating ( INSUKO ) Co   [6/6 words found on the document]
+    INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
+    INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Consignee]
+    PASS            Name                           doc: (found on the document)                  | nexus: Hitachi Energy India Limited   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: HK260810-HEIND, Hitachi Energy India Limit   [22/22 words found on the document]
+    PASS            Postal Code                    doc: (found on the document)                  | nexus: 391775   [value found on the document]
+
+  16 fields shown in Nexus | compared with the document: 12 (PASS 11, FAIL 1, REVIEW 0, KNOWN 0) | INFO (no document value): 4 | NOT_VERIFIABLE: 0
+
+REG-002  DEBIT NOTE DATA  PASS   IPA/2359/2026-27   source: FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 4
+
+  ALL FIELDS SHOWN IN NEXUS (21)
+     1. Debit Note · House Bill No : CHJE262335
+     2. Debit Note · Master Bill No : 160-15776084
+     3. Debit Note · Invoice Number : (empty)
+     4. Debit Note · Invoice Date : (empty)
+     5. Debit Note · Grand Total : (empty)
+     6. Debit Note · Currency Code : (empty)
+     7. Debit Note · Po Number : (empty)
+     8. Debit Note · Gross Weight : (empty)
+     9. Shipper · Name : (empty)
+    10. Shipper · Address : (empty)
+    11. Shipper · Postal Code : (empty)
+    12. Consignee · Name : (empty)
+    13. Consignee · Address : (empty)
+    14. Consignee · Postal Code : (empty)
+    15. Debit Note · Order No : (empty)
+    16. Debit Note · Account No : (empty)
+    17. Debit Note · Customer No : (empty)
+    18. Debit Note · Delivery No : (empty)
+    19. Debit Note · Supplier No : (empty)
+    20. Debit Note · Reference No : (empty)
+    21. Debit Note · Incoterm : (empty)
+    count per section: Debit Note 15, Shipper 3, Consignee 3  =  21 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Debit Note]
+    PASS            House Bill No                  doc: CHJE262335                               | nexus: CHJE262335   [same as the value printed on the document]
+    PASS            Master Bill No                 doc: (found on the document)                  | nexus: 160-15776084   [value found on the document]
+    INFO            Invoice Number                 doc:                                          | nexus:    [empty in Nexus]
+    INFO            Invoice Date                   doc:                                          | nexus:    [empty in Nexus]
+    INFO            Grand Total                    doc:                                          | nexus:    [empty in Nexus]
+    INFO            Currency Code                  doc:                                          | nexus:    [empty in Nexus]
+    INFO            Po Number                      doc:                                          | nexus:    [empty in Nexus]
+    INFO            Gross Weight                   doc:                                          | nexus:    [empty in Nexus]
+  [Shipper]
+    INFO            Name                           doc:                                          | nexus:    [empty in Nexus]
+    INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
+    INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Consignee]
+    INFO            Name                           doc:                                          | nexus:    [empty in Nexus]
+    INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
+    INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Debit Note]
+    INFO            Order No                       doc:                                          | nexus:    [empty in Nexus]
+    INFO            Account No                     doc:                                          | nexus:    [empty in Nexus]
+    INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus]
+    INFO            Delivery No                    doc:                                          | nexus:    [empty in Nexus]
+    INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus]
+    INFO            Reference No                   doc:                                          | nexus:    [empty in Nexus]
+    INFO            Incoterm                       doc:                                          | nexus:    [empty in Nexus]
+
+  21 fields shown in Nexus | compared with the document: 2 (PASS 2, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 19 | NOT_VERIFIABLE: 0
+
+REG-002  SHIPPER DOCUMENT DATA  PASS   IPA/2359/2026-27   source: FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 8
+
+  ALL FIELDS SHOWN IN NEXUS (14)
+     1. Shipper Document · Reference No : 3CTNS
+     2. Shipper Document · Invoice No : (empty)
+     3. Shipper Document · Delivery Note No : (empty)
+     4. Shipper Document · Order No : 4502231928
+     5. Shipper Document · Customer No : (empty)
+     6. Shipper Document · Account No : (empty)
+     7. Shipper Document · Gross Weight : (empty)
+     8. Shipper Document · Supplier No : (empty)
+     9. Shipper · Name : INSUKE Insuko Co., Ltd.
+    10. Shipper · Address : 108 Donyu - 2ro, Paju - eup, Paju - si, Gyeonggi - do, Korea
+    11. Shipper · Postal Code : (empty)
+    12. Consignee · Name : Hitachi Energy India Limited
+    13. Consignee · Address : (empty)
+    14. Consignee · Postal Code : (empty)
+    count per section: Shipper Document 8, Shipper 3, Consignee 3  =  14 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipper Document]
+    PASS            Reference No                   doc: (found on the document)                  | nexus: 3CTNS   [value found on the document]
+    INFO            Invoice No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Delivery Note No               doc:                                          | nexus:    [empty in Nexus]
+    PASS            Order No                       doc: (found on the document)                  | nexus: 4502231928   [value found on the document]
+    INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus]
+    INFO            Account No                     doc:                                          | nexus:    [empty in Nexus]
+    INFO            Gross Weight                   doc:                                          | nexus:    [empty in Nexus]
+    INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus]
+  [Shipper]
+    KNOWN           Name                           doc: (not found on the document)              | nexus: INSUKE Insuko Co., Ltd.   [KNOWN ISSUE (accepted, not a bug); 3/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 108 Donyu - 2ro, Paju - eup, Paju - si, Gy   [10/10 words found on the document]
+    INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Consignee]
+    PASS            Name                           doc: (found on the document)                  | nexus: Hitachi Energy India Limited   [4/4 words found on the document]
+    INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
+    INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+
+  14 fields shown in Nexus | compared with the document: 5 (PASS 4, FAIL 0, REVIEW 0, KNOWN 1) | INFO (no document value): 9 | NOT_VERIFIABLE: 0
+2026-11-02 11:58:52,980 INFO nexus_agent.local_sender: SCREENING FJ-0000883 - Consolidated - Sh.pdf: 6 page(s): MBL pages 1-2; HBL pages 3; INVOICE pages 4-6
+2026-11-02 11:58:52,980 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0000883
+2026-11-02 12:01:53,159 WARNING nexus_agent.local_sender: send attempt 1/3 failed: The write operation timed out
+2026-11-02 12:02:02,626 INFO nexus_agent.local_sender: Sent 'REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0000883 | CONSOLIDATED (MASTER+HOUSE+INVOICE)' to prealert.nexus@unifo.in (message id 1a19af52dddd006f)
+
+REG-005: sent, now validating in Nexus ...
+2026-11-02 12:02:02,627 INFO nexus_agent.validate: REG-005: waiting 179s for Nexus to process the email before checking
+2026-11-02 12:02:32,628 INFO nexus_agent.validate: REG-005: waiting 149s for Nexus to process the email before checking
+2026-11-02 12:03:02,628 INFO nexus_agent.validate: REG-005: waiting 119s for Nexus to process the email before checking
+2026-11-02 12:03:32,628 INFO nexus_agent.validate: REG-005: waiting 89s for Nexus to process the email before checking
+2026-11-02 12:04:02,629 INFO nexus_agent.validate: REG-005: waiting 59s for Nexus to process the email before checking
+2026-11-02 12:04:32,629 INFO nexus_agent.validate: REG-005: waiting 29s for Nexus to process the email before checking
+REG-005: PASS CREATED_IN_NEXUS IPA/2360/2026-27 (seen 184s after sending)
+REG-005: checking the Master data against the document ...
+(baseline) 7 already-raised issue(s) still there in Master; they do not fail the case but are NOT fixed yet:
+  STILL THERE x4  REG-005 · Master · Shipment Details · Shipper  [not a bug]
+  STILL THERE x4  REG-005 · Master · Shipper · Name  [not a bug]
+  STILL THERE x4  REG-005 · Master · Shipper · Address  [not a bug]
+  STILL THERE x4  REG-005 · Master · Shipper · Postal Code  [not a bug]
+  STILL THERE x4  REG-005 · Master · Routing · Final Destination Airport  [not a bug]
+  STILL THERE x4  REG-005 · Master · Cargo · Volume  [not a bug]
+  STILL THERE x4  REG-005 · Master · Cargo · Volume Unit  [not a bug]
+
+REG-005  MASTER DATA  PASS   IPA/2360/2026-27   source: FJ-0000883 - Consolidated - Sh.pdf page 1
+
+  ALL FIELDS SHOWN IN NEXUS (55)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : 057-05262084
+     4. Shipment Details · Shipper : SNY INTERNATIONAL CARGO SERVICES LT
+     5. Shipment Details · Shipper ID : SNYINTTLV
+     6. Shipment Details · Consignee : LOGISTEED India Pvt. Ltd.
+     7. Shipment Details · Consignee ID : LIN_INBLR
+     8. Shipment Details · Branch : BLR
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. Air Waybill · Air Waybill Number : 057-05262084
+    12. Shipper · Name : SNY INTERNATIONAL CARGO SERVICES LT
+    13. Shipper · Address : 8 HACHORTIM STREET, TEXTILE BUILDING, ST.HOLON, TEXTILE BUILDING, ST.HOLON,, TEL AVIV, IL
+    14. Shipper · Postal Code : 58812
+    15. Shipper · Party ID : SNYINTTLV
+    16. Consignee · Name : LOGISTEED India Pvt. Ltd.
+    17. Consignee · Address : F-102, 1st Floor, TouchdownBuilding, Namjoshi Road,Industrial area HAL, Bengaluru,Karnataka-560037, India***
+    18. Consignee · Postal Code : 560037
+    19. Consignee · Party ID : LIN_INBLR
+    20. Flight Route · Type : connecting
+    21. Segment 1 · From : TLV
+    22. Segment 1 · To : CDG
+    23. Segment 1 · Polname : Tel-Aviv
+    24. Segment 1 · Polctry : IL
+    25. Segment 1 · Podname : Paris
+    26. Segment 1 · Podctry : FR
+    27. Segment 1 · Carrier Name : AIR FRANCE
+    28. Segment 1 · Carrier Code : AFR_WW
+    29. Segment 1 · Flight Number : 963
+    30. Segment 1 · Flight Date : 28/08/2026
+    31. Segment 2 · From : CDG
+    32. Segment 2 · To : BLR
+    33. Segment 2 · Polname : Paris
+    34. Segment 2 · Polctry : FR
+    35. Segment 2 · Podname : Bangalore
+    36. Segment 2 · Podctry : IN
+    37. Segment 2 · Carrier Name : AIR FRANCE
+    38. Segment 2 · Carrier Code : AFR_WW
+    39. Segment 2 · Flight Number : (empty)
+    40. Segment 2 · Flight Date : (empty)
+    41. Routing · Airport Of Departure : Tel-Aviv
+    42. Routing · Final Destination Airport : Bangalore
+    43. Freight · Freight Payment : FREIGHT PREPAID
+    44. Cargo · Pieces : 3
+    45. Cargo · Pieces Unit : PCS
+    46. Cargo · Gross Weight : 21
+    47. Cargo · Gross Weight Unit : KGS
+    48. Cargo · Chargeable Weight : 21.5
+    49. Cargo · Chargeable Weight Unit : KGS
+    50. Cargo · Nature And Quantity Of Goods : Consol FreightAs Per AttachedManifest REF :6105647H.S. CODE: 8504.40DIM: 2(38X32X21)CMS 1(51X37X41)CMSAS VOL 21.407 KGS .1284 CBM
+    51. Cargo · Volume : 0.1284
+    52. Cargo · Volume Unit : CBM
+    53. Cargo · Executed On : 28/08/2026
+    54. Cargo · (unlabelled field 11) : (empty)
+    55. Cargo · (unlabelled field 12) : (empty)
+    count per section: Shipment Details 10, Air Waybill 1, Shipper 4, Consignee 4, Flight Route 1, Segment 1 10, Segment 2 10, Routing 2, Freight 1, Cargo 12  =  55 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the master within its document group]
+    NOT_VERIFIABLE  Bill No.                       doc:                                          | nexus: 057-05262084   [could not be read from the document]
+    KNOWN           Shipper                        doc: SNY INT'L CARGO SERVICES LTD. 8 HACHORTI | nexus: SNY INTERNATIONAL CARGO SERVICES LT   [KNOWN ISSUE (accepted, not a bug); similarity 0.34 (needs 0.9)]
+    PASS            Shipper ID                     doc: SNYINTTLV                                | nexus: SNYINTTLV   [same as the Party ID in the data panel]
+    PASS            Consignee                      doc: LOGISTEED India Pvt. Ltd. F-102, 1st Flo | nexus: LOGISTEED India Pvt. Ltd.   [consignee found in the document block]
+    PASS            Consignee ID                   doc: LIN_INBLR                                | nexus: LIN_INBLR   [same as the Party ID in the data panel]
+    NOT_VERIFIABLE  Branch                         doc:                                          | nexus: BLR
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [Air Waybill]
+    NOT_VERIFIABLE  Air Waybill Number             doc:                                          | nexus: 057-05262084   [could not be read from the document]
+  [Shipper]
+    KNOWN           Name                           doc: SNY INT'L CARGO SERVICES LTD. 8 HACHORTI | nexus: SNY INTERNATIONAL CARGO SERVICES LT   [KNOWN ISSUE (accepted, not a bug); similarity 0.34 (needs 0.9)]
+    KNOWN           Address                        doc: (address on the document)                | nexus: 8 HACHORTIM STREET, TEXTILE BUILDING, ST.H   [KNOWN ISSUE (accepted, not a bug); different address: only 3/7 words of the Nexus address are on the document; not on the document: AVIV, BUILDING, STREET, TEXTILE]
+    KNOWN           Postal Code                    doc: (in document block)                      | nexus: 58812   [KNOWN ISSUE (accepted, not a bug)]
+    INFO            Party ID                       doc:                                          | nexus: SNYINTTLV   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: LOGISTEED India Pvt. Ltd. F-102, 1st Flo | nexus: LOGISTEED India Pvt. Ltd.   [name found in the document block]
+    PASS            Address                        doc: LOGISTEED India Pvt. Ltd. F-102, 1st Flo | nexus: F-102, 1st Floor, TouchdownBuilding, Namjo   [Nexus joins the document's address lines without a space: TOUCHDOWNBUILDING,, ROAD,INDUSTRIAL, BENGALURU,KARNATAKA-560037,]
+    PASS            Postal Code                    doc: 560037                                   | nexus: 560037
+    INFO            Party ID                       doc:                                          | nexus: LIN_INBLR   [assigned by the Nexus party master, not printed on the document]
+  [Flight Route]
+    NOT_VERIFIABLE  Type                           doc:                                          | nexus: connecting   [routing line not found in the document]
+  [Segment 1]
+    NOT_VERIFIABLE  From                           doc:                                          | nexus: TLV   [could not be read from the document]
+    NOT_VERIFIABLE  To                             doc:                                          | nexus: CDG   [could not be read from the document]
+    PASS            Polname                        doc: Tel-Aviv                                 | nexus: Tel-Aviv   [same as the airport of departure]
+    INFO            Polctry                        doc:                                          | nexus: IL   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Paris   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: AIR FRANCE   [carrier name appears on the document]
+    NOT_VERIFIABLE  Carrier Code                   doc:                                          | nexus: AFR_WW   [could not be read from the document]
+    NOT_VERIFIABLE  Flight Number                  doc:                                          | nexus: 963   [could not be read from the document]
+    NOT_VERIFIABLE  Flight Date                    doc:                                          | nexus: 28/08/2026   [flight date not found in the document]
+  [Segment 2]
+    NOT_VERIFIABLE  From                           doc:                                          | nexus: CDG   [could not be read from the document]
+    NOT_VERIFIABLE  To                             doc:                                          | nexus: BLR   [could not be read from the document]
+    PASS            Polname                        doc: Paris                                    | nexus: Paris   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Bangalore   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: AIR FRANCE   [carrier name appears on the document]
+    NOT_VERIFIABLE  Carrier Code                   doc:                                          | nexus: AFR_WW   [could not be read from the document]
+    NOT_VERIFIABLE  Flight Number                  doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Flight Date                    doc:                                          | nexus:    [flight date not found in the document]
+  [Routing]
+    PASS            Airport Of Departure           doc: Tel-Aviv                                 | nexus: Tel-Aviv
+    KNOWN           Final Destination Airport      doc: Bangalore 963/28.08 194/29.08            | nexus: Bangalore   [KNOWN ISSUE (accepted, not a bug)]
+  [Freight]
+    NOT_VERIFIABLE  Freight Payment                doc:                                          | nexus: FREIGHT PREPAID   [could not be read from the document]
+  [Cargo]
+    PASS            Pieces                         doc: 3                                        | nexus: 3
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: 21.00                                    | nexus: 21
+    PASS            Gross Weight Unit              doc: KGS                                      | nexus: KGS
+    PASS            Chargeable Weight              doc: 21.50                                    | nexus: 21.5
+    PASS            Chargeable Weight Unit         doc: KGS                                      | nexus: KGS
+    PASS            Nature And Quantity Of Goods   doc: Min 350.00 Consol Freight As Per Attache | nexus: Consol FreightAs Per AttachedManifest REF 
+    KNOWN           Volume                         doc: 21.407                                   | nexus: 0.1284   [KNOWN ISSUE (accepted, not a bug)]
+    KNOWN           Volume Unit                    doc: KGS                                      | nexus: CBM   [KNOWN ISSUE (accepted, not a bug)]
+    NOT_VERIFIABLE  Executed On                    doc:                                          | nexus: 28/08/2026
+    INFO            (unlabelled field 11)          doc:                                          | nexus:    [empty field, no label]
+    INFO            (unlabelled field 12)          doc:                                          | nexus:    [empty field, no label]
+
+  55 fields shown in Nexus | compared with the document: 26 (PASS 19, FAIL 0, REVIEW 0, KNOWN 7) | INFO (no document value): 13 | NOT_VERIFIABLE: 16
+REG-005: checking the House data against the document ...
+(baseline) 7 already-raised issue(s) still there in House; they do not fail the case but are NOT fixed yet:
+  STILL THERE x4  REG-005 · House · Shipment Details · Consignee  [not a bug]
+  STILL THERE x4  REG-005 · House · Shipper · Postal Code  [not a bug]
+  STILL THERE x4  REG-005 · House · Consignee · Name  [not a bug]
+  STILL THERE x4  REG-005 · House · Consignee · Address  [not a bug]
+  STILL THERE x4  REG-005 · House · Routing · Final Destination Airport  [not a bug]
+  STILL THERE x4  REG-005 · House · Cargo · Volume  [not a bug]
+  STILL THERE x4  REG-005 · House · Cargo · Volume Unit  [not a bug]
+
+REG-005  HOUSE DATA  PASS   IPA/2360/2026-27   source: FJ-0000883 - Consolidated - Sh.pdf page 3
+
+  ALL FIELDS SHOWN IN NEXUS (60)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : SNY06007868
+     4. Shipment Details · Shipper : ELMO MOTION CONTROL LTD
+     5. Shipment Details · Shipper ID : ELMMOTTLV
+     6. Shipment Details · Consignee : SIKA INTERPLANT SYSTEMS LIMITED
+     7. Shipment Details · Consignee ID : SIKINTBLR
+     8. Shipment Details · Branch : BLR
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. House Air Waybill · House Number (top right) : SNY06007868
+    12. House Air Waybill · House Number (bottom right) : SNY06007868
+    13. House Air Waybill · Master AWB Reference : 057-05262084
+    14. Shipper · Name : ELMO MOTION CONTROL LTD
+    15. Shipper · Address : 60 AMAL ST.,, IL
+    16. Shipper · Postal Code : 11714
+    17. Shipper · Party ID : ELMMOTTLV
+    18. Consignee · Name : SIKA INTERPLANT SYSTEMS LIMITED
+    19. Consignee · Address : GANGADHAR CHETTY ROAD DR. SHARMA BUILDING, DR. SHARMA BUILDING, Bangalore, 29, IN
+    20. Consignee · Postal Code : 560042
+    21. Consignee · Party ID : SIKINTBLR
+    22. Agent · Agent / Origin Party (free text) : SNY INT'L CARGO SERVICES LTD. I.A HOLON 5881147 ISRAEL
+    23. Freight · Freight Payment : FREIGHT COLLECT
+    24. Routing · Airport Of Departure : Tel-Aviv
+    25. Routing · Final Destination Airport : Bangalore
+    26. Flight Route · Type : connecting
+    27. Segment 1 · From : TLV
+    28. Segment 1 · To : CDG
+    29. Segment 1 · Polname : Tel-Aviv
+    30. Segment 1 · Polctry : IL
+    31. Segment 1 · Podname : Paris
+    32. Segment 1 · Podctry : FR
+    33. Segment 1 · Carrier Name : AIR FRANCE
+    34. Segment 1 · Carrier Code : AFR_WW
+    35. Segment 1 · Flight Number : 963
+    36. Segment 1 · Flight Date : 28/08/2026
+    37. Segment 2 · From : CDG
+    38. Segment 2 · To : BLR
+    39. Segment 2 · Polname : Paris
+    40. Segment 2 · Polctry : FR
+    41. Segment 2 · Podname : Bangalore
+    42. Segment 2 · Podctry : IN
+    43. Segment 2 · Carrier Name : AIR FRANCE
+    44. Segment 2 · Carrier Code : AFR_WW
+    45. Segment 2 · Flight Number : (empty)
+    46. Segment 2 · Flight Date : (empty)
+    47. Cargo · Pieces : 3
+    48. Cargo · Pieces Unit : PCS
+    49. Cargo · Gross Weight : 21
+    50. Cargo · Gross Weight Unit : KGS
+    51. Cargo · Chargeable Weight : 21.5
+    52. Cargo · Chargeable Weight Unit : KGS
+    53. Cargo · Nature And Quantity Of Goods : SERVO DRIVES H.S. CODE: 8504.40 DIM: 1(51X37X41)CMS 2(38X32X21)CMS AS VOL 21.407 KGS .1284 CBM Inv.No:E1268002192
+    54. Cargo · Volume : 0.1284
+    55. Cargo · Volume Unit : CBM
+    56. Reference · Shippers Reference : (empty)
+    57. Reference · (unlabelled, empty) : (empty)
+    58. Reference · Executed On : 28/08/2026
+    59. Reference · (unlabelled, empty) : (empty)
+    60. Reference · Incoterm : (empty)
+    count per section: Shipment Details 10, House Air Waybill 3, Shipper 4, Consignee 4, Agent 1, Freight 1, Routing 2, Flight Route 1, Segment 1 10, Segment 2 10, Cargo 9, Reference 5  =  60 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the house within its document group]
+    NOT_VERIFIABLE  Bill No.                       doc:                                          | nexus: SNY06007868   [could not be read from the document]
+    PASS            Shipper                        doc: ELMO MOTION CONTROL LTD. 60 AMAL ST., P. | nexus: ELMO MOTION CONTROL LTD   [shipper found in the document block]
+    PASS            Shipper ID                     doc: ELMMOTTLV                                | nexus: ELMMOTTLV   [same as the Party ID in the data panel]
+    KNOWN           Consignee                      doc: SIKA INTERPLANTS SYSTEMS LIMITED 3 GANGA | nexus: SIKA INTERPLANT SYSTEMS LIMITED   [KNOWN ISSUE (accepted, not a bug); similarity 0.43 (needs 0.9)]
+    PASS            Consignee ID                   doc: SIKINTBLR                                | nexus: SIKINTBLR   [same as the Party ID in the data panel]
+    NOT_VERIFIABLE  Branch                         doc:                                          | nexus: BLR   [could not be read from the document]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [House Air Waybill]
+    NOT_VERIFIABLE  House Number (top right)       doc:                                          | nexus: SNY06007868   [could not be read from the document]
+    NOT_VERIFIABLE  House Number (bottom right)    doc:                                          | nexus: SNY06007868   [could not be read from the document]
+    NOT_VERIFIABLE  Master AWB Reference           doc:                                          | nexus: 057-05262084   [could not be read from the document]
+  [Shipper]
+    PASS            Name                           doc: ELMO MOTION CONTROL LTD. 60 AMAL ST., P. | nexus: ELMO MOTION CONTROL LTD   [name found in the document block]
+    PASS            Address                        doc: 4951601 PETACH TIKVA 4951360, ISRAEL     | nexus: 60 AMAL ST.,, IL   [2/2 words of the Nexus address are on the document]
+    KNOWN           Postal Code                    doc: 3078                                     | nexus: 11714   [KNOWN ISSUE (accepted, not a bug); the party master's postal code is not the one printed on the document]
+    INFO            Party ID                       doc:                                          | nexus: ELMMOTTLV   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    KNOWN           Name                           doc: SIKA INTERPLANTS SYSTEMS LIMITED 3 GANGA | nexus: SIKA INTERPLANT SYSTEMS LIMITED   [KNOWN ISSUE (accepted, not a bug); starts like the document's name but Nexus adds: INTERPLANT]
+    KNOWN           Address                        doc: 560042 INDIA VAT:29AACCS9654B1Z6         | nexus: GANGADHAR CHETTY ROAD DR. SHARMA BUILDING,   [KNOWN ISSUE (accepted, not a bug); 4/7 words of the Nexus address are on the document; not on the document: 29, BUILDING, SHARMA]
+    PASS            Postal Code                    doc: 560042                                   | nexus: 560042
+    INFO            Party ID                       doc:                                          | nexus: SIKINTBLR   [assigned by the Nexus party master, not printed on the document]
+  [Agent]
+    PASS            Agent / Origin Party (free text) doc: SNY INT'L CARGO SERVICES                 | nexus: SNY INT'L CARGO SERVICES LTD. I.A HOLON 58   [same party as the Master's shipper (origin agent)]
+  [Freight]
+    NOT_VERIFIABLE  Freight Payment                doc:                                          | nexus: FREIGHT COLLECT   [could not be read from the document]
+  [Routing]
+    PASS            Airport Of Departure           doc: Tel-Aviv                                 | nexus: Tel-Aviv
+    KNOWN           Final Destination Airport      doc: Bangalore 963/28.08 194/29.08            | nexus: Bangalore   [KNOWN ISSUE (accepted, not a bug)]
+  [Flight Route]
+    NOT_VERIFIABLE  Type                           doc:                                          | nexus: connecting   [could not be read from the document]
+  [Segment 1]
+    NOT_VERIFIABLE  From                           doc:                                          | nexus: TLV   [could not be read from the document]
+    NOT_VERIFIABLE  To                             doc:                                          | nexus: CDG   [could not be read from the document]
+    PASS            Polname                        doc: Tel-Aviv                                 | nexus: Tel-Aviv   [same as the airport of departure]
+    INFO            Polctry                        doc:                                          | nexus: IL   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Paris   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: AIR FRANCE   [carrier name appears on the document]
+    NOT_VERIFIABLE  Carrier Code                   doc:                                          | nexus: AFR_WW   [could not be read from the document]
+    NOT_VERIFIABLE  Flight Number                  doc:                                          | nexus: 963   [could not be read from the document]
+    NOT_VERIFIABLE  Flight Date                    doc:                                          | nexus: 28/08/2026   [flight date not found in the document]
+  [Segment 2]
+    NOT_VERIFIABLE  From                           doc:                                          | nexus: CDG   [could not be read from the document]
+    NOT_VERIFIABLE  To                             doc:                                          | nexus: BLR   [could not be read from the document]
+    PASS            Polname                        doc: Paris                                    | nexus: Paris   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Bangalore   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: AIR FRANCE   [carrier name appears on the document]
+    NOT_VERIFIABLE  Carrier Code                   doc:                                          | nexus: AFR_WW   [could not be read from the document]
+    NOT_VERIFIABLE  Flight Number                  doc:                                          | nexus:    [could not be read from the document]
+    NOT_VERIFIABLE  Flight Date                    doc:                                          | nexus:    [flight date not found in the document]
+  [Cargo]
+    PASS            Pieces                         doc: 3                                        | nexus: 3
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: 21.00                                    | nexus: 21
+    PASS            Gross Weight Unit              doc: KGS                                      | nexus: KGS
+    PASS            Chargeable Weight              doc: 21.50                                    | nexus: 21.5
+    PASS            Chargeable Weight Unit         doc: KGS                                      | nexus: KGS
+    PASS            Nature And Quantity Of Goods   doc: SERVO DRIVES H.S. CODE: 8504.40 DIM: 1(5 | nexus: SERVO DRIVES H.S. CODE: 8504.40 DIM: 1(51X
+    KNOWN           Volume                         doc: 21.407                                   | nexus: 0.1284   [KNOWN ISSUE (accepted, not a bug)]
+    KNOWN           Volume Unit                    doc: KGS                                      | nexus: CBM   [KNOWN ISSUE (accepted, not a bug)]
+  [Reference]
+    NOT_VERIFIABLE  Shippers Reference             doc:                                          | nexus:    [could not be read from the document]
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    NOT_VERIFIABLE  Executed On                    doc:                                          | nexus: 28/08/2026
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    NOT_VERIFIABLE  Incoterm                       doc:                                          | nexus:    [could not be read from the document]
+
+  60 fields shown in Nexus | compared with the document: 27 (PASS 20, FAIL 0, REVIEW 0, KNOWN 7) | INFO (no document value): 13 | NOT_VERIFIABLE: 20
+REG-005: checking the Manifest, Invoice and Packing List data against the documents ...
+(baseline) 2 already-raised issue(s) still there in Invoice; they do not fail the case but are NOT fixed yet:
+  STILL THERE x4  REG-005 · Invoice · Invoice · Po Number  [not a bug]
+  STILL THERE x3  REG-005 · Invoice · Invoice · Order No  [not a bug]
+
+REG-005  MANIFEST DATA  PASS   IPA/2360/2026-27   source: FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)   scanned page: read with OCR, differences are REVIEW, not FAIL
+
+  ALL FIELDS SHOWN IN NEXUS (8)
+     1. Manifest · Master Air Waybill : 057-05262084
+     2. Manifest · Air Waybill No : 6007868
+     3. Manifest · Pieces : 3
+     4. Manifest · Weight : 21
+     5. Shipper · Name : ELMO MOTION CONTROL LTD.
+     6. Shipper · Address : 60 AMAL ST P.O.B : 3078 , 4951601 PETACH TIKVA 4951360 , ISRAEL TEL : 972-3-9292300
+     7. Consignee · Name : SIKA INTERPLANTS SYSTEMS LIMITED
+     8. Consignee · Address : 3 GANGADHAR CHETTY ROAD BANGALORE , 560042 INDIA VAT : 29AACCS9654B1Z6 TEL : +91 ( 80 ) 25599144
+    count per section: Manifest 4, Shipper 2, Consignee 2  =  8 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Manifest]
+    PASS            Master Air Waybill             doc: (found on the document)                  | nexus: 057-05262084   [value found on the document]
+    PASS            Air Waybill No                 doc: (found on the document)                  | nexus: 6007868   [value found on the document]
+    PASS            Pieces                         doc: (found on the document)                  | nexus: 3   [value found on the document]
+    PASS            Weight                         doc: (found on the document)                  | nexus: 21   [value found on the document]
+  [Shipper]
+    PASS            Name                           doc: (found on the document)                  | nexus: ELMO MOTION CONTROL LTD.   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 60 AMAL ST P.O.B : 3078 , 4951601 PETACH T   [16/16 words found on the document]
+  [Consignee]
+    PASS            Name                           doc: (found on the document)                  | nexus: SIKA INTERPLANTS SYSTEMS LIMITED   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 3 GANGADHAR CHETTY ROAD BANGALORE , 560042   [13/13 words found on the document]
+
+  8 fields shown in Nexus | compared with the document: 8 (PASS 8, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 0 | NOT_VERIFIABLE: 0
+
+REG-005  INVOICE DATA  PASS   IPA/2360/2026-27   source: FJ-0000883 - Consolidated - Sh.pdf page 4-6
+
+  ALL FIELDS SHOWN IN NEXUS (19)
+     1. Invoice · Invoice Number : EI268002192
+     2. Invoice · Invoice Date : 24/08/2026
+     3. Invoice · Grand Total : 42, 522.00
+     4. Invoice · Currency Code : USD
+     5. Invoice · Po Number : EN15481, EN15455
+     6. Invoice · Gross Weight : 21
+     7. Seller · Name : ELMO MOTION CONTROL LTD.
+     8. Seller · Address : 60 AMAL ST., P.O.B: 3078, 4951601 PETACH TIKVA 4951360, Israel
+     9. Seller · Postal Code : 4951360
+    10. Buyer · Name : SIKA INTERPLANT SYSTEMS LIMITED
+    11. Buyer · Address : 3 Gangadhar Chetty Road Bangalore, 560042 India
+    12. Buyer · Postal Code : 560042
+    13. Invoice · Order No : SO26004690, SO26001805
+    14. Invoice · Account No : 660346
+    15. Invoice · Customer No : 30046-0
+    16. Invoice · Delivery No : (empty)
+    17. Invoice · Supplier No : (empty)
+    18. Invoice · Reference No : (empty)
+    19. Invoice · Incoterm : (empty)
+    count per section: Invoice 13, Seller 3, Buyer 3  =  19 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Invoice]
+    PASS            Invoice Number                 doc: (found on the document)                  | nexus: EI268002192   [value found on the document]
+    PASS            Invoice Date                   doc: (found on the document)                  | nexus: 24/08/2026   [value found on the document]
+    PASS            Grand Total                    doc: (found on the document)                  | nexus: 42, 522.00   [value found on the document]
+    PASS            Currency Code                  doc: (found on the document)                  | nexus: USD   [value found on the document]
+    KNOWN           Po Number                      doc:                                          | nexus: EN15481, EN15455   [KNOWN ISSUE (accepted, not a bug); this value is not on the document]
+    PASS            Gross Weight                   doc: (found on the document)                  | nexus: 21   [value found on the document]
+  [Seller]
+    PASS            Name                           doc: (found on the document)                  | nexus: ELMO MOTION CONTROL LTD.   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 60 AMAL ST., P.O.B: 3078, 4951601 PETACH T   [12/12 words found on the document]
+    PASS            Postal Code                    doc: (found on the document)                  | nexus: 4951360   [value found on the document]
+  [Buyer]
+    PASS            Name                           doc: (found on the document)                  | nexus: SIKA INTERPLANT SYSTEMS LIMITED   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 3 Gangadhar Chetty Road Bangalore, 560042    [7/7 words found on the document]
+    PASS            Postal Code                    doc: (found on the document)                  | nexus: 560042   [value found on the document]
+  [Invoice]
+    KNOWN           Order No                       doc:                                          | nexus: SO26004690, SO26001805   [KNOWN ISSUE (accepted, not a bug); this value is not on the document]
+    PASS            Account No                     doc: (found on the document)                  | nexus: 660346   [value found on the document]
+    PASS            Customer No                    doc: (found on the document)                  | nexus: 30046-0   [value found on the document]
+    INFO            Delivery No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Reference No                   doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Incoterm                       doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+
+  19 fields shown in Nexus | compared with the document: 15 (PASS 13, FAIL 0, REVIEW 0, KNOWN 2) | INFO (no document value): 4 | NOT_VERIFIABLE: 0
+2026-11-02 12:07:02,543 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a19af9c1b8fee19)
+2026-11-02 12:07:02,543 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:07:34,871 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | DEBIT NOTE' to prealert.nexus@unifo.in (message id 1a19afa3e6fd6cfb)
+2026-11-02 12:07:34,871 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:08:06,847 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | HOUSE' to prealert.nexus@unifo.in (message id 1a19afabb25c8284)
+2026-11-02 12:08:06,847 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:08:38,767 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | INVOICE' to prealert.nexus@unifo.in (message id 1a19afb38796baf5)
+2026-11-02 12:08:38,767 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:09:10,672 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MASTER' to prealert.nexus@unifo.in (message id 1a19afbb5996df8d)
+2026-11-02 12:09:10,672 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:09:42,705 INFO nexus_agent.local_sender: Sent 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | PACKING LIST' to prealert.nexus@unifo.in (message id 1a19afc31c7d63bb)
+
+REG-006: sent, now validating in Nexus ...
+2026-11-02 12:09:42,707 INFO nexus_agent.validate: REG-006: waiting 179s for Nexus to process the email before checking
+2026-11-02 12:10:12,708 INFO nexus_agent.validate: REG-006: waiting 149s for Nexus to process the email before checking
+2026-11-02 12:10:42,708 INFO nexus_agent.validate: REG-006: waiting 119s for Nexus to process the email before checking
+2026-11-02 12:11:12,708 INFO nexus_agent.validate: REG-006: waiting 89s for Nexus to process the email before checking

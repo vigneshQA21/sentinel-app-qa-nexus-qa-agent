@@ -1,0 +1,10 @@
+2026-10-29 18:16:25,029 INFO nexus_agent.local_sender: [dry-run] would send 'REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | INDIVIDUAL | DOCUMENT' (FJ-0001132 - Airwaybill.pdf) to prealert.nexus@unifo.in
+2026-10-29 18:16:25,029 INFO nexus_agent.local_sender: [dry-run] would send 'REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | INDIVIDUAL | DOCUMENT' (FJ-0001132 - HA-4.pdf) to prealert.nexus@unifo.in
+2026-10-29 18:16:25,029 INFO nexus_agent.local_sender: [dry-run] would send 'REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | INDIVIDUAL | DOCUMENT' (FJ-0001132 - MA-1.pdf) to prealert.nexus@unifo.in
+2026-10-29 18:16:25,029 INFO nexus_agent.local_sender: [dry-run] would send 'REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | INDIVIDUAL | DOCUMENT' (FJ-0001132 - UN-Declaration.pdf) to prealert.nexus@unifo.in
+REG-011  DRY_RUN           REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | INDIVIDUAL | DOCUMENT
+REG-011  DRY_RUN           REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | INDIVIDUAL | DOCUMENT
+REG-011  DRY_RUN           REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | INDIVIDUAL | DOCUMENT
+REG-011  DRY_RUN           REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | INDIVIDUAL | DOCUMENT
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261029_181625.csv

@@ -1,0 +1,17 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Packing List No,(found on the document),PL_B34332_S1_R1,PASS,value found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Date,(found on the document),30/12/25,PASS,value found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Invoice No,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Gross Weight,14.445,14.445,PASS,same as the value printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Supplier No,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Account No,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Customer No,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Order No,(found on the document),9070M25C49 / 18037356,PASS,value found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Po Number,(found on the document),9070M25C49 / 18037356,PASS,value found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Packing List,Packing List · Incoterm,(found on the document),EXW,PASS,value found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Shipper,Shipper · Name,(found on the document),Remo SA Srl,PASS,3/3 words found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Shipper,Shipper · Address,(found on the document),Macchiareddu VI Strada Ovest 09068 Uta ( CA ) ITALY,PASS,8/8 words found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Shipper,Shipper · Postal Code,(found on the document),09068,PASS,value found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Consignee,Consignee · Name,(found on the document),INDIAN OIL CORPORATION LIMITED,PASS,4/4 words found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Consignee,Consignee · Address,(found on the document),"BHAVAN, G-9, ALI YAVAR JUNG EXW MARG BANDRA EASTIN MUMBAI MH 9070M25C49 / 18037356 400051 INDIA",PASS,16/16 words found on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 19,Consignee,Consignee · Postal Code,(found on the document),400051,PASS,value found on the document

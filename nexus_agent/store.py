@@ -48,6 +48,12 @@ CREATE TABLE IF NOT EXISTS sent_docs (
     sent_at TEXT,
     PRIMARY KEY (ref, filename)
 );
+CREATE TABLE IF NOT EXISTS posts (
+    day TEXT,
+    target TEXT,          -- cliq | sprints
+    digest TEXT,
+    posted_at TEXT
+);
 CREATE TABLE IF NOT EXISTS forwarded (
     gmail_id TEXT PRIMARY KEY,
     ref TEXT,
@@ -99,6 +105,14 @@ class Store:
         self.db.commit()
 
     # --- Gmail dedupe ---------------------------------------------------
+    def post_add(self, day: str, target: str, digest: str) -> None:
+        self.db.execute("INSERT INTO posts(day, target, digest, posted_at) VALUES (?,?,?,?)", (day, target, digest, _now()))
+        self.db.commit()
+
+    def posts_for(self, day: str, target: str) -> list[str]:
+        """The times today's update was already posted to `target`."""
+        return [r["posted_at"] for r in self.db.execute("SELECT posted_at FROM posts WHERE day=? AND target=? ORDER BY posted_at", (day, target))]
+
     def was_forwarded(self, gmail_id: str) -> bool:
         return self.db.execute("SELECT 1 FROM forwarded WHERE gmail_id=?", (gmail_id,)).fetchone() is not None
 

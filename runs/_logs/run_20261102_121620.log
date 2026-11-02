@@ -1,0 +1,40 @@
+2026-11-02 12:16:23,485 INFO nexus_agent.local_sender: SCREENING FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf: 7 page(s): MBL pages 1; MANIFEST pages 2; HBL pages 3; INVOICE pages 4-6; PACKING pages 7
+2026-11-02 12:16:23,486 INFO nexus_agent.local_sender: [dry-run] would send 'REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ONAE26049373 | CONSOLIDATED (MASTER+MANIFEST+HOUSE+INVOICE+PACKING LIST)' (FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:24,418 INFO nexus_agent.local_sender: SCREENING FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf: 10 page(s): MBL pages 1; MANIFEST pages 2-3; DEBITNOTE pages 4; HBL pages 5; INVOICE pages 6; PACKING pages 7; PO pages 8; PACKING pages 9; INVOICE pages 10
+2026-11-02 12:16:24,418 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0000602
+2026-11-02 12:16:24,419 INFO nexus_agent.local_sender: [dry-run] would send 'REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0000602 | CONSOLIDATED (MASTER+MANIFEST+DEBIT NOTE+HOUSE+INVOICE+PACKING LIST+PO)' (FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:25,002 INFO nexus_agent.local_sender: SCREENING FJ-0000883 - Consolidated - Sh.pdf: 6 page(s): MBL pages 1-2; HBL pages 3; INVOICE pages 4-6
+2026-11-02 12:16:25,003 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0000883
+2026-11-02 12:16:25,003 INFO nexus_agent.local_sender: [dry-run] would send 'REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0000883 | CONSOLIDATED (MASTER+HOUSE+INVOICE)' (FJ-0000883 - Consolidated - Sh.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:25,748 INFO nexus_agent.local_sender: [dry-run] would send 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MANIFEST' (FJ-0000518 - Airwaybill.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:25,748 INFO nexus_agent.local_sender: [dry-run] would send 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | DEBIT NOTE' (FJ-0000518 - DN-3.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:25,748 INFO nexus_agent.local_sender: [dry-run] would send 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | HOUSE' (FJ-0000518 - HA-4.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:25,748 INFO nexus_agent.local_sender: [dry-run] would send 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | INVOICE' (FJ-0000518 - IN-6.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:25,748 INFO nexus_agent.local_sender: [dry-run] would send 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MASTER' (FJ-0000518 - MA-1.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:25,748 INFO nexus_agent.local_sender: [dry-run] would send 'REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | PACKING LIST' (FJ-0000518 - PL.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:26,037 INFO nexus_agent.local_sender: [dry-run] would send 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER' (1_Air_Waybill_Copy4.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:26,038 INFO nexus_agent.local_sender: [dry-run] would send 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MANIFEST' (2_Air_Freight_Manifest.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:26,038 INFO nexus_agent.local_sender: [dry-run] would send 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | INVOICE' (3_Invoice_0255210.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:26,038 INFO nexus_agent.local_sender: [dry-run] would send 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | HOUSE' (4_House_Air_Waybill_HAWB_ORAE26040499.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:26,038 INFO nexus_agent.local_sender: [dry-run] would send 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | DELIVERY NOTE' (5_Delivery_Note_009041.pdf) to prealert.nexus@unifo.in
+2026-11-02 12:16:26,063 INFO nexus_agent.local_sender: SCREENING FJ-0001132-Consolidated with UN.pdf: 5 page(s): OTHER pages 1-5
+2026-11-02 12:16:26,063 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0001132
+2026-11-02 12:16:26,063 INFO nexus_agent.local_sender:     MISSING required: MBL, HBL
+2026-11-02 12:16:26,063 INFO nexus_agent.local_sender: [dry-run] would send 'REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | CONSOLIDATED (UNCLASSIFIED)' (FJ-0001132-Consolidated with UN.pdf) to prealert.nexus@unifo.in
+REG-001  DRY_RUN           REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ONAE26049373 | CONSOLIDATED (MASTER+MANIFEST+HOUSE+INVOICE+PACKING LIST)
+REG-002  DRY_RUN           REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0000602 | CONSOLIDATED (MASTER+MANIFEST+DEBIT NOTE+HOUSE+INVOICE+PACKING LIST+PO)
+REG-005  DRY_RUN           REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0000883 | CONSOLIDATED (MASTER+HOUSE+INVOICE)
+REG-006  DRY_RUN           REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MANIFEST
+REG-006  DRY_RUN           REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | DEBIT NOTE
+REG-006  DRY_RUN           REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | HOUSE
+REG-006  DRY_RUN           REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | INVOICE
+REG-006  DRY_RUN           REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MASTER
+REG-006  DRY_RUN           REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | PACKING LIST
+REG-007  DRY_RUN           REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER
+REG-007  DRY_RUN           REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MANIFEST
+REG-007  DRY_RUN           REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | INVOICE
+REG-007  DRY_RUN           REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | HOUSE
+REG-007  DRY_RUN           REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | DELIVERY NOTE
+REG-009  DRY_RUN           REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | CONSOLIDATED (UNCLASSIFIED)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261102_121626.csv

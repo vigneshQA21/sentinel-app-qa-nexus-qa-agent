@@ -1,0 +1,56 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Bill No.,160-15585765,160-15585765,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Shipper,"JIANGSU FEILIKS INTERNATIONAL LOGISTICS INC. SHANGHAI BRANCH RM.A615,NO.1333,WENJU ROAD,PUDONG NEW AREA, SHANGHAI,CHINA.(201202) DIRECTTEL: +86 (0) 21 50962008 CALLIN ZHAO FAX: +86 (0) 21 68852951/68852953",JIANGSU FEILIKS INTERNATIONAL LOG I,PASS,shipper found in the document block
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Shipper ID,JIAFEISHA5,JIAFEISHA5,PASS,same as the Party ID in the data panel
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Consignee,"LOGISTEED INDIA PVT. LTD. 25-32, READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE, GUINDY, CHENNAI IN 600032 TE918939874227",LOGISTEED INDIA PVT. LTD.,PASS,consignee found in the document block
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Consignee ID,LIN_INMAA,LIN_INMAA,PASS,same as the Party ID in the data panel
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Branch,,MAA,NOT_VERIFIABLE,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,160-15585765,160-15585765,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipper,Shipper · Name,"JIANGSU FEILIKS INTERNATIONAL LOGISTICS INC. SHANGHAI BRANCH RM.A615,NO.1333,WENJU ROAD,PUDONG NEW AREA, SHANGHAI,CHINA.(201202) DIRECTTEL: +86 (0) 21 50962008 CALLIN ZHAO FAX: +86 (0) 21 68852951/68852953",JIANGSU FEILIKS INTERNATIONAL LOG I,PASS,name found in the document block
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipper,Shipper · Address,(address on the document),"ROOM 515, NO.1, LANE 556, DADUHE ROAD, GUOHAO, GHANGFENG CITY, SHANGHAI, CN",FAIL,"different address: only 2/10 words of the Nexus address are on the document; not on the document: 515, 556, CITY, DADUHE, GHANGFENG, GUOHAO, LANE, ROOM"
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipper,Shipper · Postal Code,"1333, 201202",0000,FAIL,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipper,Shipper · Party ID,,JIAFEISHA5,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Consignee,Consignee · Name,"LOGISTEED INDIA PVT. LTD. 25-32, READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE, GUINDY, CHENNAI IN 600032 TE918939874227",LOGISTEED INDIA PVT. LTD.,PASS,name found in the document block
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Consignee,Consignee · Address,"LOGISTEED INDIA PVT. LTD. 25-32, READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE, GUINDY, CHENNAI IN 600032 TE918939874227","25-32, READYMADE GARMENT COMPLEXSIDCO INDUSTRIAL ESTATE, GUINDY,CHENNAI IN 600032",PASS,"Nexus joins the document's address lines without a space: COMPLEXSIDCO, GUINDY,CHENNAI"
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Consignee,Consignee · Postal Code,600032,600032,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Consignee,Consignee · Party ID,,LIN_INMAA,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Flight Route,Flight Route · Type,,connecting,NOT_VERIFIABLE,routing line not found in the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · From,,PVG,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · To,,HKG,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Polname,PUDON G,Shanghai,INFO,airport name differs from the document's airport of departure
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Polctry,,CN,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Podname,,Hong Kong,INFO,airport name from the Nexus airport master
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Podctry,,HK,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),Cathay Pacific,PASS,carrier name appears on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Carrier Code,,CPA_WW,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Flight Number,CX051,CX051,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Flight Date,day 20,20/08/2026,PASS,only the day is printed on the AWB
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · From,,HKG,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · To,,MAA,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Polname,Hong Kong,Hong Kong,PASS,equals the previous segment's arrival airport (consistency)
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Polctry,,HK,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Podname,,Madras,INFO,airport name from the Nexus airport master
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Carrier Name,(printed on the document),Cathay Pacific,PASS,carrier name appears on the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Carrier Code,,CPA_WW,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Flight Number,,CX2047,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Flight Date,,20/08/2026,NOT_VERIFIABLE,flight date not found in the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Routing,Routing · Airport Of Departure,PUDON G,PUDONG,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Routing,Routing · Final Destination Airport,CHENNAI,CHENNAI,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT PREPAID,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Pieces,3,3,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Gross Weight,2683.00,2683,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Chargeable Weight,2683.00,2683,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,CONSOL NOT RESTRICTED MC 3.194,CONSOLNOT RESTRICTEDMC 3.194,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Volume,,3.194,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Volume Unit,,CBM,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Executed On,,19/08/2026,NOT_VERIFIABLE,
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-006,IPA/2314/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"

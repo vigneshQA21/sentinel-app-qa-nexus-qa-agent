@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-007,ORAE26040499,IPA/2250/2026-27,CREATED_IN_NEXUS,PASS,257,"MASTER: PASS (in Master) | HOUSE: PASS (in House) | MANIFEST: PASS (in Manifest) | DELIVERY NOTE: PASS (in House) | INVOICE: PASS (in House) | IPA/2250/2026-27 seen -> Master (098-31251603): MAWBx1; House (ORAE26040499): HAWBx1, INVOICEx1, DELIVERYNOTEx2; Air Manifest: AIRMANIFESTx1 | also in Others tab: IPA/2254/2026-27, IPA/2251/2026-27, IPA/2252/2026-27, IPA/2253/2026-27",/home/unifo/Downloads/nexus_agent/runs/2026-10-27/REG-007

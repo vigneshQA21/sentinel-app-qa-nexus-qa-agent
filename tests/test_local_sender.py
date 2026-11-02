@@ -64,6 +64,7 @@ def setup(tmp_path):
     (kb / "consolidated" / "scan_001.pdf").write_bytes(pdf)
     store = Store(tmp_path / "state" / "agent.db")
     fwd = FakeFwd()
+    cfg.settings["local_docs"]["email_gap_seconds"] = 0     # no waiting between emails in tests
     return cfg, LocalSender(cfg, store, fwd), fwd, kb
 
 

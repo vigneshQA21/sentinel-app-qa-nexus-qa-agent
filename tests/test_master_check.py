@@ -230,3 +230,69 @@ def test_ocr_adjust_finds_values_in_scan_text():
             {"field": "x", "label": "Name", "shown_in_nexus": "OTHER PARTY LTD", "expected_from_document": "a", "result": "FAIL", "note": ""}]
     out = ocr_adjust(rows, text)
     assert [r["result"] for r in out] == ["PASS", "PASS", "PASS", "REVIEW"]
+
+
+def _scan(shown, text, field=""):
+    from nexus_agent.master_check import _found_in_scan, tokens
+    flat = " ".join(text.upper().split())
+    nums = {float(x) for x in __import__("re").findall(r"\d+\.?\d*", text)}
+    return _found_in_scan(shown, flat, tokens(text), nums, field)
+
+
+def test_scan_words_run_together_are_found():
+    assert _scan("LAB TEST KITS AND REAGENTS", "LABTESTKITSANDREAGENTS HSCode382219")[0]
+
+
+def test_scan_flight_date_printed_as_day_after_flight_number():
+    text = "Mumbai VS0104/08 VS0354/09 NIL"
+    assert _scan("08/08/2026", text)[0] and _scan("09/08/2026", text)[0]
+    assert not _scan("12/08/2026", text)[0]
+
+
+def test_scan_unit_kg_payment_terms_and_carrier_code():
+    assert _scan("KGS", "Gross kg Rate Class")[0]
+    assert _scan("FREIGHT PREPAID", "Currency USD PP PPD NVD NCV")[0]
+    assert _scan("VIR_WW", "VS - VIRGIN ATLANTIC CARGO")[0]
+    assert not _scan("VIR_WW", "AIR FRANCE KLM")[0]
+
+
+def test_scan_lookalike_o_and_zero_stays_review():
+    ok, how = _scan("SUSAO008522", "HAWB ATL SUSA0008522 932-78831771")
+    assert not ok and how.startswith("look-alike")
+
+
+def test_scan_route_type_is_derived_info():
+    from nexus_agent.master_check import ocr_adjust
+    rows = ocr_adjust([{"field": "Flight Route · Type", "shown_in_nexus": "connecting", "result": "NOT_VERIFIABLE",
+                        "expected_from_document": "", "note": ""}], "anything")
+    assert rows[0]["result"] == "INFO"
+
+
+def test_scan_abbreviations_and_dotted_initials():
+    assert _scan("ZELLE BIOTECHNOLOGY PRIVATE LIMITED", "ZELLE BIOTECHNOLOGYPVT LTD A/7. M.I.D.C, MIRA")[0]
+    assert _scan("PLOT NO. A/7, MIDC MIRA INDUSTRIAL AREA", "A/7. M.I.D.C, MIRA INDUSTRIAL AREA WESTERN")[0]
+    assert not _scan("4332 SOUTHPORT SUPPLY ROAD SE USWAS NC", "1523OLDEWATERFORDWAY LELANDNC28451")[0]
+
+
+def test_company_suffix_abbreviations_and_cut_table_cell():
+    from nexus_agent.master_check import _text
+    assert _text("", "MODINE THERMAL SYSTEMS PVT.LTD. K-7, SIPCOT", "MODINE THERMAL SYSTEMS PRIVATE LIMITED")["result"] == "PASS"
+    assert _text("", "MODINE THERMAL SYSTEMS PVT.LTD. K-7, SIPCOT", "MODINE THERMAL SYSTEMS PRIVATE LIMI")["result"] == "PASS"
+    assert _text("", "SOMEONE ELSE LTD", "MODINE THERMAL SYSTEMS PRIVATE LIMITED")["result"] == "FAIL"
+
+
+def test_curly_apostrophe_headings_are_found():
+    from pathlib import Path
+    from nexus_agent.awb_extract import extract_master
+    f = Path(__file__).resolve().parent.parent / "samples" / "REG-006" / "FJ-0000518 - MA-1.pdf"
+    if f.exists():
+        d = extract_master(f)
+        assert d["shipper_lines"] and "JIANGSU" in " ".join(d["shipper_lines"]) and "LOGISTEED" not in " ".join(d["shipper_lines"])
+        assert "LOGISTEED" in " ".join(d["consignee_lines"]) and "Copies 1" not in " ".join(d["consignee_lines"])
+
+
+def test_house_printed_codes_reads_a_code_glued_to_city_and_state():
+    from nexus_agent.house_check import printed_codes
+    assert printed_codes("1523OLDEWATERFORDWAY LELANDNC28451USTEL:910-454-9442") == ["28451"]
+    assert printed_codes("RUE 45400 SEMOY France") == ["45400"]
+    assert printed_codes("no code here") == []

@@ -38,7 +38,7 @@ def _clean(v) -> str:
 def parse_rows(rows: list[list], ts: dict) -> list[Case]:
     """rows = sheet rows incl. the header row. Only in-scope rows are returned."""
     cols = ts["columns"]
-    header = next((i for i, r in enumerate(rows) if _clean(r[0] if r else "") == cols["case_id"]), None)
+    header = next((i for i, r in enumerate(rows) if cols["case_id"] in [_clean(c) for c in (r or [])]), None)
     if header is None:
         raise ValueError(f"header row with '{cols['case_id']}' not found in the test-case tab")
     idx = {name: [_clean(h) for h in rows[header]].index(col) for name, col in cols.items()
@@ -50,21 +50,23 @@ def parse_rows(rows: list[list], ts: dict) -> list[Case]:
         if not re.match(ts["id_pattern"], cid):
             continue
         scenario, docs = get(r, "scenario"), get(r, "docs")
-        sl = scenario.lower()
-        if not any(s.lower() in sl for s in ts["scenarios"]):
+        mode_cell = get(r, "mode")
+        sl = (mode_cell or scenario).lower()
+        if ts["scenarios"] and not any(s.lower() in sl for s in ts["scenarios"]):
             continue
         if any(x.lower() in docs.lower() for x in ts.get("exclude_doc_contains", [])):
             continue
         m = re.search(ts["sample_ref_pattern"], get(r, "quadance_job"), re.IGNORECASE)
+        ref = (ts.get("sample_ref_overrides") or {}).get(cid) or (m.group(1).upper() if m else None)   # e.g. a sample built from another job's PDF
         cases.append(Case(cid, scenario, "consolidated" if "consolidated" in sl else "individual", docs,
-                          m.group(1).upper() if m else None, get(r, "expected_mapping").replace("\n", " "),
+                          ref, get(r, "expected_mapping").replace("\n", " "),
                           get(r, "xml_rule"), get(r, "expected_result"), get(r, "nexus_job")))
     return cases
 
 
-def read_cases(cfg: Config) -> list[Case]:
+def read_cases(cfg: Config, key: str = "testsuite") -> list[Case]:
     import openpyxl
-    ts = cfg.settings["testsuite"]
+    ts = cfg.settings[key]
     files = sorted(glob.glob(str(cfg.path(ts["workbook"]))))
     files = [f for f in files if not Path(f).name.startswith("~$")]
     if not files:
@@ -74,6 +76,23 @@ def read_cases(cfg: Config) -> list[Case]:
     if tab is None:
         raise ValueError(f"tab starting with '{ts['sheet_tab']}' not found in {Path(files[-1]).name}")
     return parse_rows([list(r) for r in tab.iter_rows(values_only=True)], ts)
+
+
+def read_sea_cases(cfg: Config) -> list[Case]:
+    """The Sea single-house daily set (SEA-REG-nnn). Kept apart from the Air set so an Air run never sends a Sea case."""
+    return read_cases(cfg, "testsuite_sea")
+
+
+def read_cases_for(cfg: Config, wanted: set[str] | None) -> list[Case]:
+    """Air cases, plus the Sea cases when a SEA-REG id was asked for."""
+    cases = read_cases(cfg)
+    if wanted and any(w.startswith("SEA-") for w in wanted):
+        cases += read_sea_cases(cfg)
+    return cases
+
+
+def is_sea(case_id: str | None) -> bool:
+    return bool(case_id) and case_id.upper().startswith("SEA-")
 
 
 # --- sample library ------------------------------------------------------------

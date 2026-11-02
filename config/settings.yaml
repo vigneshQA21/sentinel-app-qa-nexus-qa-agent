@@ -46,6 +46,8 @@ xml_capture:
   mode: text
 
 local_docs:
+  email_gap_seconds: 30                          # wait between emails: sent strictly one by one, never in parallel (Nexus groups parallel emails wrongly)
+  case_email_gap_seconds: {REG-011: 60}   # this scenario only: 60 s between its mails (House, Manifest, Master, then the unclassified document)
   # Knowledge base. Consolidated PDFs are NOT split: each one is screened and mailed as-is (one email).
   #   consolidated/*.pdf   -> screening check -> one email with the original file -> moved to sent/<REF>/
   #   individual/<REF>/*   -> documents that already come separately: one email per file
@@ -73,6 +75,20 @@ screening:
   # A consolidated PDF is only sent if every type listed here is found in it (use --force to override).
   # Page types come from pdf_split.keywords. Use [] to only warn.
   required_types: [MBL, HBL]
+  required_types_sea: [MBL, HBL]
+
+pdf_split_sea:
+  # Sea bills of lading: the carrier's waybill is the MASTER; a bill that starts with the forwarder's own reference
+  # (e.g. FGNB2608000033, SLLQDJAI611765) or says HOUSE BILL OF LADING is the HOUSE. Continuation pages stay with their bill.
+  house_ref_pattern: '^[A-Z]{2,10}\d{6,}[A-Z0-9]*$'          # first line of a house bill
+  carrier_form: ['WAYBILL', 'BILL OF LADING', 'SCAC']          # a carrier form (master, or a house when it is a second, different bill)
+  continuation_starts: ['B/L:', 'PAGE:']                       # first line of page 2+ of the same bill
+  invoice: ['COMMERCIAL INVOICE', 'TAX INVOICE', 'INVOICE NUMBER', 'INVOICENUMBER', 'INVOICE NO']   # only looked for at the top of a page
+  packing: ['PACKING LIST']
+  debitnote: ['DEBIT NOTE']
+  manifest: ['CARGO MANIFEST', 'MANIFEST']
+  head_chars: 300
+  ocr_scanned: true                                            # read pages without a text layer with OCR when screening
 
 pdf_split:
   # A page is given the FIRST type (in this order) whose phrases it contains (case-insensitive).
@@ -102,6 +118,7 @@ testsuite:
   scenarios: ['Consolidated Mapping', 'Individual Mapping']
   exclude_doc_contains: ['multiple house']         # drops multi-house cases (e.g. REG-004)
   sample_ref_pattern: '(FJ-\d{4,10})'             # sample (Quadance job) number inside the sheet cell / file name
+  sample_ref_overrides: {REG-011: FJ-0001012}     # REG-011's sample is split from the FJ-0001012 PDF (+ a dummy document), so the subject uses that FJ number
   samples_dir: samples                            # samples/_inbox/ (downloads) and samples/<CASE>/ (library)
   case_interval_seconds: 300                      # wait between test cases (all emails of a case go together); 0 = no wait
   subject_includes_case_id: true                  # <tag> | REG-001 | Pre-Alert ...
@@ -114,6 +131,25 @@ testsuite:
     expected_result: 'Expected Result'
     quadance_job: 'Quadance Job no.'
     nexus_job: 'NexusJob no.'
+
+testsuite_sea:
+  # Sea single-house daily set (own workbook, human-readable columns). Selected by asking for SEA-REG-nnn cases; never part of the Air default.
+  workbook: 'knowledge_base/testcases/Sea_Single_House_Daily_Regression.xlsx'
+  sheet_tab: 'Sea Single House - Daily'
+  id_pattern: '^SEA-REG-\d+$'
+  scenarios: []                                   # every row of the daily sheet is in scope
+  exclude_doc_contains: []
+  sample_ref_pattern: '(FJ-\d{4,10})'
+  columns:
+    case_id: 'TC ID'
+    scenario: 'Scenario'
+    mode: 'Mode'
+    docs: 'Document Combination'
+    expected_mapping: 'Expected Mapping'
+    xml_rule: 'XML / CargoWise Validation'
+    expected_result: 'Expected Result'
+    quadance_job: 'Sample Files'
+    nexus_job: 'Last Known Nexus Job'
 
 validation:
   # How Nexus' own type labels / document names are normalised to the canonical types used by the test cases.

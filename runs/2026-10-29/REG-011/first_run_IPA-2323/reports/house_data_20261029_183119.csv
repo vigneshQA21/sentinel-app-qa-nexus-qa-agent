@@ -1,0 +1,65 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the house within its document group
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Bill No.,,FRA - 6007 5340,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Shipper,LINDAUER DORNIER GMBH RICKENBACHER STR. 119 D 88129 LINDAU,LINDAUER DORNIER GMBH,PASS,shipper found in the document block
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Shipper ID,LINDORBER,LINDORBER,PASS,same as the Party ID in the data panel
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Consignee,"UFLEX LIMITED PLOT NO. 20 MUMMIGATTI, INDUSTRIAL AREA 580011 DHARWAD, KARNATAKA INDIA",UFLEX LIMITED,PASS,consignee found in the document block
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Consignee ID,UFLEXDHW,UFLEXDHW,PASS,same as the Party ID in the data panel
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Branch,,BLR,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,Invoice Mapping Pending,FAIL,not the final status yet: Nexus is still processing this House
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,House Air Waybill,House Air Waybill · House Number (top right),,FRA - 6007 5340,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,House Air Waybill,House Air Waybill · House Number (bottom right),,FRA - 6007 5340,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,House Air Waybill,House Air Waybill · Master AWB Reference,,157-69714304,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipper,Shipper · Name,LINDAUER DORNIER GMBH RICKENBACHER STR. 119,LINDAUER DORNIER GMBH,PASS,name found in the document block
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipper,Shipper · Address,D 88129 LINDAU,"RICKENBACHER STRASSE 119, LINDAU (BODENSEE), BY, DE",REVIEW,"3/5 words of the Nexus address are on the document; not on the document: BODENSEE, STRASSE"
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipper,Shipper · Postal Code,88129,88131,FAIL,the party master's postal code is not the one printed on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Shipper,Shipper · Party ID,,LINDORBER,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Consignee,Consignee · Name,UFLEX LIMITED PLOT NO. 20,UFLEX LIMITED,PASS,name found in the document block
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Consignee,Consignee · Address,"MUMMIGATTI, INDUSTRIAL AREA 580011 DHARWAD, KARNATAKA INDIA","PLOT NO.20, MUMMIGATTI INDUSTRIAL AREA, MUMMIGATTI INDUSTRIAL AREA,, DHARWAD, 29, IN",REVIEW,6/7 words of the Nexus address are on the document; not on the document: 29
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Consignee,Consignee · Postal Code,580011,580011,PASS,
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Consignee,Consignee · Party ID,,UFLEXDHW,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Agent,Agent · Agent / Origin Party (free text),ITG AIR & SEA,"ITG AIR&SEA GMBH
+HESSENRING 13
+64546 MOERFELDEN-WALLDORF",PASS,same party as the Master's shipper (origin agent)
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT COLLECT,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Routing,Routing · Airport Of Departure,FRANKFURT,FRANKFURT,PASS,
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Routing,Routing · Final Destination Airport,BANGALORE,BANGALORE,PASS,
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Flight Route,Flight Route · Type,,connecting,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · From,,FRA,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · To,,DOH,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · Polname,FRANKFURT,FRANKFURT,PASS,same as the airport of departure
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · Polctry,,DE,INFO,country of the airport (Nexus airport master)
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · Podname,,Doha,INFO,airport name from the Nexus airport master
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · Podctry,,QA,INFO,country of the airport (Nexus airport master)
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),Qatar Airways,PASS,carrier name appears on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · Carrier Code,,QTR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · Flight Number,QR8228,QR8228,PASS,
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 1,Segment 1 · Flight Date,day 31,31/08/2026,PASS,only the day is printed on the AWB
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · From,,DOH,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · To,,BLR,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · Polname,Doha,Doha,PASS,equals the previous segment's arrival airport (consistency)
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · Polctry,,QA,INFO,country of the airport (Nexus airport master)
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · Podname,,Bangalore,INFO,airport name from the Nexus airport master
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · Carrier Name,(printed on the document),Qatar Airways,PASS,carrier name appears on the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · Carrier Code,,QTR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · Flight Number,QR8694,QR8694,PASS,
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Segment 2,Segment 2 · Flight Date,day 3,03/09/2026,PASS,only the day is printed on the AWB
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Pieces,,1,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Gross Weight,,172,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Gross Weight Unit,,KGS,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Chargeable Weight,,172,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,,KGS,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,,"TRI-CLEANER
+CONSUMABLE
+1* 96 X 83 X 78 CMS",NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Volume,,0.1,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Cargo,Cargo · Volume Unit,,CBM,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Reference,Reference · Shippers Reference,,,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Reference,Reference · Executed On,,26/08/2026,NOT_VERIFIABLE,
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-011,IPA/2323/2026-27,FJ-0001012 - House.pdf page 1,Reference,Reference · Incoterm,,,NOT_VERIFIABLE,could not be read from the document

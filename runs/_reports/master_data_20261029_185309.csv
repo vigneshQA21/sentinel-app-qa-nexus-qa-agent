@@ -1,0 +1,56 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Bill No.,,157-69714304,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Shipper,ITG AIR & SEA GMBH HESSENRING 13 D 64546 MOERFELDEN-WALLDORF,ITG AIR AND SEA GMBH,FAIL,similarity 0.40 (needs 0.9)
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Shipper ID,ITGAIRFRA,ITGAIRFRA,PASS,same as the Party ID in the data panel
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Consignee,"LOGISTEED INDIA PVT. LTD. F-102, 1ST FLOOR, TOUCHDOWN BUILDING, NAMJOSHI ROAD,INDUSTRIAL AREA HAL, BENGALURU,KARNATAKA-560037, INDIA CARN: AAAFF0319DCNBLR4",LOGISTEED INDIA PVT. LTD.,PASS,consignee found in the document block
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Consignee ID,LIN_INBLR,LIN_INBLR,PASS,same as the Party ID in the data panel
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Branch,,BLR,NOT_VERIFIABLE,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,,157-69714304,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipper,Shipper · Name,ITG AIR & SEA GMBH HESSENRING 13 D 64546 MOERFELDEN-WALLDORF,ITG AIR AND SEA GMBH,FAIL,similarity 0.40 (needs 0.9)
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipper,Shipper · Address,(address on the document),"HESSENRING 13, MÖRFELDEN-WALLDORF, MÖRFELDEN-WALLDORF,, FRANKFURT, DE",REVIEW,4/5 words of the Nexus address are on the document; not on the document: FRANKFURT
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipper,Shipper · Postal Code,64546,64546,PASS,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Shipper,Shipper · Party ID,,ITGAIRFRA,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Consignee,Consignee · Name,"LOGISTEED INDIA PVT. LTD. F-102, 1ST FLOOR, TOUCHDOWN BUILDING, NAMJOSHI ROAD,INDUSTRIAL AREA HAL, BENGALURU,KARNATAKA-560037, INDIA CARN: AAAFF0319DCNBLR4",LOGISTEED INDIA PVT. LTD.,PASS,name found in the document block
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Consignee,Consignee · Address,"LOGISTEED INDIA PVT. LTD. F-102, 1ST FLOOR, TOUCHDOWN BUILDING, NAMJOSHI ROAD,INDUSTRIAL AREA HAL, BENGALURU,KARNATAKA-560037, INDIA CARN: AAAFF0319DCNBLR4","F-102, 1ST FLOOR, TOUCHDOWN BUILDING,NAMJOSHI ROAD,INDUSTRIAL AREA HAL,BENGALURU,KARNATAKA-560037, INDIA",PASS,"Nexus joins the document's address lines without a space: BUILDING,NAMJOSHI, HAL,BENGALURU,KARNATAKA-560037,"
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Consignee,Consignee · Postal Code,560037,560037,PASS,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Consignee,Consignee · Party ID,,LIN_INBLR,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Flight Route,Flight Route · Type,,connecting,NOT_VERIFIABLE,routing line not found in the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · From,,FRA,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · To,,DOH,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · Polname,FRANKFURT,FRANKFURT,PASS,same as the airport of departure
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · Polctry,,DE,INFO,country of the airport (Nexus airport master)
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · Podname,,Doha,INFO,airport name from the Nexus airport master
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · Podctry,,QA,INFO,country of the airport (Nexus airport master)
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),Qatar Airways,PASS,carrier name appears on the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · Carrier Code,,QTR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · Flight Number,QR8228,QR8228,PASS,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 1,Segment 1 · Flight Date,day 31,31/08/2026,PASS,only the day is printed on the AWB
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · From,,DOH,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · To,,BLR,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · Polname,Doha,Doha,PASS,equals the previous segment's arrival airport (consistency)
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · Polctry,,QA,INFO,country of the airport (Nexus airport master)
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · Podname,,Bangalore,INFO,airport name from the Nexus airport master
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · Carrier Name,(printed on the document),Qatar Airways,PASS,carrier name appears on the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · Carrier Code,,QTR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · Flight Number,QR8694,QR8694,PASS,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Segment 2,Segment 2 · Flight Date,day 3,03/09/2026,PASS,only the day is printed on the AWB
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Routing,Routing · Airport Of Departure,FRANKFURT,FRANKFURT,PASS,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Routing,Routing · Final Destination Airport,BANGALORE,BANGALORE,PASS,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT PREPAID,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Pieces,,1,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Gross Weight,,172,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Gross Weight Unit,,KGS,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Chargeable Weight,,172,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,,KGS,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,,CONSOLIDATION AS PER ATTACHED CARGO MANIFEST; DANGEROUS GOODS AS PER ASSOCIATED SHIPPER'S DECLARATION1* 96 X 83 X 78 CMS,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Volume,,0.1,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Volume Unit,,CBM,NOT_VERIFIABLE,could not be read from the document
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · Executed On,,25/08/2026,NOT_VERIFIABLE,
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-011,IPA/2326/2026-27,FJ-0001012 - Master.pdf page 1,Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"

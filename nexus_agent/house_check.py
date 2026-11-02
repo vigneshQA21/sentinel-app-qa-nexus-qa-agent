@@ -46,6 +46,13 @@ def find_house_source(cfg: Config, case: Case) -> tuple[Path, int, str | None] |
     return None
 
 
+def printed_codes(text: str) -> list[str]:
+    """Postal codes printed in a party block. A scan is often read with the words glued together ("LELANDNC28451US"), so a code that
+    follows a two-letter state / country is taken first; only when there is none, any 4-6 digit number on its own."""
+    glued = re.findall(r"[A-Z]{2}\s*(\d{5})(?!\d)", text or "")
+    return glued[:1] or list(dict.fromkeys(re.findall(r"\b\d{4,6}\b", text or "")))     # the first one is the party's own address
+
+
 def compare_house(doc: dict, house_no: str | None, master_doc: dict | None, ui: dict, details: dict | None,
                   rules: dict | None = None) -> list[dict]:
     """One row per field Nexus shows for the House, in panel order (table row first)."""
@@ -113,9 +120,14 @@ def compare_house(doc: dict, house_no: str | None, master_doc: dict | None, ui: 
             put(who, "Postal Code", row("", "(see document block)", pc, "INFO", "empty in the party master"))
         else:
             ok = norm(pc) in norm(text)
-            printed = ", ".join(dict.fromkeys(re.findall(r"\b\d{4,6}\b", text))) or "(in document block)"
-            put(who, "Postal Code", row("", pc if ok else printed, pc, "PASS" if ok else "FAIL",
-                                        "" if ok else "the party master's postal code is not the one printed on the document"))
+            codes = printed_codes(text)
+            printed = ", ".join(codes) or "(none printed)"
+            if ok:
+                put(who, "Postal Code", row("", pc, pc, "PASS", ""))
+            elif not codes:                                       # the document prints no postal code at all: nothing to compare
+                put(who, "Postal Code", row("", printed, pc, "INFO", "no postal code is printed in the document block (party-master value)"))
+            else:
+                put(who, "Postal Code", row("", printed, pc, "FAIL", "the party master's postal code is not the one printed on the document"))
         info(who, "Party ID", None, p.get("party_id"), "assigned by the Nexus party master, not printed on the document")
 
     mshipper = " ".join((master_doc or {}).get("shipper_lines") or [])

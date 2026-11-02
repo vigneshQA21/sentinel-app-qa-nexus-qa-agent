@@ -7,6 +7,8 @@ bug sheet with the evidence attached as Drive links.
 
 > **Where are we / what did we do yesterday?** Read [docs/PROGRESS_LOG.md](docs/PROGRESS_LOG.md) (day by day, with "where we left off" at the top).
 > **How do I run it?** Read [regression_prompts/EXECUTE_CMD.md](regression_prompts/EXECUTE_CMD.md).
+> **What is this framework, and what is next?** Read [docs/ABOUT_ME.md](docs/ABOUT_ME.md) (overview for managers: architecture, tools, advantages) and [docs/ROADMAP_SKILL_AND_KNOWLEDGE_GRAPH.md](docs/ROADMAP_SKILL_AND_KNOWLEDGE_GRAPH.md) (plan for a shared skill and a knowledge graph).
+> **Challenges:** see [docs/CHALLENGES.md](docs/CHALLENGES.md) (what made the regression hard, what we did, what is still open).
 
 ## The 30-second explanation
 1. **Send**: test documents from Quadance go to `prealert.nexus@unifo.in` (one email for a consolidated PDF, one per file for individual documents), high priority, with a subject that names the test case.
@@ -79,7 +81,7 @@ See [regression_prompts/EXECUTE_CMD.md](regression_prompts/EXECUTE_CMD.md). The 
 ## Current scope and status (2026-10-26)
 - **Fully validated:** REG-001, REG-002 (consolidated: mapping plus every field of Master, House, Manifest, Invoice, Packing List, Debit Note, PO).
 - **Validated:** REG-003, REG-005, REG-009 (consolidated), REG-006 (individual, mapping only: the emails split into several pre-alerts).
-- **Not run:** REG-007 (shares a house with REG-003), REG-011 and REG-016 (no samples).
+- **Not run:** REG-007 (shares a house with REG-003), REG-016 (hypothetical, not executable) and REG-011 (run on request; sample split from FJ-0001012 plus a dummy document).
 - Every check writes a numbered **trace** (`runs/<date>/<case>/trace_<time>_<IPA>/index.html`) with the probable root cause; already-raised bugs show as KNOWN ("STILL THERE xN"), and `./nx history` tracks how often each bug repeats.
 - **Scanned samples are now validated with OCR** (REG-009 Master / House / Manifest, the REG-005 manifest); differences on a scan are REVIEW, not FAIL.
 - Not done yet: data checks for individual cases, auto-delete after validation, sea shipments, CargoWise/XML check, HTML run report. See [docs/PROGRESS_LOG.md](docs/PROGRESS_LOG.md).

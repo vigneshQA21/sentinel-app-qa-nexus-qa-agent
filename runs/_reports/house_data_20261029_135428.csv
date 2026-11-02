@@ -1,0 +1,53 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the house within its document group
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Bill No.,FLD6445,FLD6445,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Shipper,"ARCONIC (KUNSHAN) ALUMINUM PRODUCTS CO., LTD. NO.111,YANHU ROAD,HUAQIAO TOWN,KUNSHAN CITY CHINA TEL: +86 512 57698888 FAX: +86 512 57698810 USCI:913200007859834643","ARCONIC (KUNSHAN) ALUMINUM PRODUCTS CO.,LTD,",PASS,shipper found in the document block
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Shipper ID,ARCKUNBJS,ARCKUNBJS,PASS,same as the Party ID in the data panel
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Consignee,"MODINE THERMAL SYSTEMS PVT.LTD. K-7, SIPCOT INDUSTRIAL PARK,MAMBAKKAM VILLAGE,SUNGUVARCHATIRAM,KANCHEEPURAM DIST,TAMIL NADU",MODINE THERMAL SYSTEMS PRIVATE LIMI,PASS,consignee found in the document block
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Consignee ID,MODTHEMAA,MODTHEMAA,PASS,same as the Party ID in the data panel
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Branch,,MAA,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,House Air Waybill,House Air Waybill · House Number (top right),FLD6445,FLD6445,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,House Air Waybill,House Air Waybill · House Number (bottom right),FLD6445,FLD6445,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,House Air Waybill,House Air Waybill · Master AWB Reference,160-15585765,160-15585765,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipper,Shipper · Name,"ARCONIC (KUNSHAN) ALUMINUM PRODUCTS CO., LTD. NO.111,YANHU ROAD,HUAQIAO TOWN,KUNSHAN CITY CHINA","ARCONIC (KUNSHAN) ALUMINUM PRODUCTS CO.,LTD,",PASS,name found in the document block
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipper,Shipper · Address,USCI:913200007859834643,"NO.111 YANHU ROAD,HUAQIAO ECONOMIC DEVELOPMEN T, CN",REVIEW,"4/6 words of the Nexus address are on the document; not on the document: DEVELOPMEN, ECONOMIC"
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipper,Shipper · Postal Code,(see document block),,INFO,empty in the party master
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Shipper,Shipper · Party ID,,ARCKUNBJS,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Consignee,Consignee · Name,"MODINE THERMAL SYSTEMS PVT.LTD. K-7, SIPCOT INDUSTRIAL PARK,MAMBAKKAM",MODINE THERMAL SYSTEMS PRIVATE LIMI,PASS,name found in the document block
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Consignee,Consignee · Address,"VILLAGE,SUNGUVARCHATIRAM,KANCHEEPURAM DIST,TAMIL NADU","K-7, SIPCOT INDUSTRIAL PARK, MAMBAKKAM, SUNGUVARCHATIRAM, KANCHEEPURAM, Chennai, 33, IN",REVIEW,"6/8 words of the Nexus address are on the document; not on the document: 33, CHENNAI"
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Consignee,Consignee · Postal Code,(none printed),602106,INFO,no postal code is printed in the document block (party-master value)
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Consignee,Consignee · Party ID,,MODTHEMAA,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Agent,Agent · Agent / Origin Party (free text),JIANGSU FEILIKS INTERNATIONAL LOGISTICS,JIANGSU FEILIKS INTERNATIONAL LOGISTICS INC. SHANGHAI BRANCH,PASS,same party as the Master's shipper (origin agent)
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT COLLECT,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Routing,Routing · Airport Of Departure,,SHANGHAI,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Routing,Routing · Final Destination Airport,,CHENNAI,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Flight Route,Flight Route · Type,,direct,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · From,,PVG,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · To,,MAA,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · Polname,,SHANGHAI,INFO,airport name from the Nexus airport master
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · Polctry,,CN,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · Podname,,Madras,INFO,airport name from the Nexus airport master
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · Carrier Name,,Cathay Pacific,INFO,not printed on the document (airline master data)
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · Carrier Code,,CPA_WW,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · Flight Number,,CX051,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Segment 1,Segment 1 · Flight Date,,20/08/2026,NOT_VERIFIABLE,flight date not found in the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Pieces,3,3,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Gross Weight,2683.00,2683,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Chargeable Weight,2683,2683,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,Cladding Aluminum Coiled Sheet INV:149335506 DIM(CM):110*110*88*3,"Cladding Aluminum Coiled Sheet
+INV:149335506
+DIM(CM):110*110*88*3",PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Volume,,3.194,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Cargo,Cargo · Volume Unit,,CBM,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Reference,Reference · Shippers Reference,,,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Reference,"Reference · (unlabelled, empty)",,149335506,INFO,"shown by Nexus, no document value to compare"
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Reference,Reference · Executed On,19-Aug-26,19/08/2026,PASS,
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+REG-006,IPA/2314/2026-27,FJ-0000518 - HA-4.pdf page 1,Reference,Reference · Incoterm,,FOB,NOT_VERIFIABLE,could not be read from the document

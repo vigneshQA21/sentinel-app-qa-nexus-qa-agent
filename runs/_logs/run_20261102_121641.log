@@ -1,0 +1,755 @@
+2026-11-02 12:16:50,845 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER' to prealert.nexus@unifo.in (message id 1a19b02badc856e4)
+2026-11-02 12:16:50,845 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:17:22,909 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a19b033817f7cf9)
+2026-11-02 12:17:22,909 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:17:54,585 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | INVOICE' to prealert.nexus@unifo.in (message id 1a19b03b5d0b32ec)
+2026-11-02 12:17:54,585 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:18:26,201 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | HOUSE' to prealert.nexus@unifo.in (message id 1a19b042ea6c0c3e)
+2026-11-02 12:18:26,201 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-02 12:18:57,701 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | DELIVERY NOTE' to prealert.nexus@unifo.in (message id 1a19b04abaa86f17)
+
+REG-007: sent, now validating in Nexus ...
+2026-11-02 12:18:57,703 INFO nexus_agent.validate: REG-007: waiting 179s for Nexus to process the email before checking
+2026-11-02 12:19:27,703 INFO nexus_agent.validate: REG-007: waiting 149s for Nexus to process the email before checking
+2026-11-02 12:19:57,703 INFO nexus_agent.validate: REG-007: waiting 119s for Nexus to process the email before checking
+2026-11-02 12:20:27,704 INFO nexus_agent.validate: REG-007: waiting 89s for Nexus to process the email before checking
+2026-11-02 12:20:57,704 INFO nexus_agent.validate: REG-007: waiting 59s for Nexus to process the email before checking
+2026-11-02 12:21:27,705 INFO nexus_agent.validate: REG-007: waiting 29s for Nexus to process the email before checking
+REG-007: PASS CREATED_IN_NEXUS IPA/2367/2026-27 (seen 185s after sending)
+REG-007: checking the Master data against the document ...
+(baseline) 2 already-raised issue(s) still there in Master; they do not fail the case but are NOT fixed yet:
+  STILL THERE x4  REG-007 · Master · Segment 1 · Flight Number  [bug sheet row 248]
+  STILL THERE x4  REG-007 · Master · Segment 2 · Flight Number  [logged]
+
+REG-007  MASTER DATA  FAIL   IPA/2367/2026-27   source: 1_Air_Waybill_Copy4.pdf page 1
+
+  ALL FIELDS SHOWN IN NEXUS (55)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : 098-31251603
+     4. Shipment Details · Shipper : QUALITAIR&SEA, DIMOTRANS GROUP
+     5. Shipment Details · Shipper ID : QUADIMLEH
+     6. Shipment Details · Consignee : LOGISTEED INDIA
+     7. Shipment Details · Consignee ID : LIN_INBOM
+     8. Shipment Details · Branch : BOM
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. Air Waybill · Air Waybill Number : 098-31251603
+    12. Shipper · Name : QUALITAIR&SEA, DIMOTRANS GROUP
+    13. Shipper · Address : 150, BOULEVARD, AMIRAL MOUCHEZ, BOULEVARD,, LE HAVRE, FR
+    14. Shipper · Postal Code : 76064
+    15. Shipper · Party ID : QUADIMLEH
+    16. Consignee · Name : LOGISTEED INDIAPRIVATE LIMITED
+    17. Consignee · Address : VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROADANDHERI EAST GST NO 27AABCF2133M1ZPMUMBAI 400099 IN
+    18. Consignee · Postal Code : 400099
+    19. Consignee · Party ID : LIN_INBOM
+    20. Flight Route · Type : connecting
+    21. Segment 1 · From : CDG
+    22. Segment 1 · To : DEL
+    23. Segment 1 · Polname : Paris
+    24. Segment 1 · Polctry : FR
+    25. Segment 1 · Podname : Delhi
+    26. Segment 1 · Podctry : IN
+    27. Segment 1 · Carrier Name : Air India
+    28. Segment 1 · Carrier Code : AIC_WW
+    29. Segment 1 · Flight Number : Al142
+    30. Segment 1 · Flight Date : 15/07/2026
+    31. Segment 2 · From : DEL
+    32. Segment 2 · To : BOM
+    33. Segment 2 · Polname : Delhi
+    34. Segment 2 · Polctry : IN
+    35. Segment 2 · Podname : Mumbai
+    36. Segment 2 · Podctry : IN
+    37. Segment 2 · Carrier Name : Air India
+    38. Segment 2 · Carrier Code : AIC_WW
+    39. Segment 2 · Flight Number : Al441
+    40. Segment 2 · Flight Date : 17/07/2026
+    41. Routing · Airport Of Departure : CHARLES-DE-GAULLE APT / PARIS
+    42. Routing · Final Destination Airport : MUMBAI ( EX BOMBAY )
+    43. Freight · Freight Payment : FREIGHT PREPAID
+    44. Cargo · Pieces : 2
+    45. Cargo · Pieces Unit : PCS
+    46. Cargo · Gross Weight : 589
+    47. Cargo · Gross Weight Unit : KGS
+    48. Cargo · Chargeable Weight : 589
+    49. Cargo · Chargeable Weight Unit : KGS
+    50. Cargo · Nature And Quantity Of Goods : Consolidation as per attached listNot RestrictedHS Code : 75296309000DIMS 80x60x35 CM x 1DIMS 120x80x40 CM x 1VOL 0.56 M3
+    51. Cargo · Volume : 0.56
+    52. Cargo · Volume Unit : CBM
+    53. Cargo · Executed On : 09/07/2026
+    54. Cargo · (unlabelled field 11) : (empty)
+    55. Cargo · (unlabelled field 12) : (empty)
+    count per section: Shipment Details 10, Air Waybill 1, Shipper 4, Consignee 4, Flight Route 1, Segment 1 10, Segment 2 10, Routing 2, Freight 1, Cargo 12  =  55 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the master within its document group]
+    PASS            Bill No.                       doc: 098-31251603                             | nexus: 098-31251603
+    PASS            Shipper                        doc: QUALITAIR SEA DIMOTRANS GROUP 200 RUE LE | nexus: QUALITAIR&SEA, DIMOTRANS GROUP   [shipper found in the document block]
+    PASS            Shipper ID                     doc: QUADIMLEH                                | nexus: QUADIMLEH   [same as the Party ID in the data panel]
+    PASS            Consignee                      doc: LOGISTEED INDIA PRIVATE LIMITED VAIBHAV  | nexus: LOGISTEED INDIA   [consignee found in the document block]
+    PASS            Consignee ID                   doc: LIN_INBOM                                | nexus: LIN_INBOM   [same as the Party ID in the data panel]
+    PASS            Branch                         doc: BOM                                      | nexus: BOM   [BOM = Mumbai, matches the document's destination]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [Air Waybill]
+    PASS            Air Waybill Number             doc: 098-31251603                             | nexus: 098-31251603
+  [Shipper]
+    PASS            Name                           doc: QUALITAIR SEA DIMOTRANS GROUP 200 RUE LE | nexus: QUALITAIR&SEA, DIMOTRANS GROUP   [name found in the document block]
+    FAIL            Address                        doc: (address on the document)                | nexus: 150, BOULEVARD, AMIRAL MOUCHEZ, BOULEVARD,   [different address: only 0/5 words of the Nexus address are on the document; not on the document: 150, AMIRAL, BOULEVARD, HAVRE, MOUCHEZ]
+    FAIL            Postal Code                    doc: 45400                                    | nexus: 76064
+    INFO            Party ID                       doc:                                          | nexus: QUADIMLEH   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: LOGISTEED INDIA PRIVATE LIMITED VAIBHAV  | nexus: LOGISTEED INDIAPRIVATE LIMITED   [name found in the document block]
+    PASS            Address                        doc: LOGISTEED INDIA PRIVATE LIMITED VAIBHAV  | nexus: VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROA   [Nexus joins the document's address lines without a space: ROADANDHERI, 27AABCF2133M1ZPMUMBAI]
+    PASS            Postal Code                    doc: 400099                                   | nexus: 400099
+    INFO            Party ID                       doc:                                          | nexus: LIN_INBOM   [assigned by the Nexus party master, not printed on the document]
+  [Flight Route]
+    PASS            Type                           doc: connecting                               | nexus: connecting
+  [Segment 1]
+    PASS            From                           doc: CDG                                      | nexus: CDG
+    PASS            To                             doc: DEL                                      | nexus: DEL
+    INFO            Polname                        doc: CHARLES-DE-GAULLE APT/PARIS              | nexus: Paris   [airport name differs from the document's airport of departure]
+    INFO            Polctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Delhi   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: Air India   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: AI                                       | nexus: AIC_WW
+    KNOWN           Flight Number                  doc: AI142                                    | nexus: Al142   [KNOWN ISSUE (logged in the bug sheet)]
+    PASS            Flight Date                    doc: day 15                                   | nexus: 15/07/2026   [only the day is printed on the AWB]
+  [Segment 2]
+    PASS            From                           doc: DEL                                      | nexus: DEL
+    PASS            To                             doc: BOM                                      | nexus: BOM
+    PASS            Polname                        doc: Delhi                                    | nexus: Delhi   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Podname                        doc: MUMBAI (EX BOMBAY)                       | nexus: Mumbai   [contained in the document's airport of destination]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: Air India   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: AI                                       | nexus: AIC_WW
+    KNOWN           Flight Number                  doc: AI441                                    | nexus: Al441   [KNOWN ISSUE (logged in the bug sheet)]
+    PASS            Flight Date                    doc: day 17                                   | nexus: 17/07/2026   [only the day is printed on the AWB]
+  [Routing]
+    PASS            Airport Of Departure           doc: CHARLES-DE-GAULLE APT/PARIS              | nexus: CHARLES-DE-GAULLE APT / PARIS
+    PASS            Final Destination Airport      doc: MUMBAI (EX BOMBAY)                       | nexus: MUMBAI ( EX BOMBAY )
+  [Freight]
+    PASS            Freight Payment                doc: FREIGHT PREPAID (code PP)                | nexus: FREIGHT PREPAID
+  [Cargo]
+    PASS            Pieces                         doc: 2                                        | nexus: 2
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: 589.0                                    | nexus: 589
+    PASS            Gross Weight Unit              doc: KGS                                      | nexus: KGS
+    PASS            Chargeable Weight              doc: 589.0                                    | nexus: 589
+    PASS            Chargeable Weight Unit         doc: KGS                                      | nexus: KGS
+    PASS            Nature And Quantity Of Goods   doc: Consolidation as per attached list Not R | nexus: Consolidation as per attached listNot Rest
+    PASS            Volume                         doc: 0.56                                     | nexus: 0.56
+    PASS            Volume Unit                    doc: CBM                                      | nexus: CBM
+    PASS            Executed On                    doc: 09-Jul-26                                | nexus: 09/07/2026
+    INFO            (unlabelled field 11)          doc:                                          | nexus:    [empty field, no label]
+    INFO            (unlabelled field 12)          doc:                                          | nexus:    [empty field, no label]
+
+  55 fields shown in Nexus | compared with the document: 42 (PASS 38, FAIL 2, REVIEW 0, KNOWN 2) | INFO (no document value): 13 | NOT_VERIFIABLE: 0
+REG-007: checking the House data against the document ...
+
+REG-007  HOUSE DATA  FAIL   IPA/2367/2026-27   source: 4_House_Air_Waybill_HAWB_ORAE26040499.pdf page 1
+
+  ALL FIELDS SHOWN IN NEXUS (60)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : ORAE26040499
+     4. Shipment Details · Shipper : ANVIS DECIZE SAS
+     5. Shipment Details · Shipper ID : ANVDECPAR
+     6. Shipment Details · Consignee : HDFC BANK LTD PUNE BRANCH
+     7. Shipment Details · Consignee ID : HDFBANPNQ
+     8. Shipment Details · Branch : BOM
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. House Air Waybill · House Number (top right) : ORAE26040499
+    12. House Air Waybill · House Number (bottom right) : ORAE26040499
+    13. House Air Waybill · Master AWB Reference : 098-31251603
+    14. Shipper · Name : ANVIS DECIZE SAS
+    15. Shipper · Address : 12 RUE HENRI DARCY, DECIZE 58 FR, TEL 0635070676, FR
+    16. Shipper · Postal Code : 58300
+    17. Shipper · Party ID : ANVDECPAR
+    18. Consignee · Name : HDFC BANK LTDPUNE BRANCH
+    19. Consignee · Address : FORTUNE SQUARE DEEP BUNGALOW CHOWK, Pune, MH, IN
+    20. Consignee · Postal Code : 411016
+    21. Consignee · Party ID : HDFBANPNQ
+    22. Agent · Agent / Origin Party (free text) : QUALITAIR SEA DIMOTRANS GROUP
+200 RUE LEONARD DE VINCI
+45400, SEMOY, 45, FRANCE
+    23. Freight · Freight Payment : FREIGHT COLLECT
+    24. Routing · Airport Of Departure : PARIS AIRPORT, FRANCE
+    25. Routing · Final Destination Airport : MUMBAI AIRPORT, INDIA
+    26. Flight Route · Type : direct
+    27. Segment 1 · From : CDG
+    28. Segment 1 · To : BOM
+    29. Segment 1 · Polname : Paris
+    30. Segment 1 · Polctry : FR
+    31. Segment 1 · Podname : Mumbai
+    32. Segment 1 · Podctry : IN
+    33. Segment 1 · Carrier Name : AIR INDIA
+    34. Segment 1 · Carrier Code : AIC_WW
+    35. Segment 1 · Flight Number : AI142
+    36. Segment 1 · Flight Date : 15/07/2026
+    37. Cargo · Pieces : 2
+    38. Cargo · Pieces Unit : PCS
+    39. Cargo · Gross Weight : 589
+    40. Cargo · Gross Weight Unit : KGS
+    41. Cargo · Chargeable Weight : 589
+    42. Cargo · Chargeable Weight Unit : KGS
+    43. Cargo · Nature And Quantity Of Goods : +75.293.09.0.00 ANTI VIBRATION
+MOUNTS QTY-10
+AS PER PO 2/2 4892 DATED
+08.04.2026
+INCOTERMS 2020 FCA DECIZE,
+FRANCE
+HS CODE 401699919
+DIMS 80x60x35 CM x 1
+DIMS 120x80x40 CM x 1
+VOL 0.552 M3
+NOT RESTRICTED
+    44. Cargo · Volume : 0.552
+    45. Cargo · Volume Unit : CBM
+    46. Reference · Shippers Reference : C00395017
+    47. Reference · (unlabelled, empty) : (empty)
+    48. Reference · Executed On : 08/07/2026
+    49. Reference · (unlabelled, empty) : (empty)
+    50. Reference · Incoterm : FCA
+    51. Segment 2 · From : (empty)
+    52. Segment 2 · To : (empty)
+    53. Segment 2 · Polname : (empty)
+    54. Segment 2 · Polctry : (empty)
+    55. Segment 2 · Podname : (empty)
+    56. Segment 2 · Podctry : (empty)
+    57. Segment 2 · Carrier Name : (empty)
+    58. Segment 2 · Carrier Code : (empty)
+    59. Segment 2 · Flight Number : (empty)
+    60. Segment 2 · Flight Date : (empty)
+    count per section: Shipment Details 10, House Air Waybill 3, Shipper 4, Consignee 4, Agent 1, Freight 1, Routing 2, Flight Route 1, Segment 1 10, Cargo 9, Reference 5, Segment 2 10  =  60 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the house within its document group]
+    PASS            Bill No.                       doc: ORAE26040499                             | nexus: ORAE26040499
+    PASS            Shipper                        doc: ANVIS DECIZE SAS 12 RUE HENRI DARCY DECI | nexus: ANVIS DECIZE SAS   [shipper found in the document block]
+    PASS            Shipper ID                     doc: ANVDECPAR                                | nexus: ANVDECPAR   [same as the Party ID in the data panel]
+    PASS            Consignee                      doc: HDFC BANK LTD PUNE BRANCH FORTUNE SQUARE | nexus: HDFC BANK LTD PUNE BRANCH   [consignee found in the document block]
+    PASS            Consignee ID                   doc: HDFBANPNQ                                | nexus: HDFBANPNQ   [same as the Party ID in the data panel]
+    PASS            Branch                         doc: BOM                                      | nexus: BOM   [BOM = Mumbai, matches the document's destination]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [House Air Waybill]
+    PASS            House Number (top right)       doc: ORAE26040499                             | nexus: ORAE26040499
+    PASS            House Number (bottom right)    doc: ORAE26040499                             | nexus: ORAE26040499
+    PASS            Master AWB Reference           doc: 098-31251603                             | nexus: 098-31251603
+  [Shipper]
+    PASS            Name                           doc: ANVIS DECIZE SAS 12 RUE HENRI DARCY      | nexus: ANVIS DECIZE SAS   [name found in the document block]
+    PASS            Address                        doc: DECIZE 58 58300 FR                       | nexus: 12 RUE HENRI DARCY, DECIZE 58 FR, TEL 0635   [8/8 words of the Nexus address are on the document]
+    PASS            Postal Code                    doc: 58300                                    | nexus: 58300
+    INFO            Party ID                       doc:                                          | nexus: ANVDECPAR   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: HDFC BANK LTD PUNE BRANCH                | nexus: HDFC BANK LTDPUNE BRANCH   [name found in the document block]
+    PASS            Address                        doc: FORTUNE SQUARE DEEP BUNGALOW CHOWK 411 0 | nexus: FORTUNE SQUARE DEEP BUNGALOW CHOWK, Pune,    [6/6 words of the Nexus address are on the document]
+    PASS            Postal Code                    doc: 411016                                   | nexus: 411016
+    INFO            Party ID                       doc:                                          | nexus: HDFBANPNQ   [assigned by the Nexus party master, not printed on the document]
+  [Agent]
+    PASS            Agent / Origin Party (free text) doc: QUALITAIR SEA DIMOTRANS GROUP            | nexus: QUALITAIR SEA DIMOTRANS GROUP 200 RUE LEON   [same party as the Master's shipper (origin agent)]
+  [Freight]
+    PASS            Freight Payment                doc: FREIGHT COLLECT (code CC)                | nexus: FREIGHT COLLECT
+  [Routing]
+    PASS            Airport Of Departure           doc: PARIS AIRPORT, FRANCE                    | nexus: PARIS AIRPORT, FRANCE
+    PASS            Final Destination Airport      doc: MUMBAI AIRPORT, INDIA                    | nexus: MUMBAI AIRPORT, INDIA
+  [Flight Route]
+    FAIL            Type                           doc: connecting                               | nexus: direct
+  [Segment 1]
+    PASS            From                           doc: CDG                                      | nexus: CDG
+    FAIL            To                             doc: DEL                                      | nexus: BOM
+    INFO            Polname                        doc: PARIS AIRPORT, FRANCE                    | nexus: Paris   [airport name differs from the document's departure airport]
+    INFO            Polctry                        doc:                                          | nexus: FR   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Mumbai   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: AIR INDIA   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: AI                                       | nexus: AIC_WW
+    PASS            Flight Number                  doc: AI142                                    | nexus: AI142
+    PASS            Flight Date                    doc: day 15                                   | nexus: 15/07/2026   [only the day is printed on the AWB]
+  [Cargo]
+    PASS            Pieces                         doc: 2                                        | nexus: 2
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: 589.0                                    | nexus: 589
+    PASS            Gross Weight Unit              doc: KGS                                      | nexus: KGS
+    PASS            Chargeable Weight              doc: 589.0                                    | nexus: 589
+    PASS            Chargeable Weight Unit         doc: KGS                                      | nexus: KGS
+    PASS            Nature And Quantity Of Goods   doc: +75.293.09.0.00 ANTI VIBRATION MOUNTS QT | nexus: +75.293.09.0.00 ANTI VIBRATION MOUNTS QTY-
+    PASS            Volume                         doc: 0.552                                    | nexus: 0.552
+    PASS            Volume Unit                    doc: CBM                                      | nexus: CBM
+  [Reference]
+    PASS            Shippers Reference             doc: C00395017                                | nexus: C00395017
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    PASS            Executed On                    doc: 08-Jul-26                                | nexus: 08/07/2026
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    PASS            Incoterm                       doc: FCA                                      | nexus: FCA
+  [Segment 2]
+    FAIL            From                           doc: DEL                                      | nexus:    [Nexus shows nothing; field not shown by Nexus]
+    FAIL            To                             doc: BOM                                      | nexus:    [Nexus shows nothing; field not shown by Nexus]
+    FAIL            Polname                        doc: Mumbai                                   | nexus:    [equals the previous segment's arrival airport (consistency); field not shown by Nexus]
+    INFO            Polctry                        doc:                                          | nexus:    [country of the airport (Nexus airport master); field not shown by Nexus]
+    INFO            Podname                        doc:                                          | nexus:    [airport name from the Nexus airport master; field not shown by Nexus]
+    INFO            Podctry                        doc:                                          | nexus:    [country of the airport (Nexus airport master); field not shown by Nexus]
+    INFO            Carrier Name                   doc:                                          | nexus:    [not printed on the document (airline master data); field not shown by Nexus]
+    FAIL            Carrier Code                   doc: AI                                       | nexus:    [Nexus shows nothing; field not shown by Nexus]
+    FAIL            Flight Number                  doc: AI441                                    | nexus:    [Nexus shows nothing; field not shown by Nexus]
+    FAIL            Flight Date                    doc: day 17                                   | nexus:    [only the day is printed on the AWB; field not shown by Nexus]
+
+  60 fields shown in Nexus | compared with the document: 45 (PASS 37, FAIL 8, REVIEW 0, KNOWN 0) | INFO (no document value): 15 | NOT_VERIFIABLE: 0
+REG-007: checking the Manifest, Invoice and Packing List data against the documents ...
+
+REG-007  MANIFEST DATA  PASS   IPA/2367/2026-27   source: 2_Air_Freight_Manifest.pdf page 1
+
+  ALL FIELDS SHOWN IN NEXUS (8)
+     1. Manifest · Master Air Waybill : 098-31251603
+     2. Manifest · Air Waybill No : ORAE26040499
+     3. Manifest · Pieces : 2
+     4. Manifest · Weight : 589
+     5. Shipper · Name : ANVIS DECIZE SAS
+     6. Shipper · Address : 12 RUE HENRI DARCY 58300 DECIZE , 58 FRANCE
+     7. Consignee · Name : KIRLOSKAR OIL ENGINES LTD
+     8. Consignee · Address : 722 A11 / 1 MIDC AMBAD NASHIK MH 422010 INDIA
+    count per section: Manifest 4, Shipper 2, Consignee 2  =  8 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Manifest]
+    PASS            Master Air Waybill             doc: 098-31251603                             | nexus: 098-31251603   [same as the value printed on the document]
+    PASS            Air Waybill No                 doc: ORAE26040499                             | nexus: ORAE26040499   [same as the value printed on the document]
+    PASS            Pieces                         doc: 2                                        | nexus: 2   [same as the value printed on the document]
+    PASS            Weight                         doc: 589.000                                  | nexus: 589   [same as the value printed on the document]
+  [Shipper]
+    PASS            Name                           doc: (found on the document)                  | nexus: ANVIS DECIZE SAS   [3/3 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 12 RUE HENRI DARCY 58300 DECIZE , 58 FRANC   [8/8 words found on the document]
+  [Consignee]
+    PASS            Name                           doc: (found on the document)                  | nexus: KIRLOSKAR OIL ENGINES LTD   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 722 A11 / 1 MIDC AMBAD NASHIK MH 422010 IN   [9/9 words found on the document]
+
+  8 fields shown in Nexus | compared with the document: 8 (PASS 8, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 0 | NOT_VERIFIABLE: 0
+
+REG-007  INVOICE DATA  PASS   IPA/2367/2026-27   source: 3_Invoice_0255210.pdf page 1
+
+  ALL FIELDS SHOWN IN NEXUS (19)
+     1. Invoice · Invoice Number : 0255210
+     2. Invoice · Invoice Date : 10/07/2026
+     3. Invoice · Grand Total : 1218, 41
+     4. Invoice · Currency Code : EUR
+     5. Invoice · Po Number : 2/2 4892
+     6. Invoice · Gross Weight : 589
+     7. Seller · Name : ANVIS DECIZE SAS
+     8. Seller · Address : (empty)
+     9. Seller · Postal Code : (empty)
+    10. Buyer · Name : KIRLOSKAR OIL ENGINES LTD 722
+    11. Buyer · Address : 22/23 JAY TOWERS KALBHOR NAGAR CHINCHWAD PUNE MH 41101 INDIA
+    12. Buyer · Postal Code : (empty)
+    13. Invoice · Order No : (empty)
+    14. Invoice · Account No : (empty)
+    15. Invoice · Customer No : FLYLOGBOM
+    16. Invoice · Delivery No : (empty)
+    17. Invoice · Supplier No : (empty)
+    18. Invoice · Reference No : INVOICE008584
+    19. Invoice · Incoterm : FCA
+    count per section: Invoice 13, Seller 3, Buyer 3  =  19 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Invoice]
+    PASS            Invoice Number                 doc: (found on the document)                  | nexus: 0255210   [value found on the document]
+    PASS            Invoice Date                   doc: 10/07/2026                               | nexus: 10/07/2026   [same as the value printed on the document]
+    PASS            Grand Total                    doc: (found on the document)                  | nexus: 1218, 41   [value found on the document]
+    PASS            Currency Code                  doc: (found on the document)                  | nexus: EUR   [value found on the document]
+    PASS            Po Number                      doc: (found on the document)                  | nexus: 2/2 4892   [value found on the document]
+    PASS            Gross Weight                   doc: (found on the document)                  | nexus: 589   [value found on the document]
+  [Seller]
+    PASS            Name                           doc: (found on the document)                  | nexus: ANVIS DECIZE SAS   [3/3 words found on the document]
+    INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
+    INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Buyer]
+    PASS            Name                           doc: (found on the document)                  | nexus: KIRLOSKAR OIL ENGINES LTD 722   [5/5 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 22/23 JAY TOWERS KALBHOR NAGAR CHINCHWAD P   [11/11 words found on the document]
+    INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+  [Invoice]
+    INFO            Order No                       doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Customer No                    doc: (found on the document)                  | nexus: FLYLOGBOM   [value found on the document]
+    INFO            Delivery No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+    PASS            Reference No                   doc: (found on the document)                  | nexus: INVOICE008584   [value found on the document]
+    PASS            Incoterm                       doc: (found on the document)                  | nexus: FCA   [value found on the document]
+
+  19 fields shown in Nexus | compared with the document: 12 (PASS 12, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 7 | NOT_VERIFIABLE: 0
+2026-11-02 12:23:53,651 INFO nexus_agent.local_sender: SCREENING FJ-0001132-Consolidated with UN.pdf: 5 page(s): OTHER pages 1-5
+2026-11-02 12:23:53,651 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0001132
+2026-11-02 12:23:53,651 INFO nexus_agent.local_sender:     MISSING required: MBL, HBL
+2026-11-02 12:26:53,714 WARNING nexus_agent.local_sender: send attempt 1/3 failed: The write operation timed out
+2026-11-02 12:27:02,301 INFO nexus_agent.local_sender: Sent 'REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | CONSOLIDATED (UNCLASSIFIED)' to prealert.nexus@unifo.in (message id 1a19b0c0e35bf6c6)
+
+REG-009: sent, now validating in Nexus ...
+2026-11-02 12:27:02,302 INFO nexus_agent.validate: REG-009: waiting 179s for Nexus to process the email before checking
+2026-11-02 12:27:32,302 INFO nexus_agent.validate: REG-009: waiting 149s for Nexus to process the email before checking
+2026-11-02 12:28:02,303 INFO nexus_agent.validate: REG-009: waiting 119s for Nexus to process the email before checking
+2026-11-02 12:28:32,303 INFO nexus_agent.validate: REG-009: waiting 89s for Nexus to process the email before checking
+2026-11-02 12:29:02,304 INFO nexus_agent.validate: REG-009: waiting 59s for Nexus to process the email before checking
+2026-11-02 12:29:32,304 INFO nexus_agent.validate: REG-009: waiting 29s for Nexus to process the email before checking
+REG-009: PASS CREATED_IN_NEXUS IPA/2372/2026-27 (seen 184s after sending)
+REG-009: checking the Master data against the document ...
+(baseline) 2 already-raised issue(s) still there in Master; they do not fail the case but are NOT fixed yet:
+  STILL THERE x4  REG-009 · Master · Cargo · Volume  [not a bug]
+  STILL THERE x4  REG-009 · Master · Cargo · Volume Unit  [not a bug]
+
+REG-009  MASTER DATA  PASS   IPA/2372/2026-27   source: FJ-0001132-Consolidated with UN.pdf page 2   scanned page: read with OCR, differences are REVIEW, not FAIL
+
+  ALL FIELDS SHOWN IN NEXUS (55)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : 932-78831771
+     4. Shipment Details · Shipper : SKYFER LOGISTIC INC
+     5. Shipment Details · Shipper ID : SKYLOGINJ
+     6. Shipment Details · Consignee : LOGISTEED INDIA PRIVATE LIMITED
+     7. Shipment Details · Consignee ID : LIN_INBOM
+     8. Shipment Details · Branch : BOM
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : CW Sync Pending
+    11. Air Waybill · Air Waybill Number : 932-78831771
+    12. Shipper · Name : SKYFER LOGISTIC INC
+    13. Shipper · Address : 33,WOOD AVENUE SOUTH,, SUITE 600,ISELIN,NJ 08830, ISELIN, US
+    14. Shipper · Postal Code : 08830
+    15. Shipper · Party ID : SKYLOGINJ
+    16. Consignee · Name : LOGISTEED INDIA PRIVATE LIMITED
+    17. Consignee · Address : 1ST FLOOR VAIBHAV APARTMENT, SAHAR PIPE LINE ROAD, ANDHERI (EAST), MUMBAI 400059 IN
+    18. Consignee · Postal Code : 400059
+    19. Consignee · Party ID : LIN_INBOM
+    20. Flight Route · Type : connecting
+    21. Segment 1 · From : ATL
+    22. Segment 1 · To : LHR
+    23. Segment 1 · Polname : Atlanta
+    24. Segment 1 · Polctry : US
+    25. Segment 1 · Podname : London
+    26. Segment 1 · Podctry : GB
+    27. Segment 1 · Carrier Name : Virgin Atlantic Airways
+    28. Segment 1 · Carrier Code : VIR_WW
+    29. Segment 1 · Flight Number : VS0104
+    30. Segment 1 · Flight Date : 08/08/2026
+    31. Segment 2 · From : LHR
+    32. Segment 2 · To : BOM
+    33. Segment 2 · Polname : London
+    34. Segment 2 · Polctry : GB
+    35. Segment 2 · Podname : Mumbai
+    36. Segment 2 · Podctry : IN
+    37. Segment 2 · Carrier Name : VIRGIN ATLANTIC
+    38. Segment 2 · Carrier Code : VIR_WW
+    39. Segment 2 · Flight Number : VS0354
+    40. Segment 2 · Flight Date : 09/08/2026
+    41. Routing · Airport Of Departure : Hartsfield-Jackson ATL
+    42. Routing · Final Destination Airport : Mumbai
+    43. Freight · Freight Payment : FREIGHT PREPAID
+    44. Cargo · Pieces : 1
+    45. Cargo · Pieces Unit : PCS
+    46. Cargo · Gross Weight : 112.5
+    47. Cargo · Gross Weight Unit : KGS
+    48. Cargo · Chargeable Weight : 221
+    49. Cargo · Chargeable Weight Unit : KGS
+    50. Cargo · Nature And Quantity Of Goods : CONSOLIDATION AS PER ATTACHED MANIFESTDANGEROUS GOODS IN EXCEPTED QUANTITIES,UN2796, CLASS 8, PGII(OVERPACK USED, 2 BOXES)48 x 40 x 42 (1) INCH
+    51. Cargo · Volume : 0.1
+    52. Cargo · Volume Unit : CBM
+    53. Cargo · Executed On : 07/08/2026
+    54. Cargo · (unlabelled field 11) : (empty)
+    55. Cargo · (unlabelled field 12) : (empty)
+    count per section: Shipment Details 10, Air Waybill 1, Shipper 4, Consignee 4, Flight Route 1, Segment 1 10, Segment 2 10, Routing 2, Freight 1, Cargo 12  =  55 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the master within its document group]
+    PASS            Bill No.                       doc: 932-78831771                             | nexus: 932-78831771
+    PASS            Shipper                        doc: 932 ATL 78831771 932-78831771 Shipper's  | nexus: SKYFER LOGISTIC INC   [shipper found in the document block]
+    PASS            Shipper ID                     doc: SKYLOGINJ                                | nexus: SKYLOGINJ   [same as the Party ID in the data panel]
+    PASS            Consignee                      doc: 932 ATL 78831771 932-78831771 Shipper's  | nexus: LOGISTEED INDIA PRIVATE LIMITED   [found in the OCR text of the scanned page (4/4 words)]
+    PASS            Consignee ID                   doc: LIN_INBOM                                | nexus: LIN_INBOM   [same as the Party ID in the data panel]
+    PASS            Branch                         doc: (found in the scan)                      | nexus: BOM   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    PASS            Status                         doc: CW Sync Pending                          | nexus: CW Sync Pending
+  [Air Waybill]
+    PASS            Air Waybill Number             doc: 932-78831771                             | nexus: 932-78831771
+  [Shipper]
+    PASS            Name                           doc: 932 ATL 78831771 932-78831771 Shipper's  | nexus: SKYFER LOGISTIC INC   [name found in the document block]
+    PASS            Address                        doc: (address on the document)                | nexus: 33,WOOD AVENUE SOUTH,, SUITE 600,ISELIN,NJ   [found in the OCR text of the scanned page (8/10 words)]
+    PASS            Postal Code                    doc: 08830                                    | nexus: 08830
+    INFO            Party ID                       doc:                                          | nexus: SKYLOGINJ   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: 932 ATL 78831771 932-78831771 Shipper's  | nexus: LOGISTEED INDIA PRIVATE LIMITED   [found in the OCR text of the scanned page (4/4 words)]
+    PASS            Address                        doc: 932 ATL 78831771 932-78831771 Shipper's  | nexus: 1ST FLOOR VAIBHAV APARTMENT, SAHAR PIPE LI   [found in the OCR text of the scanned page (13/13 words)]
+    PASS            Postal Code                    doc: 400059                                   | nexus: 400059
+    INFO            Party ID                       doc:                                          | nexus: LIN_INBOM   [assigned by the Nexus party master, not printed on the document]
+  [Flight Route]
+    INFO            Type                           doc: (derived by Nexus)                       | nexus: connecting   [Nexus works this out from the routing segments; it is not printed on the document]
+  [Segment 1]
+    PASS            From                           doc: (found in the scan)                      | nexus: ATL   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            To                             doc: (found in the scan)                      | nexus: LHR   [found in the OCR text of the scanned page (1/1 words)]
+    INFO            Polname                        doc:                                          | nexus: Atlanta   [airport name from the Nexus airport master]
+    INFO            Polctry                        doc:                                          | nexus: US   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: London   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: GB   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: Virgin Atlantic Airways   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: (found in the scan)                      | nexus: VIR_WW   [found in the OCR text of the scanned page (carrier code from the airline name)]
+    PASS            Flight Number                  doc: (found in the scan)                      | nexus: VS0104   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            Flight Date                    doc: (found in the scan)                      | nexus: 08/08/2026   [found in the OCR text of the scanned page (day printed after the flight number)]
+  [Segment 2]
+    PASS            From                           doc: (found in the scan)                      | nexus: LHR   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            To                             doc: (found in the scan)                      | nexus: BOM   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            Polname                        doc: London                                   | nexus: London   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: GB   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Mumbai   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: VIRGIN ATLANTIC   [carrier name appears on the document]
+    PASS            Carrier Code                   doc: (found in the scan)                      | nexus: VIR_WW   [found in the OCR text of the scanned page (carrier code from the airline name)]
+    PASS            Flight Number                  doc: (found in the scan)                      | nexus: VS0354   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            Flight Date                    doc: (found in the scan)                      | nexus: 09/08/2026   [found in the OCR text of the scanned page (day printed after the flight number)]
+  [Routing]
+    PASS            Airport Of Departure           doc: (found in the scan)                      | nexus: Hartsfield-Jackson ATL   [found in the OCR text of the scanned page (3/3 words)]
+    PASS            Final Destination Airport      doc: (found in the scan)                      | nexus: Mumbai   [found in the OCR text of the scanned page (1/1 words)]
+  [Freight]
+    PASS            Freight Payment                doc: (found in the scan)                      | nexus: FREIGHT PREPAID   [found in the OCR text of the scanned page (payment terms)]
+  [Cargo]
+    PASS            Pieces                         doc: (found in the scan)                      | nexus: 1   [found in the OCR text of the scanned page (number)]
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: (found in the scan)                      | nexus: 112.5   [found in the OCR text of the scanned page (number)]
+    PASS            Gross Weight Unit              doc: (found in the scan)                      | nexus: KGS   [found in the OCR text of the scanned page (unit)]
+    PASS            Chargeable Weight              doc: (found in the scan)                      | nexus: 221   [found in the OCR text of the scanned page (number)]
+    PASS            Chargeable Weight Unit         doc: (found in the scan)                      | nexus: KGS   [found in the OCR text of the scanned page (unit)]
+    PASS            Nature And Quantity Of Goods   doc: (found in the scan)                      | nexus: CONSOLIDATION AS PER ATTACHED MANIFESTDANG   [found in the OCR text of the scanned page (21/23 words)]
+    KNOWN           Volume                         doc: (not found in the scan)                  | nexus: 0.1   [KNOWN ISSUE (accepted, not a bug); not found in the OCR text of the scanned page: look at the scan by eye]
+    KNOWN           Volume Unit                    doc: (not found in the scan)                  | nexus: CBM   [KNOWN ISSUE (accepted, not a bug); not found in the OCR text of the scanned page: look at the scan by eye]
+    PASS            Executed On                    doc: (found in the scan)                      | nexus: 07/08/2026   [found in the OCR text of the scanned page (date)]
+    INFO            (unlabelled field 11)          doc:                                          | nexus:    [empty field, no label]
+    INFO            (unlabelled field 12)          doc:                                          | nexus:    [empty field, no label]
+
+  55 fields shown in Nexus | compared with the document: 40 (PASS 38, FAIL 0, REVIEW 0, KNOWN 2) | INFO (no document value): 15 | NOT_VERIFIABLE: 0
+REG-009: checking the House data against the document ...
+(baseline) 5 already-raised issue(s) still there in House; they do not fail the case but are NOT fixed yet:
+  STILL THERE x4  REG-009 · House · Shipment Details · Bill No.  [not a bug]
+  STILL THERE x4  REG-009 · House · Shipment Details · Status  [not a bug]
+  STILL THERE x4  REG-009 · House · House Air Waybill · House Number (top right)  [not a bug]
+  STILL THERE x4  REG-009 · House · House Air Waybill · House Number (bottom right)  [not a bug]
+  STILL THERE x4  REG-009 · House · Shipper · Address  [bug sheet row 246]
+
+REG-009  HOUSE DATA  PASS   IPA/2372/2026-27   source: FJ-0001132-Consolidated with UN.pdf page 5   scanned page: read with OCR, differences are REVIEW, not FAIL
+
+  ALL FIELDS SHOWN IN NEXUS (60)
+     1. Shipment Details · Job Number : (empty)
+     2. Shipment Details · Page Nos. : 1
+     3. Shipment Details · Bill No. : SUSAO008522
+     4. Shipment Details · Shipper : CYGNUS TECHNOLOGIES
+     5. Shipment Details · Shipper ID : CYGTECWAS
+     6. Shipment Details · Consignee : ZELLE BIOTECHNOLOGY PRIVATE LIMITED
+     7. Shipment Details · Consignee ID : ZELBIOBOM
+     8. Shipment Details · Branch : BOM
+     9. Shipment Details · Job Type : New Job
+    10. Shipment Details · Status : Invoice Mapping Pending
+    11. House Air Waybill · House Number (top right) : SUSAO008522
+    12. House Air Waybill · House Number (bottom right) : SUSAO008522
+    13. House Air Waybill · Master AWB Reference : 932-78831771
+    14. Shipper · Name : CYGNUS TECHNOLOGIES
+    15. Shipper · Address : 4332, SOUTHPORT SUPPLY ROAD SE,, USWAS, NC, US
+    16. Shipper · Postal Code : 28461
+    17. Shipper · Party ID : CYGTECWAS
+    18. Consignee · Name : ZELLE BIOTECHNOLOGY PRIVATE LIMITED
+    19. Consignee · Address : PLOT NO. A/7, MIDC MIRA INDUSTRIAL AREA, WESTERN EXPRESS HIGHWAY, MIRA ROAD - EAST, THANE, MUMBAI, 27, IN
+    20. Consignee · Postal Code : 401104
+    21. Consignee · Party ID : ZELBIOBOM
+    22. Agent · Agent / Origin Party (free text) : Shipco Transport Inc.
+4849 Massachusetts Blvd
+Atlanta GA USA
+    23. Freight · Freight Payment : FREIGHT PREPAID
+    24. Routing · Airport Of Departure : Hartsfield-Jackson ATL
+    25. Routing · Final Destination Airport : Mumbai
+    26. Flight Route · Type : connecting
+    27. Segment 1 · From : ATL
+    28. Segment 1 · To : LHR
+    29. Segment 1 · Polname : Atlanta
+    30. Segment 1 · Polctry : US
+    31. Segment 1 · Podname : London
+    32. Segment 1 · Podctry : GB
+    33. Segment 1 · Carrier Name : VIRGIN ATLANTIC
+    34. Segment 1 · Carrier Code : VIR_WW
+    35. Segment 1 · Flight Number : VS0104
+    36. Segment 1 · Flight Date : 08/08/2026
+    37. Segment 2 · From : LHR
+    38. Segment 2 · To : BOM
+    39. Segment 2 · Polname : London
+    40. Segment 2 · Polctry : GB
+    41. Segment 2 · Podname : Mumbai
+    42. Segment 2 · Podctry : IN
+    43. Segment 2 · Carrier Name : VIRGIN ATLANTIC
+    44. Segment 2 · Carrier Code : VIR_WW
+    45. Segment 2 · Flight Number : VS0354
+    46. Segment 2 · Flight Date : 09/08/2026
+    47. Cargo · Pieces : 1
+    48. Cargo · Pieces Unit : PCS
+    49. Cargo · Gross Weight : 112.5
+    50. Cargo · Gross Weight Unit : K
+    51. Cargo · Chargeable Weight : 221
+    52. Cargo · Chargeable Weight Unit : K
+    53. Cargo · Nature And Quantity Of Goods : LAB TEST KITS AND REAGENTS
+HTS CODE 3822.19.0000
+DANGEROUS GOODS IN
+EXCEPTED QUANTITIES,
+UN2796,
+CLASS 8, PGII
+(OVERPACK USED, 2 BOXES)
+SHIPPERREF# SOCYG66122,
+SOCYG66121, SOCYG65368,
+SOCYG65267
+X20260807765819
+48 x 40 x 42 (1) INCH
+Total Volume:1.321 CBM
+    54. Cargo · Volume : 1.321
+    55. Cargo · Volume Unit : CBM
+    56. Reference · Shippers Reference : SHIPCO AIR
+    57. Reference · (unlabelled, empty) : (empty)
+    58. Reference · Executed On : 08/08/2026
+    59. Reference · (unlabelled, empty) : (empty)
+    60. Reference · Incoterm : (empty)
+    count per section: Shipment Details 10, House Air Waybill 3, Shipper 4, Consignee 4, Agent 1, Freight 1, Routing 2, Flight Route 1, Segment 1 10, Segment 2 10, Cargo 9, Reference 5  =  60 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Shipment Details]
+    INFO            Job Number                     doc:                                          | nexus:    [assigned later when the job is created]
+    INFO            Page Nos.                      doc:                                          | nexus: 1   [page of the house within its document group]
+    KNOWN           Bill No.                       doc: (not found in the scan)                  | nexus: SUSAO008522   [KNOWN ISSUE (accepted, not a bug); Look-alike: matches when o/0 or i/1 are treated alike, check the scan]
+    PASS            Shipper                        doc: HAWB ATL SUSA0008522 932-78831771 Shippe | nexus: CYGNUS TECHNOLOGIES   [shipper found in the document block]
+    PASS            Shipper ID                     doc: CYGTECWAS                                | nexus: CYGTECWAS   [same as the Party ID in the data panel]
+    PASS            Consignee                      doc: HAWB ATL SUSA0008522 932-78831771 Shippe | nexus: ZELLE BIOTECHNOLOGY PRIVATE LIMITED   [found in the OCR text of the scanned page (4/4 words)]
+    PASS            Consignee ID                   doc: ZELBIOBOM                                | nexus: ZELBIOBOM   [same as the Party ID in the data panel]
+    PASS            Branch                         doc: PPD                                      | nexus: BOM   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            Job Type                       doc: New Job                                  | nexus: New Job
+    KNOWN           Status                         doc: CW Sync Pending                          | nexus: Invoice Mapping Pending   [KNOWN ISSUE (accepted, not a bug); scanned page read with OCR (may be misread): not the final status yet: Nexus is still processing this House]
+  [House Air Waybill]
+    KNOWN           House Number (top right)       doc: (not found in the scan)                  | nexus: SUSAO008522   [KNOWN ISSUE (accepted, not a bug); Look-alike: matches when o/0 or i/1 are treated alike, check the scan]
+    KNOWN           House Number (bottom right)    doc: (not found in the scan)                  | nexus: SUSAO008522   [KNOWN ISSUE (accepted, not a bug); Look-alike: matches when o/0 or i/1 are treated alike, check the scan]
+    PASS            Master AWB Reference           doc: 932-78831771                             | nexus: 932-78831771
+  [Shipper]
+    PASS            Name                           doc: HAWB ATL SUSA0008522 932-78831771 Shippe | nexus: CYGNUS TECHNOLOGIES   [name found in the document block]
+    KNOWN           Address                        doc: CYGNUSTECHNOLOGIES Air Waybill Shipco Tr | nexus: 4332, SOUTHPORT SUPPLY ROAD SE,, USWAS, NC   [KNOWN ISSUE (logged in the bug sheet); scanned page read with OCR (may be misread): different address: only 1/5 words of the Nexus address are on the document; not on the document: 4332, SOUTHPORT, SUPPLY, USWAS]
+    REVIEW          Postal Code                    doc: 28451                                    | nexus: 28461   [scanned page read with OCR (may be misread): the party master's postal code is not the one printed on the document]
+    INFO            Party ID                       doc:                                          | nexus: CYGTECWAS   [assigned by the Nexus party master, not printed on the document]
+  [Consignee]
+    PASS            Name                           doc: HAWB ATL SUSA0008522 932-78831771 Shippe | nexus: ZELLE BIOTECHNOLOGY PRIVATE LIMITED   [found in the OCR text of the scanned page (4/4 words)]
+    PASS            Address                        doc: CYGNUSTECHNOLOGIES Air Waybill Shipco Tr | nexus: PLOT NO. A/7, MIDC MIRA INDUSTRIAL AREA, W   [found in the OCR text of the scanned page (14/17 words)]
+    PASS            Postal Code                    doc: 401104                                   | nexus: 401104
+    INFO            Party ID                       doc:                                          | nexus: ZELBIOBOM   [assigned by the Nexus party master, not printed on the document]
+  [Agent]
+    INFO            Agent / Origin Party (free text) doc: 932 ATL 78831771 932-78831771            | nexus: Shipco Transport Inc. 4849 Massachusetts B   [not printed on the House page; no document value to compare]
+  [Freight]
+    PASS            Freight Payment                doc: (found in the scan)                      | nexus: FREIGHT PREPAID   [found in the OCR text of the scanned page (payment terms)]
+  [Routing]
+    PASS            Airport Of Departure           doc: (found in the scan)                      | nexus: Hartsfield-Jackson ATL   [found in the OCR text of the scanned page (3/3 words)]
+    PASS            Final Destination Airport      doc: (found in the scan)                      | nexus: Mumbai   [found in the OCR text of the scanned page (1/1 words)]
+  [Flight Route]
+    PASS            Type                           doc: connecting                               | nexus: connecting
+  [Segment 1]
+    PASS            From                           doc: (found in the scan)                      | nexus: ATL   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            To                             doc: USD                                      | nexus: LHR   [found in the OCR text of the scanned page (1/1 words)]
+    INFO            Polname                        doc:                                          | nexus: Atlanta   [airport name from the Nexus airport master]
+    INFO            Polctry                        doc:                                          | nexus: US   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: London   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: GB   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: VIRGIN ATLANTIC   [carrier name appears on the document]
+    INFO            Carrier Code                   doc: PP                                       | nexus: VIR_WW   [Nexus airline-master code, not the IATA code printed on the document]
+    PASS            Flight Number                  doc: (found in the scan)                      | nexus: VS0104   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            Flight Date                    doc: (found in the scan)                      | nexus: 08/08/2026   [found in the OCR text of the scanned page (date)]
+  [Segment 2]
+    PASS            From                           doc: USD                                      | nexus: LHR   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            To                             doc: PPD                                      | nexus: BOM   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            Polname                        doc: London                                   | nexus: London   [equals the previous segment's arrival airport (consistency)]
+    INFO            Polctry                        doc:                                          | nexus: GB   [country of the airport (Nexus airport master)]
+    INFO            Podname                        doc:                                          | nexus: Mumbai   [airport name from the Nexus airport master]
+    INFO            Podctry                        doc:                                          | nexus: IN   [country of the airport (Nexus airport master)]
+    PASS            Carrier Name                   doc: (printed on the document)                | nexus: VIRGIN ATLANTIC   [carrier name appears on the document]
+    INFO            Carrier Code                   doc: PP                                       | nexus: VIR_WW   [Nexus airline-master code, not the IATA code printed on the document]
+    PASS            Flight Number                  doc: (found in the scan)                      | nexus: VS0354   [found in the OCR text of the scanned page (1/1 words)]
+    PASS            Flight Date                    doc: (found in the scan)                      | nexus: 09/08/2026   [found in the OCR text of the scanned page (day printed after the flight number)]
+  [Cargo]
+    PASS            Pieces                         doc: (found in the scan)                      | nexus: 1   [found in the OCR text of the scanned page (number)]
+    INFO            Pieces Unit                    doc:                                          | nexus: PCS   [unit not printed on the AWB (PCS is the Nexus default)]
+    PASS            Gross Weight                   doc: (found in the scan)                      | nexus: 112.5   [found in the OCR text of the scanned page (number)]
+    PASS            Gross Weight Unit              doc: (found in the scan)                      | nexus: K   [found in the OCR text of the scanned page (0/1 words)]
+    PASS            Chargeable Weight              doc: (found in the scan)                      | nexus: 221   [found in the OCR text of the scanned page (number)]
+    PASS            Chargeable Weight Unit         doc: (found in the scan)                      | nexus: K   [found in the OCR text of the scanned page (0/1 words)]
+    PASS            Nature And Quantity Of Goods   doc: (found in the scan)                      | nexus: LAB TEST KITS AND REAGENTS HTS CODE 3822.1   [found in the OCR text of the scanned page (35/39 words)]
+    PASS            Volume                         doc: 1.321                                    | nexus: 1.321
+    PASS            Volume Unit                    doc: CBM                                      | nexus: CBM
+  [Reference]
+    PASS            Shippers Reference             doc: (found in the scan)                      | nexus: SHIPCO AIR   [found in the OCR text of the scanned page (2/2 words)]
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    PASS            Executed On                    doc: (found in the scan)                      | nexus: 08/08/2026   [found in the OCR text of the scanned page (date)]
+    INFO            (unlabelled, empty)            doc:                                          | nexus:    [empty field, no label]
+    NOT_VERIFIABLE  Incoterm                       doc:                                          | nexus:    [could not be read from the document]
+
+  60 fields shown in Nexus | compared with the document: 42 (PASS 36, FAIL 0, REVIEW 1, KNOWN 5) | INFO (no document value): 17 | NOT_VERIFIABLE: 1
+REG-009: checking the Manifest, Invoice and Packing List data against the documents ...
+
+REG-009  MANIFEST DATA  PASS   IPA/2372/2026-27   source: FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)   scanned page: read with OCR, differences are REVIEW, not FAIL
+
+  ALL FIELDS SHOWN IN NEXUS (8)
+     1. Manifest · Master Air Waybill : 932-78831771
+     2. Manifest · Air Waybill No : SUSA00085222
+     3. Manifest · Pieces : 1
+     4. Manifest · Weight : 112.5
+     5. Shipper · Name : CYGNUS TECHNOLOGIES
+     6. Shipper · Address : 1523 OLDE WATERFORD WAY LELAND, NC 28451 USA TEL: 910-454-9442
+     7. Consignee · Name : ZELLE BIOTECHNOLOGY PVT LTD
+     8. Consignee · Address : A / 7 , M.I.D.C , MIRA INDUSTRIAL AREA WESTERN EXPRESS HIGHWAY , MIRA ROAD THANE MH 401104 India TEL: +91 22 6851 6470
+    count per section: Manifest 4, Shipper 2, Consignee 2  =  8 fields
+
+  VALIDATION AGAINST THE DOCUMENT
+  [Manifest]
+    PASS            Master Air Waybill             doc: (found on the document)                  | nexus: 932-78831771   [value found on the document]
+    PASS            Air Waybill No                 doc: (found on the document)                  | nexus: SUSA00085222   [value found on the document]
+    PASS            Pieces                         doc: (found on the document)                  | nexus: 1   [value found on the document]
+    PASS            Weight                         doc: (found on the document)                  | nexus: 112.5   [value found on the document]
+  [Shipper]
+    PASS            Name                           doc: (found on the document)                  | nexus: CYGNUS TECHNOLOGIES   [2/2 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: 1523 OLDE WATERFORD WAY LELAND, NC 28451 U   [12/12 words found on the document]
+  [Consignee]
+    PASS            Name                           doc: (found on the document)                  | nexus: ZELLE BIOTECHNOLOGY PVT LTD   [4/4 words found on the document]
+    PASS            Address                        doc: (found on the document)                  | nexus: A / 7 , M.I.D.C , MIRA INDUSTRIAL AREA WES   [23/23 words found on the document]
+
+  8 fields shown in Nexus | compared with the document: 8 (PASS 8, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 0 | NOT_VERIFIABLE: 0
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MANIFEST
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | INVOICE
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | HOUSE
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | DELIVERY NOTE
+REG-009  SENT              REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | CONSOLIDATED (UNCLASSIFIED)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261102_123143.csv
+
+UI VALIDATION
+REG-007  PASS     CREATED_IN_NEXUS  IPA/2367/2026-27
+           MASTER: PASS (in Master)
+           HOUSE: PASS (in House)
+           MANIFEST: PASS (in Manifest)
+           DELIVERY NOTE: PASS (in House)
+           INVOICE: PASS (in House)
+           IPA/2367/2026-27 seen -> Master (098-31251603): MAWBx1; House (ORAE26040499): HAWBx1, INVOICEx1, DELIVERYNOTEx2; Air Manifest: AIRMANIFESTx1
+           also in Others tab: IPA/2371/2026-27, IPA/2370/2026-27, IPA/2369/2026-27, IPA/2368/2026-27
+REG-009  PASS     CREATED_IN_NEXUS  IPA/2372/2026-27
+           MASTER: PASS (in Master)
+           HOUSE: PASS (in House)
+           MANIFEST: PASS (in Manifest)
+           unexpected: UNCLASSIFIED in Unclassified; ? in Unclassified; ? in Unclassified; UNCLASSIFIED in Unclassified; ? in Unclassified; ? in Unclassified
+           IPA/2372/2026-27 seen -> Master (932-78831771): MAWBx1; House (SUSAO008522): HAWBx1; Air Manifest: AIRMANIFESTx1
+Validation report: /home/unifo/Downloads/nexus_agent/runs/_reports/validate_20261102_123143.csv
+Master data report: /home/unifo/Downloads/nexus_agent/runs/_reports/master_data_20261102_123143.csv
+House data report: /home/unifo/Downloads/nexus_agent/runs/_reports/house_data_20261102_123143.csv
+
+BUG CANDIDATES: 9 new, 2 already known | 91 waiting for your decision.
+Nothing has been added to the bug sheet. Review them with:  ./nx bugs
+Manifest Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/manifest_data_20261102_123144.csv
+Invoice Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/invoice_data_20261102_123144.csv

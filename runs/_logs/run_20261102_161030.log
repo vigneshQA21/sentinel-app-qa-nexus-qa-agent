@@ -1,0 +1,37 @@
+2026-11-02 16:10:36,638 INFO nexus_agent.local_sender: SCREENING FJ-0001380 - Consolidated - Invoice and Packing list.pdf: 19 page(s): MBL pages 1-3; HBL pages 4; INVOICE pages 5-18; PACKING pages 19
+2026-11-02 16:10:36,639 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001380)
+2026-11-02 16:10:36,639 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001380 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)' (FJ-0001380 - Consolidated - Invoice and Packing list.pdf) to prealert.nexus@unifo.in
+2026-11-02 16:10:37,537 INFO nexus_agent.local_sender: SCREENING FJ-0001497 - Consolidated.pdf: 2 page(s): MBL pages 1; HBL pages 2
+2026-11-02 16:10:37,537 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001497)
+2026-11-02 16:10:37,538 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)' (FJ-0001497 - Consolidated.pdf) to prealert.nexus@unifo.in
+2026-11-02 16:10:38,279 INFO nexus_agent.local_sender: SCREENING FJ-0001318 - Sea Extraction + Regression + XML- Map issue.pdf: 3 page(s): MBL pages 1-2; HBL pages 3
+2026-11-02 16:10:38,279 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001318)
+2026-11-02 16:10:38,280 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001318 | CONSOLIDATED (MASTER+HOUSE)' (FJ-0001318 - Sea Extraction + Regression + XML- Map issue.pdf) to prealert.nexus@unifo.in
+2026-11-02 16:10:39,356 INFO nexus_agent.local_sender: SCREENING FJ-0001090 - Consolidated.pdf: 5 page(s): MBL pages 1-4; HBL pages 5
+2026-11-02 16:10:39,356 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001090)
+2026-11-02 16:10:39,357 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001090 | CONSOLIDATED (MASTER+HOUSE)' (FJ-0001090 - Consolidated.pdf) to prealert.nexus@unifo.in
+2026-11-02 16:10:40,952 INFO nexus_agent.local_sender: SCREENING FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf: 15 page(s): MBL pages 1-2; HBL pages 3; INVOICE pages 4-6; PACKING pages 7-15
+2026-11-02 16:10:40,952 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001382)
+2026-11-02 16:10:40,952 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001382 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)' (FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf) to prealert.nexus@unifo.in
+2026-11-02 16:10:42,054 INFO nexus_agent.local_sender: SCREENING FJ-0018972 - Consolidated-Debit note.pdf: 4 page(s): HBL pages 1; INVOICE pages 2; DEBITNOTE pages 3; HBL pages 4
+2026-11-02 16:10:42,055 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0018972)
+2026-11-02 16:10:42,055 INFO nexus_agent.local_sender:     WARNING: more than one House bill found: not a single-house sample?
+2026-11-02 16:10:42,055 INFO nexus_agent.local_sender:     MISSING required: MBL
+2026-11-02 16:10:42,055 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0018972 | CONSOLIDATED (HOUSE+INVOICE+DEBIT NOTE)' (FJ-0018972 - Consolidated-Debit note.pdf) to prealert.nexus@unifo.in
+2026-11-02 16:10:42,186 INFO nexus_agent.local_sender: SCREENING FJ-0001393 - Consolidated.pdf: 3 page(s): MBL pages 1; HBL pages 2-3
+2026-11-02 16:10:42,187 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001393)
+2026-11-02 16:10:42,187 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001393 | CONSOLIDATED (MASTER+HOUSE)' (FJ-0001393 - Consolidated.pdf) to prealert.nexus@unifo.in
+2026-11-02 16:10:43,091 INFO nexus_agent.local_sender: SCREENING FJ-0001498 - Consolidated.pdf: 3 page(s): MBL pages 1-3
+2026-11-02 16:10:43,091 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001498)
+2026-11-02 16:10:43,092 INFO nexus_agent.local_sender:     MISSING required: HBL
+2026-11-02 16:10:43,092 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER)' (FJ-0001498 - Consolidated.pdf) to prealert.nexus@unifo.in
+SEA-REG-001 DRY_RUN           SEA-REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001380 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)
+SEA-REG-002 DRY_RUN           SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-003 DRY_RUN           SEA-REG-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001318 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-004 DRY_RUN           SEA-REG-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001090 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-005 DRY_RUN           SEA-REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001382 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)
+SEA-REG-006 DRY_RUN           SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0018972 | CONSOLIDATED (HOUSE+INVOICE+DEBIT NOTE)
+SEA-REG-007 DRY_RUN           SEA-REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001393 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-008 DRY_RUN           SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261102_161043.csv

@@ -97,3 +97,24 @@ def test_currency_code_found_as_sign():
     from nexus_agent.docs_check import check_value
     r = check_value("code", None, "USD", "Total US$1,140.00")
     assert r["result"] == "PASS"
+
+
+def test_dates_with_month_names_and_real_minus_signs():
+    from nexus_agent.docs_check import date_in
+    assert date_in("INVOICE DATE: 14-AUG-2026", (14, 8, 2026))
+    assert date_in("Commercial Invoice Date: 2026−08−14", (14, 8, 2026))
+    assert not date_in("INVOICE DATE: 15-AUG-2026", (14, 8, 2026))
+
+
+def test_weights_in_a_table_row_are_not_glued_together():
+    from nexus_agent.docs_check import check_value
+    assert check_value("weight", None, "2683", "FLD6445 3 2683 PVG MAA")["result"] == "PASS"
+    r = check_value("weight", None, "2.683", "TOTAL GROSS WEIGHT: 2,683 TOTAL PACKAGES: 3")
+    assert r["result"] == "REVIEW"
+
+
+def test_amounts_with_comma_decimals_and_space_thousands():
+    from nexus_agent.docs_check import amount, check_value
+    assert amount("1 218, 41") == 1218.41 and amount("1.218,41") == 1218.41 and amount("1,218.41") == 1218.41 and amount("11,273.41") == 11273.41
+    assert amount("2,683") == 2683.0
+    assert check_value("amount", None, "1 218, 41", "TOTAL EUR 1 218,41 BALANCE DUE EUR 1 218,41")["result"] == "PASS"

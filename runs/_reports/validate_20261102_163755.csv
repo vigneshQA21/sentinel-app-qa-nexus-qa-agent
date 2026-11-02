@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+SEA-REG-001,FJ-0001380,IPA/2386/2026-27,CREATED_IN_NEXUS,PASS,859,"MASTER: PASS (in Master) | HOUSE: PASS (in House) | INVOICE: PASS (in House) | PACKING LIST: PASS (in House) | unexpected: B/L in Master; B/L in Master; B/L in Master; B/L in House | IPA/2386/2026-27 seen -> Master (GEN2037979): MBLx1, B/Lx1, B/Lx1, B/Lx1; House (264580192): HBLx1, B/Lx1, INVOICEx14, PACKINGLISTx1",/home/unifo/Downloads/nexus_agent/runs/2026-11-02/SEA-REG-001

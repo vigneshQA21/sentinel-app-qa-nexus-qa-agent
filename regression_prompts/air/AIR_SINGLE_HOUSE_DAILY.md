@@ -3,7 +3,8 @@ tag: AIR_SINGLE_HOUSE_DAILY
 mot: AIR
 suite: Air_Single_House_Daily_Regression
 cases: REG-001, REG-002, REG-005, REG-009 (consolidated); REG-006, REG-007 (individual)
-excluded: REG-003 (same shipment as REG-007), REG-011 and REG-016 (no sample), REG-004 and all multi-house
+excluded: REG-003 (same shipment as REG-007), REG-016 (hypothetical case, no sample can be found: not executable), REG-004 and all multi-house
+on request: REG-011 (sample split from FJ-0001012 + a dummy unclassified document; its own shipment, so no collision with REG-009)
 emails_per_run: 15
 run_time: about 25 minutes (5-minute wait between cases)
 last_updated: 2026-10-21
@@ -23,7 +24,8 @@ SCOPE (air, single house, consolidated + individual mapping):
   Consolidated: REG-001, REG-002, REG-005, REG-009
   Individual:   REG-006, REG-007
   Excluded today: REG-003 (its substitute sample is the same shipment as REG-007, so it would collide in Nexus),
-                  REG-011 and REG-016 (no sample yet), REG-004 and all multi-house cases.
+                  REG-016 (hypothetical, not executable), REG-004 and all multi-house cases.
+  On request only: REG-011 (FJ-0001012 split + dummy document; its own shipment, nothing to delete for it).
   Change this list only if I say so.
 
 STEP 0 - Pre-checks (stop and report if any fails)

@@ -87,7 +87,12 @@ class GmailForwarder:
                     creds = flow.run_local_server(port=0)
                 token.parent.mkdir(parents=True, exist_ok=True)
                 token.write_text(creds.to_json(), encoding="utf-8")
-            self._svc = build("gmail", "v1", credentials=creds, cache_discovery=False)
+            import google_auth_httplib2
+            import httplib2
+
+            http = google_auth_httplib2.AuthorizedHttp(
+                creds, http=httplib2.Http(timeout=self.g.get("http_timeout_seconds", 180)))
+            self._svc = build("gmail", "v1", http=http, cache_discovery=False)
         return self._svc
 
     def _label_id(self) -> str:

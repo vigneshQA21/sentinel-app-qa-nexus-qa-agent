@@ -6,6 +6,7 @@ import base64
 import logging
 import re
 import shutil
+import time
 from datetime import datetime
 from dataclasses import dataclass, field
 from email.message import EmailMessage
@@ -81,6 +82,9 @@ class LocalSender:
 
     # --- screening (read only: the PDF is never modified or split) ------------
     def screen(self, pdf: Path) -> Screening:
+        case = self.case_for_path.get(pdf)
+        if case and case.upper().startswith("SEA-"):
+            return self.screen_sea(pdf)
         texts = page_texts(pdf.read_bytes())
         parts = detect_parts(texts, self.cfg.settings["pdf_split"]["keywords"])
         hawbs = find_hawbs(texts, parts, self.cfg)
@@ -101,6 +105,23 @@ class LocalSender:
         ordered = list(dict.fromkeys(p.label for p in parts if p.label != "OTHER"))
         return Screening(ref, len(texts), [f"{p.label} pages {p.page_range}" for p in parts], types,
                          ordered, missing, warnings)
+
+    def screen_sea(self, pdf: Path) -> Screening:
+        """Sea screening: master / house bills told apart by their layout; the subject reference is the FJ number of the file."""
+        from .pdf_split import detect_parts_sea, page_texts_layout
+        sea = self.cfg.settings["pdf_split_sea"]
+        texts = page_texts_layout(pdf.read_bytes(), ocr=bool(sea.get("ocr_scanned")))
+        parts = detect_parts_sea(texts, sea)
+        m = re.search(self.cfg.settings["references"]["job_pattern"], pdf.stem, re.IGNORECASE)
+        ref = m.group(1).upper() if m else pdf.stem.upper()
+        types = {p.label for p in parts}
+        required = self.cfg.settings.get("screening", {}).get("required_types_sea", ["MBL", "HBL"])
+        missing = [t for t in required if t not in types]
+        ordered = list(dict.fromkeys(p.label for p in parts if p.label != "OTHER"))
+        warnings = [f"sea file: reference taken from the file name ({ref})"]
+        if sum(1 for p in parts if p.label == "HBL") > 1:
+            warnings.append("more than one House bill found: not a single-house sample?")
+        return Screening(ref, len(texts), [f"{p.label} pages {p.page_range}" for p in parts], types, ordered, missing, warnings)
 
     def label(self, doc_type: str) -> str:
         return self.ld["doc_labels"].get(doc_type, doc_type)
@@ -157,6 +178,8 @@ class LocalSender:
                  force: bool = False, only: set[Path] | None = None, resend: bool = False) -> list[PreAlert]:
         sent: list[PreAlert] = []
         to = self.cfg.settings["gmail"]["forward_to"]
+        gap = int(self.ld.get("email_gap_seconds", 0))
+        sent_one = False                       # emails go strictly one by one: Nexus groups them wrongly when they arrive together
         for it in self.pending(refs, force or resend, only):
             sc = it.screening
             row = {"path": it.path, "ref": it.ref, "subject": it.subject, "case": it.case, "status": "",
@@ -179,17 +202,27 @@ class LocalSender:
             if dry_run:
                 log.info("[dry-run] would send '%s' (%s) to %s", it.subject, it.path.name, to)
             else:
+                wait = int((self.ld.get("case_email_gap_seconds") or {}).get(it.case, gap))     # a case can need a longer gap than the default
+                if sent_one and wait:
+                    log.info("waiting %ds before the next email (one by one, never in parallel)", wait)
+                    time.sleep(wait)
                 self.fwd = self.fwd or GmailForwarder(self.cfg, self.store)
                 users = self.fwd.svc.users()
                 msg = build_message(it.path, to, it.subject, it.ref, self.ld.get("priority", ""))
-                resp = users.messages().send(
-                    userId="me", body={"raw": base64.urlsafe_b64encode(msg.as_bytes()).decode()}).execute()
+                try:
+                    resp = self._send_once(users, msg, it.subject)
+                except Exception as exc:  # one failed email must not stop the other cases
+                    log.error("SEND FAILED for '%s': %s", it.subject, exc)
+                    row["status"] = "SEND_FAILED"
+                    row["warnings"] = f"send failed: {exc}"
+                    continue
                 pa.gmail_id = resp["id"]
                 try:
                     users.messages().modify(userId="me", id=resp["id"],
                                             body={"addLabelIds": [self.fwd._label_id()]}).execute()
                 except Exception as exc:  # label is cosmetic; the mail is already sent
                     log.warning("could not label sent mail: %s", exc)
+                sent_one = True
                 row["sent_at"] = datetime.now().isoformat(timespec="seconds")
                 self.store.mark_doc_sent(pa, it.path.name)
                 if self.ld.get("archive_after_send", False):
@@ -197,6 +230,25 @@ class LocalSender:
                 log.info("Sent '%s' to %s (message id %s)", it.subject, to, pa.gmail_id)
             sent.append(pa)
         return sent
+
+    def _send_once(self, users, msg: EmailMessage, subject: str, attempts: int = 3) -> dict:
+        """Send, retrying on timeouts. A timed-out send may still have gone out, so look in Sent
+        for the subject before every retry to avoid a duplicate in Nexus."""
+        body = {"raw": base64.urlsafe_b64encode(msg.as_bytes()).decode()}
+        for n in range(1, attempts + 1):
+            try:
+                return users.messages().send(userId="me", body=body).execute()
+            except Exception as exc:
+                log.warning("send attempt %d/%d failed: %s", n, attempts, exc)
+                time.sleep(5)
+                q = f'in:sent newer_than:1h subject:"{subject}"'
+                found = users.messages().list(userId="me", q=q, maxResults=1).execute().get("messages", [])
+                if found:
+                    log.warning("the timed-out email is already in Sent; not sending again")
+                    return found[0]
+                if n == attempts:
+                    raise
+        raise RuntimeError("unreachable")
 
     def _archive(self, it: Item) -> None:
         dest = self._dir("sent_dir") / it.ref

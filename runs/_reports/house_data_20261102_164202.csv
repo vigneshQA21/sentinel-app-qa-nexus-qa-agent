@@ -1,0 +1,98 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Bill No.,,264580192,PASS,printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Shipper,,REMOSA SRL,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Shipper ID,,REMOSAROM,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Consignee,,INDIAN OIL CORPORATION LIMITED,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Consignee ID,,INDOILBOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Branch,,CCU,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipment Details,Shipment Details · Status,,CW Sync Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,House Air Waybill,House Air Waybill · Master AWB Reference,,264580192,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipper,Shipper · Name,,REMOSA SRL,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipper,Shipper · Address,,"VIALE PULA 37 09123 CAGAIARI, IT",FAIL,only 2/6 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipper,Shipper · Postal Code,,9123,FAIL,this number is not printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Shipper,Shipper · Party ID,,REMOSAROM,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Consignee,Consignee · Name,,INDIAN OIL CORPORATION LIMITED,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Consignee,Consignee · Address,,"ALIYAVAR JUNG ROAD BANDRA EAST, BANDRA EAST,, MUMBAI, 27, IN",FAIL,only 1/8 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Consignee,Consignee · Postal Code,,400051,FAIL,this number is not printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Consignee,Consignee · Party ID,,INDOILBOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Consignee,Consignee · Name,,INDIAN OIL BHAVAN INDIAN OIL CORP .LIMITED REFINERY LIAISON OF . KOLKATA,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Consignee,Consignee · Address,,"6TH FLOOR , CENTRAL WING , 2 , GARI AHAT
+RD ( SOUTH ) , DHAKURIA KOLKATA - 700068 **",PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Consignee,Consignee · Name,,LOGI STEED INDIA PVT LTD .,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Consignee,Consignee · Address,,"6A , MIDDLETON STREET
+700071 KOLKATA INDIA",PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · (unlabelled field),,O.T.E. Spedizioni Internazionali S.r.L,FAIL,only 0/2 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Vessel Name,,CMA CGM COLUMBIA,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Voyage Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Port Of Loading,,GENOA,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Ctn Pol City,,NOA,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Ctn Pol Ctry,,GE,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Port Of Discharge,,KOLKATA,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Place Of Delivery,,KOLKATA,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Final Destination,,KOLKATA,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Ctn Pod City,,CCU,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Ctn Pod Ctry,,IN,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container No,,TRIU0822617,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Seal No,,1111,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container Type,,40'FF,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · No Of Pieces Value,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · No Of Pieces Unit,,CRATES,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Gross Weight Value,,3800,FAIL,this number is not printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Description,,PARTS OF VALVES,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container No,,TEMU2617717,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Seal No,,3172231,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container Type,,20'BOX,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · No Of Pieces Value,,2,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · No Of Pieces Unit,,PKGS,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Gross Weight Value,,2910,FAIL,this number is not printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Description,,PARTS OF VALVES,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container No,,CMAU7563865,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Seal No,,3172103,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Container Type,,40'HC,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · No Of Pieces Value,,4,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · No Of Pieces Unit,,PKGS,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Gross Weight Value,,7735,FAIL,this number is not printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Description,,PARTS OF VALVES,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Freight,Freight · Freight Payment,,FREIGHT COLLECT,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · (unlabelled field),,CY/CY,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · (unlabelled field),,LCL,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Value,,3800,FAIL,this number is not printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Unit,,KGS,PASS,unit printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Value,,0.1,FAIL,this number is not printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Unit,,CBM,REVIEW,unit not found as printed
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Value,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Unit,,CRATES,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · (unlabelled field),,PARTS OF VALVES,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Place,,NOVATE MILANESE,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Date,,29/07/2026,FAIL,this date is not printed on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Carrier Name,,O. T. E. SPEDIZ . INTERNAZ .,PASS,every word is on the document
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Carrier Code,,CMDU_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Reference,Reference · Shippers Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Consignee Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Inv No,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Other,Other · Inv Date,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2386/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 4,Reference,Reference · Executed On,,EXW,PASS,every word is on the document

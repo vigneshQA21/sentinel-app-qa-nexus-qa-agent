@@ -100,6 +100,7 @@ class UatPages:
         "parent_Master": "Viewer, parent Master: Linked / Unmatched / Unclassified documents and the Master data",
         "parent_House": "Viewer, parent House: Linked / Unmatched / Unclassified documents and the House data",
         "parent_Manifest": "Viewer, parent Air Manifest: Linked / Unmatched / Unclassified documents and the Manifest data",
+        "unresolved_row": "Pre-Alerts tab, row expanded, scrolled to 'Unresolved Documents' (what Nexus lists as not linked, with its remark)",
         "others_tab": "Others tab: follow-up emails and duplicates of this case",
         "master_data": "Master data panel (checked against the document)", "house_data": "House data panel (checked against the document)",
         "manifest_data": "Manifest data panel", "invoice_data": "Invoice data panel", "packing_data": "Packing List data panel",
@@ -211,11 +212,32 @@ class UatPages:
             cell.click()
             self.page.wait_for_timeout(2500)
             if view.count():
+                self.page.wait_for_timeout(1500)                                  # 'Unresolved Documents' renders a little after Shipment Details
+                self.unresolved = self.read_unresolved()
                 if getattr(self, "case_dir", None):
                     self.page.mouse.move(5, 5)                                # no hover tooltip over the table
                     self.page.wait_for_timeout(400)
                     self.screenshot(self.case_dir / "prealert_expanded.png")   # the row expanded: Shipment Details and View documents
+                    if self.unresolved["count"]:                               # the row lists documents as not linked: keep it in the trace
+                        self.screenshot(self.case_dir / "unresolved_row.png")
                 return
+
+    def read_unresolved(self) -> dict:
+        """The 'Unresolved Documents : N' block of the expanded row: {count, rows: [{document, remark}]}. Empty when the row has none."""
+        try:
+            head = self.page.get_by_text(re.compile(r"Unresolved Documents\s*:\s*\d+")).first
+            if not head.count():
+                return {"count": 0, "rows": []}
+            count = int(re.search(r"(\d+)", head.inner_text().split(":")[-1]).group(1))
+            block = head.evaluate("h => h.parentElement.innerText")
+            lines = [x.strip() for x in block.splitlines() if x.strip()]
+            body = lines[lines.index("Actions") + 1:] if "Actions" in lines else lines[1:]
+            rows = [{"document": body[0], "remark": next((x for x in body if re.search(r"not (yet )?linked|unmatched", x, re.I)), "")}] if body else []
+            head.scroll_into_view_if_needed()
+            return {"count": count, "rows": rows}
+        except Exception as exc:
+            log.warning("could not read the Unresolved Documents block: %s", exc)
+            return {"count": 0, "rows": []}
 
     def read_shipment_details(self) -> list[dict]:
         """The 'Shipment Details' table of the expanded row: one dict per record (Master / House), keyed by column."""
@@ -312,7 +334,36 @@ class UatPages:
             out.append({"parent": name, "kind": kind, **panel})
             if evidence:
                 self.screenshot(evidence / f"parent_{kind}.png")
+                self._capture_linked_documents(evidence, kind, panel)
         return out
+
+    CORE_LABELS = {"MAWB", "HAWB", "AIRMANIFEST", "MANIFEST"}
+
+    def _capture_linked_documents(self, evidence: Path, kind: str, panel: dict) -> None:
+        """Opens each other linked document of the parent (SHIPPERDOC, DELIVERYNOTE, INVOICE ...) and screenshots it, so the trace shows
+        what Nexus classified the page as and the fields it extracted (the way a tester clicks through the left panel)."""
+        for g in panel["linked"]:
+            if g["label"] in self.CORE_LABELS:
+                continue
+            try:
+                box = self.page.get_by_text(re.compile(rf"^{g['label']}$", re.I)).first.bounding_box(timeout=5000)
+                if not box:
+                    continue
+                self.page.mouse.click(box["x"] + 50, box["y"] + 70)             # the first page thumbnail under the group label
+                self.page.wait_for_timeout(2500)
+                self.page.mouse.move(5, 5)
+                self.screenshot(evidence / f"parent_{kind}_{g['label']}.png")
+            except Exception as exc:
+                log.warning("could not open %s under %s: %s", g["label"], kind, exc)
+        core = next((g["label"] for g in panel["linked"] if g["label"] in self.CORE_LABELS), None)
+        if core and any(g["label"] not in self.CORE_LABELS for g in panel["linked"]):
+            try:                                                                 # back to the parent's own document: the header dropdown must show the parent again
+                box = self.page.get_by_text(re.compile(rf"^{core}$", re.I)).first.bounding_box(timeout=5000)
+                self.page.mouse.click(box["x"] + 50, box["y"] + 70)
+                self.page.wait_for_timeout(2500)
+                self.page.mouse.move(5, 5)
+            except Exception as exc:
+                log.warning("could not return to %s under %s: %s", core, kind, exc)
 
 
 CARGO_FIELDS = ["pieces", "pieces_unit", "gross_weight", "gross_unit", "chargeable_weight", "chargeable_unit",

@@ -35,7 +35,7 @@ def _note_bugs(cfg, mapping_rows=None, groups=None) -> None:
     from . import testsuite as T
     from .store import Store
     try:
-        cases = {c.id: c for c in T.read_cases(cfg)}
+        cases = {c.id: c for c in T.read_cases(cfg) + T.read_sea_cases(cfg)}
         cands = B.candidates_from_mapping(mapping_rows or [], cases, cfg)
         for title, results in groups or []:
             cands += B.candidates_from_results(results, title, cases, cfg)
@@ -67,6 +67,18 @@ def _baseline(cfg, results=None, title="", mapping_rows=None) -> None:
             print(f"(baseline) {f}")
     except Exception as exc:
         print(f"(baseline could not be applied: {type(exc).__name__}: {exc})")
+
+
+def _run_data_check(cfg, chosen, kind, air_runner, args) -> list:
+    """Air cases use the air-waybill checks, Sea cases the bill-of-lading check (sea_check)."""
+    from . import sea_check as SC
+    from . import testsuite as T
+    air = [c for c in chosen if not T.is_sea(c.id)]
+    sea = [c for c in chosen if T.is_sea(c.id)]
+    results = air_runner(cfg, air, headless=args.headless, wait_seconds=args.wait) if air else []
+    if sea:
+        results += SC.run_sea_check(cfg, sea, kind, headless=args.headless, wait_seconds=args.wait)
+    return results
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -116,9 +128,15 @@ def main(argv: list[str] | None = None) -> int:
     vd.add_argument("--wait", type=int, help="seconds to wait for the pre-alert (default: buffer + polling from the send time)")
     vd.add_argument("--headless", action="store_true", help="hide the browser (default: shown)")
 
+    rr = sub.add_parser("runreport", help="today's run only: observations, bugs found, and earlier raised bugs that passed (no history)")
+    rr.add_argument("--date", help="yyyy-mm-dd (default: today)")
     sub.add_parser("history", help="internal bug history: bugs found, how often each repeats, status")
     cd = sub.add_parser("casedoc", help="write every validation of the given cases into the test-case workbook (new tab, backup first)")
     cd.add_argument("--cases", nargs="+", default=["REG-001", "REG-002"])
+    pu = sub.add_parser("post-update", help="draft today's update, show it, and post it to Zoho Cliq / Sprints after your answer")
+    pu.add_argument("--date", help="yyyy-mm-dd (default: today)")
+    pu.add_argument("--file", help="post this text file instead of the automatic draft (e.g. state/zoho_update.md)")
+    pu.add_argument("--dry-run", action="store_true", help="only show the drafts, post nothing")
     lg2 = sub.add_parser("log", help="add a note to today's entry in docs/PROGRESS_LOG.md")
     lg2.add_argument("text", nargs="+", help="what changed / what was decided")
 
@@ -146,6 +164,25 @@ def main(argv: list[str] | None = None) -> int:
     profile = args.profile or (None if os.getenv("NEXUS_MOCK") else "uat")
     cfg = Config(args.config, profile=None if profile == "mock" else profile)
 
+    if args.cmd in ("suite", "validate", "validate-master", "validate-house", "validate-docs") and not getattr(args, "dry_run", False) \
+            and not os.getenv("NEXUS_NO_LIVE"):
+        from . import live                        # live status page in the browser (runs/_live/index.html), refreshes by itself
+        live.install(cfg.runs_dir, f"{args.cmd} {' '.join(getattr(args, 'cases', None) or [])}".strip())
+
+        def _report_after_run():                  # the detailed report of today's cases opens in the browser when a run ends
+            try:
+                import webbrowser
+                from . import runreport as RR
+                from .store import Store
+                hp = RR.write_html(cfg, Store(cfg.state_dir / "agent.db"), with_sheet=False)
+                print(f"HTML run report: {hp}")
+                if not os.getenv("NEXUS_LIVE_NO_OPEN"):
+                    webbrowser.open(hp.resolve().as_uri())
+            except Exception as exc:
+                print(f"(HTML run report not written: {type(exc).__name__}: {exc})")
+        import atexit
+        atexit.register(_report_after_run)
+
     if args.cmd == "login":
         from .nexus.session import NexusSession
         with NexusSession(cfg, headless=False) as s:
@@ -159,6 +196,19 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{len(fwd)} pre-alert(s) {'would be ' if args.dry_run else ''}forwarded")
         return 0
 
+    if args.cmd == "runreport":
+        from . import runreport as RR
+        from .store import Store
+        text, path = RR.write(cfg.runs_dir / "_reports", Store(cfg.state_dir / "agent.db"), args.date, cfg)
+        print(text)
+        print(f"\nSaved: {path}")
+        hp = RR.write_html(cfg, Store(cfg.state_dir / "agent.db"), args.date, with_sheet=False)
+        print(f"HTML report: {hp}")
+        if not os.getenv("NEXUS_NO_LIVE"):
+            import webbrowser
+            webbrowser.open(hp.resolve().as_uri())
+        return 0
+
     if args.cmd == "history":
         from . import history as H
         from .store import Store
@@ -170,6 +220,11 @@ def main(argv: list[str] | None = None) -> int:
         path, backup, n = CD.write(cfg, [c.upper() for c in args.cases])
         print(f"{n} validations written to the tab '{CD.TAB}' in {path}\nBackup of the workbook before the change: {backup}")
         return 0
+
+    if args.cmd == "post-update":
+        from . import zoho_post as Z
+        from .store import Store
+        return Z.run(cfg, Store(cfg.state_dir / "agent.db"), args.date, dry_run=args.dry_run, text_file=args.file)
 
     if args.cmd == "log":
         from .devlog import append_log
@@ -240,7 +295,7 @@ def main(argv: list[str] | None = None) -> int:
         from . import master_check as MC
         from . import testsuite as T
         wanted = {c.upper() for c in args.cases}
-        chosen = [c for c in T.read_cases(cfg) if c.id in wanted]
+        chosen = [c for c in T.read_cases_for(cfg, wanted) if c.id in wanted]
         kinds = tuple(k.upper() for k in args.only) if args.only else None
         shown_kinds = kinds or ("MANIFEST", "INVOICE", "PACKING", "DEBITNOTE", "SHIPPERDOC")
         results = DC.run_docs_check(cfg, chosen, headless=args.headless, wait_seconds=args.wait, kinds=kinds)
@@ -262,8 +317,8 @@ def main(argv: list[str] | None = None) -> int:
         from . import master_check as MC
         from . import testsuite as T
         wanted = {c.upper() for c in args.cases}
-        chosen = [c for c in T.read_cases(cfg) if c.id in wanted]
-        results = HC.run_house_check(cfg, chosen, headless=args.headless, wait_seconds=args.wait)
+        chosen = [c for c in T.read_cases_for(cfg, wanted) if c.id in wanted]
+        results = _run_data_check(cfg, chosen, "HBL", HC.run_house_check, args)
         _baseline(cfg, results, "House")
         print(MC.format_report(results, "HOUSE DATA"))
         print(f"\nReport: {MC.write_report(cfg, results, 'house_data')}")
@@ -274,8 +329,8 @@ def main(argv: list[str] | None = None) -> int:
         from . import master_check as MC
         from . import testsuite as T
         wanted = {c.upper() for c in args.cases}
-        chosen = [c for c in T.read_cases(cfg) if c.id in wanted]
-        results = MC.run_master_check(cfg, chosen, headless=args.headless, wait_seconds=args.wait)
+        chosen = [c for c in T.read_cases_for(cfg, wanted) if c.id in wanted]
+        results = _run_data_check(cfg, chosen, "MBL", MC.run_master_check, args)
         _baseline(cfg, results, "Master")
         print(MC.format_report(results))
         print(f"\nReport: {MC.write_report(cfg, results)}")
@@ -286,7 +341,7 @@ def main(argv: list[str] | None = None) -> int:
         from . import testsuite as T
         from . import validate as V
         wanted = {c.upper() for c in args.cases}
-        chosen = [c for c in T.read_cases(cfg) if c.id in wanted]
+        chosen = [c for c in T.read_cases_for(cfg, wanted) if c.id in wanted]
         missing = wanted - {c.id for c in chosen}
         if missing:
             print(f"unknown or out-of-scope case(s): {', '.join(sorted(missing))}")
@@ -303,8 +358,10 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd in ("cases", "ingest", "suite"):
         from . import testsuite as T
-        cases = T.read_cases(cfg)
+        wanted = {c.upper() for c in args.cases} if getattr(args, "cases", None) else None
+        cases = T.read_cases_for(cfg, wanted)
         if args.cmd == "cases":
+            cases = cases + T.read_sea_cases(cfg)
             for c in cases:
                 n = len(T.sample_files(cfg, c))
                 print(f"{c.id:8} {c.mode:12} {c.sample_ref or '-':12} samples: {n or 'none':<5} {c.docs[:70]}")
@@ -319,8 +376,10 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         from .local_sender import LocalSender
         from .store import Store
-        wanted = {c.upper() for c in args.cases} if args.cases else None
         chosen = [c for c in cases if not wanted or c.id in wanted]
+        if args.validate and not args.dry_run and any(T.is_sea(c.id) for c in chosen):
+            print("Sea cases can be sent but not validated yet (the Nexus checks are Air-only). Run without --validate; nothing was sent.")
+            return 2
         store = Store(cfg.state_dir / "agent.db")
         sender = LocalSender(cfg, store)
         interval = cfg.settings["testsuite"].get("case_interval_seconds", 0) if args.interval is None else args.interval
@@ -348,10 +407,6 @@ def main(argv: list[str] | None = None) -> int:
 
                 def after(case, case_rows):
                     if not any(r["status"] == "SENT" for r in case_rows):
-                        return
-                    if case.mode == "individual":
-                        vrows.append({"case_id": case.id, "ref": "", "ipa": "", "nexus_status": "", "verdict": "SKIPPED",
-                                      "appeared_after_s": "", "details": "UI validation of individual cases is not built yet", "evidence": ""})
                         return
                     print(f"\n{case.id}: sent, now validating in Nexus ...", flush=True)
                     try:

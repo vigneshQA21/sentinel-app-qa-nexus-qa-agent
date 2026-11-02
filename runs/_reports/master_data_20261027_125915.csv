@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-007,IPA/2240/2026-27,1_Air_Waybill_Copy4.pdf page 1,,,,,ERROR,no Master parent in the viewer

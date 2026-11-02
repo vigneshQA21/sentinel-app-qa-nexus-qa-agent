@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-007,IPA/2228/2026-27,3_Invoice_0255210.pdf page 1,,,,,ERROR,invoice expected under House but Nexus has none linked

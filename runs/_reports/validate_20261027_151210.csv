@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+REG-007,,,ERROR,ERROR,,RuntimeError: parent dropdown did not open in the viewer header,
