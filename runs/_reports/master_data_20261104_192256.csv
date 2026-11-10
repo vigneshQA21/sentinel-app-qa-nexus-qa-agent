@@ -1,0 +1,58 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,2,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Bill No.,,SITTAGBO667780,PASS,printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Shipper,,"NINGBO SEAHORSE ELECTRONICS CO.LTD.,",KNOWN,"KNOWN ISSUE (accepted, not a bug); 3/5 words are on the document"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Shipper ID,,NINSEANGB3,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Consignee,,LOGISTEED INDIA PVT . LTD .,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Consignee ID,,LIN_INBLR,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Branch,,BLR,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipment Details,Shipment Details · Status,,CW Sync Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,,SITTAGBO667780,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipper,Shipper · Name,,"NINGBO SEAHORSE ELECTRONICS CO.LTD.,",KNOWN,"KNOWN ISSUE (accepted, not a bug); 3/5 words are on the document"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipper,Shipper · Address,,"DAJIAHE TOWN INDUSTRY ZONE, NINGHAI, NO.775 ZHONGXING ROAD, Ningbo, ZJ, CN",KNOWN,"KNOWN ISSUE (accepted, not a bug); only 5/12 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipper,Shipper · Postal Code,,315000,KNOWN,"KNOWN ISSUE (accepted, not a bug); this number is not printed on the document"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Shipper,Shipper · Party ID,,NINSEANGB3,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Consignee,Consignee · Name,,LOGISTEED INDIA PVT . LTD .,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Consignee,Consignee · Address,,"F-102 , 1ST FLOOR , TOUCHDOWN BUILDING , NAM JOSHI RD ,INDUSTRIAL AREA HAL , BENGALURU , KARNATAKA-560037 ,INDIA .TEL : 08067234500 MOB : 7829917440 *",PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Consignee,Consignee · Postal Code,,560037,PASS,number printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Consignee,Consignee · Party ID,,LIN_INBLR,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Consignee,Consignee · Name,,LOGISTEED INDIA PVT . LTD .,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Consignee,Consignee · Address,,"F-102 , 1ST FLOOR , TOUCHDOWN BUILDING , NAMJOSHI RD ,INDUSTRIAL AREA HAL , BENGALURU , KARNATAKA-560037 ,INDIA .TEL : 08067234500 MOB : 7829917440 **",PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Consignee,Consignee · Name,,,INFO,"empty field, nothing to compare"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Consignee,Consignee · Address,,,INFO,"empty field, nothing to compare"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Vessel Name,,SITC PORT KLANG,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Voyage Number,,V.2612S,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Port Of Loading,,"QINGDAO , CHINA",PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Ctn Pol City,,QIN,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Ctn Pol Ctry,,CHINA,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Port Of Discharge,,"CHENNAI , INDIA",PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Place Of Delivery,,"BANGALORE , INDIA",PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Final Destination,,"BANGALORE , INDIA",PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Ctn Pod City,,MAA,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Ctn Pod Ctry,,INDIA,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Container No,,TIIU5499664,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Seal No,,SITZ836669,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Container Type,,40HC,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · No Of Pieces Value,,37,PASS,number printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · No Of Pieces Unit,,PALLET,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Gross Weight Value,,17875,PASS,number printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Volume Of Goods Value,,26.74,PASS,number printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Volume Of Goods Unit,,CBM,PASS,unit printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Description,,SEE ATTACHMENT,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · (unlabelled field),,"QINGDAO , CHINA",PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT PREPAID,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Cargo,Cargo · Pieces,,FCL,INFO,"in the Sea panel this field holds the service type (FCL / LCL), not a piece count"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Cargo,Cargo · Pieces Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Place,,QINGDAO,PASS,every word is on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Date,,21/07/2026,PASS,date printed on the document
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Carrier Name,,"SITC CONTAINER LINES CO . , LTD",KNOWN,"KNOWN ISSUE (accepted, not a bug); 4/5 words are on the document"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Other,Other · Carrier Code,,SITU_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Cargo,Cargo · Gross Weight,,,INFO,"empty field, nothing to compare"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Cargo,Cargo · Gross Weight Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-006,IPA/2452/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 1,Incoterm,Incoterm · Incoterm,,,INFO,"empty field, nothing to compare"

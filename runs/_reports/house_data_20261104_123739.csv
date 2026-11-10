@@ -1,0 +1,59 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Bill No.,,BWSS 13760427,PASS,printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Shipper,,MENETA ADVANCED SHIMS TECHNOLOGY,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Shipper ID,,MENADVCPH,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Consignee,,Meneta Automotive Components Pvt . Ltd.,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Consignee ID,,MENAUTMAA,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Branch,,DEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Status,,Invoice Mapping Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,House Air Waybill,House Air Waybill · Master AWB Reference,,BWSS 13760427,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipper,Shipper · Name,,MENETA ADVANCED SHIMS TECHNOLOGY,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipper,Shipper · Address,,"ODENSE N-5270 ODENSE N-5270, DK",PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipper,Shipper · Postal Code,,5270,PASS,number printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipper,Shipper · Party ID,,MENADVCPH,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Name,,Meneta Automotive Components Pvt . Ltd.,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Address,,"Plot No 49 66, Sec - 53, Phase V, P O Kundli, Sonepat Haryana, So, IN",PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Postal Code,,131028,PASS,number printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Party ID,,MENAUTMAA,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Name,,Blue Water Shipping A / S,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Address,,Same as consignee,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Name,,Logisteed India Pvt . Ltd,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Address,,"3rd Floor , D - 21 Corporate Park , Sector - 21 , Near Dwarka Sec 8
+110077 New Delhi , India",PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Vessel Name,,DP World London,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Voyage Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Port Of Loading,,Fredericia,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Ctn Pol City,,FRC,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Ctn Pol Ctry,,DK,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Port Of Discharge,,Mundra ICD,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Place Of Delivery,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a place of delivery"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Final Destination,,Mundra ICD,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Ctn Pod City,,MUN,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Ctn Pod Ctry,,IN,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Freight,Freight · Freight Payment,,FREIGHT NOT FOUND,REVIEW,2/3 words are on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,CY/CY,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,LCL,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Value,,0.1,KNOWN,"KNOWN ISSUE (accepted, not a bug); this number is not printed on the document"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Unit,,CBM,PASS,unit printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Place,,Odense,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Date,,04/09/2026,PASS,date printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Carrier Name,,BLUE WATER SHIPPING A / S,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Carrier Code,,BWSS_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Reference,Reference · Shippers Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Consignee Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Inv No,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Inv Date,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Reference,Reference · Executed On,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Incoterm,Incoterm · Incoterm,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints the Incoterm (Terms)"

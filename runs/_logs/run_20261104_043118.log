@@ -1,0 +1,6 @@
+2026-11-04 04:31:20,763 INFO nexus_agent.local_sender: SCREENING FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf: 15 page(s): MBL pages 1-2; HBL pages 3; INVOICE pages 4-6; PACKING pages 7-15
+2026-11-04 04:31:20,764 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001382)
+2026-11-04 04:31:20,764 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001382 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)' (FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf) to prealert.nexus@unifo.in
+SEA-REG-005 DRY_RUN           SEA-REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001382 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261104_043120.csv

@@ -136,8 +136,7 @@ class UatPages:
             self.page.get_by_text("Others (", exact=False).first.click()
             self.page.wait_for_timeout(3500)
             self.page.mouse.move(5, 5)
-            cells = self.page.locator(self.u["subject_cell"].format(token=token))
-            found = [self.row_info(cells.nth(i)).get("ipa", "") for i in range(cells.count())]
+            found = [self.row_info(c).get("ipa", "") for c in self.case_cells(token)]
             if getattr(self, "case_dir", None):
                 self.screenshot(self.case_dir / "others_tab.png")
         except Exception as exc:
@@ -170,9 +169,15 @@ class UatPages:
             log.warning("the email list did not finish loading")
         self.page.wait_for_timeout(1000)
 
-    def find_case_row(self, token: str):
+    def case_cells(self, token: str) -> list:
+        """The subject cells whose text STARTS with the token: 'REG-002 |' must not match 'SEA-REG-002 |' (a Sea case that has the same number)."""
         cells = self.page.locator(self.u["subject_cell"].format(token=token))
-        return cells.first if cells.count() else None      # newest row first
+        want = " ".join(token.split()).upper()
+        return [cells.nth(i) for i in range(cells.count()) if " ".join(cells.nth(i).inner_text().split()).upper().startswith(want)]
+
+    def find_case_row(self, token: str):
+        cells = self.case_cells(token)
+        return cells[0] if cells else None      # newest row first
 
     def row_info(self, cell) -> dict:
         """IPA id and job progress of the row that holds this subject cell."""

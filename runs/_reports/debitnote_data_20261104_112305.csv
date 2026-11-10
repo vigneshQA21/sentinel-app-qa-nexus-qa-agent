@@ -1,0 +1,22 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · House Bill No,HTHC26072463,HTHC26072463,PASS,same as the value printed on the document
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Master Bill No,(found on the document),SITTAGBO667780,PASS,value found on the document
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Invoice Number,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Invoice Date,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Grand Total,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Currency Code,,USD,INFO,"shown by Nexus, no rule for this field"
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Po Number,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Gross Weight,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Shipper,Shipper · Name,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Shipper,Shipper · Address,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Shipper,Shipper · Postal Code,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Consignee,Consignee · Name,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Consignee,Consignee · Address,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Consignee,Consignee · Postal Code,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Order No,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Account No,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Customer No,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Delivery No,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Supplier No,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Reference No,,,INFO,empty in Nexus
+SEA-REG-006,IPA/2414/2026-27,FJ-0018972 - Consolidated-Debit note.pdf page 3,Debit Note,Debit Note · Incoterm,,,INFO,empty in Nexus

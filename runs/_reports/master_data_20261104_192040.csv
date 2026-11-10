@@ -1,0 +1,58 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Page Nos.,,2,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Bill No.,,FMSXJ0056841,PASS,printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Shipper,,DM LOGISTICS LTD,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Shipper ID,,DMLOGILON1,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Consignee,,LOGISTEED INDIA PRIVATE LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Consignee ID,,LIN_INBOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Branch,,BOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipment Details,Shipment Details · Status,,CW Sync Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Air Waybill,Air Waybill · Air Waybill Number,,FMSXJ0056841,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipper,Shipper · Name,,DM LOGISTICS LTD,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipper,Shipper · Address,,"THE MEWS,GRENVILLE COURT,BRITWELL ROAD, BURNHAM,SLOUGH,BERKSHIRE,SL1 8DF, BERKSHIRE, GB",KNOWN,"KNOWN ISSUE (accepted, not a bug); 10/12 words are on the document"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipper,Shipper · Postal Code,,SL1 8DF,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 1/2 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Shipper,Shipper · Party ID,,DMLOGILON1,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Consignee,Consignee · Name,,LOGISTEED INDIA PRIVATE LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Consignee,Consignee · Address,,1ST FLOOR VAIBHAV APARTMENTSAHAR PIPELINE ROADANDHERI ( EAST ) MUMBAI 4000059 INDIA,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Consignee,Consignee · Postal Code,,4000059,PASS,number printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Consignee,Consignee · Party ID,,LIN_INBOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Consignee,Consignee · Name,,LOGISTEED INDIA PRIVATE LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Consignee,Consignee · Address,,1ST FLOOR VAIBHAV APARTMENTSAHAR PIPELINE ROADANDHERI ( EAST ) MUMBAI 4000059 INDIA,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Consignee,Consignee · Name,,EMU LINES PVT LTD,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Consignee,Consignee · Address,,"410-413 , MONARCH PLAZAPLOT NO 56 SECTOR 11 , C.B.D. ,NAVIMUMBAI",PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Vessel Name,,MSC SURABAYA VIII,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Voyage Number,,IP631R,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Port Of Loading,,LONDON GATEWAY PORT,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Ctn Pol City,,LGP,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Ctn Pol Ctry,,UNITED KINGDOM,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Port Of Discharge,,NHAVA SHEVA ( JAWAHARLAL,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Place Of Delivery,,,FAIL,"empty in Nexus, but the bill prints a place of delivery"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Final Destination,,,FAIL,"empty in Nexus, but the bill prints a destination"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Ctn Pod City,,NSA,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Ctn Pod Ctry,,INDIA,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Container No,,FFAU7101700,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Seal No,,001197,PASS,number printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Container Type,,40HC,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · No Of Pieces Value,,6,PASS,number printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · No Of Pieces Unit,,PALLET,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Gross Weight Value,,4043,PASS,number printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Gross Weight Unit,,KGS,KNOWN,"KNOWN ISSUE (accepted, not a bug); unit not found as printed"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Volume Of Goods Value,,10.824,PASS,number printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Volume Of Goods Unit,,CBM,PASS,unit printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Description,,250 PACKAGES OF BELZONA MAINTENANCE PRODUCTS,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · (unlabelled field),,BRADFORD,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Freight,Freight · Freight Payment,,FREIGHT PREPAID,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Cargo,Cargo · Pieces,,LCL,INFO,"in the Sea panel this field holds the service type (FCL / LCL), not a piece count"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Cargo,Cargo · Pieces Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Place,,WEST THURROCK,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Date,,18/08/2026,PASS,date printed on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Carrier Name,,Freight Movers International,PASS,every word is on the document
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Other,Other · Carrier Code,,FMMI_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Cargo,Cargo · Gross Weight,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Cargo,Cargo · Gross Weight Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2451/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 1-2,Incoterm,Incoterm · Incoterm,,,FAIL,"empty in Nexus, but the bill prints the Incoterm (Terms)"

@@ -261,8 +261,7 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     store.upsert(PreAlert(ref=key), Status.CREATED_IN_NEXUS, f"{case.id}: {info['ipa']} seen {row['appeared_after_s']}s after sending")
     if row["evidence"]:
         ui.screenshot(evidence / "list.png")
-    cells = ui.page.locator(ui.u["subject_cell"].format(token=f"{case.id} |"))
-    pre_ipas = [ui.row_info(cells.nth(i)).get("ipa", "") for i in range(cells.count())]     # all pre-alerts of this case (Pre-Alerts tab)
+    pre_ipas = [ui.row_info(c).get("ipa", "") for c in ui.case_cells(f"{case.id} |")]     # all pre-alerts of this case (Pre-Alerts tab)
     ui.open_viewer(cell)
     parents = ui.read_parents(evidence if row["evidence"] else None)
     in_pre = pre_ipas

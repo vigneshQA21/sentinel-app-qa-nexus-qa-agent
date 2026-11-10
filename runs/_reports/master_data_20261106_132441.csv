@@ -1,0 +1,204 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Page Nos.,,3,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Bill No.,,GEN2037979,PASS,printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Shipper,,O.T.E. SPEDIZIONI INTERNAZIONALI SR,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Shipper ID,,OTESPEMIL,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Consignee,,LOGISTEED INDIA PVT LTD,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Consignee ID,,LIN_INCCU,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Branch,,CCU,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipment Details,Shipment Details · Status,,CW Sync Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Air Waybill,Air Waybill · Air Waybill Number,,GEN2037979,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipper,Shipper · Name,,O.T.E. SPEDIZIONI INTERNAZIONALI SR,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipper,Shipper · Address,,"VIA PASUBIO 3, 20026 NOVATE MILANESE, 20026 NOVATE MILANESE (MILANO), Milano, IT",KNOWN,"KNOWN ISSUE (accepted, not a bug); 6/7 words are on the document"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipper,Shipper · Postal Code,,00000,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Shipper,Shipper · Party ID,,OTESPEMIL,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Consignee,Consignee · Name,,LOGISTEED INDIA PVT LTD,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Consignee,Consignee · Address,,"CHHABILDAS TOWERS , 2ND FLOOR , 6A ,MIDDLETON STREET , KOLKATA - 700071 ,WEST BENGAL , INDIA",PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Consignee,Consignee · Postal Code,,700071,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Consignee,Consignee · Party ID,,LIN_INCCU,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Consignee,Consignee · Name,,LOGISTEED INDIA PVT LTD,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Consignee,Consignee · Address,,"CHHABILDAS TOWERS , 2ND FLOOR , 6A ,MIDDLETON STREET , KOLKATA - 700071 ,WEST BENGAL , INDIA",PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Consignee,Consignee · Name,,,FAIL,"empty in Nexus, but the bill prints a consignee"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Consignee,Consignee · Address,,,FAIL,"empty in Nexus, but the bill prints a consignee"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Vessel Name,,CMA CGM COLUMBIA,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Voyage Number,,0MXOSE1MA,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Port Of Loading,,GENOA,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Ctn Pol City,,NOA,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Ctn Pol Ctry,,UNITED STATES,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Port Of Discharge,,KOLKATA ( CALCUTTA ),PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Place Of Delivery,,,FAIL,"empty in Nexus, but the bill prints a place of delivery"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Final Destination,,,FAIL,"empty in Nexus, but the bill prints a destination"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Ctn Pod City,,CCU,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Ctn Pod Ctry,,INDIA,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container No,,TRIU0822617,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Seal No,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container Type,,40FF,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · No Of Pieces Value,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · No Of Pieces Unit,,"CRATES, WOODEN",PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Gross Weight Value,,3800,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Volume Of Goods Value,,50,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Volume Of Goods Unit,,CBM,KNOWN,"KNOWN ISSUE (accepted, not a bug); unit not found as printed"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Description,,PARTS OF VALVES,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container No,,TEMU2617717,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Seal No,,3172231,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container Type,,20ST,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · No Of Pieces Value,,2,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · No Of Pieces Unit,,PACKAGE (S),PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Gross Weight Value,,2910,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Volume Of Goods Value,,25,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Volume Of Goods Unit,,CBM,KNOWN,"KNOWN ISSUE (accepted, not a bug); unit not found as printed"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Description,,,FAIL,"empty in Nexus, but the bill prints the goods description"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container No,,CMAU7563865,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Seal No,,3172103,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Container Type,,40HC,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · No Of Pieces Value,,4,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · No Of Pieces Unit,,PACKAGE (S),PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Gross Weight Value,,7735,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Volume Of Goods Value,,0,PASS,number printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Volume Of Goods Unit,,CBM,KNOWN,"KNOWN ISSUE (accepted, not a bug); unit not found as printed"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Description,,,FAIL,"empty in Nexus, but the bill prints the goods description"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · (unlabelled field),,GENOA,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Freight,Freight · Freight Payment,,FREIGHT NOT FOUND,REVIEW,2/3 words are on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Cargo,Cargo · Pieces,,FCL,INFO,"in the Sea panel this field holds the service type (FCL / LCL), not a piece count"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Cargo,Cargo · Pieces Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Place,,GENOA,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Date,,29/07/2026,PASS,date printed on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Carrier Name,,CMA CGM,PASS,every word is on the document
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Other,Other · Carrier Code,,CMDU_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Cargo,Cargo · Gross Weight,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Cargo,Cargo · Gross Weight Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-001,IPA/2518/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 1-3,Incoterm,Incoterm · Incoterm,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Bill No.,,TAOJAI26165972,PASS,printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Shipper,,SUPER LINK LOGISTICS LIMITED,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Shipper ID,,SUPLINSZX,INFO,assigned or held by Nexus; no document value
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Consignee,,LOGISTEED INDIA PVT . LTD .,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Consignee ID,,LIN_INDEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Branch,,DEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Status,,CW Sync Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,,TAOJAI26165972,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipper,Shipper · Name,,SUPER LINK LOGISTICS LIMITED,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipper,Shipper · Address,,"UNIT 2012 , 20TH FLOOR& DIWANG BUILDING , NO.5002 SHENNAN EAST ROADLUOHU DISTRICT , SHENZHEN 518000.CHINATEL : 0755-32935933 FAX : 0755-33915177",PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipper,Shipper · Postal Code,,518000,PASS,number printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Shipper,Shipper · Party ID,,SUPLINSZX,INFO,assigned or held by Nexus; no document value
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Consignee,Consignee · Name,,LOGISTEED INDIA PVT . LTD .,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Consignee,Consignee · Address,,"316,3RD FLOOR , D-21 CORPORATE PARK , SECTOR-21 ,NEAR DWARKA SECTOR 8 METRO STATION ,DWARKA , NEW DELHI-110077 , INDIATEL : + 91-11-40936800 GST : 07AABCF2133M1ZRIEC 0303062258 PAN : AABCF2133MMAIL ID : RANJANA.DEL@LOGISTEED.COM",PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Consignee,Consignee · Postal Code,,110077,PASS,number printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Consignee,Consignee · Party ID,,LIN_INDEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Consignee,Consignee · Name,,SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Consignee,Consignee · Address,,SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Consignee,Consignee · Name,,Unifeeder Agencies India Private Limited - Delhi,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Consignee,Consignee · Address,,"Unit No. 201 & 202 , Salcon Aurum , Plot No - 4 ,Jasola District Centre , New Delhi - 110025 , Delhi , 110025 , INDIA+91 11 26210763",PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Vessel Name,,EVER LYRIC,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Voyage Number,,076W,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Port Of Loading,,QINGDAO,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Ctn Pol City,,QIN,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Ctn Pol Ctry,,CHINA,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Port Of Discharge,,MUNDRA,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Place Of Delivery,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Final Destination,,,FAIL,"empty in Nexus, but the bill prints a destination"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Ctn Pod City,,MUN,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Ctn Pod Ctry,,INDIA,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Container No,,DPWU2078627,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Seal No,,UFL561973,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Container Type,,20'DRYCONTAINER,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · No Of Pieces Value,,27,PASS,number printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · No Of Pieces Unit,,CARTON,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Gross Weight Value,,27135,PASS,number printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Volume Of Goods Value,,10.53,PASS,number printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Volume Of Goods Unit,,CBM,PASS,unit printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Description,,STEEL BALL,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · (unlabelled field),,QINGDAO,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT PREPAID,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Cargo,Cargo · Pieces,,FCL,INFO,"in the Sea panel this field holds the service type (FCL / LCL), not a piece count"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Cargo,Cargo · Pieces Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Place,,Qingdao,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Date,,20/08/2026,PASS,date printed on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Carrier Name,,UNIFEEDER FZCO,PASS,every word is on the document
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Other,Other · Carrier Code,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Cargo,Cargo · Gross Weight,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Cargo,Cargo · Gross Weight Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-002,IPA/2519/2026-27,FJ-0001497 - Consolidated.pdf page 1,Incoterm,Incoterm · Incoterm,,,INFO,"empty field, nothing to compare"
+SEA-REG-003,,,,,,,ERROR,no pre-alert for SEA-REG-003 in Nexus (checked the Pre-Alerts tab)
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Bill No.,,274099774,PASS,printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Shipper,,SHENZHEN FOCUS GLOBAL LOGISTICS CORPORATION LTD .,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Shipper ID,,SHEFOCTSN,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Consignee,,LOGISTEED INDIA PVT . LTD,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Consignee ID,,LIN_INLKO,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Branch,,LKO,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipment Details,Shipment Details · Status,,CW Sync Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Air Waybill,Air Waybill · Air Waybill Number,,274099774,PASS,number printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipper,Shipper · Name,,SHENZHEN FOCUS GLOBAL LOGISTICS CORPORATION LTD .,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipper,Shipper · Address,,"TIANJIN BRANCHUNIT 17DE , BUILDING B , PING AN BUILDING , ZENG 1 , 59 MACHANG ROAD ,HEXI DISTRICT , TIANJIN , CHINA 300202",PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipper,Shipper · Postal Code,,300202,PASS,number printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Shipper,Shipper · Party ID,,SHEFOCTSN,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Consignee,Consignee · Name,,LOGISTEED INDIA PVT . LTD,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Consignee,Consignee · Address,,"SCF 24 , 2ND FLOOR , PHASE -2 URBAN ESTATE , JAMALPUR ,CHANDIGARH ROAD , LUDHIANA - 141010 PUNJAB",PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Consignee,Consignee · Postal Code,,141010,PASS,number printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Consignee,Consignee · Party ID,,LIN_INLKO,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Consignee,Consignee · Name,,,FAIL,"empty in Nexus, but the bill prints a consignee"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Consignee,Consignee · Address,,,FAIL,"empty in Nexus, but the bill prints a consignee"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Consignee,Consignee · Name,,,FAIL,"empty in Nexus, but the bill prints a consignee"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Consignee,Consignee · Address,,,FAIL,"empty in Nexus, but the bill prints a consignee"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Vessel Name,,X - PRESS BARDSEY,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Voyage Number,,629W,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Port Of Loading,,"QINGDAO , CHINA",PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Ctn Pol City,,QIN,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Ctn Pol Ctry,,CHINA,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Port Of Discharge,,"MUNDRA , INDIA",PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Place Of Delivery,,"SAHNEWAL LUDHIANA , INDIA",PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Final Destination,,"SAHNEWAL LUDHIANA , INDIA",PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Ctn Pod City,,MUN,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Ctn Pod Ctry,,INDIA,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Container No,,SUDU7851640,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Seal No,,ML-CN7529663,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Container Type,,20DRY,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · No Of Pieces Value,,2,PASS,number printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · No Of Pieces Unit,,PACKAGES,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Gross Weight Value,,4000,PASS,number printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Volume Of Goods Value,,26,PASS,number printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Volume Of Goods Unit,,CBM,PASS,unit printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Description,,SQUARE BALER,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Freight,Freight · Freight Payment,,FREIGHT NOT FOUND,REVIEW,2/3 words are on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Cargo,Cargo · Pieces,,FCL,INFO,"in the Sea panel this field holds the service type (FCL / LCL), not a piece count"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Cargo,Cargo · Pieces Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Place,,Qingdao,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Date,,29/07/2026,PASS,date printed on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Carrier Name,,Maersk A / S,PASS,every word is on the document
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Other,Other · Carrier Code,,MAEU_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Cargo,Cargo · Gross Weight,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Cargo,Cargo · Gross Weight Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2526/2026-27,FJ-0001090 - Consolidated.pdf page 1-4,Incoterm,Incoterm · Incoterm,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,,,,,,,ERROR,Error: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://uat.sentinel.unifo.in/sentinel-nexus/email
+SEA-REG-006,,,,,,,ERROR,Error: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://uat.sentinel.unifo.in/sentinel-nexus/email
+SEA-REG-007,,,,,,,ERROR,Error: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://uat.sentinel.unifo.in/sentinel-nexus/email
+SEA-REG-008,,,,,,,ERROR,Error: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://uat.sentinel.unifo.in/sentinel-nexus/email
+SEA-REG-009,,,,,,,ERROR,Error: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://uat.sentinel.unifo.in/sentinel-nexus/email

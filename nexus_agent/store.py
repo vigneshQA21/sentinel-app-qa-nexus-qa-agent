@@ -128,8 +128,17 @@ class Store:
     def ref_for_case(self, case_id: str) -> str | None:
         """Reference (HAWB / FJ) of the latest email sent for a test case, read from the stored subject."""
         row = self.db.execute("SELECT ref FROM shipments WHERE subject LIKE ? ORDER BY updated_at DESC LIMIT 1",
-                              (f"%{case_id} |%",)).fetchone()
+                              (f"{case_id} |%",)).fetchone()   # starts with: 'REG-009 |' must not match 'SEA-REG-009 |'
         return row["ref"] if row else None
+
+    def forget_sent(self, case_id: str) -> int:
+        """After the case's pre-alerts were deleted in Nexus: the case can be sent again without --resend. Returns the rows removed."""
+        ref = self.ref_for_case(case_id)
+        if not ref:
+            return 0
+        n = self.db.execute("DELETE FROM sent_docs WHERE ref=?", (ref,)).rowcount
+        self.db.commit()
+        return n
 
     def last_sent_at(self, ref: str) -> datetime | None:
         """When the latest email for this reference was sent."""

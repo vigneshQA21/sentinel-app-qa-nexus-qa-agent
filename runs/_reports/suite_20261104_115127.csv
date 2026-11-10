@@ -1,0 +1,2 @@
+case_id,scenario,mode,sample_ref,status,subject,sent_at,screening,warnings,expected_mapping,expected_result,nexus_job,actual_nexus_result
+SEA-REG-008,Master and House identification,consolidated,FJ-0001498,SENT,SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER),2026-11-04T11:51:27,MBL pages 1-3,sea file: reference taken from the file name (FJ-0001498); missing HBL,"MBL (Flyjac consignee) → Master, HBL → House","MBL identified by its characteristics, HBL by consignee not Flyjac",,

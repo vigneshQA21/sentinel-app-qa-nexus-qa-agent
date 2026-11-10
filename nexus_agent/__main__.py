@@ -132,7 +132,13 @@ def main(argv: list[str] | None = None) -> int:
     rr.add_argument("--date", help="yyyy-mm-dd (default: today)")
     sub.add_parser("history", help="internal bug history: bugs found, how often each repeats, status")
     cd = sub.add_parser("casedoc", help="write every validation of the given cases into the test-case workbook (new tab, backup first)")
-    cd.add_argument("--cases", nargs="+", default=["REG-001", "REG-002"])
+    cd.add_argument("--cases", nargs="+", default=["REG-001", "REG-002"], help="Air ids (REG-001 ...) or Sea ids (SEA-REG-001 ...), not mixed")
+    dl = sub.add_parser("delete", help="delete the agent's own regression pre-alerts of these cases in Nexus (Pre-Alerts and Others tabs), then the cases can be sent again")
+    dl.add_argument("cases", nargs="+", help="REG-001 SEA-REG-001 ..., or air-daily / sea-daily")
+    dl.add_argument("--dry-run", action="store_true", help="only list what would be deleted")
+    dl.add_argument("--sender", default="", help="only rows sent from this mail id are deleted; others are listed for your confirmation")
+    dl.add_argument("--bill", action="append", default=[], help="a bill number of the case to also look for (when it has no pre-alert of its own to read it from); repeatable")
+    dl.add_argument("--headless", action="store_true", help="hide the browser (default: shown)")
     pu = sub.add_parser("post-update", help="draft today's update, show it, and post it to Zoho Cliq / Sprints after your answer")
     pu.add_argument("--date", help="yyyy-mm-dd (default: today)")
     pu.add_argument("--file", help="post this text file instead of the automatic draft (e.g. state/zoho_update.md)")
@@ -147,6 +153,10 @@ def main(argv: list[str] | None = None) -> int:
     cs = sub.add_parser("cases", help="list the in-scope test cases and whether their samples are available")
 
     ig = sub.add_parser("ingest", help="file downloads from samples/_inbox/ under their test case")
+
+    pf = sub.add_parser("preflight", help="before sending: look the cases' bill numbers and FJ references up in Nexus; exit 3 if a sample already exists")
+    pf.add_argument("cases", nargs="+", help="test case ids, e.g. REG-001 SEA-REG-002")
+    pf.add_argument("--headless", action="store_true")
 
     su = sub.add_parser("suite", help="stage, screen and send the sample documents of the test cases")
     su.add_argument("--cases", nargs="*", help="test case ids, e.g. REG-001 REG-006 (default: all in scope)")
@@ -218,8 +228,24 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "casedoc":
         from . import casedoc as CD
         path, backup, n = CD.write(cfg, [c.upper() for c in args.cases])
-        print(f"{n} validations written to the tab '{CD.TAB}' in {path}\nBackup of the workbook before the change: {backup}")
+        print(f"{n} validations written to the tab '{CD.TAB_SEA if path.name.startswith('Sea') else CD.TAB}' in {path}\nBackup of the workbook before the change: {backup}")
         return 0
+
+    if args.cmd == "preflight":
+        from . import cleanup as CL
+        from .nexus.session import SessionExpired
+        try:
+            res = CL.preflight(cfg, [c.upper() for c in args.cases], headless=args.headless)
+        except SessionExpired as exc:
+            print(exc); return 2
+        return 3 if any(res.values()) else 0
+
+    if args.cmd == "delete":
+        from . import cleanup as CL
+        try:
+            return CL.run(cfg, args.cases, dry_run=args.dry_run, headless=args.headless, bills=args.bill, sender=args.sender)
+        except ValueError as exc:
+            print(exc); return 2
 
     if args.cmd == "post-update":
         from . import zoho_post as Z
@@ -380,6 +406,17 @@ def main(argv: list[str] | None = None) -> int:
         if args.validate and not args.dry_run and any(T.is_sea(c.id) for c in chosen):
             print("Sea cases can be sent but not validated yet (the Nexus checks are Air-only). Run without --validate; nothing was sent.")
             return 2
+        if not args.dry_run:                  # standing order: never send a sample that already exists in Nexus
+            from . import cleanup as CL
+            from .nexus.session import SessionExpired
+            try:
+                existing = CL.preflight(cfg, [c.id for c in chosen])
+            except SessionExpired as exc:
+                print(f"Nothing was sent. {exc}")
+                return 2
+            if any(existing.values()):
+                print("Nothing was sent: the sample(s) above already exist in Nexus. Confirm which rows to delete, then run again.")
+                return 3
         store = Store(cfg.state_dir / "agent.db")
         sender = LocalSender(cfg, store)
         interval = cfg.settings["testsuite"].get("case_interval_seconds", 0) if args.interval is None else args.interval

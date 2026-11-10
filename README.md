@@ -6,7 +6,8 @@ extracted matches the source document**. Failures become bug candidates; after y
 bug sheet with the evidence attached as Drive links.
 
 > **Where are we / what did we do yesterday?** Read [docs/PROGRESS_LOG.md](docs/PROGRESS_LOG.md) (day by day, with "where we left off" at the top).
-> **How do I run it?** Read [regression_prompts/EXECUTE_CMD.md](regression_prompts/EXECUTE_CMD.md).
+> **How do I run it?** Read [regression_prompts/EXECUTE_CMD.md](regression_prompts/EXECUTE_CMD.md). Every command and flag: [docs/COMMANDS.md](docs/COMMANDS.md).
+> **Sea single house:** cases SEA-REG-001 to 009 are sent and validated one at a time, see the Sea section of [regression_prompts/EXECUTE_CMD.md](regression_prompts/EXECUTE_CMD.md) and the results in [docs/ABOUT_ME.md](docs/ABOUT_ME.md).
 > **What is this framework, and what is next?** Read [docs/ABOUT_ME.md](docs/ABOUT_ME.md) (overview for managers: architecture, tools, advantages) and [docs/ROADMAP_SKILL_AND_KNOWLEDGE_GRAPH.md](docs/ROADMAP_SKILL_AND_KNOWLEDGE_GRAPH.md) (plan for a shared skill and a knowledge graph).
 > **Challenges:** see [docs/CHALLENGES.md](docs/CHALLENGES.md) (what made the regression hard, what we did, what is still open).
 

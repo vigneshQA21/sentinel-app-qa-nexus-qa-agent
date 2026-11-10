@@ -1,0 +1,2 @@
+case_id,scenario,mode,sample_ref,status,subject,sent_at,screening,warnings,expected_mapping,expected_result,nexus_job,actual_nexus_result
+SEA-REG-003,MBL + HBL Without Manifest,consolidated,FJ-0001318,SENT,SEA-REG-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001318 | CONSOLIDATED (MASTER+HOUSE),2026-11-03T10:53:07,MBL pages 1-2; HBL pages 3,sea file: reference taken from the file name (FJ-0001318),"MBL → Master, HBL → House",House links directly to Master when no Manifest exists,,

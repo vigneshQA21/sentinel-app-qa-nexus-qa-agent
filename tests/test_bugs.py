@@ -2,6 +2,12 @@ import csv
 import json
 
 from nexus_agent import bugs as B
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def _no_chip_wait(monkeypatch):
+    monkeypatch.setattr(B.time, "sleep", lambda s: None)     # the one-minute chip check does not wait in tests
 from nexus_agent.config import Config
 from nexus_agent.store import Store
 from nexus_agent.testsuite import Case
@@ -147,12 +153,16 @@ class FakeGoogle:
 
     def get(self, **kw):
         self.calls.append(("spreadsheets.get", kw))
-        self._last = "meta"
+        self._last = "grid" if kw.get("includeGridData") else "meta"
         return self
 
     def batchUpdate(self, **kw):
         self.calls.append(("batchUpdate", kw))
         self._last = "append"
+        for req in kw.get("body", {}).get("requests", []):
+            runs = req.get("updateCells", {}).get("rows", [{}])[0].get("values", [{}])[0].get("chipRuns")
+            if runs is not None:
+                self.chips = sum(1 for r in runs if r.get("chip"))     # what the cell now holds
         return self
 
     def values(self):
@@ -171,6 +181,8 @@ class FakeGoogle:
         return V()
 
     def execute(self):
+        if self._last == "grid":
+            return {"sheets": [{"data": [{"rowData": [{"values": [{"chipRuns": [{"chip": {}}] * getattr(self, "chips", 0)}]}]}]}]}
         if self._last == "meta":
             return {"properties": {"title": "Bug tracker"}, "sheets": [{"properties": {"sheetId": 1, "title": "Other"}},
                                                                       {"properties": {"sheetId": self.gid, "title": self.title}}]}

@@ -1,0 +1,9 @@
+2026-11-04 11:08:12,586 INFO nexus_agent.local_sender: SCREENING FJ-0018972 - Consolidated-Debit note.pdf: 4 page(s): HBL pages 1; INVOICE pages 2; DEBITNOTE pages 3; HBL pages 4
+2026-11-04 11:08:12,586 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0018972)
+2026-11-04 11:08:12,592 INFO nexus_agent.local_sender:     WARNING: more than one House bill found: not a single-house sample?
+2026-11-04 11:08:12,592 INFO nexus_agent.local_sender:     MISSING required: MBL
+2026-11-04 11:08:18,569 INFO nexus_agent.local_sender: Sent 'SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0018972 | CONSOLIDATED (HOUSE+INVOICE+DEBIT NOTE)' to prealert.nexus@unifo.in (message id 1a1a510b39f117a1)
+SEA-REG-006 SENT              SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0018972 | CONSOLIDATED (HOUSE+INVOICE+DEBIT NOTE)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261104_110818.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261104.html

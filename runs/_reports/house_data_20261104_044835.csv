@@ -1,0 +1,81 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Bill No.,,SEJ001104,PASS,printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Shipper,,BELZONA LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Shipper ID,,BELZONLON,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Consignee,,NICCO ENGINEERING SERVICES LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Consignee ID,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Branch,,BOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipment Details,Shipment Details · Status,,Consignee Mapping Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,House Air Waybill,House Air Waybill · Master AWB Reference,,SEJ001104,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipper,Shipper · Name,,BELZONA LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipper,Shipper · Address,,"CLARO ROAD HARROGATE, GB",PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipper,Shipper · Postal Code,,HG1 4AX,FAIL,only 1/2 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Shipper,Shipper · Party ID,,BELZONLON,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Consignee,Consignee · Name,,NICCO ENGINEERING SERVICES LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Consignee,Consignee · Address,,"INFINIUM DIGISPACE 4TH FLOOR
+PLOT NO 15 BLOCK CP SECTOR V
+SALT LAKE CITY KOLKATA
+GST-19AABCN2405J1ZL
+IEC-0201002108 700091",PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Consignee,Consignee · Postal Code,,700091,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Consignee,Consignee · Party ID,,Select,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Consignee,Consignee · Name,,LOGISTEED INDIA PRIVATE LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Consignee,Consignee · Address,,"1ST FLOOR VAIBHAV APARTMENT
+SAHAR PIPELINE ROAD
+ANDHERI ( EAST )
+MUMBAI PAN NO : AABCF2133M
+GST NO-27AABCF2133M1ZP 4000059",PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Consignee,Consignee · Name,,LOGISTEED INDIA PRIVATE LIMITED,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Consignee,Consignee · Address,,"1ST FLOOR VAIBHAV APARTMENT
+SAHAR PIPELINE ROAD
+ANDHERI ( EAST )
+MUMBAI PAN NO : AABCF2133M GST NO-27AABCF2133M1ZP",PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · (unlabelled field),,DM LOGISTICS LTD,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Vessel Name,,MSC SURABAYA VIII,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Voyage Number,,IP631R,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Port Of Loading,,LONDON GATEWAY PORT,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Ctn Pol City,,LGP,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Ctn Pol Ctry,,GB,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Port Of Discharge,,NHAVA SHEVA,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Place Of Delivery,,NHAVA SHEVA,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Final Destination,,NHAVA SHEVA,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Ctn Pod City,,BOM,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Ctn Pod Ctry,,IN,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Container No,,FFAU7101700,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Seal No,,001197,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Container Type,,40HC,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · No Of Pieces Value,,6,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · No Of Pieces Unit,,PALLETS,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Gross Weight Value,,4043,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Volume Of Goods Value,,10.824,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Volume Of Goods Unit,,M3,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Description,,6 X PALLETS 6PLTS STC 250 PACKAGES OF BELZONA MAINTENANCE PRODUCTS,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Freight,Freight · Freight Payment,,FREIGHT COLLECT,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · (unlabelled field),,CY/CY,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · (unlabelled field),,LCL,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Value,,4043,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Unit,,KGS,PASS,unit printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Value,,10.824,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Unit,,CBM,PASS,unit printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Value,,6,PASS,number printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Unit,,PALLETS,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · (unlabelled field),,6 X PALLETS 6PLTS STC 250 PACKAGES OF BELZONA MAINTENANCE PRODUCTS,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Place,,SLOUGH,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Date,,18/08/2026,PASS,date printed on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Carrier Name,,Freight Movers International,FAIL,only 1/3 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Carrier Code,,FMMI_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Reference,Reference · Shippers Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Consignee Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Inv No,,CINS002001786,PASS,every word is on the document
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Other,Other · Inv Date,,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, nothing to compare"
+SEA-REG-005,IPA/2409/2026-27,FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 3,Reference,Reference · Executed On,,,INFO,"empty field, nothing to compare"

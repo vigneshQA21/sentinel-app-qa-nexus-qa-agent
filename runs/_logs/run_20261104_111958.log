@@ -1,0 +1,6 @@
+2026-11-04 11:20:01,256 INFO nexus_agent.local_sender: SCREENING FJ-0002952 - Consolidated - DAP Incoterm.pdf: 4 page(s): MBL pages 1-2; HBL pages 3-4
+2026-11-04 11:20:01,257 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0002952)
+2026-11-04 11:20:01,257 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002952 | CONSOLIDATED (MASTER+HOUSE)' (FJ-0002952 - Consolidated - DAP Incoterm.pdf) to prealert.nexus@unifo.in
+SEA-REG-009 DRY_RUN           SEA-REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002952 | CONSOLIDATED (MASTER+HOUSE)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261104_112001.csv

@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+SEA-REG-004,FJ-0001090,IPA/2450/2026-27,CREATED_IN_NEXUS,PASS,3262,"MASTER: PASS (in Master) | HOUSE: PASS (in House) | unexpected: B/L in Master; UNMATCHED in Unmatched; B/L in House; UNMATCHED in Unmatched | IPA/2450/2026-27 seen -> Master (274099774): MBLx1, B/Lx1; House (FGTJ2607000062): HBLx1, B/Lx1",/home/unifo/Downloads/nexus_agent/runs/2026-11-04/SEA-REG-004

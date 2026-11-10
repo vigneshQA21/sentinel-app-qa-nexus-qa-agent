@@ -7,6 +7,7 @@ The document is the source of truth; values Nexus assigns itself (job number, br
 from __future__ import annotations
 
 import logging
+import os
 import re
 from datetime import datetime
 
@@ -28,15 +29,28 @@ HELD_BY_NEXUS = {"Job Number", "Page Nos.", "Branch", "Job Type", "Status", "Shi
 UNITS = {"KGS": {"K", "KG", "KGS", "KILOS"}, "KG": {"K", "KG", "KGS"}, "CBM": {"CBM", "M3"}, "PCS": {"PCS", "PC", "PKG", "PKGS"}}
 
 
-def sea_source(cfg: Config, case: Case, kind: str) -> dict | None:
-    """The first MBL / HBL part of the case's PDF: {pdf, pages (1-based), text, scanned}."""
+def sea_source(cfg: Config, case: Case, kind: str, bill_no: str = "") -> dict | None:
+    """The MBL / HBL part of the case's PDF: {pdf, pages (1-based), text, scanned}.
+    With `bill_no` (the bill number Nexus shows) the bill that prints that number is used, whatever the screening called it:
+    a sample may have two bills and Nexus may take the first one as the Master."""
     sea = cfg.settings["pdf_split_sea"]
     for f in [x for x in sample_files(cfg, case) if x.suffix.lower() == ".pdf"]:
         data = f.read_bytes()
         raw = page_texts_layout(data, ocr=False)
         scanned = {i for i, t in enumerate(raw) if len(t.strip()) < 25}
         texts = page_texts_layout(data, ocr=True) if scanned else raw
-        part = next((p for p in detect_parts_sea(texts, sea) if p.label == kind), None)
+        parts = detect_parts_sea(texts, sea)
+        part = None
+        if bill_no and norm(bill_no):
+            part = next((p for p in parts if p.label in ("MBL", "HBL") and norm(bill_no) in norm("\n".join(texts[i] for i in p.pages))), None)
+        part = part or next((p for p in parts if p.label == kind), None)
+        if part and bill_no and norm(bill_no):
+            # one screened part can hold several bills (two houses): keep only the pages that print exactly this bill number
+            # (BWSS 13760427 must not match the page of BWSS 13760427A)
+            exact = r"\s*".join(re.escape(c) for c in re.sub(r"\s+", "", bill_no)) + r"(?![A-Za-z0-9])"
+            own = [i for i in part.pages if re.search(exact, texts[i], re.IGNORECASE)]
+            if own and len(own) < len(part.pages):
+                part = type(part)(**{**part.__dict__, "pages": own}) if hasattr(part, "__dict__") else part
         if part:
             return {"pdf": f, "pages": [i + 1 for i in part.pages], "text": "\n".join(texts[i] for i in part.pages),
                     "scanned": any(i in scanned for i in part.pages)}
@@ -61,7 +75,8 @@ def _date_forms(d: tuple[int, int, int]) -> list[str]:
     day, month, year = d
     mon = list(MONTHS)[month - 1] if 1 <= month <= 12 and isinstance(MONTHS, dict) else ""
     return [f"{year}-{month:02d}-{day:02d}", f"{day:02d}/{month:02d}/{year}", f"{day}/{month}/{year}", f"{day:02d}.{month:02d}.{year}",
-            f"{day:02d}-{mon}-{year}", f"{day:02d} {mon} {year}", f"{day:02d}-{mon}-{str(year)[2:]}", f"{day:02d}/{month:02d}/{str(year)[2:]}", f"{day}/{month}/{str(year)[2:]}", f"{day:02d}{mon}{year}"]
+            f"{day:02d}-{mon}-{year}", f"{day:02d} {mon} {year}", f"{day:02d}-{mon}-{str(year)[2:]}", f"{day:02d}/{month:02d}/{str(year)[2:]}", f"{day}/{month}/{str(year)[2:]}", f"{day:02d}{mon}{year}",
+            f"{mon} {day} {year}", f"{mon} {day:02d} {year}", f"{mon}.{day},{year}"]          # Jul.21,2026 / Jul 21, 2026 (month first)
 
 
 def check_value(label: str, value: str, text: str, nums: set[float]) -> tuple[str, str]:
@@ -96,6 +111,31 @@ def check_value(label: str, value: str, text: str, nums: set[float]) -> tuple[st
     return "FAIL", f"only {len(have)}/{len(toks)} words are on the document (the party master / Nexus value may differ from the bill)"
 
 
+INCOTERMS = r"(EXW|FCA|FAS|FOB|CFR|CIF|CPT|CIP|DAP|DPU|DDP|DAT)"
+# (section pattern, label pattern, what the bill must print for an empty Nexus field to be a finding, what to tell the tester)
+EMPTY_RULES = [
+    ("", r"^incoterm$", r"\bTERMS\b.{0,60}?\b" + INCOTERMS + r"\b", "the bill prints the Incoterm (Terms)"),
+    ("shipper", r"^(name|address)$", r"\bSHIPPER\b", "the bill prints a shipper"),
+    ("consignee", r"^(name|address)$", r"\bCONSIGNEE\b", "the bill prints a consignee"),
+    ("", r"^vessel name$", r"\bVESSEL\b", "the bill prints a vessel"),
+    ("", r"^place of delivery$", r"PLACE OF DELIVERY", "the bill prints a place of delivery"),
+    ("", r"^final destination$", r"FINAL DESTINATION|PLACE OF DELIVERY", "the bill prints a destination"),
+    ("", r"^container type$", r"\b(20|40|45)'?\s?(DRY|GP|DC|HC|HQ|RF|OT|FR)\b", "the bill prints the container type"),
+    ("", r"^description$", r"DESCRIPTION OF GOODS|\bGOODS\b", "the bill prints the goods description"),
+    ("", r"^volume of goods value$", r"\d[\d.,]*\s*(CBM|M3)\b", "the bill prints a volume"),
+    ("", r"^place$", r"PLACE (AND DATE )?OF (BILL\(S\) )?ISSUE", "the bill prints the place of issue"),
+]
+
+
+def empty_finding(section: str, label: str, text: str) -> str:
+    """A reason when Nexus left the field empty although the bill prints a value for it, else ''."""
+    flat = " ".join(text.upper().split())
+    for sec, lab, doc, why in EMPTY_RULES:
+        if re.search(lab, label.strip().lower()) and (not sec or sec in section.lower()) and re.search(doc, flat):
+            return why
+    return ""
+
+
 def compare_sea(fields: dict, src: dict) -> list[dict]:
     text, nums = src["text"], _numbers(src["text"])
     rows = []
@@ -103,7 +143,11 @@ def compare_sea(fields: dict, src: dict) -> list[dict]:
         label, value, section = f["label"] or "(unlabelled field)", (f["value"] or "").strip(), f["section"]
         name = f"{section} · {label}"
         if not value:
-            r = row(name, "", "", "INFO", "empty field, nothing to compare")
+            why = empty_finding(section, label, text)
+            if why:
+                r = row(name, "", "", "REVIEW" if src["scanned"] else "FAIL", f"empty in Nexus, but {why}")
+            else:
+                r = row(name, "", "", "INFO", "empty field, nothing to compare")
         elif section == "Cargo" and label == "Pieces" and not re.fullmatch(r"[\d.,]+", value):
             r = row(name, "", value, "INFO", "in the Sea panel this field holds the service type (FCL / LCL), not a piece count")
         elif label.startswith("Volume") and not re.search(r"\b(M3|CBM|MTQ|CUBIC|VOLUME|MEASUREMENT)\b", text, re.IGNORECASE):
@@ -120,16 +164,25 @@ def compare_sea(fields: dict, src: dict) -> list[dict]:
     return rows
 
 
+def read_incoterm(page) -> str | None:
+    """The value of the 'Incoterm' box of the data panel (None when the panel has none)."""
+    try:
+        return page.evaluate("""() => {
+            const el = [...document.querySelectorAll('legend, span, label, div')].find(e => e.children.length === 0 && e.textContent.trim() === 'Incoterm');
+            if (!el) return null;
+            const box = el.closest('fieldset') || el.parentElement.parentElement;
+            const i = box && box.querySelector('input, textarea, select');
+            return i ? (i.value || '') : '';
+        }""")
+    except Exception:
+        return None
+
+
 def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str, wait_seconds: float | None) -> dict:
     v = cfg.settings["validation"]
     title = "Master" if kind == "MBL" else "House"
     res = {"case_id": case.id, "ipa": "", "source": "", "verdict": "ERROR", "rows": [], "message": ""}
-    src = sea_source(cfg, case, kind)
-    if not src:
-        res["message"] = f"no {kind} found in samples/{case.id}/"
-        return res
-    pg = src["pages"]
-    res["source"] = f"{src['pdf'].name} page {pg[0]}" + (f"-{pg[-1]}" if len(pg) > 1 else "")
+    src = sea_source(cfg, case, kind)                       # replaced below by the bill that prints the number Nexus shows
     ref = store.ref_for_case(case.id)
     sent_at = store.last_sent_at(ref) if ref else None
     elapsed = (datetime.now() - sent_at).total_seconds() if sent_at else None
@@ -141,9 +194,18 @@ def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str
         return res
     res["ipa"] = info["ipa"]
     ui.expand_row(cell)
-    rec = next((r for r in ui.read_shipment_details() if r.get("Record Type", "").startswith(title)), None)
+    pick = (os.getenv("NEXUS_HOUSE_BILL") or "").strip() if kind == "HBL" else ""      # a pre-alert with several houses: check this bill
+    rows_ = [r for r in ui.read_shipment_details() if r.get("Record Type", "").startswith(title)]
+    rec = next((r for r in rows_ if pick and r.get("Bill No.", "").strip() == pick), None) or (rows_[0] if rows_ else None)
+    src = sea_source(cfg, case, kind, (rec or {}).get("Bill No.", "")) or src
+    if not src:
+        res["message"] = f"no {kind} found in samples/{case.id}/"
+        return res
+    pg = src["pages"]
+    res["source"] = f"{src['pdf'].name} page {pg[0]}" + (f"-{pg[-1]}" if len(pg) > 1 else "")
     ui.open_viewer(cell, expanded=True)
-    parent = next((o for o in ui.parent_options() if o.startswith(title)), None)
+    parent = next((o for o in ui.parent_options() if o.startswith(title) and (not pick or o.rstrip().endswith(f"({pick})"))), None) \
+        or next((o for o in ui.parent_options() if o.startswith(title)), None)
     if parent is None:
         res["message"] = f"no {title} parent in the viewer"
         return res
@@ -152,6 +214,9 @@ def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str
     ui.screenshot(cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id / f"{title.lower()}_data.png")
     items, ids = read_panel_inputs(ui.page), read_party_ids(ui.page)
     fields = (map_master_panel if kind == "MBL" else map_house_panel)(items, ids)
+    inc = read_incoterm(ui.page)
+    if inc is not None:
+        fields.setdefault("fields", []).append({"section": "Incoterm", "label": "Incoterm", "value": inc, "readonly": False})
     (attach_master if kind == "MBL" else attach_house)(fields, rec)
     res["rows"] = compare_sea(fields, src)
     res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL" if src["scanned"] else ""

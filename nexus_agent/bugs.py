@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import logging
 import json
 import re
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -20,6 +22,8 @@ EVIDENCE_FILE = {"Master": "master_data.png", "House": "house_data.png", "Manife
                  "Invoice": "invoice_data.png", "Packing List": "packing_data.png", "Debit Note": "debitnote_data.png",
                  "Shipper Document": "shipperdoc_data.png", "Mapping": "list.png"}
 
+
+log = logging.getLogger(__name__)
 
 def fingerprint(case_id: str, document: str, field: str, expected: str, shown: str) -> str:
     key = "|".join(re.sub(r"\s+", " ", x or "").strip().upper() for x in (case_id, document, field, expected, shown))
@@ -273,6 +277,43 @@ def discover_evidence_folder(cfg: Config, sheets=None, drive=None) -> list[tuple
     return out
 
 
+def chip_count(cfg: Config, row_no: int, col_index: int, sheets=None) -> int:
+    """Number of Drive chips really in the cell (chipRuns, not the text: the text keeps the file name when a chip is lost)."""
+    bs = cfg.settings["bugsheet"]
+    sheets = sheets or sheets_service(cfg)
+    title = bs.get("tab_name") or next(sh["properties"]["title"] for sh in sheets.spreadsheets().get(
+        spreadsheetId=bs["spreadsheet_id"], fields="sheets(properties(sheetId,title))").execute()["sheets"]
+        if sh["properties"]["sheetId"] == int(bs["tab_gid"]))
+    cell = f"'{title}'!{_col_letter(col_index)}{row_no}"
+    meta = sheets.spreadsheets().get(spreadsheetId=bs["spreadsheet_id"], ranges=[cell], includeGridData=True,
+                                     fields="sheets(data(rowData(values(chipRuns))))").execute()
+    values = meta["sheets"][0]["data"][0].get("rowData", [{}])[0].get("values", [{}])
+    return sum(1 for r in (values[0].get("chipRuns") or []) if r.get("chip"))
+
+
+def _col_letter(i: int) -> str:
+    out = ""
+    i += 1
+    while i:
+        i, r = divmod(i - 1, 26)
+        out = chr(65 + r) + out
+    return out
+
+
+def verify_chips(cfg: Config, row_no: int, col_index: int, expected: int, request: dict, sheets=None, wait: float = 60.0) -> int:
+    """Standing order: other testers edit the sheet at the same time, so a minute after writing chips the cell is read again; a missing
+    chip is written once more. Returns the number of chips found at the end (compare with `expected`)."""
+    time.sleep(wait)
+    found = chip_count(cfg, row_no, col_index, sheets)
+    if found < expected:
+        log.warning("row %s: %s/%s chips after a minute, writing them again", row_no, found, expected)
+        (sheets or sheets_service(cfg)).spreadsheets().batchUpdate(spreadsheetId=cfg.settings["bugsheet"]["spreadsheet_id"],
+                                                                  body={"requests": [request]}).execute()
+        time.sleep(5)
+        found = chip_count(cfg, row_no, col_index, sheets)
+    return found
+
+
 def attach_evidence(cfg: Config, c: dict, row_no: int, sheets=None, drive=None) -> str:
     """Uploads the bug's screenshot and its source PDF to the evidence folder and turns the File Name cell of `row_no` into chips.
     Only that one cell is changed. Returns what happened."""
@@ -288,14 +329,20 @@ def attach_evidence(cfg: Config, c: dict, row_no: int, sheets=None, drive=None) 
     folder = evidence_folder(cfg, drive)
     _fid, ev_url = drive_upload(drive, shot, folder, evidence_name(c))
     doc_name, doc_url = "", ""
-    pdf = cfg.path(cfg.settings["testsuite"]["samples_dir"]) / c["case_id"] / (c.get("doc_file") or "")
-    if c.get("doc_file") and pdf.exists():
-        _fid2, doc_url = drive_upload(drive, pdf, folder, c["doc_file"])
-        doc_name = c["doc_file"]
+    case_dir = cfg.path(cfg.settings["testsuite"]["samples_dir"]) / c["case_id"]
+    pdf = case_dir / (c.get("doc_file") or "")
+    if not c.get("doc_file"):                       # always attach the pre-alert document: the case's sample PDF when none is named
+        pdf = next(iter(sorted(case_dir.glob("*.pdf"))), pdf) if case_dir.is_dir() else pdf
+    if pdf.is_file():
+        doc_name = pdf.name
+        _fid2, doc_url = drive_upload(drive, pdf, folder, doc_name)
     col = sheet_state(cfg)["header"].index(next(h for h, f in sheet_state(cfg)["mapping"] if f == "File Name"))
-    sheets.spreadsheets().batchUpdate(spreadsheetId=bs["spreadsheet_id"], body={"requests": [
-        file_chips_request(int(bs["tab_gid"]), row_no, col, ev_url, doc_url)]}).execute()
-    return f"evidence uploaded and linked as chips ({evidence_name(c)}" + (f" + {doc_name})" if doc_name else ")")
+    request = file_chips_request(int(bs["tab_gid"]), row_no, col, ev_url, doc_url)
+    sheets.spreadsheets().batchUpdate(spreadsheetId=bs["spreadsheet_id"], body={"requests": [request]}).execute()
+    expected = 2 if doc_url else 1
+    found = verify_chips(cfg, row_no, col, expected, request, sheets)
+    return (f"evidence uploaded and linked as chips ({evidence_name(c)}" + (f" + {doc_name})" if doc_name else ")")
+            + f"; verified {found}/{expected} chip(s) a minute after writing")
 
 
 def check_sheet(cfg: Config, service=None) -> dict:

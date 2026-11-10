@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+SEA-REG-006,FJ-0018972,IPA/2452/2026-27,CREATED_IN_NEXUS,PASS,2544,"MASTER: PASS (in Master) | HOUSE: PASS (in House) | DEBIT NOTE: PASS (in Master) | unexpected: B/L in Master; B/L in Master; B/L in House | IPA/2452/2026-27 seen -> Master (SITTAGBO667780): MBLx1, B/Lx1, B/Lx1, DEBITNOTEx1; House (HTHC26072463): HBLx1, B/Lx1",/home/unifo/Downloads/nexus_agent/runs/2026-11-04/SEA-REG-006

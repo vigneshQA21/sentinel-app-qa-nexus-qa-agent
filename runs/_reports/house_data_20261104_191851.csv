@@ -1,0 +1,73 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Bill No.,,FGTJ2607000062,PASS,printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Shipper,,SHANDONG HYDRIL MACHINERY CO LTD,REVIEW,4/5 words are on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Shipper ID,,SHAHYDBJS,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Consignee,,OSAW UDYOG PVT LTD,REVIEW,3/4 words are on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Consignee ID,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Branch,,LKO,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipment Details,Shipment Details · Status,,Consignee Mapping Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,House Air Waybill,House Air Waybill · Master AWB Reference,,FGTJ2607000062,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipper,Shipper · Name,,SHANDONG HYDRIL MACHINERY CO LTD,REVIEW,4/5 words are on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipper,Shipper · Address,,"NA DONGSAN ROAD,, CN",REVIEW,3/4 words are on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipper,Shipper · Postal Code,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Shipper,Shipper · Party ID,,SHAHYDBJS,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Consignee,Consignee · Name,,OSAW UDYOG PVT LTD,REVIEW,3/4 words are on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Consignee,Consignee · Address,,"LS - 77 , VILLAGE - MANGLAI AMBALA - YAMUNANAGAR ROAD
+P.O - KHUDDA KALAN DISTRICT - AMBALA , HARYANA - 133104",PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Consignee,Consignee · Postal Code,,133104,PASS,number printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Consignee,Consignee · Party ID,,Select,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Consignee,Consignee · Name,,SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Consignee,Consignee · Address,,SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Consignee,Consignee · Name,,LOGISTEED BUTSTEED tactfor INDIA PVT . ETBase,KNOWN,KNOWN ISSUE (logged in the bug sheet); only 2/6 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Consignee,Consignee · Address,,"SCF 24 , 2ND FLOOR , PHASE -2 URBAN ESTATE , JAMALPUR ,
+CHANDIGARH ROAD , LUDHIANA - 141010 PUNJAB",PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Vessel Name,,X - PRESS BARDSEY,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Voyage Number,,629W,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Port Of Loading,,"QINGDAO , CHINA",PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Ctn Pol City,,QIN,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Ctn Pol Ctry,,CN,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Port Of Discharge,,"MUNDRA , INDIA",PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Place Of Delivery,,"SAHNEWAL , PUNJAB , INDIA",PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Final Destination,,"SAHNEWAL , PUNJAB , INDIA",PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Ctn Pod City,,MUN,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Ctn Pod Ctry,,IN,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Container No,,SUDU7851640,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Seal No,,CN7529663,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Container Type,,20GP,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · No Of Pieces Value,,2,PASS,number printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · No Of Pieces Unit,,PACKAGE,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Gross Weight Value,,4000,PASS,number printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Gross Weight Unit,,KGS,REVIEW,unit not found as printed
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Volume Of Goods Value,,26,REVIEW,"the document prints no volume, so this value cannot be confirmed"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Volume Of Goods Unit,,CBM,REVIEW,"the document prints no volume, so this value cannot be confirmed"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Description,,SQUARE BALER,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · (unlabelled field),,"QINGDAO , CHINA",PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Freight,Freight · Freight Payment,,FREIGHT COLLECT,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · (unlabelled field),,CY / CY,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · (unlabelled field),,LCL,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Value,,4000,PASS,number printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Unit,,KGS,REVIEW,unit not found as printed
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Value,,26,PASS,number printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Unit,,CBM,REVIEW,unit not found as printed
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Value,,2,PASS,number printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Unit,,PACKAGE,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · (unlabelled field),,SQUARE BALER,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Place,,"TIANJIN , CHINA",PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Date,,18/07/2026,PASS,date printed on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Carrier Name,,FOCUS GLOBAL LOGISTICSCORPORATION LTD .,PASS,every word is on the document
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Carrier Code,,MAEU_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Reference,Reference · Shippers Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Consignee Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Inv No,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Other,Other · Inv Date,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Reference,Reference · Executed On,,,INFO,"empty field, nothing to compare"
+SEA-REG-004,IPA/2450/2026-27,FJ-0001090 - Consolidated.pdf page 5,Incoterm,Incoterm · Incoterm,,,INFO,"empty field, nothing to compare"

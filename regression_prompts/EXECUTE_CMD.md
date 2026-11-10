@@ -1,5 +1,7 @@
 # Execute commands (no Claude needed)
 
+Complete list of every command and flag: [docs/COMMANDS.md](../docs/COMMANDS.md). Zoho daily update: `./nx post-update --file state/zoho_update.md`.
+
 Always start from the project folder. `./nx` and `./run_regression.sh` always use the project's own Python, so they work
 from any terminal. **Whatever you run is really sent** (a preview needs `--dry-run`).
 
@@ -146,10 +148,16 @@ Every `suite` and `validate*` run opens **runs/_live/index.html** in the browser
 When a `suite` or `validate*` run ends, **runs/_reports/runreport_<date>.html** opens in the browser: every case executed that day with verdict, mapping and data results, the fields that did not match (document value vs Nexus value), probable root causes, embedded screenshots, links to the traces, and the bug sections (new, still there, passed and not re-tested, to re-test). `./nx runreport` writes the text report and opens the same page. `NEXUS_NO_LIVE=1` turns the browser pages off.
 
 
-## Sea single house (draft: send only)
-- Cases: `SEA-REG-001` to `SEA-REG-008` in `knowledge_base/testcases/Sea_Single_House_Daily_Regression.xlsx`; samples in `samples/SEA-REG-00x/`.
+## Sea single house (send, then validate one case at a time)
+- Cases: `SEA-REG-001` to `SEA-REG-009` (009 = DAP-FJ-0002952: House Incoterm must show DAP) in `knowledge_base/testcases/Sea_Single_House_Daily_Regression.xlsx`; samples in `samples/SEA-REG-00x/`.
 - Preview, nothing sent: `./run_regression.sh sea-daily --dry-run --no-wait` (one case: `./run_regression.sh SEA-REG-002 --dry-run`).
 - Send (only on request, after the old pre-alerts are deleted): `./run_regression.sh SEA-REG-002`. The subject is `SEA-REG-002 | QA agent trigger ... | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)`.
 - `--validate` in the suite is still refused for Sea; run the checks after sending, one case at a time: `./nx validate --cases SEA-REG-001`, then `validate-master`, `validate-house`, `validate-docs` with the same `--cases`.
 - Sea data checks (`nexus_agent/sea_check.py`): every Nexus field is looked up in the text of its own bill (MBL pages for the Master, HBL pages for the House); PASS = printed on the document, FAIL = not printed, REVIEW = partly, or a scan read with OCR. Invoice / Packing List use the usual docs check on the Sea parts.
 - Screening reads Sea bills with `pdf_split_sea` (config): the carrier form is the MASTER, a bill starting with the forwarder reference is the HOUSE; scanned pages are read with OCR (about 2 minutes for SEA-REG-005).
+- Source bill: the Sea check uses the bill that prints the bill number Nexus shows (not the first screened bill), so a sample with two bills (SEA-REG-006) is compared page by page against the right one. Dates are read as `21/07/2026`, `Jul.21,2026`, `21 JUL 2026`, `dd/mm/yy` and others.
+- Same shipment already in Nexus: a resent or repeated shipment can be absorbed into the existing pre-alert (SEA-REG-005: IPA/2332 grew from 15 to 30 pages; SEA-REG-006 first send created nothing). Delete the older pre-alert (you do it, the agent never deletes) before sending; if no new pre-alert appears after 7 minutes, look for it in the old one.
+- Resend after the pre-alert was deleted: `./nx suite --cases SEA-REG-005 --resend --force` (`run_regression.sh` has no `--resend`).
+- Expectations changed by the user: SEA-REG-006 maps the Debit Note to the Master (Master + House + Debit Note).
+- Results are recorded in the Sea workbook (columns Last Known Nexus Job, Daily Result, Nexus Job (today), Tester / Remarks), today's run report (`./nx runreport`), the bug sheet (on your yes, with the screenshots and the pre-alert PDFs) and `docs/PROGRESS_LOG.md`.
+- Findings you confirmed as not a bug (party-master names/addresses/postal codes, carrier name, Pol/Pod codes, freight payment, FCL/LCL, volume and unit reviews) are marked NOT_A_BUG and shown as KNOWN in later runs.

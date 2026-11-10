@@ -10,7 +10,7 @@ cases=(); dry=(); force=(--force); wait=(); validate=0
 for a in "$@"; do
   case "$a" in
     air-daily) cases+=(REG-001 REG-002 REG-005 REG-009 REG-006 REG-007) ;;
-    sea-daily) cases+=(SEA-REG-001 SEA-REG-002 SEA-REG-003 SEA-REG-004 SEA-REG-005 SEA-REG-006 SEA-REG-007 SEA-REG-008) ;;
+    sea-daily) cases+=(SEA-REG-001 SEA-REG-002 SEA-REG-003 SEA-REG-004 SEA-REG-005 SEA-REG-006 SEA-REG-007 SEA-REG-008 SEA-REG-009) ;;
     --dry-run) dry=(--dry-run) ;;
     --validate) validate=1 ;;
     --no-wait) wait=(--interval 0) ;;

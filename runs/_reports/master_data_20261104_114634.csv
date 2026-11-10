@@ -1,0 +1,57 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,2,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Bill No.,,OOLU2333050260,PASS,printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Shipper,,SHANGHAI FOCUS GLOBAL LOGISTICS CORPORATION LTD .,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Shipper ID,,SHAFOCSHA,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Consignee,,LOGISTEED INDIA PRIVATE LIMITED,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Consignee ID,,LIN_INBOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Branch,,BOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipment Details,Shipment Details · Status,,CW Sync Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,,OOLU2333050260,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipper,Shipper · Name,,SHANGHAI FOCUS GLOBAL LOGISTICS CORPORATION LTD .,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipper,Shipper · Address,,"ROOM 1009 , INFORMATION TECHNOLOGY BUILDING , 1555KONGJIANG ROAD , YANGPU",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipper,Shipper · Postal Code,,1555,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Shipper,Shipper · Party ID,,SHAFOCSHA,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Consignee,Consignee · Name,,LOGISTEED INDIA PRIVATE LIMITED,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Consignee,Consignee · Address,,"C # 1ST FLOOR, VAIBHAV APARTMENT SAHAR PIPIELINE R, ANDHERI EAST MUMBAI, MH, IN",REVIEW,9/11 words are on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Consignee,Consignee · Postal Code,,400099,REVIEW,this number is not printed on the document (scanned page read with OCR)
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Consignee,Consignee · Party ID,,LIN_INBOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Consignee,Consignee · Name,,LOGISTEED INDIA PVT . LTD,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Consignee,Consignee · Address,,"1ST FLOOR VAIBHAV APARTMENT ,SAHAR PIPE LINE ROAD , ANDHERI( EAST ) , MUMBAI - 400059 , INDIA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Consignee,Consignee · Name,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Consignee,Consignee · Address,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Vessel Name,,KOTA PLUMBAGO,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Voyage Number,,015W,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Port Of Loading,,"SHANGHAI , CHINA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Ctn Pol City,,SGH,REVIEW,only 0/1 words are on the document (the party master / Nexus value may differ from the bill) (scanned page read with OCR)
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Ctn Pol Ctry,,CHINA,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Port Of Discharge,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Place Of Delivery,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Final Destination,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Ctn Pod City,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Ctn Pod Ctry,,INDIA,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Container No,,FFAU3172583,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Seal No,,OOLLGE9387,REVIEW,only 0/1 words are on the document (the party master / Nexus value may differ from the bill) (scanned page read with OCR)
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Container Type,,40HQ,REVIEW,only 0/1 words are on the document (the party master / Nexus value may differ from the bill) (scanned page read with OCR)
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · No Of Pieces Value,,600,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · No Of Pieces Unit,,CARTONS,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Gross Weight Value,,12030,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Gross Weight Unit,,KGS,REVIEW,unit not found as printed
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Volume Of Goods Value,,66.79,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Volume Of Goods Unit,,CBM,REVIEW,unit not found as printed
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Description,,LIFELONG CAR INFLATABLE BED,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · (unlabelled field),,"SHANGHAI , CHINA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT PREPAID,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Cargo,Cargo · Pieces,,FCL,INFO,"in the Sea panel this field holds the service type (FCL / LCL), not a piece count"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Cargo,Cargo · Pieces Unit,,PO - PUR - I - 26-27-00277,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Place,,SHANGHAI,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Date,,18/08/2026,PASS,date printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Carrier Name,,ORIENT OVERSEAS CONTAINER LINE,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Other,Other · Carrier Code,,OOLU_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Cargo,Cargo · Gross Weight,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 1,Cargo,Cargo · Gross Weight Unit,,,INFO,"empty field, nothing to compare"

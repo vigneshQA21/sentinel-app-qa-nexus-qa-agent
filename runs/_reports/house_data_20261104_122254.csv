@@ -1,0 +1,70 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Bill No.,,BWSS 13760427A,PASS,printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Shipper,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Shipper ID,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Consignee,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Consignee ID,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Branch,,DEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipment Details,Shipment Details · Status,,Shipper Mapping Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,House Air Waybill,House Air Waybill · Master AWB Reference,,BWSS 13760427A,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipper,Shipper · Name,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipper,Shipper · Address,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipper,Shipper · Postal Code,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Shipper,Shipper · Party ID,,Select,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Name,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Address,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Postal Code,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Party ID,,Select,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Name,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Address,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Name,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Consignee,Consignee · Address,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Vessel Name,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Voyage Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Port Of Loading,,"FREDERICIA , DENMARK",PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Ctn Pol City,,FRC,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Ctn Pol Ctry,,DK,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Port Of Discharge,,"MUNDRA , INDIA",PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Place Of Delivery,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Final Destination,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Ctn Pod City,,MUN,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Ctn Pod Ctry,,IN,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Container No,,KKTU8157350,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Seal No,,MD550944,PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Container Type,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · No Of Pieces Value,,18,PASS,number printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · No Of Pieces Unit,,PCS,REVIEW,unit not found as printed
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Gross Weight Value,,24532,PASS,number printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Description,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Freight,Freight · Freight Payment,,FREIGHT NOT FOUND,REVIEW,2/3 words are on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,CY/CY,FAIL,only 0/1 words are on the document (the party master / Nexus value may differ from the bill)
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,"20 ' Dry , S.T.C.",PASS,every word is on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Value,,24532,PASS,number printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Unit,,KGS,PASS,unit printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Value,,0.1,FAIL,this number is not printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Unit,,CBM,PASS,unit printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Place,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Date,,04/09/2026,PASS,date printed on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Carrier Name,,Ocean Network Express Pte . Ltd.,REVIEW,3/5 words are on the document
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Carrier Code,,BWSS_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Reference,Reference · Shippers Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Consignee Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Inv No,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Other,Other · Inv Date,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2420/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3-4,Reference,Reference · Executed On,,,INFO,"empty field, nothing to compare"

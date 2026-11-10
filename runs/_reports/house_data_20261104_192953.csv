@@ -1,0 +1,71 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Bill No.,,BWSS 13760427A,PASS,printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Shipper,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Shipper ID,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Consignee,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Consignee ID,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Branch,,DEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipment Details,Shipment Details · Status,,Shipper Mapping Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,House Air Waybill,House Air Waybill · Master AWB Reference,,BWSS 13760427A,PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipper,Shipper · Name,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a shipper"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipper,Shipper · Address,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a shipper"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipper,Shipper · Postal Code,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Shipper,Shipper · Party ID,,Select,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Consignee,Consignee · Name,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a consignee"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Consignee,Consignee · Address,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a consignee"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Consignee,Consignee · Postal Code,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Consignee,Consignee · Party ID,,Select,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Consignee,Consignee · Name,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a consignee"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Consignee,Consignee · Address,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a consignee"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Consignee,Consignee · Name,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a consignee"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Consignee,Consignee · Address,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a consignee"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Vessel Name,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a vessel"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Voyage Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Port Of Loading,,"FREDERICIA , DENMARK",PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Ctn Pol City,,FRC,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Ctn Pol Ctry,,DK,PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Port Of Discharge,,"MUNDRA , INDIA",PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Place Of Delivery,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a place of delivery"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Final Destination,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints a destination"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Ctn Pod City,,MUN,PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Ctn Pod Ctry,,IN,PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Container No,,KKTU8157350,PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Seal No,,MD550944,PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Container Type,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints the container type"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · No Of Pieces Value,,18,PASS,number printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · No Of Pieces Unit,,PCS,KNOWN,"KNOWN ISSUE (accepted, not a bug); unit not found as printed"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Gross Weight Value,,24532,PASS,number printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Volume Of Goods Value,,20,PASS,number printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Volume Of Goods Unit,,CBM,PASS,unit printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Description,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints the goods description"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Freight,Freight · Freight Payment,,FREIGHT NOT FOUND,KNOWN,KNOWN ISSUE (logged in the bug sheet); 2/3 words are on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · (unlabelled field),,CY/CY,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · (unlabelled field),,"20 ' Dry , S.T.C.",PASS,every word is on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Value,,24532,PASS,number printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Unit,,KGS,PASS,unit printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Value,,0.1,KNOWN,"KNOWN ISSUE (accepted, not a bug); this number is not printed on the document"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Unit,,CBM,PASS,unit printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Place,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints the place of issue"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Date,,04/09/2026,PASS,date printed on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Carrier Name,,Ocean Network Express Pte . Ltd.,REVIEW,3/5 words are on the document
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Carrier Code,,BWSS_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Reference,Reference · Shippers Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Consignee Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Inv No,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Other,Other · Inv Date,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Reference,Reference · Executed On,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2456/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 3,Incoterm,Incoterm · Incoterm,,,KNOWN,"KNOWN ISSUE (logged in the bug sheet); empty in Nexus, but the bill prints the Incoterm (Terms)"

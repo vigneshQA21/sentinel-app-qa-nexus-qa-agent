@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+SEA-REG-003,FJ-0001318,IPA/2395/2026-27,CREATED_IN_NEXUS,FAIL,184,"MASTER: FAIL (not found in Nexus) | HOUSE: PASS (in House) | unexpected: B/L in House; B/L in House; B/L in House | IPA/2395/2026-27 seen -> House (274485258): HBLx1, B/Lx1, B/Lx1; House (SLLTASAH611731): HBLx1, B/Lx1",/home/unifo/Downloads/nexus_agent/runs/2026-11-03/SEA-REG-003

@@ -20,6 +20,7 @@ KINDS = [("master_data", "Master"), ("house_data", "House"), ("manifest_data", "
 HEAD = ["TC ID", "Area", "Field / check", "How it is validated", "Expected (from the source document)", "Last result",
         "Baseline", "Bug sheet / note"]
 TAB = "Validations REG-001 & REG-002"
+TAB_SEA = "Validations SEA-REG"
 
 
 def latest(reports: Path, prefix: str, case_id: str) -> list[dict]:
@@ -62,13 +63,18 @@ def bug_note(store: Store, fp: str) -> tuple[str, str]:
 def write(cfg: Config, case_ids: list[str], workbook: Path | None = None) -> tuple[Path, Path, int]:
     store = Store(cfg.state_dir / "agent.db")
     reports = cfg.runs_dir / "_reports"
-    wb_path = workbook or sorted(cfg.path("knowledge_base/testcases").glob("Air_Single_House*.xlsx"))[-1]
+    sea = [c.upper().startswith("SEA-") for c in case_ids]
+    if any(sea) and not all(sea):
+        raise ValueError("give either Air cases (REG-nnn) or Sea cases (SEA-REG-nnn), they live in different workbooks")
+    tab = TAB_SEA if all(sea) else TAB
+    wb_path = workbook or sorted(cfg.path("knowledge_base/testcases").glob("Sea_Single_House*.xlsx" if all(sea) else "Air_Single_House*.xlsx"),
+                                 key=lambda f: ("backup" in f.name, f.name))[0]
     backup = wb_path.with_name(wb_path.stem + f".backup_{datetime.now():%Y%m%d_%H%M%S}.xlsx")
     shutil.copy2(wb_path, backup)
     wb = openpyxl.load_workbook(wb_path)
-    if TAB in wb.sheetnames:
-        del wb[TAB]
-    ws = wb.create_sheet(TAB)
+    if tab in wb.sheetnames:
+        del wb[tab]
+    ws = wb.create_sheet(tab)
     ws.append(HEAD)
     n = 0
     for cid in case_ids:

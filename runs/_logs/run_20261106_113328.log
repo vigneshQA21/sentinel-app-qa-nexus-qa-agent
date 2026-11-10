@@ -1,0 +1,55 @@
+2026-11-06 11:33:32,566 INFO nexus_agent.local_sender: SCREENING FJ-0001380 - Consolidated - Invoice and Packing list.pdf: 19 page(s): MBL pages 1-3; HBL pages 4; INVOICE pages 5-18; PACKING pages 19
+2026-11-06 11:33:32,566 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001380)
+2026-11-06 11:33:45,001 INFO nexus_agent.local_sender: Sent 'SEA-REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001380 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)' to prealert.nexus@unifo.in (message id 1a1af74b4a0e753b)
+2026-11-06 11:33:45,002 INFO nexus_agent.testsuite: waiting 300s before case SEA-REG-002
+2026-11-06 11:38:49,059 INFO nexus_agent.local_sender: SCREENING FJ-0001497 - Consolidated.pdf: 2 page(s): MBL pages 1; HBL pages 2
+2026-11-06 11:38:49,059 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001497)
+2026-11-06 11:41:49,106 WARNING nexus_agent.local_sender: send attempt 1/3 failed: The write operation timed out
+2026-11-06 11:41:58,692 INFO nexus_agent.local_sender: Sent 'SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)' to prealert.nexus@unifo.in (message id 1a1af7c3ed6f1555)
+2026-11-06 11:41:58,693 INFO nexus_agent.testsuite: waiting 300s before case SEA-REG-003
+2026-11-06 11:54:12,154 INFO nexus_agent.local_sender: SCREENING FJ-0001318 - Sea Extraction + Regression + XML- Map issue.pdf: 3 page(s): MBL pages 1-2; HBL pages 3
+2026-11-06 11:54:12,155 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001318)
+2026-11-06 11:57:12,195 WARNING nexus_agent.local_sender: send attempt 1/3 failed: The write operation timed out
+2026-11-06 11:57:17,214 ERROR nexus_agent.local_sender: SEND FAILED for 'SEA-REG-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001318 | CONSOLIDATED (MASTER+HOUSE)': Unable to find the server at gmail.googleapis.com
+2026-11-06 11:57:17,215 INFO nexus_agent.testsuite: waiting 300s before case SEA-REG-004
+2026-11-06 12:15:05,586 INFO nexus_agent.local_sender: SCREENING FJ-0001090 - Consolidated.pdf: 5 page(s): MBL pages 1-4; HBL pages 5
+2026-11-06 12:15:05,587 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001090)
+2026-11-06 12:15:09,294 INFO nexus_agent.local_sender: Sent 'SEA-REG-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001090 | CONSOLIDATED (MASTER+HOUSE)' to prealert.nexus@unifo.in (message id 1a1af9a9de0df240)
+2026-11-06 12:15:09,295 INFO nexus_agent.testsuite: waiting 300s before case SEA-REG-005
+2026-11-06 12:20:10,301 INFO nexus_agent.local_sender: SCREENING FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf: 15 page(s): MBL pages 1-2; HBL pages 3; INVOICE pages 4-6; PACKING pages 7-15
+2026-11-06 12:20:10,302 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001382)
+2026-11-06 12:20:11,462 WARNING nexus_agent.local_sender: send attempt 1/3 failed: [Errno 32] Broken pipe
+2026-11-06 12:20:16,467 ERROR nexus_agent.local_sender: SEND FAILED for 'SEA-REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001382 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)': [SSL: UNEXPECTED_EOF_WHILE_READING] unexpected eof while reading (_ssl.c:2658)
+2026-11-06 12:20:16,469 INFO nexus_agent.testsuite: waiting 300s before case SEA-REG-006
+2026-11-06 12:25:17,021 INFO nexus_agent.local_sender: SCREENING FJ-0018972 - Consolidated-Debit note.pdf: 4 page(s): HBL pages 1; INVOICE pages 2; DEBITNOTE pages 3; HBL pages 4
+2026-11-06 12:25:17,022 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0018972)
+2026-11-06 12:25:17,027 INFO nexus_agent.local_sender:     WARNING: more than one House bill found: not a single-house sample?
+2026-11-06 12:25:17,028 INFO nexus_agent.local_sender:     MISSING required: MBL
+2026-11-06 12:25:23,431 INFO nexus_agent.local_sender: Sent 'SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0018972 | CONSOLIDATED (HOUSE+INVOICE+DEBIT NOTE)' to prealert.nexus@unifo.in (message id 1a1afa3fbfed4db9)
+2026-11-06 12:25:23,433 INFO nexus_agent.testsuite: waiting 300s before case SEA-REG-007
+2026-11-06 12:30:23,517 INFO nexus_agent.local_sender: SCREENING FJ-0001393 - Consolidated.pdf: 3 page(s): MBL pages 1; HBL pages 2-3
+2026-11-06 12:30:23,518 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001393)
+2026-11-06 12:30:23,751 WARNING nexus_agent.local_sender: send attempt 1/3 failed: [Errno 32] Broken pipe
+2026-11-06 12:30:28,755 ERROR nexus_agent.local_sender: SEND FAILED for 'SEA-REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001393 | CONSOLIDATED (MASTER+HOUSE)': [SSL: UNEXPECTED_EOF_WHILE_READING] unexpected eof while reading (_ssl.c:2658)
+2026-11-06 12:30:28,757 INFO nexus_agent.testsuite: waiting 300s before case SEA-REG-008
+2026-11-06 12:35:29,259 INFO nexus_agent.local_sender: SCREENING FJ-0001498 - Consolidated.pdf: 3 page(s): MBL pages 1-3
+2026-11-06 12:35:29,259 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001498)
+2026-11-06 12:35:29,265 INFO nexus_agent.local_sender:     MISSING required: HBL
+2026-11-06 12:35:35,651 INFO nexus_agent.local_sender: Sent 'SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER)' to prealert.nexus@unifo.in (message id 1a1afad559cff8ee)
+2026-11-06 12:35:35,652 INFO nexus_agent.testsuite: waiting 300s before case SEA-REG-009
+2026-11-06 12:40:36,422 INFO nexus_agent.local_sender: SCREENING FJ-0002952 - Consolidated - DAP Incoterm.pdf: 4 page(s): MBL pages 1-2; HBL pages 3-4
+2026-11-06 12:40:36,423 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0002952)
+2026-11-06 12:40:36,862 WARNING nexus_agent.local_sender: send attempt 1/3 failed: [Errno 32] Broken pipe
+2026-11-06 12:40:41,866 ERROR nexus_agent.local_sender: SEND FAILED for 'SEA-REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002952 | CONSOLIDATED (MASTER+HOUSE)': [SSL: UNEXPECTED_EOF_WHILE_READING] unexpected eof while reading (_ssl.c:2658)
+SEA-REG-001 SENT              SEA-REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001380 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)
+SEA-REG-002 SENT              SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-003 SEND_FAILED       SEA-REG-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001318 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-004 SENT              SEA-REG-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001090 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-005 SEND_FAILED       SEA-REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001382 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)
+SEA-REG-006 SENT              SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0018972 | CONSOLIDATED (HOUSE+INVOICE+DEBIT NOTE)
+SEA-REG-007 SEND_FAILED       SEA-REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001393 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-008 SENT              SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER)
+SEA-REG-009 SEND_FAILED       SEA-REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002952 | CONSOLIDATED (MASTER+HOUSE)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261106_124041.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261106.html

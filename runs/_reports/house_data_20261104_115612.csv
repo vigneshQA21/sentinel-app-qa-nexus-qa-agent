@@ -1,0 +1,88 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Bill No.,,FGNB2608000132,PASS,printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Shipper,,"NINGBO ZHENYU TECHNOLOGY CO.,LTD",REVIEW,4/5 words are on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Shipper ID,,NINZHEBJS1,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Consignee,,LIFELONG ONLINE RETAIL PRIVATE LIMI,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Consignee ID,,LIFONLTHN,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Branch,,BOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipment Details,Shipment Details · Status,,Invoice Mapping Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,House Air Waybill,House Air Waybill · Master AWB Reference,,FGNB2608000132,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipper,Shipper · Name,,"NINGBO ZHENYU TECHNOLOGY CO.,LTD",REVIEW,4/5 words are on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipper,Shipper · Address,,"Xiangshan Xidian  Ninghai, CN",REVIEW,only 1/4 words are on the document (the party master / Nexus value may differ from the bill) (scanned page read with OCR)
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipper,Shipper · Postal Code,,613,REVIEW,this number is not printed on the document (scanned page read with OCR)
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Shipper,Shipper · Party ID,,NINZHEBJS1,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Consignee,Consignee · Name,,LIFELONG ONLINE RETAIL PRIVATE LIMI,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Consignee,Consignee · Address,,"H.NO.250, GALA NO.1-6, M3 WAREHOUSE, BHIWANDI, GALA NO.1-6,, THANE, 27, IN",REVIEW,6/9 words are on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Consignee,Consignee · Postal Code,,421302,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Consignee,Consignee · Party ID,,LIFONLTHN,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Consignee,Consignee · Name,,SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Consignee,Consignee · Address,,SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Consignee,Consignee · Name,,LOGISTEED INDIA PVT . LTD .,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Consignee,Consignee · Address,,"1ST FLOOR VAIBHAV APARTMENT , SAHAR PIPE LINE ROAD ,
+ANDHERI
+( EAST ) , MUMBAI-400059 , INDIA
+TEL : + 91-22-30904800 , EXT # 809
+FAX-0091-22-28268395
+MAIL ID RANJANA DEL@FLYJACLOGISTICS.COM",PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Vessel Name,,ONE COMMITMENT,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Voyage Number,,075W,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Port Of Loading,,"NINGBO , CHINA",PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Ctn Pol City,,NBO,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Ctn Pol Ctry,,CN,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Port Of Discharge,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Place Of Delivery,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Final Destination,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Ctn Pod City,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Ctn Pod Ctry,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Container No,,CAAU9417993,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Seal No,,CNEB70078,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Container Type,,40HQ,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · No Of Pieces Value,,222,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · No Of Pieces Unit,,CARTON,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Gross Weight Value,,9657,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Volume Of Goods Value,,137.64,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Volume Of Goods Unit,,CBM,REVIEW,unit not found as printed
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Description,,MOTORIZED TREADMILL MODEL NO .,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Container No,,TRHU4963899,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Seal No,,CNEB73340,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Container Type,,40HQ,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · No Of Pieces Value,,222,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · No Of Pieces Unit,,CARTON,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Gross Weight Value,,9657,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Description,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · (unlabelled field),,"NINGBO , CHINA",PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Freight,Freight · Freight Payment,,FREIGHT COLLECT,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · (unlabelled field),,CY / CY,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · (unlabelled field),,FCL,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Value,,19314,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Unit,,KGS,PASS,unit printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Value,,137.64,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Unit,,CBM,REVIEW,unit not found as printed
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Value,,444,PASS,number printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Unit,,CARTON,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · (unlabelled field),,MOTORIZED TREADMILL MODEL NO .,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Place,,"NINGBO , CHINA",PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Date,,25/08/2026,PASS,date printed on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Carrier Name,,FOCUS GLOBAL LOGISTICS,PASS,every word is on the document
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Carrier Code,,ONEY_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Reference,Reference · Shippers Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Consignee Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Inv No,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Other,Other · Inv Date,,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, nothing to compare"
+SEA-REG-008,IPA/2417/2026-27,FJ-0001498 - Consolidated.pdf page 1-3,Reference,Reference · Executed On,,,INFO,"empty field, nothing to compare"

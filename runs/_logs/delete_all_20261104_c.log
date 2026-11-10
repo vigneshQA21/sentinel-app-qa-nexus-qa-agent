@@ -1,0 +1,37 @@
+2026-11-04 16:27:06,357 INFO nexus_agent.nexus.session: Reusing saved Nexus session /home/unifo/Downloads/nexus_agent/state/nexus_session.json
+REG-005: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+REG-005: nothing to delete in Nexus
+REG-005: ready to send again without --resend
+2026-11-04 16:28:08,555 INFO nexus_agent.cleanup: bill search 160-15585765 in Pre-Alerts: 1 row(s) ['IPA/2361/2026-27']
+2026-11-04 16:28:12,017 INFO nexus_agent.cleanup: bill search 160-15585765 in Others: 0 row(s) []
+2026-11-04 16:28:15,244 INFO nexus_agent.cleanup: bill search FLD6445 in Pre-Alerts: 0 row(s) []
+2026-11-04 16:28:18,427 INFO nexus_agent.cleanup: bill search FLD6445 in Others: 0 row(s) []
+REG-006: bill numbers of this case: 160-15585765, FLD6445
+2026-11-04 16:29:22,000 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:30:26,051 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:31:38,544 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+REG-006: Others     IPA/2366/2026-27   deleted (confirmed in the 'Delete job' dialog)   REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-A
+2026-11-04 16:32:46,484 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+REG-006: tab counts Pre-Alerts 176, Others 252  ->  Pre-Alerts 0, Others 247  (Nexus also removes related follow-up jobs of the same thread)
+REG-006: ready to send again without --resend
+2026-11-04 16:33:50,575 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:34:54,987 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:35:58,400 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+REG-007: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+2026-11-04 16:37:06,040 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:38:09,503 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+REG-007: nothing to delete in Nexus
+REG-007: ready to send again without --resend
+2026-11-04 16:39:17,025 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:40:20,376 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:41:24,489 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+REG-009: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+2026-11-04 16:42:32,099 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:43:35,284 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+REG-009: nothing to delete in Nexus
+REG-009: ready to send again without --resend (1 sent-file records cleared)
+2026-11-04 16:44:42,814 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:45:46,643 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+2026-11-04 16:46:50,179 WARNING nexus_agent.nexus.uat: the email list did not finish loading
+REG-011: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+2026-11-04 16:47:57,986 WARNING nexus_agent.nexus.uat: the email list did not finish loading

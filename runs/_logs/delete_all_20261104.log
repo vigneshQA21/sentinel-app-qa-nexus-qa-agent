@@ -1,0 +1,18 @@
+2026-11-04 16:18:19,964 INFO nexus_agent.nexus.session: Reusing saved Nexus session /home/unifo/Downloads/nexus_agent/state/nexus_session.json
+2026-11-04 16:18:53,689 INFO nexus_agent.cleanup: bill search 020-27293980 in Pre-Alerts: 1 row(s) ['IPA/2379/2026-27']
+2026-11-04 16:19:06,473 INFO nexus_agent.cleanup: bill search 020-27293980 in Others: 0 row(s) []
+2026-11-04 16:19:15,238 INFO nexus_agent.cleanup: bill search ONAE26049373 in Pre-Alerts: 0 row(s) []
+2026-11-04 16:19:28,041 INFO nexus_agent.cleanup: bill search ONAE26049373 in Others: 0 row(s) []
+REG-001: bill numbers of this case: 020-27293980, ONAE26049373
+REG-001: Pre-Alerts IPA/2379/2026-27   deleted (confirmed in the 'Delete job' dialog)   REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-A
+REG-001: tab counts Pre-Alerts 179, Others 252  ->  Pre-Alerts 178, Others 252  (Nexus also removes related follow-up jobs of the same thread)
+REG-001: ready to send again without --resend
+2026-11-04 16:20:29,512 INFO nexus_agent.cleanup: bill search 160-15776084 in Pre-Alerts: 1 row(s) ['IPA/2359/2026-27']
+2026-11-04 16:20:42,438 INFO nexus_agent.cleanup: bill search 160-15776084 in Others: 0 row(s) []
+2026-11-04 16:20:51,831 INFO nexus_agent.cleanup: bill search CHJE262335 in Pre-Alerts: 0 row(s) []
+2026-11-04 16:21:04,884 INFO nexus_agent.cleanup: bill search CHJE262335 in Others: 0 row(s) []
+REG-002: bill numbers of this case: 160-15776084, CHJE262335
+REG-002: Pre-Alerts IPA/2359/2026-27   deleted (confirmed in the 'Delete job' dialog)   REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-A
+REG-002: tab counts Pre-Alerts 178, Others 252  ->  Pre-Alerts 177, Others 252  (Nexus also removes related follow-up jobs of the same thread)
+REG-002: ready to send again without --resend
+2026-11-04 16:22:07,792 INFO nexus_agent.cleanup: bill search 098-31251603 in Pre-Alerts: 1 row(s) ['IPA/2373/2026-27']

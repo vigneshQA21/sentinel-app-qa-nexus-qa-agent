@@ -124,6 +124,20 @@ The framework makes the regression repeatable, deeper than a manual check and ea
 
 Next: samples for the two pending cases, data checks for individual cases that span several pre-alerts, the CargoWise/XML check, and automatic clean-up of old pre-alerts.
 
+## Sea regression (added 2-Nov to 4-Nov-2026)
+
+The same flow now runs for Sea single house cases SEA-REG-001 to 009 (`knowledge_base/testcases/Sea_Single_House_Daily_Regression.xlsx`). Screening reads the carrier waybill as the Master and the forwarder bill as the House, OCR reads scanned pages, and each case is validated one at a time (mapping, then Master, House, Invoice, Packing List, Debit Note).
+
+| Case | Result |
+| --- | --- |
+| SEA-REG-001 | Mapping PASS; bugs rows 254 and 255 |
+| SEA-REG-002 | Mapping and data PASS, no bugs |
+| SEA-REG-003 | Mapping FAIL: carrier bill classified as a House, no Master (row 256); skipped for now |
+| SEA-REG-004 | Mapping PASS; unrelated pre-alert linked as a follow-up (row 257); skipped for now |
+| SEA-REG-005 | Mapping and data PASS, no bugs (first send absorbed into an existing pre-alert) |
+| SEA-REG-006 | Mapping PASS, Debit Note under the Master; data PASS, no bugs |
+| SEA-REG-007, 008, 009 | Not run yet (009 = DAP-FJ-0002952, House Incoterm DAP) |
+
 ## Limitations
 
 - **UAT only:** it runs against the UAT Nexus, and old pre-alerts must be deleted by hand before a re-run, otherwise the new emails create duplicates.

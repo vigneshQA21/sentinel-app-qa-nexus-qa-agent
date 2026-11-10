@@ -1,0 +1,221 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Bill No.,020-27293980,020-27293980,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Shipper,QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET AEROPORT DE NICE NICE 06 06200 FR TE 0489985285,"QUALITAIR&SEA, DIMOTRANS GROUP",PASS,shipper found in the document block
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Shipper ID,QUADIMNIC,QUADIMNIC,PASS,same as the Party ID in the data panel
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Consignee,LOGISTEED INDIA PVT. LTD. NO 25 32 READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE GUINDY CHENNAI TN 600032 IN TE +914425234009,LOGISTEED INDIA PVT . LTD .,PASS,consignee found in the document block
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Consignee ID,LIN_INMAA,LIN_INMAA,PASS,same as the Party ID in the data panel
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Branch,MAA,MAA,PASS,"MAA = Chennai, matches the document's destination"
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Air Waybill,Air Waybill · Air Waybill Number,020-27293980,020-27293980,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipper,Shipper · Name,QUALITAIR SEA DIMOTRANS GROUP ZONE DE FRET AEROPORT DE NICE NICE 06 06200 FR TE 0489985285,"QUALITAIR&SEA, DIMOTRANS GROUP",PASS,name found in the document block
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipper,Shipper · Address,(address on the document),"AEROPORT NICE COTE D'AZUR, ZONE DE FRET CEDEX 3, NICE, 06, FR",REVIEW,"5/8 words of the Nexus address are on the document; not on the document: AZUR, CEDEX, COTE"
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipper,Shipper · Postal Code,06200,06200,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Shipper,Shipper · Party ID,,QUADIMNIC,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Consignee,Consignee · Name,LOGISTEED INDIA PVT. LTD. NO 25 32 READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE GUINDY CHENNAI TN 600032 IN TE +914425234009,LOGISTEED INDIA PVT . LTD .,PASS,name found in the document block
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Consignee,Consignee · Address,LOGISTEED INDIA PVT. LTD. NO 25 32 READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE GUINDY CHENNAI TN 600032 IN TE +914425234009,NO 25 32 READYMADE GARMENT COMPLEXSIDCO INDUSTRIAL ESTATE GUINDYCHENNAI TN 600032 INTE +914425234009,PASS,"Nexus joins the document's address lines without a space: COMPLEXSIDCO, GUINDYCHENNAI, INTE"
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Consignee,Consignee · Postal Code,600032,600032,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Consignee,Consignee · Party ID,,LIN_INMAA,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Flight Route,Flight Route · Type,connecting,connecting,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · From,NCE,NCE,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · To,FRA,FRA,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Polname,NICE,NICE,PASS,same as the airport of departure
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Podname,,Frankfurt,INFO,airport name from the Nexus airport master
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Podctry,,DE,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Carrier Name,(printed on the document),Lufthansa,PASS,carrier name appears on the document
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Carrier Code,LH,CLH_WW,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Flight Number,LH1061,LH1061,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 1,Segment 1 · Flight Date,day 22,22/08/2026,PASS,only the day is printed on the AWB
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · From,FRA,FRA,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · To,MAA,MAA,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Polname,Frankfurt,Frankfurt,PASS,equals the previous segment's arrival airport (consistency)
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Polctry,,DE,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Podname,CHENNAI (EX MADRAS),Madras,PASS,contained in the document's airport of destination
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Carrier Name,(printed on the document),Lufthansa,PASS,carrier name appears on the document
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Carrier Code,LH,CLH_WW,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Flight Number,LH758,LH758,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Segment 2,Segment 2 · Flight Date,day 23,23/08/2026,PASS,only the day is printed on the AWB
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Routing,Routing · Airport Of Departure,NICE,NICE,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Routing,Routing · Final Destination Airport,CHENNAI (EX MADRAS),CHENNAI ( EX MADRAS ),PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Freight,Freight · Freight Payment,FREIGHT PREPAID (code PP),FREIGHT PREPAID,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Pieces,1,1,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Gross Weight,24.0,24,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Chargeable Weight,60.0,60,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Nature And Quantity Of Goods,Consolidation as per attached list Not Restricted HS Code: 8537109199 DIMS 80x60x75 CM x 1 VOL 0.36 M3,Consolidation as per attached listNot RestrictedHS Code: 8537109199DIMS 80x60x75 CM x 1VOL 0.36 M3,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Volume,0.36,0.36,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Volume Unit,CBM,CBM,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · Executed On,21-Aug-26,21/08/2026,PASS,
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-001,IPA/2503/2026-27,"FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 1",Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Bill No.,,057-05262084,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Shipper,SNY INT'L CARGO SERVICES LTD. 8 HACHORTIM ST. I.A HOLON 5881147 ISRAEL TEL:972-3-5585117 FAX:972-3-5585118 WWW.SNY-CARGO.COM,SNY INT'L CARGO SERVICES LTD.,PASS,shipper found in the document block
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Shipper ID,SNYINTTLV,SNYINTTLV,PASS,same as the Party ID in the data panel
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Consignee,"LOGISTEED India Pvt. Ltd. F-102, 1st Floor, Touchdown Building, Namjoshi Road, Industrial area HAL, Bengaluru, Karnataka-560037, India***",LOGISTEED India Pvt. Ltd.,PASS,consignee found in the document block
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Consignee ID,LIN_INBLR,LIN_INBLR,PASS,same as the Party ID in the data panel
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Branch,,BLR,NOT_VERIFIABLE,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,,057-05262084,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipper,Shipper · Name,SNY INT'L CARGO SERVICES LTD. 8 HACHORTIM ST. I.A HOLON 5881147 ISRAEL TEL:972-3-5585117 FAX:972-3-5585118 WWW.SNY-CARGO.COM,SNY INT'L CARGO SERVICES LTD.,PASS,name found in the document block
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipper,Shipper · Address,(address on the document),8 HACHORTIM ST. I.A HOLON 5881147 ISRAEL,PASS,4/4 words of the Nexus address are on the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipper,Shipper · Postal Code,5881147,5881147,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Shipper,Shipper · Party ID,,SNYINTTLV,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Consignee,Consignee · Name,"LOGISTEED India Pvt. Ltd. F-102, 1st Floor, Touchdown Building, Namjoshi Road, Industrial area HAL, Bengaluru, Karnataka-560037, India***",LOGISTEED India Pvt. Ltd.,PASS,name found in the document block
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Consignee,Consignee · Address,"LOGISTEED India Pvt. Ltd. F-102, 1st Floor, Touchdown Building, Namjoshi Road, Industrial area HAL, Bengaluru, Karnataka-560037, India***","F-102, 1st Floor, Touchdown Building, Namjoshi Road, Industrial area HAL, Bengaluru, Karnataka-560037, India",PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Consignee,Consignee · Postal Code,560037,560037,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Consignee,Consignee · Party ID,,LIN_INBLR,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Flight Route,Flight Route · Type,,connecting,NOT_VERIFIABLE,routing line not found in the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · From,,TLV,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · To,,CDG,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Polname,Tel-Aviv,Tel-Aviv,PASS,same as the airport of departure
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Polctry,,IL,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Podname,,Paris,INFO,airport name from the Nexus airport master
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Podctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),AIR FRANCE,PASS,carrier name appears on the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Carrier Code,,AFR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Flight Number,,963,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 1,Segment 1 · Flight Date,,28/08/2026,NOT_VERIFIABLE,flight date not found in the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · From,,CDG,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · To,,BLR,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Polname,Paris,Paris,PASS,equals the previous segment's arrival airport (consistency)
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Podname,,Bangalore,INFO,airport name from the Nexus airport master
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Carrier Name,(printed on the document),AIR FRANCE,PASS,carrier name appears on the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Carrier Code,,AFR_WW,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Flight Number,,,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Segment 2,Segment 2 · Flight Date,,,NOT_VERIFIABLE,flight date not found in the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Routing,Routing · Airport Of Departure,Tel-Aviv,Tel-Aviv,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Routing,Routing · Final Destination Airport,Bangalore 963/28.08 194/29.08,Bangalore,KNOWN,"KNOWN ISSUE (accepted, not a bug)"
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT PREPAID,NOT_VERIFIABLE,could not be read from the document
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Pieces,3,3,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Gross Weight,21.00,21,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Chargeable Weight,21.50,21.5,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,Min 350.00 Consol Freight As Per Attached Manifest REF :6105647 H.S. CODE: 8504.40 DIM: 2(38X32X21)CMS 1(51X37X41)CMS AS VOL 21.407 KGS .1284 CBM,Consol Freight As Per Attached Manifest REF :6105647 H.S. CODE: 8504.40 DIM: 2(38X32X21)CMS 1(51X37X41)CMS AS VOL 21.407 KGS .1284 CBM,PASS,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Volume,21.407,0.1284,KNOWN,"KNOWN ISSUE (accepted, not a bug)"
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Volume Unit,KGS,CBM,KNOWN,"KNOWN ISSUE (accepted, not a bug)"
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · Executed On,,28/08/2026,NOT_VERIFIABLE,
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-005,IPA/2504/2026-27,FJ-0000883 - Consolidated - Sh.pdf page 1,Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Bill No.,160-15585765,160-15585765,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Shipper,"JIANGSU FEILIKS INTERNATIONAL LOGISTICS INC. SHANGHAI BRANCH RM.A615,NO.1333,WENJU ROAD,PUDONG NEW AREA, SHANGHAI,CHINA.(201202) DIRECTTEL: +86 (0) 21 50962008 CALLIN ZHAO FAX: +86 (0) 21 68852951/68852953",JIANGSU FEILIKS INTERNATIONAL LOGISTICS INC. SHANGHAI BRANCH,PASS,shipper found in the document block
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Shipper ID,JIAFEISHA5,JIAFEISHA5,PASS,same as the Party ID in the data panel
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Consignee,"LOGISTEED INDIA PVT. LTD. 25-32, READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE, GUINDY, CHENNAI IN 600032 TE918939874227",LOGISTEED INDIA PVT. LTD.,PASS,consignee found in the document block
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Consignee ID,LIN_INMAA,LIN_INMAA,PASS,same as the Party ID in the data panel
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Branch,,MAA,NOT_VERIFIABLE,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,160-15585765,160-15585765,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipper,Shipper · Name,"JIANGSU FEILIKS INTERNATIONAL LOGISTICS INC. SHANGHAI BRANCH RM.A615,NO.1333,WENJU ROAD,PUDONG NEW AREA, SHANGHAI,CHINA.(201202) DIRECTTEL: +86 (0) 21 50962008 CALLIN ZHAO FAX: +86 (0) 21 68852951/68852953",JIANGSU FEILIKS INTERNATIONAL LOGISTICS INC. SHANGHAI BRANCH,PASS,name found in the document block
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipper,Shipper · Address,(address on the document),"RM.A615, NO.1333, WENJU ROAD, PUDONG NEW AREA, SHANGHAI, CHINA. (201202)",PASS,10/10 words of the Nexus address are on the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipper,Shipper · Postal Code,201202,201202,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Shipper,Shipper · Party ID,,JIAFEISHA5,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Consignee,Consignee · Name,"LOGISTEED INDIA PVT. LTD. 25-32, READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE, GUINDY, CHENNAI IN 600032 TE918939874227",LOGISTEED INDIA PVT. LTD.,PASS,name found in the document block
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Consignee,Consignee · Address,"LOGISTEED INDIA PVT. LTD. 25-32, READYMADE GARMENT COMPLEX SIDCO INDUSTRIAL ESTATE, GUINDY, CHENNAI IN 600032 TE918939874227","25-32, READYMADE GARMENT COMPLEXSIDCO INDUSTRIAL ESTATE, GUINDY,CHENNAI IN 600032",PASS,"Nexus joins the document's address lines without a space: COMPLEXSIDCO, GUINDY,CHENNAI"
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Consignee,Consignee · Postal Code,600032,600032,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Consignee,Consignee · Party ID,,LIN_INMAA,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Flight Route,Flight Route · Type,,connecting,NOT_VERIFIABLE,routing line not found in the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · From,,PVG,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · To,,HKG,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Polname,PUDON G,Shanghai,INFO,airport name differs from the document's airport of departure
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Polctry,,CN,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Podname,,Hong Kong,INFO,airport name from the Nexus airport master
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Podctry,,HK,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),Cathay Pacific,PASS,carrier name appears on the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Carrier Code,,CPA_WW,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Flight Number,CX051,CX051,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 1,Segment 1 · Flight Date,day 20,20/08/2026,PASS,only the day is printed on the AWB
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · From,,HKG,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · To,,MAA,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Polname,Hong Kong,Hong Kong,PASS,equals the previous segment's arrival airport (consistency)
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Polctry,,HK,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Podname,,Madras,INFO,airport name from the Nexus airport master
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Carrier Name,(printed on the document),Cathay Pacific,PASS,carrier name appears on the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Carrier Code,,CPA_WW,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Flight Number,,CX2047,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Segment 2,Segment 2 · Flight Date,,20/08/2026,NOT_VERIFIABLE,flight date not found in the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Routing,Routing · Airport Of Departure,PUDON G,PUDONG,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Routing,Routing · Final Destination Airport,CHENNAI,CHENNAI,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Freight,Freight · Freight Payment,,FREIGHT PREPAID,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Pieces,3,3,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Gross Weight,2683.00,2683,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Chargeable Weight,2683.00,2683,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,CONSOL NOT RESTRICTED MC 3.194,CONSOLNOT RESTRICTEDMC 3.194,PASS,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Volume,,3.194,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Volume Unit,,CBM,NOT_VERIFIABLE,could not be read from the document
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · Executed On,,19/08/2026,NOT_VERIFIABLE,
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-006,IPA/2506/2026-27,FJ-0000518 - MA-1.pdf page 1,Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the master within its document group
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Bill No.,098-31251603,098-31251603,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Shipper,QUALITAIR SEA DIMOTRANS GROUP 200 RUE LEONARD DE VINCI SEMOY 45 45400 FR TE +33238708990,QUALITAIR SEA,PASS,shipper found in the document block
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Shipper ID,QUADIMLEH,QUADIMLEH,PASS,same as the Party ID in the data panel
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Consignee,LOGISTEED INDIA PRIVATE LIMITED VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROAD ANDHERI EAST GST NO 27AABCF2133M1ZP MUMBAI 400099 IN TE +912230904800,LOGISTEED INDIA,PASS,consignee found in the document block
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Consignee ID,LIN_INBOM,LIN_INBOM,PASS,same as the Party ID in the data panel
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Branch,BOM,BOM,PASS,"BOM = Mumbai, matches the document's destination"
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,CW Sync Pending,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Air Waybill,Air Waybill · Air Waybill Number,098-31251603,098-31251603,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipper,Shipper · Name,QUALITAIR SEA DIMOTRANS GROUP 200 RUE LEONARD DE VINCI SEMOY 45 45400 FR TE +33238708990,QUALITAIR SEADIMOTRANS GROUP,PASS,name found in the document block
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipper,Shipper · Address,(address on the document),DIMOTRANS GROUP200 RUE LEONARD DE VINCISEMOY 45 45400 FR,PASS,7/7 words of the Nexus address are on the document
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipper,Shipper · Postal Code,45 45400,45 45400,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Shipper,Shipper · Party ID,,QUADIMLEH,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Consignee,Consignee · Name,LOGISTEED INDIA PRIVATE LIMITED VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROAD ANDHERI EAST GST NO 27AABCF2133M1ZP MUMBAI 400099 IN TE +912230904800,LOGISTEED INDIAPRIVATE LIMITED,PASS,name found in the document block
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Consignee,Consignee · Address,LOGISTEED INDIA PRIVATE LIMITED VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROAD ANDHERI EAST GST NO 27AABCF2133M1ZP MUMBAI 400099 IN TE +912230904800,VAIBHAV APT SAHAR PIPE LINE ROAD SAHAR ROADANDHERI EAST GST NO 27AABCF2133M1ZPMUMBAI 400099 IN,PASS,"Nexus joins the document's address lines without a space: ROADANDHERI, 27AABCF2133M1ZPMUMBAI"
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Consignee,Consignee · Postal Code,400099,400099,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Consignee,Consignee · Party ID,,LIN_INBOM,INFO,"assigned by the Nexus party master, not printed on the document"
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Flight Route,Flight Route · Type,connecting,connecting,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · From,CDG,CDG,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · To,DEL,DEL,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · Polname,CHARLES-DE-GAULLE APT/PARIS,Paris,INFO,airport name differs from the document's airport of departure
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · Polctry,,FR,INFO,country of the airport (Nexus airport master)
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · Podname,,Delhi,INFO,airport name from the Nexus airport master
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),Air India,PASS,carrier name appears on the document
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · Carrier Code,AI,AIC_WW,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · Flight Number,AI142,Al142,KNOWN,KNOWN ISSUE (logged in the bug sheet)
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 1,Segment 1 · Flight Date,day 15,15/07/2026,PASS,only the day is printed on the AWB
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · From,DEL,DEL,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · To,BOM,BOM,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · Polname,Delhi,Delhi,PASS,equals the previous segment's arrival airport (consistency)
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · Polctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · Podname,MUMBAI (EX BOMBAY),Mumbai,PASS,contained in the document's airport of destination
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · Carrier Name,(printed on the document),Air India,PASS,carrier name appears on the document
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · Carrier Code,AI,AIC_WW,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · Flight Number,AI441,Al441,KNOWN,KNOWN ISSUE (logged in the bug sheet)
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Segment 2,Segment 2 · Flight Date,day 17,17/07/2026,PASS,only the day is printed on the AWB
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Routing,Routing · Airport Of Departure,CHARLES-DE-GAULLE APT/PARIS,CHARLES-DE-GAULLE APT / PARIS,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Routing,Routing · Final Destination Airport,MUMBAI (EX BOMBAY),MUMBAI ( EX BOMBAY ),PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Freight,Freight · Freight Payment,FREIGHT PREPAID (code PP),FREIGHT PREPAID,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Pieces,2,2,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Gross Weight,589.0,589,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Chargeable Weight,589.0,589,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,Consolidation as per attached list Not Restricted HS Code: 75296309000 DIMS 80x60x35 CM x 1 DIMS 120x80x40 CM x 1 VOL 0.56 M3,Consolidation as per attached listNot RestrictedHS Code : 75296309000DIMS 80x60x35 CM x 1DIMS 120x80x40 CM x 1VOL 0.56 M3,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Volume,0.56,0.56,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Volume Unit,CBM,CBM,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · Executed On,09-Jul-26,09/07/2026,PASS,
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · (unlabelled field 11),,,INFO,"empty field, no label"
+REG-007,IPA/2512/2026-27,1_Air_Waybill_Copy4.pdf page 1,Cargo,Cargo · (unlabelled field 12),,,INFO,"empty field, no label"

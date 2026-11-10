@@ -1,0 +1,6 @@
+2026-11-04 04:57:56,752 INFO nexus_agent.local_sender: SCREENING FJ-0001393 - Consolidated.pdf: 3 page(s): MBL pages 1; HBL pages 2-3
+2026-11-04 04:57:56,752 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001393)
+2026-11-04 04:57:56,752 INFO nexus_agent.local_sender: [dry-run] would send 'SEA-REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001393 | CONSOLIDATED (MASTER+HOUSE)' (FJ-0001393 - Consolidated.pdf) to prealert.nexus@unifo.in
+SEA-REG-007 DRY_RUN           SEA-REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001393 | CONSOLIDATED (MASTER+HOUSE)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261104_045756.csv

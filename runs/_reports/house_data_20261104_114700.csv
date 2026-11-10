@@ -1,0 +1,71 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Page Nos.,,1,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Bill No.,,FGSH2608000033,PASS,printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Shipper,,"SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP. & EXP. CORP., LTD.",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Shipper ID,,SHALANSHA6,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Consignee,,LIFELONG ONLINE RETAIL PRIVATE LIMI,REVIEW,4/5 words are on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Consignee ID,,LIFONLTHN,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Branch,,BOM,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipment Details,Shipment Details · Status,,Invoice Mapping Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,House Air Waybill,House Air Waybill · Master AWB Reference,,FGSH2608000033,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipper,Shipper · Name,,"SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP. & EXP. CORP., LTD.",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipper,Shipper · Address,,"NO.1230 ZHONG SHAN ROAD N.1, Shanghai, SH, CN",REVIEW,6/8 words are on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipper,Shipper · Postal Code,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Shipper,Shipper · Party ID,,SHALANSHA6,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Consignee,Consignee · Name,,LIFELONG ONLINE RETAIL PRIVATE LIMI,REVIEW,4/5 words are on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Consignee,Consignee · Address,,"H.NO.250, GALA NO.1-6, M3 WAREHOUSE, BHIWANDI, GALA NO.1-6,, THANE, 27, IN",REVIEW,8/9 words are on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Consignee,Consignee · Postal Code,,421302,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Consignee,Consignee · Party ID,,LIFONLTHN,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Consignee,Consignee · Name,,SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Consignee,Consignee · Address,,SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Consignee,Consignee · Name,,LOGISTEED BUTSTEED tactfor INDIA PVT . Erase,REVIEW,only 2/6 words are on the document (the party master / Nexus value may differ from the bill) (scanned page read with OCR)
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Consignee,Consignee · Address,,"1ST FLOOR VAIBHAV APARTMENT , SAHAR PIPE LINE
+ROAD , ANDHERI ( EAST ) , MUMBAI - 400059 , INDIA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Vessel Name,,KOTA PLUMBAGO,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Voyage Number,,015W,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Port Of Loading,,SHANGHAI,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Ctn Pol City,,SGH,REVIEW,only 0/1 words are on the document (the party master / Nexus value may differ from the bill) (scanned page read with OCR)
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Ctn Pol Ctry,,CN,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Port Of Discharge,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Place Of Delivery,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Final Destination,,"NHAVA SHEVA , INDIA",PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Ctn Pod City,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Ctn Pod Ctry,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Container No,,FFAU3172583,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Seal No,,OOLLGE9387,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Seal No1,,N/A,INFO,too short to compare
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Container Type,,40HQ,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · No Of Pieces Value,,600,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · No Of Pieces Unit,,CARTON,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Gross Weight Value,,12030,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Gross Weight Unit,,KGS,REVIEW,unit not found as printed
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Volume Of Goods Value,,66.79,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Volume Of Goods Unit,,CBM,PASS,unit printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Description,,CAR INFLATABLE BED,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · (unlabelled field),,SHANGHAI,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Freight,Freight · Freight Payment,,FREIGHT COLLECT,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · (unlabelled field),,CY / CY,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · (unlabelled field),,FCL,REVIEW,only 0/1 words are on the document (the party master / Nexus value may differ from the bill) (scanned page read with OCR)
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · (unlabelled field),,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Value,,12030,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Unit,,KGS,REVIEW,unit not found as printed
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Value,,66.79,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Unit,,CBM,PASS,unit printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Value,,600,PASS,number printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Unit,,CARTON,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · (unlabelled field),,CAR INFLATABLE BED,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Place,,SHANGHAI,PASS,every word is on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Date,,18/08/2026,PASS,date printed on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Carrier Name,,SHANGHAI FOCUS GLOBAL LOGISTICS CORPORATION LTD .,REVIEW,4/6 words are on the document
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Carrier Code,,OOLU_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Reference,Reference · Shippers Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Consignee Reference,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Inv No,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Other,Other · Inv Date,,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, nothing to compare"
+SEA-REG-007,IPA/2416/2026-27,FJ-0001393 - Consolidated.pdf page 2-3,Reference,Reference · Executed On,,,INFO,"empty field, nothing to compare"

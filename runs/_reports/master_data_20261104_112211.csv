@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-006,,,,,,,ERROR,no MBL found in samples/SEA-REG-006/

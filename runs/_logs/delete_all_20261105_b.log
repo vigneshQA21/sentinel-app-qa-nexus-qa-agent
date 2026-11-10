@@ -1,0 +1,107 @@
+2026-11-05 12:17:00,166 INFO nexus_agent.nexus.session: Reusing saved Nexus session /home/unifo/Downloads/nexus_agent/state/nexus_session.json
+2026-11-05 12:17:27,287 INFO nexus_agent.cleanup: bill search 098-31251603 in Pre-Alerts: 1 row(s) ['IPA/2436/2026-27']
+2026-11-05 12:17:30,807 INFO nexus_agent.cleanup: bill search 098-31251603 in Others: 0 row(s) []
+2026-11-05 12:17:33,989 INFO nexus_agent.cleanup: bill search ORAE26040499 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:17:37,161 INFO nexus_agent.cleanup: bill search ORAE26040499 in Others: 0 row(s) []
+REG-003: bill numbers of this case: 098-31251603, ORAE26040499
+REG-003: NOT deleted, needs your confirmation (1):
+    Pre-Alerts IPA/2436/2026-27   subject: REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER
+               from: vigneshwaran.s@unifo.in   received: 04-11-2026 05:43:31 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+REG-003: nothing to delete in Nexus (but 1 row(s) were left for your confirmation)
+REG-003: NOT ready to send again: 1 row(s) of this shipment are still in Nexus (a new email would be absorbed into them)
+2026-11-05 12:18:24,603 INFO nexus_agent.cleanup: bill search 057-05262084 in Pre-Alerts: 1 row(s) ['IPA/2429/2026-27']
+2026-11-05 12:18:28,025 INFO nexus_agent.cleanup: bill search 057-05262084 in Others: 0 row(s) []
+2026-11-05 12:18:31,272 INFO nexus_agent.cleanup: bill search SNY06007868 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:18:34,439 INFO nexus_agent.cleanup: bill search SNY06007868 in Others: 0 row(s) []
+REG-005: bill numbers of this case: 057-05262084, SNY06007868
+REG-005: Pre-Alerts IPA/2429/2026-27   deleted (confirmed in the 'Delete job' dialog)   REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-A
+REG-005: tab counts Pre-Alerts 177, Others 253  ->  Pre-Alerts 173, Others 252  (Nexus also removes related follow-up jobs of the same thread)
+REG-005: ready to send again without --resend (1 sent-file records cleared)
+2026-11-05 12:19:34,623 INFO nexus_agent.cleanup: bill search 160-15585765 in Pre-Alerts: 1 row(s) ['IPA/2430/2026-27']
+2026-11-05 12:19:38,067 INFO nexus_agent.cleanup: bill search 160-15585765 in Others: 0 row(s) []
+2026-11-05 12:19:41,309 INFO nexus_agent.cleanup: bill search FLD6445 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:19:44,488 INFO nexus_agent.cleanup: bill search FLD6445 in Others: 0 row(s) []
+REG-006: bill numbers of this case: 160-15585765, FLD6445
+REG-006: Pre-Alerts IPA/2430/2026-27   deleted (confirmed in the 'Delete job' dialog)   REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-A
+REG-006: tab counts Pre-Alerts 173, Others 252  ->  Pre-Alerts 172, Others 247  (Nexus also removes related follow-up jobs of the same thread)
+REG-006: ready to send again without --resend (1 sent-file records cleared)
+2026-11-05 12:20:44,591 INFO nexus_agent.cleanup: bill search 098-31251603 in Pre-Alerts: 1 row(s) ['IPA/2436/2026-27']
+2026-11-05 12:20:48,043 INFO nexus_agent.cleanup: bill search 098-31251603 in Others: 0 row(s) []
+2026-11-05 12:20:51,274 INFO nexus_agent.cleanup: bill search ORAE26040499 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:20:54,470 INFO nexus_agent.cleanup: bill search ORAE26040499 in Others: 0 row(s) []
+REG-007: bill numbers of this case: 098-31251603, ORAE26040499
+REG-007: Pre-Alerts IPA/2436/2026-27   deleted (confirmed in the 'Delete job' dialog)   REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-A
+REG-007: tab counts Pre-Alerts 172, Others 247  ->  Pre-Alerts 171, Others 243  (Nexus also removes related follow-up jobs of the same thread)
+REG-007: ready to send again without --resend (1 sent-file records cleared)
+2026-11-05 12:21:51,843 INFO nexus_agent.cleanup: bill search 932-78831771 in Pre-Alerts: 1 row(s) ['IPA/2442/2026-27']
+2026-11-05 12:21:55,257 INFO nexus_agent.cleanup: bill search 932-78831771 in Others: 0 row(s) []
+2026-11-05 12:21:58,504 INFO nexus_agent.cleanup: bill search SUSAO008522 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:22:01,699 INFO nexus_agent.cleanup: bill search SUSAO008522 in Others: 0 row(s) []
+REG-009: bill numbers of this case: 932-78831771, SUSAO008522
+REG-009: Pre-Alerts IPA/2442/2026-27   deleted (confirmed in the 'Delete job' dialog)   REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-A
+REG-009: tab counts Pre-Alerts 171, Others 243  ->  Pre-Alerts 170, Others 243  (Nexus also removes related follow-up jobs of the same thread)
+REG-009: ready to send again without --resend (1 sent-file records cleared)
+2026-11-05 12:22:54,919 INFO nexus_agent.cleanup: bill search 157-69714304 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:22:58,315 INFO nexus_agent.cleanup: bill search 157-69714304 in Others: 0 row(s) []
+2026-11-05 12:23:01,499 INFO nexus_agent.cleanup: bill search FRA - 6007 5340 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:23:04,680 INFO nexus_agent.cleanup: bill search FRA - 6007 5340 in Others: 0 row(s) []
+REG-011: bill numbers of this case: 157-69714304, FRA - 6007 5340
+REG-011: nothing to delete in Nexus
+REG-011: ready to send again without --resend
+REG-013: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+REG-013: nothing to delete in Nexus
+REG-013: ready to send again without --resend
+SEA-REG-001: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+SEA-REG-001: nothing to delete in Nexus
+SEA-REG-001: ready to send again without --resend
+2026-11-05 12:24:43,983 INFO nexus_agent.cleanup: bill search SLLQDJAI611765 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:24:47,416 INFO nexus_agent.cleanup: bill search SLLQDJAI611765 in Others: 0 row(s) []
+2026-11-05 12:24:52,189 INFO nexus_agent.cleanup: bill search TAOJAI26165972 in Pre-Alerts: 1 row(s) ['IPA/2446/2026-27']
+2026-11-05 12:24:55,385 INFO nexus_agent.cleanup: bill search TAOJAI26165972 in Others: 0 row(s) []
+SEA-REG-002: bill numbers of this case: SLLQDJAI611765, TAOJAI26165972
+SEA-REG-002: Pre-Alerts IPA/2446/2026-27   deleted (confirmed in the 'Delete job' dialog)   SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | P
+SEA-REG-002: tab counts Pre-Alerts 170, Others 243  ->  Pre-Alerts 169, Others 243  (Nexus also removes related follow-up jobs of the same thread)
+SEA-REG-002: ready to send again without --resend
+SEA-REG-003: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+SEA-REG-003: nothing to delete in Nexus
+SEA-REG-003: ready to send again without --resend (1 sent-file records cleared)
+SEA-REG-004: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+SEA-REG-004: nothing to delete in Nexus
+SEA-REG-004: ready to send again without --resend (1 sent-file records cleared)
+2026-11-05 12:26:42,457 INFO nexus_agent.cleanup: bill search FMSXJ0056841 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:26:45,862 INFO nexus_agent.cleanup: bill search FMSXJ0056841 in Others: 0 row(s) []
+2026-11-05 12:26:49,040 INFO nexus_agent.cleanup: bill search SEJ001104 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:26:52,229 INFO nexus_agent.cleanup: bill search SEJ001104 in Others: 0 row(s) []
+SEA-REG-005: bill numbers of this case: FMSXJ0056841, SEJ001104
+SEA-REG-005: nothing to delete in Nexus
+SEA-REG-005: ready to send again without --resend
+2026-11-05 12:27:35,753 INFO nexus_agent.cleanup: bill search HTHC26072463 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:27:39,175 INFO nexus_agent.cleanup: bill search HTHC26072463 in Others: 0 row(s) []
+2026-11-05 12:27:44,058 INFO nexus_agent.cleanup: bill search SITTAGBO667780 in Pre-Alerts: 1 row(s) ['IPA/2452/2026-27']
+2026-11-05 12:27:47,251 INFO nexus_agent.cleanup: bill search SITTAGBO667780 in Others: 0 row(s) []
+SEA-REG-006: bill numbers of this case: HTHC26072463, SITTAGBO667780
+SEA-REG-006: Pre-Alerts IPA/2452/2026-27   deleted (confirmed in the 'Delete job' dialog)   SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | P
+SEA-REG-006: tab counts Pre-Alerts 169, Others 243  ->  Pre-Alerts 168, Others 243  (Nexus also removes related follow-up jobs of the same thread)
+SEA-REG-006: ready to send again without --resend
+SEA-REG-007: bill numbers of this case: none known (no own pre-alert row to read them from; pass --bill)
+SEA-REG-007: nothing to delete in Nexus
+SEA-REG-007: ready to send again without --resend
+2026-11-05 12:29:10,203 INFO nexus_agent.cleanup: bill search FGNB2608000132 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:29:13,630 INFO nexus_agent.cleanup: bill search FGNB2608000132 in Others: 0 row(s) []
+2026-11-05 12:29:18,454 INFO nexus_agent.cleanup: bill search YNB6BHJ729800 in Pre-Alerts: 1 row(s) ['IPA/2455/2026-27']
+2026-11-05 12:29:21,650 INFO nexus_agent.cleanup: bill search YNB6BHJ729800 in Others: 0 row(s) []
+SEA-REG-008: bill numbers of this case: FGNB2608000132, YNB6BHJ729800
+SEA-REG-008: Pre-Alerts IPA/2455/2026-27   deleted (confirmed in the 'Delete job' dialog)   SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | P
+SEA-REG-008: tab counts Pre-Alerts 168, Others 243  ->  Pre-Alerts 167, Others 243  (Nexus also removes related follow-up jobs of the same thread)
+SEA-REG-008: ready to send again without --resend (1 sent-file records cleared)
+2026-11-05 12:30:18,445 INFO nexus_agent.cleanup: bill search BWSS 13760427 in Pre-Alerts: 0 row(s) []
+2026-11-05 12:30:21,840 INFO nexus_agent.cleanup: bill search BWSS 13760427 in Others: 0 row(s) []
+2026-11-05 12:30:25,029 INFO nexus_agent.cleanup: bill search BWSS 13760427A in Pre-Alerts: 0 row(s) []
+2026-11-05 12:30:28,210 INFO nexus_agent.cleanup: bill search BWSS 13760427A in Others: 0 row(s) []
+2026-11-05 12:30:33,745 INFO nexus_agent.cleanup: bill search ONEYAARG05243800 in Pre-Alerts: 1 row(s) ['IPA/2456/2026-27']
+2026-11-05 12:30:36,929 INFO nexus_agent.cleanup: bill search ONEYAARG05243800 in Others: 0 row(s) []
+SEA-REG-009: bill numbers of this case: BWSS 13760427, BWSS 13760427A, ONEYAARG05243800
+SEA-REG-009: Pre-Alerts IPA/2456/2026-27   deleted (confirmed in the 'Delete job' dialog)   SEA-REG-009 | QA agent trigger / Don't delete / Regression testing | P
+SEA-REG-009: tab counts Pre-Alerts 167, Others 243  ->  Pre-Alerts 166, Others 243  (Nexus also removes related follow-up jobs of the same thread)
+SEA-REG-009: ready to send again without --resend

@@ -1,0 +1,8 @@
+2026-11-04 11:51:23,663 INFO nexus_agent.local_sender: SCREENING FJ-0001498 - Consolidated.pdf: 3 page(s): MBL pages 1-3
+2026-11-04 11:51:23,664 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001498)
+2026-11-04 11:51:23,664 INFO nexus_agent.local_sender:     MISSING required: HBL
+2026-11-04 11:51:27,250 INFO nexus_agent.local_sender: Sent 'SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER)' to prealert.nexus@unifo.in (message id 1a1a538321c0d221)
+SEA-REG-008 SENT              SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261104_115127.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261104.html

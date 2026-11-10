@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import re
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date, datetime
@@ -65,26 +66,24 @@ def build_update(cfg, store: Store, day: str | None = None) -> dict:
             "pending": len(store.bugs_by_status("PENDING"))}
 
 
+def heading(u: dict) -> str:
+    return f"Update: {datetime.strptime(u['day'], '%Y-%m-%d').strftime('%d-%b-%Y')} – Nexus Pre-Alert Regression"
+
+
 def render_cliq(u: dict) -> str:
-    lines = [f"*Regression update, {u['day']}*"]
-    lines += [f"• {_trim(x, CLIQ_WIDTH)}" for x in u["done"][:CLIQ_BULLETS]]
+    """The team's format: 'Update: dd-Mon-yyyy – title', a blank line, then one plain line per item (no bullets, no stars)."""
+    lines = [heading(u), ""]
+    lines += [_trim(x, CLIQ_WIDTH) for x in u["done"][:CLIQ_BULLETS]]
     if len(u["done"]) > CLIQ_BULLETS:
-        lines.append(f"• …and {len(u['done']) - CLIQ_BULLETS} more (see the task)")
-    if u["bugs"]:
-        lines.append(f"Bugs logged today ({len(u['bugs'])}):")
-        lines += [f"  – row {b['row'] or '?'}, {b['ipa'] or 'no job'}: {_trim(b['text'], CLIQ_WIDTH)}" for b in u["bugs"]]
-    if u["pending"]:
-        lines.append(f"{u['pending']} findings still waiting for a decision.")
+        lines.append(f"...and {len(u['done']) - CLIQ_BULLETS} more (see the task).")
+    lines += [f"Logged bug sheet row {b['row'] or '?'} ({b['ipa'] or 'no job'}): {_trim(b['text'], CLIQ_WIDTH)}" for b in u["bugs"]]
     return "\n".join(lines)
 
 
 def render_sprints(u: dict) -> str:
-    lines = [f"Update, {u['day']}", "", "Done:"]
-    lines += [f"- {_trim(x, SPRINTS_WIDTH)}" for x in u["done"]] or ["- (no entry in the progress log today)"]
-    if u["bugs"]:
-        lines += ["", f"Bugs logged in the UAT sheet today ({len(u['bugs'])}):"]
-        lines += [f"- row {b['row'] or '?'}, {b['ipa'] or 'no job'}: {_trim(b['text'], SPRINTS_WIDTH)}" for b in u["bugs"]]
-    lines += ["", f"Pending: {u['pending']} findings waiting for a decision."]
+    lines = [heading(u), ""]
+    lines += [_trim(x, SPRINTS_WIDTH) for x in u["done"]] or ["No entry in the progress log today."]
+    lines += [f"Logged bug sheet row {b['row'] or '?'} ({b['ipa'] or 'no job'}): {_trim(b['text'], SPRINTS_WIDTH)}" for b in u["bugs"]]
     return "\n".join(lines)
 
 
@@ -94,8 +93,11 @@ def _digest(text: str) -> str:
 
 def _post(url: str, data: bytes, headers: dict) -> dict:
     req = urllib.request.Request(url, data=data, headers=headers, method="POST")
-    with urllib.request.urlopen(req, timeout=30) as r:                    # noqa: S310 (https URLs from our own settings)
-        body = r.read().decode("utf-8", "replace")
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:                # noqa: S310 (https URLs from our own settings)
+            body = r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as exc:                                 # keep Zoho's own message: it says what is wrong
+        raise RuntimeError(f"HTTP {exc.code} {exc.read().decode('utf-8', 'replace')[:200]}") from None
     try:
         return json.loads(body) if body else {}
     except ValueError:
@@ -160,11 +162,43 @@ def post_cliq(text: str, env=os.environ, post=_post) -> str:
     return "posted to the Cliq chat"
 
 
+def to_html(text: str) -> str:
+    """Sprints comments are rich text and drop plain line breaks and *bold* marks: heading -> <b>, '• ' -> list item, '  – ' -> nested item."""
+    import html as _h
+    out, level = [], 0                                           # level 0 = no list, 1 = bullets, 2 = nested bullets
+    def close_to(n):
+        nonlocal level
+        while level > n:
+            out.append("</ul>"); level -= 1
+    for i, raw in enumerate(text.split("\n")):
+        line = raw.rstrip()
+        if not line.strip():
+            close_to(0)
+            if out and out[-1] != "<br>":
+                out.append("<br>")
+            continue
+        if i == 0 and not line.startswith("*"):
+            line = f"*{line.strip()}*"                       # the first line is the heading, shown bold without the stars
+        sub, top = re.match(r"^\s{2,}[–-] (.*)", line), re.match(r"^[•-] (.*)", line)
+        if sub or top:
+            want = 2 if sub else 1
+            close_to(want) if level > want else None
+            while level < want:
+                out.append("<ul>"); level += 1
+            out.append(f"<li>{_h.escape((sub or top).group(1))}</li>")
+        else:
+            close_to(0)
+            m = re.fullmatch(r"\*(.+)\*", line.strip())
+            out.append(f"<b>{_h.escape(m.group(1))}</b><br>" if m else f"{_h.escape(line.strip())}<br>")
+    close_to(0)
+    return "".join(out)
+
+
 def post_sprints(text: str, env=os.environ, post=_post) -> str:
     token = _access_token(env, post)
     url = (f"{env['ZOHO_SPRINTS_API'].rstrip('/')}/team/{env['ZOHO_SPRINTS_TEAM_ID']}/projects/{env['ZOHO_SPRINTS_PROJECT_ID']}"
            f"/modules/{env['ZOHO_SPRINTS_MODULE_ID']}/entity/{env['ZOHO_SPRINTS_ITEM_ID']}/notes/?action=addnotes")
-    post(url, urllib.parse.urlencode({"name": text}).encode(),
+    post(url, urllib.parse.urlencode({"name": to_html(text)}).encode(),
          {"Authorization": f"Zoho-oauthtoken {token}", "Content-Type": "application/x-www-form-urlencoded"})
     return "comment added to the Sprints task"
 

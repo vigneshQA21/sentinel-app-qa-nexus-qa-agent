@@ -1,0 +1,172 @@
+=== sending the 6 failed cases, 60 s apart ===
+2026-11-06 13:25:05,954 INFO nexus_agent.local_sender: SCREENING FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf: 10 page(s): MBL pages 1; MANIFEST pages 2-3; DEBITNOTE pages 4; HBL pages 5; INVOICE pages 6; PACKING pages 7; PO pages 8; PACKING pages 9; INVOICE pages 10
+2026-11-06 13:25:05,955 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0000602
+Traceback (most recent call last):
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 239, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 827, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/connection.py", line 246, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='oauth2.googleapis.com', port=443): Failed to resolve 'oauth2.googleapis.com' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("HTTPSConnection(host='oauth2.googleapis.com', port=443): Failed to resolve 'oauth2.googleapis.com' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/google/auth/transport/requests.py", line 273, in __call__
+    response = self.session.request(
+        method, url, data=body, headers=headers, timeout=timeout, **kwargs
+    )
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("HTTPSConnection(host='oauth2.googleapis.com', port=443): Failed to resolve 'oauth2.googleapis.com' ([Errno -3] Temporary failure in name resolution)"))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/__main__.py", line 515, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/__main__.py", line 468, in main
+    rows = T.run_suite(cfg, sender, chosen, args.dry_run, args.force, args.resend, interval_seconds=interval)
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/testsuite.py", line 191, in run_suite
+    sender.send_all(dry_run=dry_run, force=force, only=set(staged), resend=resend)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/local_sender.py", line 210, in send_all
+    users = self.fwd.svc.users()
+            ^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/gmail_forwarder.py", line 83, in svc
+    creds.refresh(Request())
+    ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/google/auth/credentials.py", line 519, in refresh
+    self._perform_refresh_token(request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 437, in _perform_refresh_token
+    ) = reauth.refresh_grant(
+        ~~~~~~~~~~~~~~~~~~~~^
+        request,
+        ^^^^^^^^
+    ...<6 lines>...
+        enable_reauth_refresh=self._enable_reauth_refresh,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/google/oauth2/reauth.py", line 334, in refresh_grant
+    ) = _client._token_endpoint_request_no_throw(
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        request, token_uri, body, headers=metrics_header
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/google/oauth2/_client.py", line 198, in _token_endpoint_request_no_throw
+    response = request(
+        method="POST", url=token_uri, headers=headers_to_use, body=body, **kwargs
+    )
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/google/auth/transport/requests.py", line 280, in __call__
+    raise new_exc from caught_exc
+google.auth.exceptions.TransportError: HTTPSConnectionPool(host='oauth2.googleapis.com', port=443): Max retries exceeded with url: /token (Caused by NameResolutionError("HTTPSConnection(host='oauth2.googleapis.com', port=443): Failed to resolve 'oauth2.googleapis.com' ([Errno -3] Temporary failure in name resolution)"))
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261106.html
+=== waiting 4 min for Nexus ===
+--- validate
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/__main__.py", line 515, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/__main__.py", line 362, in main
+    rows = V.run_validate(cfg, chosen, headless=args.headless and not args.headed, ref=args.ref, wait_seconds=args.wait)
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/validate.py", line 307, in run_validate
+    sess.ensure_logged_in()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/nexus/session.py", line 75, in ensure_logged_in
+    self.page.goto(home)
+    ~~~~~~~~~~~~~~^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py", line 18528, in goto
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.goto(
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_page.py", line 564, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 157, in goto
+    await self._channel.send(
+        "goto", self._navigation_timeout, locals_to_params(locals())
+    )
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 78, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 636, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://uat.sentinel.unifo.in/sentinel-nexus/email
+Call log:
+  - navigating to "https://uat.sentinel.unifo.in/sentinel-nexus/email", waiting until "load"
+
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261106.html
+--- validate-master

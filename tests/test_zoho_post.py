@@ -43,7 +43,8 @@ def test_update_uses_only_today_and_joins_wrapped_lines(tmp_path):
     u = Z.build_update(_cfg(tmp_path), FakeStore([BUG], 3), "2026-11-02")
     assert u["done"] == ["Built the Sea set.", "Logged row 252 wrapped line."]
     assert u["bugs"][0]["row"] == "252" and u["pending"] == 3
-    assert "old" not in Z.render_sprints(u) and "row 252, IPA/2391/2026-27" in Z.render_cliq(u)
+    assert "old" not in Z.render_sprints(u) and "Logged bug sheet row 252 (IPA/2391/2026-27)" in Z.render_cliq(u)
+    assert Z.render_cliq(u).startswith("Update: 02-Nov-2026 – Nexus Pre-Alert Regression\n\nBuilt the Sea set.")
 
 
 def test_no_answer_posts_nothing(tmp_path):
@@ -81,3 +82,12 @@ def test_cliq_group_chat_uses_oauth_and_chat_endpoint():
     assert Z.cliq_keys(env) == Z.CLIQ_CHAT_KEYS and Z.missing(env, Z.cliq_keys(env)) == []
     Z.post_cliq("hi", env, lambda url, data, h: calls.append((url, h)) or {"access_token": "t"})
     assert calls[1][0].endswith("/chats/CT_1/message") and calls[1][1]["Authorization"] == "Zoho-oauthtoken t"
+
+
+def test_sprints_comment_becomes_html_list():
+    h = Z.to_html("*Title*\n• one <b>\n  – nested\n• two\nNext")
+    assert h == "<b>Title</b><br><ul><li>one &lt;b&gt;</li><ul><li>nested</li></ul><li>two</li></ul>Next<br>"
+
+
+def test_plain_lines_format_in_html():
+    assert Z.to_html("Update: 02-Nov-2026 – X\n\nline one\nline two") == "<b>Update: 02-Nov-2026 – X</b><br><br>line one<br>line two<br>"

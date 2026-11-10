@@ -1,0 +1,2 @@
+case_id,scenario,mode,sample_ref,status,subject,sent_at,screening,warnings,expected_mapping,expected_result,nexus_job,actual_nexus_result
+SEA-REG-007,"Scanned documents, content-based classification",consolidated,FJ-0001393,DRY_RUN,SEA-REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001393 | CONSOLIDATED (MASTER+HOUSE),,MBL pages 1; HBL pages 2-3,sea file: reference taken from the file name (FJ-0001393),"MBL → Master, HBL → House","Scanned pages classified by content, not by file name",,

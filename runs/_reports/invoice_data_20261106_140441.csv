@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-002,,,,,,,ERROR,no pre-alert for REG-002 in Nexus (checked the Pre-Alerts tab)

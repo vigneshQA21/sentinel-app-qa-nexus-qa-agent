@@ -1,0 +1,112 @@
+2026-11-04 16:22:14,132 INFO nexus_agent.nexus.session: Reusing saved Nexus session /home/unifo/Downloads/nexus_agent/state/nexus_session.json
+2026-11-04 16:22:46,593 INFO nexus_agent.cleanup: bill search 098-31251603 in Pre-Alerts: 1 row(s) ['IPA/2373/2026-27']
+2026-11-04 16:22:55,249 INFO nexus_agent.cleanup: bill search 098-31251603 in Others: 35 row(s) ['IPA/1939/2026-27', 'IPA/1943/2026-27', 'IPA/1963/2026-27', 'IPA/1977/2026-27', 'IPA/1980/2026-27', 'IPA/1999/2026-27', 'IPA/2003/2026-27', 'IPA/2005/2026-27', 'IPA/2015/2026-27', 'IPA/2038/2026-27', 'IPA/2042/2026-27', 'IPA/2043/2026-27', 'IPA/2044/2026-27', 'IPA/2090/2026-27', 'IPA/2092/2026-27', 'IPA/2094/2026-27', 'IPA/2125/2026-27', 'IPA/2140/2026-27', 'IPA/2152/2026-27', 'IPA/2153/2026-27', 'IPA/2205/2026-27', 'IPA/2258/2026-27', 'IPA/2259/2026-27', 'IPA/2295/2026-27', 'IPA/2362/2026-27', 'IPA/2363/2026-27', 'IPA/2364/2026-27', 'IPA/2365/2026-27', 'IPA/2366/2026-27', 'IPA/2375/2026-27', 'IPA/2376/2026-27', 'IPA/2377/2026-27', 'IPA/2394/2026-27', 'IPA/2419/2026-27', 'IPA/2423/2026-27']
+2026-11-04 16:22:59,195 INFO nexus_agent.cleanup: bill search ORAE26040499 in Pre-Alerts: 1 row(s) ['IPA/2373/2026-27']
+2026-11-04 16:23:07,618 INFO nexus_agent.cleanup: bill search ORAE26040499 in Others: 35 row(s) ['IPA/1939/2026-27', 'IPA/1943/2026-27', 'IPA/1963/2026-27', 'IPA/1977/2026-27', 'IPA/1980/2026-27', 'IPA/1999/2026-27', 'IPA/2003/2026-27', 'IPA/2005/2026-27', 'IPA/2015/2026-27', 'IPA/2038/2026-27', 'IPA/2042/2026-27', 'IPA/2043/2026-27', 'IPA/2044/2026-27', 'IPA/2090/2026-27', 'IPA/2092/2026-27', 'IPA/2094/2026-27', 'IPA/2125/2026-27', 'IPA/2140/2026-27', 'IPA/2152/2026-27', 'IPA/2153/2026-27', 'IPA/2205/2026-27', 'IPA/2258/2026-27', 'IPA/2259/2026-27', 'IPA/2295/2026-27', 'IPA/2362/2026-27', 'IPA/2363/2026-27', 'IPA/2364/2026-27', 'IPA/2365/2026-27', 'IPA/2366/2026-27', 'IPA/2375/2026-27', 'IPA/2376/2026-27', 'IPA/2377/2026-27', 'IPA/2394/2026-27', 'IPA/2419/2026-27', 'IPA/2423/2026-27']
+REG-003: bill numbers of this case: 098-31251603, ORAE26040499
+REG-003: NOT deleted, needs your confirmation (35):
+    Others     IPA/2423/2026-27   subject: embedded js
+               from: sarathkumar.saravanan@unifo.in   received: 04-11-2026 03:00:46 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2419/2026-27   subject: port of loading testimng
+               from: kamalanathan.m@unifo.in   received: 04-11-2026 12:06:55 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2394/2026-27   subject: FJ-0001132
+               from: sagar.p@unifo.in   received: 02-11-2026 06:39:35 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2377/2026-27   subject: REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | DOCUMENT
+               from: vigneshwaran.s@unifo.in   received: 02-11-2026 01:11:56 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2376/2026-27   subject: REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | MASTER
+               from: vigneshwaran.s@unifo.in   received: 02-11-2026 01:10:54 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2375/2026-27   subject: REG-011 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001012 | INDIVIDUAL | MANIFEST
+               from: vigneshwaran.s@unifo.in   received: 02-11-2026 01:09:52 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2366/2026-27   subject: REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | PACKING LIST
+               from: vigneshwaran.s@unifo.in   received: 02-11-2026 12:09:41 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2365/2026-27   subject: REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | MASTER
+               from: vigneshwaran.s@unifo.in   received: 02-11-2026 12:09:09 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2364/2026-27   subject: REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | INVOICE
+               from: vigneshwaran.s@unifo.in   received: 02-11-2026 12:08:37 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2363/2026-27   subject: REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | HOUSE
+               from: vigneshwaran.s@unifo.in   received: 02-11-2026 12:08:05 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2362/2026-27   subject: REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FLD6445 | INDIVIDUAL | DEBIT NOTE
+               from: vigneshwaran.s@unifo.in   received: 02-11-2026 12:07:33 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2295/2026-27   subject: Reg Multi-Sea - FJ-0001969
+               from: pradeep.e@unifo.in   received: 28-10-2026 04:12:24 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2259/2026-27   subject: Retest Job report -CSV-SEA- LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 27-10-2026 05:43:31 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2258/2026-27   subject: Retest Job report -CSV- LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 27-10-2026 05:21:00 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2205/2026-27   subject: DBL - Party test- Organisation Main Details- Update
+               from: pradeep.e@unifo.in   received: 26-10-2026 04:04:30 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2153/2026-27   subject: Retest Nexus Carrier Code test FJ0017797
+               from: senthilkumar.a@unifo.in   received: 22-10-2026 12:29:54 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2152/2026-27   subject: Retest Nexus Carrier Code FJ0000049
+               from: senthilkumar.a@unifo.in   received: 22-10-2026 12:27:51 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2140/2026-27   subject: House draft mapping
+               from: pradeep.e@unifo.in   received: 21-10-2026 05:20:56 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2125/2026-27   subject: Party test- Organisation Main Details- Update
+               from: pradeep.e@unifo.in   received: 21-10-2026 01:09:29 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2094/2026-27   subject: Retest Job report -3-set-1 - LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 16-10-2026 06:07:59 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2092/2026-27   subject: Retest Job report -2-set-1 - LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 16-10-2026 05:56:24 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2090/2026-27   subject: Retest Job report -2-set-1 - LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 16-10-2026 05:47:03 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2044/2026-27   subject: Reg - FJ-0002255 - Follow- House + 1st Invoice
+               from: pradeep.e@unifo.in   received: 15-10-2026 04:13:53 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2043/2026-27   subject: Reg - FJ-0002255 - Follow- Air Manifest
+               from: pradeep.e@unifo.in   received: 15-10-2026 04:08:31 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2042/2026-27   subject: Reg - FJ-0002255 - Follow- House
+               from: pradeep.e@unifo.in   received: 15-10-2026 04:07:59 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2038/2026-27   subject: Fwd: JBR TEST PREALERT - 001
+               from: vigneshkumar.r@unifo.in   received: 15-10-2026 03:41:19 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2015/2026-27   subject: Retest Job report -1-set-2 - LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 14-10-2026 04:58:37 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2005/2026-27   subject: Retest Job report -1-set-3- LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 14-10-2026 01:18:26 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/2003/2026-27   subject: Retest Job report -2-set-1- LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 14-10-2026 12:56:37 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/1999/2026-27   subject: Retest Job report -1-set-2 - LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 14-10-2026 12:30:07 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/1980/2026-27   subject: Retest Job report -1 - LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 13-10-2026 05:40:40 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/1977/2026-27   subject: Fwd: New Job report001 - LIN Shipment Profile Report
+               from: vigneshkumar.r@unifo.in   received: 13-10-2026 04:57:03 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/1963/2026-27   subject: New Job report001 - LIN Shipment Profile Report
+               from: vigneshkumar.r@unifo.in   received: 13-10-2026 03:42:13 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/1943/2026-27   subject: Retest Job report -1 - LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 12-10-2026 05:44:14 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
+    Others     IPA/1939/2026-27   subject: Retest Job report - LIN Shipment Profile Report
+               from: pradeep.e@unifo.in   received: 12-10-2026 04:49:36 PM   bill: 098-31251603
+               why: carries bill 098-31251603 of this case, but its subject is not 'REG-003 | ... QA agent trigger'
