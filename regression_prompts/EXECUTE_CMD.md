@@ -142,11 +142,10 @@ _Last updated 2026-10-26: trace folders, root cause, baseline, bug history, case
 `./nx runreport [--date yyyy-mm-dd]` prints observations per case, the bugs found in the run, raised bugs still there, and previously raised bugs that passed in this run. `run_regression.sh` prints it automatically at the end of every run (not on `--dry-run`) and saves `runs/_reports/runreport_<date>_<time>.md`.
 
 ## Live view of a run
-Every `suite` and `validate*` run opens **runs/_live/index.html** in the browser: a table of the cases with their state (sending, waiting for Nexus, validating, PASS/FAIL) and the checks as they finish, plus the log, refreshing every 3 seconds. The same text is kept in `runs/_live/live.log`. Turn it off with `NEXUS_NO_LIVE=1`.
+No browser tab opens during a run any more. The live status page is still written (**runs/_live/index.html**, same text in `runs/_live/live.log`): open it yourself if you want to follow a run. Turn it off with `NEXUS_NO_LIVE=1`.
 
-## Detailed report in the browser
-When a `suite` or `validate*` run ends, **runs/_reports/runreport_<date>.html** opens in the browser: every case executed that day with verdict, mapping and data results, the fields that did not match (document value vs Nexus value), probable root causes, embedded screenshots, links to the traces, and the bug sections (new, still there, passed and not re-tested, to re-test). `./nx runreport` writes the text report and opens the same page. `NEXUS_NO_LIVE=1` turns the browser pages off.
-
+## Automated test report (one browser launch per run)
+`./nx runreport [--date yyyy-mm-dd]` writes **runs/_reports/runreport_<date>.html** and opens it ONCE; `run_regression.sh` does this at the end of every run. Individual `validate*` / `suite` commands only write the file (path printed), they no longer open tabs. The page has the Nexus logo and the heading "Automated test report" and **consolidates every run of the day**: summary tiles, a timeline of all runs of the day (sends, mapping checks, Master / House / Manifest / Invoice / Packing List checks), the latest result per case, and per case: all attempts of the day, mapping, what Nexus holds, root causes, the fields that did not match, every field checked (collapsible per document), screenshots and the bug sections. Nothing is added to the bug sheet from it. `NEXUS_NO_LIVE=1` stops it opening.
 
 ## Sea single house (send, then validate one case at a time)
 - Cases: `SEA-REG-001` to `SEA-REG-009` (009 = DAP-FJ-0002952: House Incoterm must show DAP) in `knowledge_base/testcases/Sea_Single_House_Daily_Regression.xlsx`; samples in `samples/SEA-REG-00x/`.
@@ -161,3 +160,6 @@ When a `suite` or `validate*` run ends, **runs/_reports/runreport_<date>.html** 
 - Expectations changed by the user: SEA-REG-006 maps the Debit Note to the Master (Master + House + Debit Note).
 - Results are recorded in the Sea workbook (columns Last Known Nexus Job, Daily Result, Nexus Job (today), Tester / Remarks), today's run report (`./nx runreport`), the bug sheet (on your yes, with the screenshots and the pre-alert PDFs) and `docs/PROGRESS_LOG.md`.
 - Findings you confirmed as not a bug (party-master names/addresses/postal codes, carrier name, Pol/Pod codes, freight payment, FCL/LCL, volume and unit reviews) are marked NOT_A_BUG and shown as KNOWN in later runs.
+
+## Evidence in Google Drive
+`./nx upload-evidence [--date yyyy-mm-dd]` (also run by `run_regression.sh` at the end of every run) puts the day's evidence in `Regression testing / Nexus Automated Test Evidence / <yyyy-mm-dd> /`: `01 Test runs/<CASE> - <IPA>/` (screenshots), `02 Bugs/` (evidence of bugs logged that day) and `03 Report/` (the Automated test report as PDF). Bugs are therefore separated by date. Earlier bug evidence stays in `Reg - Air & Sea / dd-mm-yyyy`.

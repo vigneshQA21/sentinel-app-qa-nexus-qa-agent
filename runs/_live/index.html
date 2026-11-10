@@ -1,120 +1,120 @@
-<!doctype html><meta charset=utf-8><title>Live run · suite REG-001</title><style>body{font:15px system-ui;margin:24px;background:#f5f6f8;color:#1c2330}h1{font-size:20px;margin:0 0 4px}.s{color:#6b7280;margin:0 0 16px}table{border-collapse:collapse;width:100%;background:#fff}td,th{border:1px solid #d9dde3;padding:8px 10px;text-align:left;vertical-align:top}th{background:#eef0f3}.chip{display:inline-block;border:1px solid;border-radius:10px;padding:1px 8px;margin:2px 4px 2px 0;font-size:12px}pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;max-height:420px;overflow:auto;font-size:12px}.now{background:#fff;border:1px solid #d9dde3;border-radius:8px;padding:10px 14px;margin:0 0 16px}</style><h1>suite REG-001 · FINISHED</h1><p class="s">Started 11:31:58, updated 11:37:35. This page refreshes by itself every 3 seconds while the run is going.</p><div class="now"><b>Now:</b> 11:37:35  --- run finished ---</div><table><tr><th>Case</th><th>State</th><th>Detail</th><th>Checks</th></tr><tr><td><b>REG-001</b></td><td style="color:#15803d;font-weight:600">PASS</td><td>CREATED_IN_NEXUS  IPA/2559/2026-27</td><td><span class="chip" style="border-color:#15803d;color:#15803d">MASTER PASS</span> <span class="chip" style="border-color:#15803d;color:#15803d">HOUSE PASS</span> <span class="chip" style="border-color:#15803d;color:#15803d">MANIFEST PASS</span> <span class="chip" style="border-color:#15803d;color:#15803d">INVOICE PASS</span> <span class="chip" style="border-color:#15803d;color:#15803d">PACKING LIST PASS</span></td></tr></table><h3>Log (newest first)</h3><pre>11:37:35  --- run finished ---
-11:37:35  HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261110.html
-11:37:35  Packing List Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/packing_data_20261110_113735.csv
-11:37:35  Invoice Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/invoice_data_20261110_113735.csv
-11:37:35  Manifest Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/manifest_data_20261110_113735.csv
-11:37:35  Nothing has been added to the bug sheet. Review them with:  ./nx bugs
-11:37:35  BUG CANDIDATES: 0 new, 1 already known | 210 waiting for your decision.
-11:37:35  House data report: /home/unifo/Downloads/nexus_agent/runs/_reports/house_data_20261110_113735.csv
-11:37:35  Master data report: /home/unifo/Downloads/nexus_agent/runs/_reports/master_data_20261110_113735.csv
-11:37:35  Validation report: /home/unifo/Downloads/nexus_agent/runs/_reports/validate_20261110_113735.csv
-11:37:35             IPA/2559/2026-27 seen -&gt; Master (020-27293980): MAWBx1; House (ONAE26049373): HAWBx1, INVOICEx3, PACKINGLISTx1; Air Manifest: AIRMANIFESTx1
-11:37:35             PACKING LIST: PASS (in House)
-11:37:35             INVOICE: PASS (in House)
-11:37:35             MANIFEST: PASS (in Manifest)
-11:37:35             HOUSE: PASS (in House)
-11:37:35             MASTER: PASS (in Master)
-11:37:35  REG-001  PASS     CREATED_IN_NEXUS  IPA/2559/2026-27
-11:37:35  UI VALIDATION
-11:37:35  Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261110_113735.csv
-11:37:35  REG-001  SENT              REG-001 | QA agent trigger / Don&#x27;t delete / Regression testing | Pre-Alert ONAE26049373 | CONSOLIDATED (MASTER+MANIFEST+HOUSE+INVOICE+PACKING LIST)
-11:37:35    16 fields shown in Nexus | compared with the document: 11 (PASS 11, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 5 | NOT_VERIFIABLE: 0
-11:37:35      PASS            Postal Code                    doc: (found on the document)                  | nexus: 600056   [value found on the document]
-11:37:35      PASS            Address                        doc: (found on the document)                  | nexus: 172 Poonamallee Bye Pass Road CHENNAI Tami   [10/10 words found on the document]
-11:37:35      PASS            Name                           doc: (found on the document)                  | nexus: SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED   [4/4 words found on the document]
-11:37:35    [Consignee]
-11:37:35      PASS            Postal Code                    doc: (found on the document)                  | nexus: 06516   [value found on the document]
-11:37:35      PASS            Address                        doc: (found on the document)                  | nexus: 8ème RUE FR-06516 CARROS CEDEX   [7/7 words found on the document]
-11:37:35      PASS            Name                           doc: (found on the document)                  | nexus: Horizon manuf .   [2/2 words found on the document]
-11:37:35    [Shipper]
-11:37:35      PASS            Incoterm                       doc: (found on the document)                  | nexus: FCA   [value found on the document]
-11:37:35      INFO            Po Number                      doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      PASS            Order No                       doc: (found on the document)                  | nexus: 1107380830   [value found on the document]
-11:37:35      INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      PASS            Gross Weight                   doc: 24                                       | nexus: 24   [same as the value printed on the document]
-11:37:35      INFO            Invoice No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      PASS            Date                           doc: 10 Aug 2026                              | nexus: 10/08/2026   [same as the value printed on the document]
-11:37:35      PASS            Packing List No                doc: 1779430 -1                               | nexus: 1779430-1   [same as the value printed on the document]
-11:37:35    [Packing List]
-11:37:35    VALIDATION AGAINST THE DOCUMENT
-11:37:35      count per section: Packing List 10, Shipper 3, Consignee 3  =  16 fields
-11:37:35      16. Consignee · Postal Code : 600056
-11:37:35      15. Consignee · Address : 172 Poonamallee Bye Pass Road CHENNAI Tamil Nadu 600056 INDIA
-11:37:35      14. Consignee · Name : SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED
-11:37:35      13. Shipper · Postal Code : 06516
-11:37:35      12. Shipper · Address : 8ème RUE FR-06516 CARROS CEDEX
-11:37:35      11. Shipper · Name : Horizon manuf .
-11:37:35      10. Packing List · Incoterm : FCA
-11:37:35       9. Packing List · Po Number : (empty)
-11:37:35       8. Packing List · Order No : 1107380830
-11:37:35       7. Packing List · Customer No : (empty)
-11:37:35       6. Packing List · Account No : (empty)
-11:37:35       5. Packing List · Supplier No : (empty)
-11:37:35       4. Packing List · Gross Weight : 24
-11:37:35       3. Packing List · Invoice No : (empty)
-11:37:35       2. Packing List · Date : 10/08/2026
-11:37:35       1. Packing List · Packing List No : 1779430-1
-11:37:35    ALL FIELDS SHOWN IN NEXUS (16)
-11:37:35  REG-001  PACKING LIST DATA  PASS   IPA/2559/2026-27   source: FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 7
-11:37:35    19 fields shown in Nexus | compared with the document: 14 (PASS 14, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 5 | NOT_VERIFIABLE: 0
-11:37:35      PASS            Incoterm                       doc: (found on the document)                  | nexus: FCA   [value found on the document]
-11:37:35      INFO            Reference No                   doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      INFO            Delivery No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      PASS            Customer No                    doc: (found on the document)                  | nexus: CIN01520   [value found on the document]
-11:37:35      INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      PASS            Order No                       doc: (found on the document)                  | nexus: 243170288   [value found on the document]
-11:37:35    [Invoice]
-11:37:35      PASS            Postal Code                    doc: (found on the document)                  | nexus: 600056   [value found on the document]
-11:37:35      PASS            Address                        doc: (found on the document)                  | nexus: 172 Poonamallee ByPass Road 600056 Chennai   [7/7 words found on the document]
-11:37:35      PASS            Name                           doc: (found on the document)                  | nexus: SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED   [4/4 words found on the document]
-11:37:35    [Buyer]
-11:37:35      PASS            Postal Code                    doc: (found on the document)                  | nexus: 92506   [value found on the document]
-11:37:35      PASS            Address                        doc: (found on the document)                  | nexus: 35 rue Joseph Monier 92506 Rueil Malmaison   [9/9 words found on the document]
-11:37:35      PASS            Name                           doc: (found on the document)                  | nexus: Schneider Electric Industries SAS   [4/4 words found on the document]
-11:37:35    [Seller]
-11:37:35      INFO            Gross Weight                   doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-11:37:35      PASS            Po Number                      doc: (found on the document)                  | nexus: 1107380830   [value found on the document]
-11:37:35      PASS            Currency Code                  doc: USD                                      | nexus: USD   [same as the value printed on the document]
-11:37:35      PASS            Grand Total                    doc: 1,742.44                                 | nexus: 1, 742.44   [same as the value printed on the document (Nexus formats it with a space: &#x27;1, 742.44&#x27;)]
-11:37:35      PASS            Invoice Date                   doc: 11AUG2026                                | nexus: 11/08/2026   [same as the value printed on the document]
-11:37:35      PASS            Invoice Number                 doc: 9148743274                               | nexus: 9148743274   [same as the value printed on the document]
-11:37:35    [Invoice]
-11:37:35    VALIDATION AGAINST THE DOCUMENT
-11:37:35      count per section: Invoice 13, Seller 3, Buyer 3  =  19 fields
-11:37:35      19. Invoice · Incoterm : FCA
-11:37:35      18. Invoice · Reference No : (empty)
-11:37:35      17. Invoice · Supplier No : (empty)
-11:37:35      16. Invoice · Delivery No : (empty)
-11:37:35      15. Invoice · Customer No : CIN01520
-11:37:35      14. Invoice · Account No : (empty)
-11:37:35      13. Invoice · Order No : 243170288
-11:37:35      12. Buyer · Postal Code : 600056
-11:37:35      11. Buyer · Address : 172 Poonamallee ByPass Road 600056 Chennai India
-11:37:35      10. Buyer · Name : SCHNEIDER ELECTRIC INFRASTRUCTURE LIMITED
-11:37:35       9. Seller · Postal Code : 92506
-11:37:35       8. Seller · Address : 35 rue Joseph Monier 92506 Rueil Malmaison Cedex France
-11:37:35       7. Seller · Name : Schneider Electric Industries SAS
-11:37:35       6. Invoice · Gross Weight : (empty)
-11:37:35       5. Invoice · Po Number : 1107380830
-11:37:35       4. Invoice · Currency Code : USD
-11:37:35       3. Invoice · Grand Total : 1, 742.44
-11:37:35       2. Invoice · Invoice Date : 11/08/2026
-11:37:35       1. Invoice · Invoice Number : 9148743274
-11:37:35    ALL FIELDS SHOWN IN NEXUS (19)
-11:37:35  REG-001  INVOICE DATA  PASS   IPA/2559/2026-27   source: FJ-0000723 - Consolidated - 1M,1H,Packinglist and CIV.pdf page 4-6
-11:37:35    8 fields shown in Nexus | compared with the document: 8 (PASS 8, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 0 | NOT_VERIFIABLE: 0
-11:37:35      PASS            Address                        doc: (found on the document)                  | nexus: POONAMALLEE , 172 POONAMALLEE BYE PASS ROA   [10/10 words found on the document]
-11:37:35      PASS            Name                           doc: (found on the document)                  | nexus: SCHNEIDER ELECTRIC INFRASTRUCTURE LTD   [4/4 words found on the document]
-11:37:35    [Consignee]
-11:37:35      PASS            Address                        doc: (found on the document)                  | nexus: QUAI D&#x27;EXPÉDITION HORIZON MANUF . BP 147 P   [22/22 words found on the document]
-11:37:35      PASS            Name                           doc: (found on the document)                  | nexus: SCHNEIDER ELECTRIC   [2/2 words found on the document]
-11:37:35    [Shipper]
-11:37:35      PASS            Weight                         doc: 24.000                                   | nexus: 24   [same as the value printed on the document]
-11:37:35      PASS            Pieces                         doc: 1                                        | nexus: 1   [same as the value printed on the document]
-11:37:35      PASS            Air Waybill No                 doc: ONAE26049373                             | nexus: ONAE26049373   [same as the value printed on the document]
-11:37:35      PASS            Master Air Waybill             doc: 020-27293980                             | nexus: 020-27293980   [same as the value printed on the document]
-11:37:35    [Manifest]
-11:37:35    VALIDATION AGAINST THE DOCUMENT</pre>
+<!doctype html><meta charset=utf-8><title>Live run · validate-docs SEA-REG-001 SEA-REG-002 SEA-REG-003 SEA-REG-005 SEA-REG-006 SEA-REG-008 SEA-REG-009</title><style>body{font:15px system-ui;margin:24px;background:#f5f6f8;color:#1c2330}h1{font-size:20px;margin:0 0 4px}.s{color:#6b7280;margin:0 0 16px}table{border-collapse:collapse;width:100%;background:#fff}td,th{border:1px solid #d9dde3;padding:8px 10px;text-align:left;vertical-align:top}th{background:#eef0f3}.chip{display:inline-block;border:1px solid;border-radius:10px;padding:1px 8px;margin:2px 4px 2px 0;font-size:12px}pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;max-height:420px;overflow:auto;font-size:12px}.now{background:#fff;border:1px solid #d9dde3;border-radius:8px;padding:10px 14px;margin:0 0 16px}</style><h1>validate-docs SEA-REG-001 SEA-REG-002 SEA-REG-003 SEA-REG-005 SEA-REG-006 SEA-REG-008 SEA-REG-009 · FINISHED</h1><p class="s">Started 15:45:49, updated 15:47:57. This page refreshes by itself every 3 seconds while the run is going.</p><div class="now"><b>Now:</b> 15:47:57  --- run finished ---</div><table><tr><th>Case</th><th>State</th><th>Detail</th><th>Checks</th></tr></table><h3>Log (newest first)</h3><pre>15:47:57  --- run finished ---
+15:47:57  HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261110.html   (opened once at the end of the run by ./nx runreport)
+15:47:56  Debit Note Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/debitnote_data_20261110_154756.csv
+15:47:56  Packing List Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/packing_data_20261110_154756.csv
+15:47:56  Invoice Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/invoice_data_20261110_154756.csv
+15:47:56    21 fields shown in Nexus | compared with the document: 2 (PASS 2, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 19 | NOT_VERIFIABLE: 0
+15:47:56      INFO            Incoterm                       doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Reference No                   doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Delivery No                    doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Account No                     doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Order No                       doc:                                          | nexus:    [empty in Nexus]
+15:47:56    [Debit Note]
+15:47:56      INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Name                           doc:                                          | nexus:    [empty in Nexus]
+15:47:56    [Consignee]
+15:47:56      INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Name                           doc:                                          | nexus:    [empty in Nexus]
+15:47:56    [Shipper]
+15:47:56      INFO            Gross Weight                   doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Po Number                      doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Currency Code                  doc:                                          | nexus: USD   [shown by Nexus, no rule for this field]
+15:47:56      INFO            Grand Total                    doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Invoice Date                   doc:                                          | nexus:    [empty in Nexus]
+15:47:56      INFO            Invoice Number                 doc:                                          | nexus:    [empty in Nexus]
+15:47:56      PASS            Master Bill No                 doc: (found on the document)                  | nexus: SITTAGBO667780   [value found on the document]
+15:47:56      PASS            House Bill No                  doc: HTHC26072463                             | nexus: HTHC26072463   [same as the value printed on the document]
+15:47:56    [Debit Note]
+15:47:56    VALIDATION AGAINST THE DOCUMENT
+15:47:56      count per section: Debit Note 15, Shipper 3, Consignee 3  =  21 fields
+15:47:56      21. Debit Note · Incoterm : (empty)
+15:47:56      20. Debit Note · Reference No : (empty)
+15:47:56      19. Debit Note · Supplier No : (empty)
+15:47:56      18. Debit Note · Delivery No : (empty)
+15:47:56      17. Debit Note · Customer No : (empty)
+15:47:56      16. Debit Note · Account No : (empty)
+15:47:56      15. Debit Note · Order No : (empty)
+15:47:56      14. Consignee · Postal Code : (empty)
+15:47:56      13. Consignee · Address : (empty)
+15:47:56      12. Consignee · Name : (empty)
+15:47:56      11. Shipper · Postal Code : (empty)
+15:47:56      10. Shipper · Address : (empty)
+15:47:56       9. Shipper · Name : (empty)
+15:47:56       8. Debit Note · Gross Weight : (empty)
+15:47:56       7. Debit Note · Po Number : (empty)
+15:47:56       6. Debit Note · Currency Code : USD
+15:47:56       5. Debit Note · Grand Total : (empty)
+15:47:56       4. Debit Note · Invoice Date : (empty)
+15:47:56       3. Debit Note · Invoice Number : (empty)
+15:47:56       2. Debit Note · Master Bill No : SITTAGBO667780
+15:47:56       1. Debit Note · House Bill No : HTHC26072463
+15:47:56    ALL FIELDS SHOWN IN NEXUS (21)
+15:47:56  SEA-REG-006  DEBIT NOTE DATA  PASS   IPA/2587/2026-27   source: FJ-0018972 - Consolidated-Debit note.pdf page 3
+15:47:56    16 fields shown in Nexus | compared with the document: 12 (PASS 11, FAIL 0, REVIEW 0, KNOWN 1) | INFO (no document value): 4 | NOT_VERIFIABLE: 0
+15:47:56      PASS            Postal Code                    doc: (found on the document)                  | nexus: 700091   [value found on the document]
+15:47:56      PASS            Address                        doc: (found on the document)                  | nexus: Infinium Digispace, 4th Floor, Plot No: 15   [17/17 words found on the document]
+15:47:56      PASS            Name                           doc: (found on the document)                  | nexus: Nicco Engineering Services Limited   [4/4 words found on the document]
+15:47:56    [Consignee]
+15:47:56      PASS            Postal Code                    doc: (found on the document)                  | nexus: HG1 4DS   [value found on the document]
+15:47:56      PASS            Address                        doc: (found on the document)                  | nexus: 280 Claro Road, HARROGATE, North Yorkshire   [14/14 words found on the document]
+15:47:56      PASS            Name                           doc: (found on the document)                  | nexus: Belzona Limited   [2/2 words found on the document]
+15:47:56    [Shipper]
+15:47:56      INFO            Incoterm                       doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      PASS            Po Number                      doc: (found on the document)                  | nexus: IMPO/2627/011   [value found on the document]
+15:47:56      PASS            Order No                       doc: (found on the document)                  | nexus: S002100520   [value found on the document]
+15:47:56      INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      PASS            Account No                     doc: (found on the document)                  | nexus: 001084   [value found on the document]
+15:47:56      INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      KNOWN           Gross Weight                   doc: 16                                       | nexus: 4043.001775   [KNOWN ISSUE (accepted, not a bug); scanned page read with OCR (may be misread): differs from the document]
+15:47:56      INFO            Invoice No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      PASS            Date                           doc: (found on the document)                  | nexus: 04/08/2026   [value found on the document]
+15:47:56      PASS            Packing List No                doc: (found on the document)                  | nexus: S002100520   [value found on the document]
+15:47:56    [Packing List]
+15:47:56    VALIDATION AGAINST THE DOCUMENT
+15:47:56      count per section: Packing List 10, Shipper 3, Consignee 3  =  16 fields
+15:47:56      16. Consignee · Postal Code : 700091
+15:47:56      15. Consignee · Address : Infinium Digispace, 4th Floor, Plot No: 15, Block-CP, Sector-V, Salt Lake City KOLKATA 700091 India
+15:47:56      14. Consignee · Name : Nicco Engineering Services Limited
+15:47:56      13. Shipper · Postal Code : HG1 4DS
+15:47:56      12. Shipper · Address : 280 Claro Road, HARROGATE, North Yorkshire HG1 4DS, United Kingdom ., Claro Road, United Kingdom
+15:47:56      11. Shipper · Name : Belzona Limited
+15:47:56      10. Packing List · Incoterm : (empty)
+15:47:56       9. Packing List · Po Number : IMPO/2627/011
+15:47:56       8. Packing List · Order No : S002100520
+15:47:56       7. Packing List · Customer No : (empty)
+15:47:56       6. Packing List · Account No : 001084
+15:47:56       5. Packing List · Supplier No : (empty)
+15:47:56       4. Packing List · Gross Weight : 4043.001775
+15:47:56       3. Packing List · Invoice No : (empty)
+15:47:56       2. Packing List · Date : 04/08/2026
+15:47:56       1. Packing List · Packing List No : S002100520
+15:47:56    ALL FIELDS SHOWN IN NEXUS (16)
+15:47:56  SEA-REG-005  PACKING LIST DATA  PASS   IPA/2586/2026-27   source: FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 7-15 (scan, OCR)   scanned page: read with OCR, differences are REVIEW, not FAIL
+15:47:56    16 fields shown in Nexus | compared with the document: 12 (PASS 12, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 4 | NOT_VERIFIABLE: 0
+15:47:56      PASS            Postal Code                    doc: (found on the document)                  | nexus: 400051   [value found on the document]
+15:47:56      PASS            Address                        doc: (found on the document)                  | nexus: BHAVAN, G-9, ALI YAVAR JUNG EXW MARG BANDR   [16/16 words found on the document]
+15:47:56      PASS            Name                           doc: (found on the document)                  | nexus: INDIAN OIL CORPORATION LIMITED   [4/4 words found on the document]
+15:47:56    [Consignee]
+15:47:56      PASS            Postal Code                    doc: (found on the document)                  | nexus: 09068   [value found on the document]
+15:47:56      PASS            Address                        doc: (found on the document)                  | nexus: Macchiareddu VI Strada Ovest 09068 Uta ( C   [8/8 words found on the document]
+15:47:56      PASS            Name                           doc: (found on the document)                  | nexus: Remo SA Srl   [3/3 words found on the document]
+15:47:56    [Shipper]
+15:47:56      PASS            Incoterm                       doc: (found on the document)                  | nexus: EXW   [value found on the document]
+15:47:56      PASS            Po Number                      doc: (found on the document)                  | nexus: 9070M25C49 / 18037356   [value found on the document]
+15:47:56      PASS            Order No                       doc: (found on the document)                  | nexus: 9070M25C49 / 18037356   [value found on the document]
+15:47:56      INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      PASS            Gross Weight                   doc: 14.445                                   | nexus: 14.445   [same as the value printed on the document]
+15:47:56      INFO            Invoice No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
+15:47:56      PASS            Date                           doc: (found on the document)                  | nexus: 30/12/25   [value found on the document]
+15:47:56      PASS            Packing List No                doc: (found on the document)                  | nexus: PL_B34332_S1_R1   [value found on the document]
+15:47:56    [Packing List]
+15:47:56    VALIDATION AGAINST THE DOCUMENT
+15:47:56      count per section: Packing List 10, Shipper 3, Consignee 3  =  16 fields
+15:47:56      16. Consignee · Postal Code : 400051
+15:47:56      15. Consignee · Address : BHAVAN, G-9, ALI YAVAR JUNG EXW MARG BANDRA EASTIN MUMBAI MH 9070M25C49 / 18037356 400051 INDIA</pre>

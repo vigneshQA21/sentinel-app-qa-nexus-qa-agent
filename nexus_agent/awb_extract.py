@@ -8,7 +8,36 @@ from pathlib import Path
 
 import pdfplumber
 
-FLIGHT = re.compile(r"\b([A-Z0-9]{2}\d{2,4})/(\d{1,2})\b")
+FLIGHT = re.compile(r"\b([A-Z0-9]{2}\d{2,4})/(\d{1,2})(?:[A-Z]{3})?\b")       # CX051/20 and CX2047/20AUG
+
+
+def _routing_names(line: str):
+    """'CDG AIR FRANCE BLR AF USD P Co P de ...': destination, carrier (a NAME for the first leg, a 2-letter code for the last), destination,
+    code, currency, then the WT/VAL charge letter (P = prepaid, C = collect). Returns (to list, carrier list (None when only the name is
+    printed), currency, 'PP'/'CC' or None) or None."""
+    # 'HKG CX051 20AUG MAA CX CNY Code ...': leg 1 with its flight and date printed in the routing line
+    f = re.match(r"^\s*([A-Z]{3})\s+([A-Z0-9]{2})\d{2,4}\s+\d{1,2}[A-Z]{3}\s+([A-Z]{3})\s+([A-Z0-9]{2})\s+([A-Z]{3})\b", line)
+    if f:
+        return ([f.group(1), f.group(3)], [f.group(2), f.group(4)], f.group(5), None)
+    # 'MAA CX USD Code ...': a single leg
+    one = re.match(r"^\s*([A-Z]{3})\s+([A-Z0-9]{2})\s+(USD|EUR|INR|CNY|GBP|AED|SGD|JPY|HKD|CHF)\b", line)
+    if one:
+        return ([one.group(1)], [one.group(2)], one.group(3), None)
+    m = re.match(r"^\s*([A-Z]{3})\s+([A-Z][A-Z .&'-]{2,30}?)\s+([A-Z]{3})\s+([A-Z0-9]{2})\s+([A-Z]{3})\b\s*([PC])?\b", line)
+    if not m:
+        return None
+    first_name = m.group(2).strip()
+    first_code = first_name if re.fullmatch(r"[A-Z0-9]{2}", first_name) else None       # a printed code counts, a name does not
+    return ([m.group(1), m.group(3)], [first_code, m.group(4)], m.group(5), {"P": "PP", "C": "CC"}.get(m.group(6) or ""))
+
+
+def _flights_bare(text: str):
+    """'Bangalore 963/28.08 194/29.08': flight number and day without the airline prefix, on the 'Requested Flight/Date' line."""
+    for ln in text.splitlines():
+        found = re.findall(r"\b(\d{2,4})/(\d{1,2})\.(\d{1,2})\b", ln)
+        if found:
+            return [(a, int(b)) for a, b, _m in found]
+    return []
 
 
 def _left(words, text_start: str, after: float = -1.0, x_max: float = 70):
@@ -143,8 +172,17 @@ def extract_master(pdf_path: Path, page_index: int = 0) -> dict:
 
         m = re.search(r"\b(\d{3}-\d{8})\b", text)
         out["awb_number"] = m.group(1) if m else None
-        m = re.search(r"\b\d{3}([A-Z]{3})\s?\d{8}\b", text)
+        if not out["awb_number"]:                                  # "057-0526 2084": the eight digits split in two
+            m = re.search(r"\b(\d{3})-(\d{4})\s(\d{4})\b", text)
+            out["awb_number"] = f"{m.group(1)}-{m.group(2)}{m.group(3)}" if m else None
+        if not out["awb_number"]:                                  # house bill header "057 TLV 0526 2084": prefix, origin, 4 + 4 digits
+            m = re.search(r"\b(\d{3})\s[A-Z]{3}\s(\d{4})\s(\d{4})\b", text)
+            out["awb_number"] = f"{m.group(1)}-{m.group(2)}{m.group(3)}" if m else None
+        m = (re.search(r"\b\d{3}([A-Z]{3})\s?\d{8}\b", text) or re.search(r"\b\d{3}\s([A-Z]{3})\s\d{4}\s\d{4}\b", text)
+             or re.search(r"\b\d{3}\s([A-Z]{3})\s\d{8}\b", text))
         out["origin_code"] = m.group(1) if m else None
+        m = re.search(r"\b([A-Z]{2,4})-(\d{6,9})\b", "\n".join(text.splitlines()[:2]) + "\n" + "\n".join(text.splitlines()[-12:]))
+        out["house_number"] = f"{m.group(1)}{m.group(2)}" if m else None      # "SNY-06007868" printed top right / bottom right of a house bill
 
         ship = _left(words, "Shipper's")
         cons = _left(words, "Consignee's")
@@ -175,13 +213,20 @@ def extract_master(pdf_path: Path, page_index: int = 0) -> dict:
                     out["seg_carrier"] = [p[1] for p in pairs]
                     out["currency"], out["charges_code"] = m.group(2), m.group(3)
                     break
+                m = _routing_names(ln)
+                if m:
+                    out["seg_to"], out["seg_carrier"], out["currency"], out["charges_code"] = m
+                    break
         if dest and hand:
             ln = _lines(pg, 0, dest["bottom"] + 2, x1, hand["top"] - 1)
             if ln:
                 first = ln[0]
                 cut = FLIGHT.search(first)
                 out["destination_airport"] = (first[:cut.start()] if cut else first).strip()
-                out["flights"] = [(a, int(b)) for a, b in FLIGHT.findall(first)]
+                out["flights"] = [(a, int(b)) for a, b in FLIGHT.findall(first)] or _flights_bare(first)
+                if not FLIGHT.search(first) and out["flights"]:
+                    cut = re.search(r"\s\d{2,4}/\d{1,2}\.\d{1,2}\b", first)
+                    out["destination_airport"] = (first[:cut.start()] if cut else first).strip()
 
         lines = text.splitlines()
         for ln in lines:                                           # "NICE C00401666 TERMS: EXW": reference number + incoterm
@@ -212,8 +257,29 @@ def extract_master(pdf_path: Path, page_index: int = 0) -> dict:
                     out["nature"] = col[0]
                     out["volume"] = col[1] or out["volume"]
                 break
+        if not out["seg_to"]:                                      # anchors not found (no 'Issuing' caption): read the line under 'To By First Carrier'
+            ls = text.splitlines()
+            at = next((k for k, ln in enumerate(ls) if re.match(r"^\s*To\s+By\s+First\s+Carrier", ln)), None)
+            for ln in (ls[at + 1:at + 3] if at is not None else []):
+                got = _routing_names(ln)
+                if got:
+                    out["seg_to"], out["seg_carrier"], out["currency"], cc = got
+                    out["charges_code"] = out["charges_code"] or cc
+                    break
+        vol = re.search(r"\bVOL\s*[\d.,]+\s*KGS?\s*([\d.,]+)\s*(CBM|M3)\b", text)      # 'AS VOL 21.407 KGS .1284 CBM': the volume is the CBM figure
+        if vol:
+            out["volume"] = (vol.group(1), vol.group(2))
         m = re.search(r"\b(\d{1,2}-[A-Za-z]{3}-\d{2,4})\b", text[text.find("Currency Conversion"):] if "Currency Conversion" in text else "")
         out["executed_on"] = m.group(1) if m else None
+        if not out["executed_on"]:                                 # "28.08.26 Tel-Aviv ..." above the 'Executed on (date)' caption
+            m = re.search(r"^\s*(\d{1,2}\.\d{1,2}\.\d{2,4})\b", text, re.M)
+            out["executed_on"] = m.group(1) if m else None
+        if not out["charges_code"]:                                # a line of its own under the routing line: 'PP PP' / 'CC CC'
+            m = re.search(r"^\s*(PP|CC|PC|CP)\s+(?:PP|CC|PC|CP)\s*$", text, re.M)
+            out["charges_code"] = m.group(1) if m else None
+        if not out["charges_code"]:                                # the WT/VAL letter after the currency: 'USD P' prepaid, 'USD C' collect
+            m = re.search(r"\b[A-Z]{3}\s+([PC])\s+(?:Co|C)\b", text)
+            out["charges_code"] = {"P": "PP", "C": "CC"}.get(m.group(1)) if m else None
         if ship is None or cons is None:                  # not the IATA layout (e.g. a short forwarder form): read what can be read from the text
             _generic_fill(out, text)
     return out

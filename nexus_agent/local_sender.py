@@ -3,6 +3,7 @@ files in individual/<REF>/ are mailed one email per file."""
 from __future__ import annotations
 
 import base64
+import os
 import logging
 import re
 import shutil
@@ -57,6 +58,40 @@ def build_message(path: Path, to_addr: str, subject: str, ref: str, priority: st
     msg.add_attachment(path.read_bytes(), maintype="application", subtype="pdf" if pdf else "octet-stream",
                        filename=path.name)
     return msg
+
+
+class _SendGate:
+    """Emails go out one by one even when two regression runs are active at once (a run waiting for an approval, then a second run for the
+    approved case): a lock file serialises the sends and keeps at least `gap` seconds between any two emails of any process."""
+    def __init__(self, cfg: Config, gap: int):
+        self.path = cfg.state_dir / "send_gate.json"
+        self.gap = max(int(gap or 0), 30)
+
+    def __enter__(self):
+        import fcntl
+        if os.getenv("NEXUS_NO_SEND_GATE"):                        # the tests send nothing for real
+            self.fh = None
+            return self
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self.fh = open(self.path.with_suffix(".lock"), "w")
+        fcntl.flock(self.fh, fcntl.LOCK_EX)
+        try:
+            last = float(self.path.read_text() or 0)
+        except Exception:
+            last = 0.0
+        wait = last + self.gap - time.time()
+        if wait > 0:
+            log.info("another run sent an email %ds ago: waiting %ds (one by one, never in parallel)", int(time.time() - last), int(wait))
+            time.sleep(wait)
+        return self
+
+    def __exit__(self, *exc):
+        import fcntl
+        if self.fh is None:
+            return
+        self.path.write_text(str(time.time()))
+        fcntl.flock(self.fh, fcntl.LOCK_UN)
+        self.fh.close()
 
 
 class LocalSender:
@@ -210,7 +245,8 @@ class LocalSender:
                 users = self.fwd.svc.users()
                 msg = build_message(it.path, to, it.subject, it.ref, self.ld.get("priority", ""))
                 try:
-                    resp = self._send_once(users, msg, it.subject)
+                    with _SendGate(self.cfg, gap):
+                        resp = self._send_once(users, msg, it.subject)
                 except Exception as exc:  # one failed email must not stop the other cases
                     log.error("SEND FAILED for '%s': %s", it.subject, exc)
                     row["status"] = "SEND_FAILED"

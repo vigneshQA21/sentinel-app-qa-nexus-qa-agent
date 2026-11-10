@@ -23,6 +23,7 @@ from .testsuite import sample_files
 
 log = logging.getLogger(__name__)
 CASE_ID = re.compile(r"^(SEA-)?REG-\d{3}$")
+IPA_ID = re.compile(r"^IPA/\d+/\d{4}-\d{2}$", re.IGNORECASE)
 TAG = "QA agent trigger"
 GROUPS = {"AIR-DAILY": ["REG-001", "REG-002", "REG-005", "REG-009", "REG-006", "REG-007"],
           "SEA-DAILY": [f"SEA-REG-{i:03d}" for i in range(1, 10)]}
@@ -33,7 +34,7 @@ def expand(names: list[str]) -> list[str]:
     for n in names:
         n = n.strip().upper()
         out += GROUPS.get(n) or [n]
-    bad = [c for c in out if not CASE_ID.match(c)]
+    bad = [c for c in out if not CASE_ID.match(c) and not IPA_ID.match(c)]
     if bad:
         raise ValueError(f"not a regression case id: {', '.join(bad)} (expected REG-nnn or SEA-REG-nnn, or air-daily / sea-daily)")
     return list(dict.fromkeys(out))
@@ -98,7 +99,7 @@ def _open_menu(ui: UatPages, cell) -> bool:
     return False
 
 
-def _confirm(ui: UatPages, shot: Path, ipa: str, case_id: str) -> str:
+def _confirm(ui: UatPages, shot: Path, ipa: str, case_id: str = "") -> str:
     """After 'Delete' was chosen the 'Delete job' dialog names the job. Confirm only when it names THIS job and this case, else Cancel."""
     pg = ui.page
     para = pg.get_by_text(re.compile(r"Delete this job", re.I)).first
@@ -108,7 +109,7 @@ def _confirm(ui: UatPages, shot: Path, ipa: str, case_id: str) -> str:
         raise RuntimeError("no 'Delete job' confirmation dialog appeared (screenshot saved)")
     text = " ".join(para.inner_text().split())
     ui.screenshot(shot)
-    if (ipa and ipa not in text) or f"{case_id} |" not in text.upper():
+    if (ipa and ipa not in text) or (case_id and f"{case_id} |" not in text.upper()):
         pg.get_by_role("button", name=re.compile(r"^\s*cancel\s*$", re.I)).first.click()
         raise RuntimeError(f"the dialog names a different job, cancelled: {text[:110]}")
     pg.get_by_role("button", name=re.compile(r"^\s*delete job\s*$", re.I)).last.click()
@@ -179,8 +180,9 @@ def search_terms(ui: UatPages, terms: list[tuple[str, str]]) -> list[dict]:
     out: list[dict] = []
     for mode in dict.fromkeys(m for m, _ in terms):
         ui.open_list()
-        pg.get_by_text("ID", exact=True).first.click()
-        pg.get_by_text(mode, exact=True).first.click()
+        if mode != "ID":                                          # 'ID' is the list's default filter
+            pg.get_by_text("ID", exact=True).first.click()
+            pg.get_by_text(mode, exact=True).first.click()
         box = pg.get_by_placeholder("Search").first
         for _m, term in [t for t in terms if t[0] == mode]:
             for tab in ("Pre-Alerts", "Others"):
@@ -235,6 +237,42 @@ def plan_case(ui: UatPages, cfg: Config, case_id: str, extra_bills: list[str], s
         if m["ipa"] not in own and all(x["ipa"] != m["ipa"] for x in review):
             review.append({**m, "why": f"carries bill {m['bill']} of this case, but its subject is not '{case_id} | ... QA agent trigger'"})
     return {"own": own, "review": review, "bills": sorted(bills), "excluded": {x["ipa"] for x in review}}
+
+
+def delete_ipa(ui: UatPages, ipa: str, evidence: Path, dry_run: bool = False) -> list[dict]:
+    """Deletes ONE pre-alert named by its IPA id (an approved row that is not the agent's own). The 'Delete job' dialog must name this IPA, else Cancel."""
+    for tab in ("Pre-Alerts", "Others"):
+        ui.open_list()
+        if tab == "Others":
+            ui.page.get_by_text("Others (", exact=False).first.click(); ui.page.wait_for_timeout(3500)
+        ui.page.mouse.move(5, 5)
+        cell = ui.page.get_by_text(ipa, exact=True)
+        if not cell.count():
+            continue
+        rec = {"tab": tab, "ipa": ipa, "subject": "", "result": ""}
+        row = _full_row(cell.first)
+        rec["subject"] = row_meta(row)["subject"] if row is not None else ""
+        if dry_run:
+            rec["result"] = "would delete"; return [rec]
+        ui.screenshot(evidence / f"{datetime.now():%H%M%S}_{tab}_{ipa.replace('/', '-')}_before_delete.png")
+        try:
+            if not _open_menu(ui, cell.first):
+                raise RuntimeError("could not open the row menu")
+            menu = ui.page.get_by_text("Delete", exact=True)
+            if not menu.count():
+                raise RuntimeError("the row menu has no Delete option")
+            menu.last.click()
+            how = _confirm(ui, evidence / f"{datetime.now():%H%M%S}_{ipa.replace('/', '-')}_confirm_dialog.png", ipa)
+            ui.open_list()
+            if tab == "Others":
+                ui.page.get_by_text("Others (", exact=False).first.click(); ui.page.wait_for_timeout(3500)
+            gone = not ui.page.get_by_text(ipa, exact=True).count()
+            rec["result"] = f"deleted ({how})" if gone else f"FAILED: {how}, but the row is still listed"
+        except Exception as exc:
+            rec["result"] = f"FAILED: {type(exc).__name__}: {str(exc).splitlines()[0][:140]}"
+            ui.screenshot(evidence / f"{datetime.now():%H%M%S}_failed.png")
+        return [rec]
+    return [{"tab": "-", "ipa": ipa, "subject": "", "result": "not found in Nexus"}]
 
 
 def counts(ui: UatPages) -> str:
@@ -328,6 +366,22 @@ def sample_bill_numbers(cfg: Config, case_id: str) -> list[str]:
     return bills
 
 
+def recent_ipas(cfg: Config, case_id: str, limit: int = 4) -> list[str]:
+    """IPA ids this case had in Nexus on earlier runs (the validation reports and the bug history): the second look-up of the pre-send check."""
+    ipas: list[str] = []
+    try:
+        import csv
+        for f in sorted((cfg.runs_dir / "_reports").glob("validate_*.csv"), reverse=True)[:60]:
+            for r in csv.DictReader(open(f, encoding="utf-8")):
+                if r.get("case_id") == case_id and re.match(r"^IPA/\d+/", r.get("ipa") or "") and r["ipa"] not in ipas:
+                    ipas.append(r["ipa"])
+            if len(ipas) >= limit:
+                break
+    except Exception as exc:
+        log.warning("could not read earlier IPA ids of %s: %s", case_id, exc)
+    return ipas[:limit]
+
+
 def preflight(cfg: Config, case_ids: list[str], headless: bool = False, out=print) -> dict[str, list[dict]]:
     """Standing order: before sending, look the case's bill numbers and FJ reference up in Nexus (Bill No and Email Subject search, Pre-Alerts and
     Others). Returns {case: rows that already exist}; an empty list means the sample is not in Nexus and the case can be sent."""
@@ -337,17 +391,21 @@ def preflight(cfg: Config, case_ids: list[str], headless: bool = False, out=prin
         ui = UatPages(sess.page, cfg)
         for case_id in case_ids:
             bills, refs = sample_bill_numbers(cfg, case_id), sample_refs(cfg, case_id)
-            terms = [("Bill No", b) for b in bills] + [("Email Subject", r) for r in refs]
+            ipas = recent_ipas(cfg, case_id)
+            terms = [("Bill No", b) for b in bills] + [("ID", i) for i in ipas] + [("Email Subject", r) for r in refs]   # 1) bill number, 2) IPA number, then the FJ reference
             rows = search_terms(ui, terms) if terms else []
             uniq: dict[str, dict] = {}
             for r in rows:
                 u = uniq.setdefault(r["ipa"], {**r, "terms": []})
                 u["terms"].append(r["term"])
             found = list(uniq.values())
+            # a row reached ONLY through an old IPA id that is another regression case's row (e.g. 'SEA-REG-002 |' for REG-002) is not this sample
+            other_case = re.compile(r"^(SEA-)?REG-\d{3} \|")
+            found = [r for r in found if not (set(t_ for t_ in r["terms"]) <= set(ipas) and other_case.match(r["subject"]) and not is_ours(r["subject"], case_id))]
             for r in found:
                 r["own"] = is_ours(r["subject"], case_id)
             result[case_id] = found
-            looked = ", ".join(bills + refs) or "nothing to search for"
+            looked = ", ".join(bills + ipas + refs) or "nothing to search for"
             if not found:
                 out(f"{case_id}: CLEAR - not in Nexus (searched {looked}); it can be sent.")
             else:
@@ -367,7 +425,13 @@ def run(cfg: Config, names: list[str], dry_run: bool = False, headless: bool = F
         with NexusSession(cfg, headless=headless) as sess:
             sess.ensure_logged_in()
             ui = UatPages(sess.page, cfg)
-            for case_id in cases:
+            for case_id in [c for c in cases if IPA_ID.match(c)]:                       # an approved row, named by its IPA id
+                ev = cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / "_deleted_by_ipa"
+                ev.mkdir(parents=True, exist_ok=True)
+                for r in delete_ipa(ui, case_id, ev, dry_run):
+                    out(f"{case_id}: {r['tab']:10} {r['result']}   {r['subject'][:70]}")
+                    failed |= r["result"].startswith("FAILED")
+            for case_id in [c for c in cases if not IPA_ID.match(c)]:
                 evidence = cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case_id / "cleanup"
                 evidence.mkdir(parents=True, exist_ok=True)
                 ui.open_list(); before = counts(ui)

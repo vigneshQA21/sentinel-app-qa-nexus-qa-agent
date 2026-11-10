@@ -333,6 +333,7 @@ def evidence_setup(tmp_path):
     cfg, store = real_cfg(tmp_path)
     cfg.settings["bugsheet"]["evidence_folder_id"] = "FOLDER1"
     cfg.settings["bugsheet"]["evidence_path"] = ["Regression testing", "Reg - Air & Sea", "{date}"]
+    cfg.settings["bugsheet"]["evidence_date_format"] = "%d-%m-%Y"
     c = dict(cands(cfg)[0], doc_file="FJ-0000001 - Consolidated.pdf", ipa="IPA/1/2026-27")
     shot = tmp_path / "runs" / "2026-10-24" / "REG-001" / "packing_data.png"
     shot.parent.mkdir(parents=True)

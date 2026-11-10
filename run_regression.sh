@@ -26,3 +26,4 @@ val=(); [ $validate -eq 1 ] && val=(--validate)      # validate right after each
 mkdir -p runs/_logs
 python -m nexus_agent suite "${dry[@]}" "${force[@]}" "${wait[@]}" "${val[@]}" --cases "${cases[@]}" 2>&1 | grep --line-buffered -v -e fontTools -e "INFO nexus_agent.nexus.session" | tee -a "runs/_logs/run_$(date +%Y%m%d_%H%M%S).log"
 [ ${#dry[@]} -eq 0 ] && python -m nexus_agent runreport 2>&1 | grep --line-buffered -v -e fontTools -e "INFO nexus_agent" | tee -a "runs/_logs/run_$(date +%Y%m%d_%H%M%S).log"   # observations, bugs and passed bugs of this run
+[ ${#dry[@]} -eq 0 ] && python -m nexus_agent upload-evidence 2>&1 | grep --line-buffered -v -e fontTools | tee -a "runs/_logs/run_$(date +%Y%m%d_%H%M%S).log"   # screenshots + report PDF of the day to the Drive evidence folder

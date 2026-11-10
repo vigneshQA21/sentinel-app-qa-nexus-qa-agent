@@ -1,0 +1,33 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-005,IPA/2564/2026-27,"FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)",Manifest,Manifest · Master Air Waybill,(found on the document),057-05262084,PASS,value found on the document
+REG-005,IPA/2564/2026-27,"FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)",Manifest,Manifest · Air Waybill No,(found on the document),6007868,PASS,value found on the document
+REG-005,IPA/2564/2026-27,"FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)",Manifest,Manifest · Pieces,(found on the document),3,PASS,value found on the document
+REG-005,IPA/2564/2026-27,"FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)",Manifest,Manifest · Weight,(found on the document),21,PASS,value found on the document
+REG-005,IPA/2564/2026-27,"FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)",Shipper,Shipper · Name,(found on the document),ELMO MOTION CONTROL LTD.,PASS,4/4 words found on the document
+REG-005,IPA/2564/2026-27,"FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)",Shipper,Shipper · Address,(found on the document),"60 AMAL ST P.O.B : 3078 , 4951601 PETACH TIKVA 4951360 , ISRAEL TEL : 972-3-9292300",PASS,16/16 words found on the document
+REG-005,IPA/2564/2026-27,"FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)",Consignee,Consignee · Name,(found on the document),SIKA INTERPLANTS SYSTEMS LIMITED,PASS,4/4 words found on the document
+REG-005,IPA/2564/2026-27,"FJ-0000883 - Consolidated - Sh.pdf page 2 (scan, OCR)",Consignee,Consignee · Address,(found on the document),"3 GANGADHAR CHETTY ROAD BANGALORE , 560042 INDIA VAT : 29AACCS9654B1Z6 TEL : +91 ( 80 ) 25599144",PASS,13/13 words found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - Airwaybill.pdf page 1,Manifest,Manifest · Master Air Waybill,(found on the document),160-15585765,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - Airwaybill.pdf page 1,Manifest,Manifest · Air Waybill No,(found on the document),FLD6445,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - Airwaybill.pdf page 1,Manifest,Manifest · Pieces,(found on the document),3,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - Airwaybill.pdf page 1,Manifest,Manifest · Weight,(found on the document),2683,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - Airwaybill.pdf page 1,Shipper,Shipper · Name,(found on the document),"ARCONIC ( KUNSHAN ) CO . , LTD .",PASS,4/4 words found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - Airwaybill.pdf page 1,Shipper,Shipper · Address,(found on the document),"NO.111 , YANHU ROAD , HUAQIAO TOWN , KUNSHAN CITY , CHINA",PASS,9/9 words found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - Airwaybill.pdf page 1,Consignee,Consignee · Name,(found on the document),MODINE THERMAL SYSTEMS ALUMINUM PRODUCTS PVT.LTD .,PASS,7/7 words found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - Airwaybill.pdf page 1,Consignee,Consignee · Address,(found on the document),"K - 7 , SIPCOT INDUSTRIAL PARK , MAMBAKKAM VILLAGE , SUNGUVARCHATIRA M , KANCHEEPURAM DIST , TAMIL NADU",PASS,13/13 words found on the document
+REG-007,IPA/2574/2026-27,2_Air_Freight_Manifest.pdf page 1,Manifest,Manifest · Master Air Waybill,098-31251603,098-31251603,PASS,same as the value printed on the document
+REG-007,IPA/2574/2026-27,2_Air_Freight_Manifest.pdf page 1,Manifest,Manifest · Air Waybill No,ORAE26040499,ORAE26040499,PASS,same as the value printed on the document
+REG-007,IPA/2574/2026-27,2_Air_Freight_Manifest.pdf page 1,Manifest,Manifest · Pieces,2,2,PASS,same as the value printed on the document
+REG-007,IPA/2574/2026-27,2_Air_Freight_Manifest.pdf page 1,Manifest,Manifest · Weight,589.000,589,PASS,same as the value printed on the document
+REG-007,IPA/2574/2026-27,2_Air_Freight_Manifest.pdf page 1,Shipper,Shipper · Name,(found on the document),ANVIS DECIZE SAS,PASS,3/3 words found on the document
+REG-007,IPA/2574/2026-27,2_Air_Freight_Manifest.pdf page 1,Shipper,Shipper · Address,(found on the document),"12 RUE HENRI DARCY 58300 DECIZE , 58 FRANCE",PASS,8/8 words found on the document
+REG-007,IPA/2574/2026-27,2_Air_Freight_Manifest.pdf page 1,Consignee,Consignee · Name,(found on the document),KIRLOSKAR OIL ENGINES LTD,PASS,4/4 words found on the document
+REG-007,IPA/2574/2026-27,2_Air_Freight_Manifest.pdf page 1,Consignee,Consignee · Address,(found on the document),722 A11 / 1 MIDC AMBAD NASHIK MH 422010 INDIA,PASS,9/9 words found on the document
+REG-009,IPA/2578/2026-27,"FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)",Manifest,Manifest · Master Air Waybill,(found on the document),932-78831771,PASS,value found on the document
+REG-009,IPA/2578/2026-27,"FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)",Manifest,Manifest · Air Waybill No,(found on the document),SUSA00085222,PASS,value found on the document
+REG-009,IPA/2578/2026-27,"FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)",Manifest,Manifest · Pieces,(found on the document),1,PASS,value found on the document
+REG-009,IPA/2578/2026-27,"FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)",Manifest,Manifest · Weight,(found on the document),112.5,PASS,value found on the document
+REG-009,IPA/2578/2026-27,"FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)",Shipper,Shipper · Name,(found on the document),CYGNUS TECHNOLOGIES,PASS,2/2 words found on the document
+REG-009,IPA/2578/2026-27,"FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)",Shipper,Shipper · Address,(found on the document),"1523 OLDE WATERFORD WAY LELAND, NC 28451 USA TEL: 910-454-9442",PASS,12/12 words found on the document
+REG-009,IPA/2578/2026-27,"FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)",Consignee,Consignee · Name,(found on the document),ZELLE BIOTECHNOLOGY PVT LTD,PASS,4/4 words found on the document
+REG-009,IPA/2578/2026-27,"FJ-0001132-Consolidated with UN.pdf page 3-4 (scan, OCR)",Consignee,Consignee · Address,(found on the document),"A/7, M.I.D.C, MIRA INDUSTRIAL AREA WESTERN EXPRESS HIGHWAY, MIRA ROAD THANE MH 401104 India TEL: +91 22 6851 6470",PASS,23/23 words found on the document

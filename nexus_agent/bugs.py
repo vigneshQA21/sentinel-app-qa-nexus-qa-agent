@@ -238,7 +238,7 @@ def evidence_folder(cfg: Config, drive) -> str:
     """Where this suite's evidence goes: <evidence_folder_id>/<evidence_path ...>, with {date} = today as dd-mm-yyyy like the
     team's folders ('Regression testing' > 'Reg - Air & Sea' > '24-10-2026')."""
     bs = cfg.settings["bugsheet"]
-    parts = [p.format(date=datetime.now().strftime("%d-%m-%Y")) for p in bs.get("evidence_path", [])]
+    parts = [p.format(date=datetime.now().strftime(bs.get("evidence_date_format", "%d-%m-%Y"))) for p in bs.get("evidence_path", [])]
     return ensure_folder_path(drive, bs["evidence_folder_id"], parts)
 
 

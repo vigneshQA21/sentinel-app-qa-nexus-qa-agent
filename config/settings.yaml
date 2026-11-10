@@ -188,7 +188,8 @@ bugsheet:
                                 # paste = writes a ready-to-paste file (no credentials); sheets = appends via the Google Sheets API
   token_file: secrets/google_bugs_token.json     # one login for the sheet (Sheets) and the evidence folder (Drive)
   evidence_folder_id: 1eHTlsLWfCO0zNkMFEdYvsLVppRdXZVYe   # the team's Drive folder for UAT bug evidence
-  evidence_path: [Regression testing, Reg - Air & Sea, '{date}']   # sub-folders under it, like 23-10-2026 (today's is created if missing)
+  evidence_path: [Regression testing, Nexus Automated Test Evidence, '{date}', 02 Bugs]   # bug evidence of the day; the run screenshots and the report PDF sit next to it (drive_evidence.py)
+  evidence_date_format: '%Y-%m-%d'   # folder names sort by day (earlier bug evidence is in 'Reg - Air & Sea' / dd-mm-yyyy and stays there)
   reported_by: Vigneshwaran S
   date_format: '%d/%m/%Y'       # the sheet writes 24/10/2026
   defaults: {Status: Not Taken, Severity: High, MOT: Air, 'Reported Team': QA Team}   # a new bug: Status Not Taken; Priority/MOT are overridden per bug

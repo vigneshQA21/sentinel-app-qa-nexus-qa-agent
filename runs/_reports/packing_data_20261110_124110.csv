@@ -1,0 +1,17 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Packing List No,(found on the document),149335506,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Date,(found on the document),14/08/2026,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Invoice No,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Gross Weight,(found on the document),2683,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Customer No,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Order No,(found on the document),Description,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Po Number,(found on the document),1062778-10,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Packing List,Packing List · Incoterm,,,INFO,empty in Nexus; no value located on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Shipper,Shipper · Name,(found on the document),"ARCONIC ( KUNSHAN ) ALUMINUM PRODUCTS CO ., LTD .",PASS,6/6 words found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Shipper,Shipper · Address,(found on the document),"NO.111, YANHU ROAD, HUAQIAO TOWN, KUNSHAN CITY, China",PASS,9/9 words found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Shipper,Shipper · Postal Code,(found on the document),215332,PASS,value found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Consignee,Consignee · Name,(found on the document),MODINE THERMAL SYSTEMS PVT. LTD .,PASS,5/5 words found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Consignee,Consignee · Address,(found on the document),"K-7, SIPCOT INDUSTRIAL PARK, MAMBAKKAM VILLAGE, SUNGUVARCHATIRAM, KANCHEE PURAM DIST, TAMIL NADU",PASS,13/13 words found on the document
+REG-006,IPA/2565/2026-27,FJ-0000518 - PL.pdf page 1,Consignee,Consignee · Postal Code,,,INFO,empty in Nexus; no value located on the document

@@ -154,6 +154,10 @@ def main(argv: list[str] | None = None) -> int:
 
     ig = sub.add_parser("ingest", help="file downloads from samples/_inbox/ under their test case")
 
+    ue = sub.add_parser("upload-evidence", help="upload a day's screenshots and the report (PDF) to the Google Drive evidence folder")
+    ue.add_argument("--date", help="yyyy-mm-dd (default today)")
+    ue.add_argument("--dry-run", action="store_true", help="only count what would be uploaded")
+
     pf = sub.add_parser("preflight", help="before sending: look the cases' bill numbers and FJ references up in Nexus; exit 3 if a sample already exists")
     pf.add_argument("cases", nargs="+", help="test case ids, e.g. REG-001 SEA-REG-002")
     pf.add_argument("--headless", action="store_true")
@@ -177,7 +181,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd in ("suite", "validate", "validate-master", "validate-house", "validate-docs") and not getattr(args, "dry_run", False) \
             and not os.getenv("NEXUS_NO_LIVE"):
         from . import live                        # live status page in the browser (runs/_live/index.html), refreshes by itself
-        live.install(cfg.runs_dir, f"{args.cmd} {' '.join(getattr(args, 'cases', None) or [])}".strip())
+        live.install(cfg.runs_dir, f"{args.cmd} {' '.join(getattr(args, 'cases', None) or [])}".strip(), open_browser=False)   # no extra browser tab during the run
 
         def _report_after_run():                  # the detailed report of today's cases opens in the browser when a run ends
             try:
@@ -185,9 +189,7 @@ def main(argv: list[str] | None = None) -> int:
                 from . import runreport as RR
                 from .store import Store
                 hp = RR.write_html(cfg, Store(cfg.state_dir / "agent.db"), with_sheet=False)
-                print(f"HTML run report: {hp}")
-                if not os.getenv("NEXUS_LIVE_NO_OPEN"):
-                    webbrowser.open(hp.resolve().as_uri())
+                print(f"HTML run report: {hp}   (opened once at the end of the run by ./nx runreport)")
             except Exception as exc:
                 print(f"(HTML run report not written: {type(exc).__name__}: {exc})")
         import atexit
@@ -229,6 +231,11 @@ def main(argv: list[str] | None = None) -> int:
         from . import casedoc as CD
         path, backup, n = CD.write(cfg, [c.upper() for c in args.cases])
         print(f"{n} validations written to the tab '{CD.TAB_SEA if path.name.startswith('Sea') else CD.TAB}' in {path}\nBackup of the workbook before the change: {backup}")
+        return 0
+
+    if args.cmd == "upload-evidence":
+        from . import drive_evidence as DE
+        DE.upload_day(cfg, args.date, dry_run=args.dry_run)
         return 0
 
     if args.cmd == "preflight":
@@ -414,9 +421,17 @@ def main(argv: list[str] | None = None) -> int:
             except SessionExpired as exc:
                 print(f"Nothing was sent. {exc}")
                 return 2
-            if any(existing.values()):
-                print("Nothing was sent: the sample(s) above already exist in Nexus. Confirm which rows to delete, then run again.")
-                return 3
+            blocked = [cid for cid, rows in existing.items() if rows]
+            if blocked:                       # only the cases whose sample exists wait for your delete confirmation; the clear ones go on
+                chosen = [c for c in chosen if c.id not in blocked]
+                print(f"NOT sent (sample already in Nexus, confirm which rows to delete): {', '.join(blocked)}")
+                import json as _json
+                (cfg.state_dir / "pending_approval.json").write_text(_json.dumps({cid: [{k: r.get(k) for k in ("tab", "ipa", "subject", "from", "received", "own")} for r in existing[cid]]
+                                                                                   for cid in blocked}, indent=1))      # waiting for the user's yes; the run carries on
+                if not chosen:
+                    print("Nothing was sent.")
+                    return 3
+                print(f"Sending the cases that are clear: {', '.join(c.id for c in chosen)}")
         store = Store(cfg.state_dir / "agent.db")
         sender = LocalSender(cfg, store)
         interval = cfg.settings["testsuite"].get("case_interval_seconds", 0) if args.interval is None else args.interval

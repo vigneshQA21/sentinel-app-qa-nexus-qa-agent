@@ -1,0 +1,20 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Invoice Number,CD20250534,CD20250534,PASS,same as the value printed on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Invoice Date,(found on the document),30/12/2025,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Grand Total,(found on the document),"1, 987, 282.50",PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Currency Code,(found on the document),EUR,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Po Number,(found on the document),9070M25C49/180373,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Gross Weight,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Seller,Seller · Name,(found on the document),Remo SA s.r.l.,PASS,5/5 words found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Seller,Seller · Address,(found on the document),"VI Strada Ovest, Loc. Macchiareddu, 09068 Uta (CA), Italy",PASS,9/9 words found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Seller,Seller · Postal Code,(found on the document),09068,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Buyer,Buyer · Name,(found on the document),INDIAN OIL CORPORATION LIMITED,PASS,4/4 words found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Buyer,Buyer · Address,(found on the document),"BHAVAN, G-9, ALI YAVAR JUNG MARG BANDRA EASTIN MUMBAI MH 400051 INDIA",PASS,13/13 words found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Buyer,Buyer · Postal Code,(found on the document),400051,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Order No,(found on the document),B34332,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Account No,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Customer No,(found on the document),104690,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Delivery No,(found on the document),IT01-20251681,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Reference No,(found on the document),IFS Applications,PASS,value found on the document
+SEA-REG-001,IPA/2582/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Incoterm,(found on the document),EXW,PASS,value found on the document

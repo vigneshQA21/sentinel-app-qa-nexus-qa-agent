@@ -93,8 +93,9 @@ def test_cleanup_matches_only_the_agents_own_subjects():
     assert not CL.is_ours("Fwd: SEA-REG-001 | " + tag, "SEA-REG-001")
     assert CL.expand(["sea-daily"])[0] == "SEA-REG-001" and CL.expand(["reg-006", "REG-006"]) == ["REG-006"]
     import pytest
+    assert CL.expand(["IPA/2420/2026-27"]) == ["IPA/2420/2026-27"]          # an approved row, named by its IPA id
     with pytest.raises(ValueError):
-        CL.expand(["IPA/2420/2026-27"])
+        CL.expand(["FJ-0001380"])
 
 
 def test_case_cells_start_with_token_only():

@@ -1,0 +1,112 @@
+RUN REPORT 2026-11-10  (today's run only)
+
+OBSERVATIONS
+  REG-001  PASS  IPA/2559/2026-27  (appeared after 184 s)
+      Mapping: all documents placed correctly
+      Nexus holds: Master (020-27293980): MAWBx1; House (ONAE26049373): HAWBx1, INVOICEx3, PACKINGLISTx1; Air Manifest: AIRMANIFESTx1
+      Data: Master PASS 42, REVIEW 1; House PASS 46; Manifest PASS 8; Invoice PASS 14; Packing List PASS 11
+  REG-002  PASS  IPA/2579/2026-27  (appeared after 184 s)
+      Mapping: PO: REVIEW (Nexus shows it as another type, in House)
+      Nexus holds: Master (160-15776084): MAWBx1, DEBITNOTEx1; House (CHJE262335): HAWBx1, INVOICEx1, PACKINGLISTx1, SHIPPERDOCx1; Air Manifest: AIRMANIFESTx1
+      Data: Master PASS 26; House KNOWN 2, PASS 27; Manifest PASS 8; Invoice PASS 11; Packing List PASS 12; Debit Note PASS 2; Shipper Document KNOWN 1, PASS 4
+  REG-005  PASS  IPA/2564/2026-27  (appeared after 184 s)
+      Mapping: all documents placed correctly
+      Nexus holds: Master (057-05262084): MAWBx1; House (SNY06007868): HAWBx1, INVOICEx2, SHIPPERDOCx1; Air Manifest: AIRMANIFESTx1
+      Data: Master FAIL 2, PASS 39; House FAIL 2, KNOWN 4, PASS 38; Manifest PASS 8; Invoice KNOWN 2, PASS 13
+  REG-006  PASS  IPA/2565/2026-27  (appeared after 184 s)
+      Mapping: all documents placed correctly
+      Nexus holds: Master (160-15585765): MAWBx1, DEBITNOTEx1; House (FLD6445): HAWBx1, INVOICEx1, PACKINGLISTx1; Air Manifest: AIRMANIFESTx1
+      also in Others tab: IPA/2570/2026-27, IPA/2571/2026-27, IPA/2568/2026-27, IPA/2569/2026-27, IPA/2567/2026-27
+      Data: Master PASS 36; House PASS 24, REVIEW 2; Manifest PASS 8; Invoice PASS 13, REVIEW 1; Packing List PASS 10; Debit Note PASS 2
+  REG-007  PASS  IPA/2574/2026-27  (appeared after 184 s)
+      Mapping: all documents placed correctly
+      Nexus holds: Master (098-31251603): MAWBx1; House (ORAE26040499): HAWBx1, INVOICEx1, DELIVERYNOTEx2; Air Manifest: AIRMANIFESTx1
+      also in Others tab: IPA/2577/2026-27, IPA/2576/2026-27, IPA/2572/2026-27, IPA/2573/2026-27
+      Data: Master KNOWN 2, PASS 40; House FAIL 2, PASS 45; Manifest PASS 8; Invoice PASS 12
+  REG-009  PASS  IPA/2578/2026-27  (appeared after 183 s)
+      Mapping: all documents placed correctly
+      Nexus holds: Master (932-78831771): MAWBx1; House (SUSAO008522): HAWBx1; Air Manifest: AIRMANIFESTx2
+      Data: Master KNOWN 2, PASS 38; House KNOWN 6, PASS 35; Manifest PASS 8
+  SEA-REG-001  sent today (1 email(s)) but not validated in Nexus yet
+  SEA-REG-002  sent today (1 email(s)) but not validated in Nexus yet
+  SEA-REG-003  sent today (1 email(s)) but not validated in Nexus yet
+  SEA-REG-004  sent today (1 email(s)) but not validated in Nexus yet
+  SEA-REG-005  sent today (1 email(s)) but not validated in Nexus yet
+  SEA-REG-006  sent today (1 email(s)) but not validated in Nexus yet
+  SEA-REG-007  sent today (1 email(s)) but not validated in Nexus yet
+  SEA-REG-008  sent today (1 email(s)) but not validated in Nexus yet
+
+BUGS FOUND IN THIS RUN (3 new, waiting for your decision)
+  - REG-006 · Invoice · Invoice · Gross Weight (IPA/2565/2026-27)  [also seen on 2026-10-29]
+  - REG-007 · House · Cargo · Gross Weight Unit (IPA/2574/2026-27)
+  - REG-007 · House · Cargo · Chargeable Weight Unit (IPA/2574/2026-27)
+
+RAISED BUGS STILL THERE (10)
+  - REG-007 · Master · Segment 1 · Flight Number (IPA/2574/2026-27)  [bug sheet row 248]
+  - REG-007 · Master · Segment 2 · Flight Number (IPA/2574/2026-27)  [logged]
+  - REG-002 · House · Consignee · Address (IPA/2579/2026-27)  [bug sheet row 234]
+  - REG-002 · House · Cargo · Pieces (IPA/2579/2026-27)  [bug sheet row 235]
+  - REG-006 · Invoice · Invoice · Gross Weight (IPA/2565/2026-27)  [bug sheet row 272]
+  - REG-005 · Master · Segment 2 · Flight Number (IPA/2564/2026-27)  [bug sheet row 273]
+  - REG-005 · Master · Segment 2 · Flight Date (IPA/2564/2026-27)  [bug sheet row 273]
+  - REG-005 · House · Segment 2 · Flight Number (IPA/2564/2026-27)  [bug sheet row 273]
+  - REG-005 · House · Segment 2 · Flight Date (IPA/2564/2026-27)  [bug sheet row 273]
+  - REG-005 · Master / House · Segment 2 · Flight Number and Flight Date (IPA/2564/2026-27)  [bug sheet row 273]
+
+PREVIOUSLY RAISED BUGS THAT PASSED IN THIS RUN, NOT RE-TESTED YET (5)
+  - REG-001 · House · Consignee · Name (IPA/2559/2026-27)  [bug sheet row 232]  not seen in IPA/2559/2026-27
+  - REG-001 · House · Consignee · Address (IPA/2559/2026-27)  [bug sheet row 233]  not seen in IPA/2559/2026-27
+  - REG-002 · Mapping · PACKING LIST (IPA/2579/2026-27)  [bug sheet row 236]  not seen in IPA/2579/2026-27
+  - REG-009 · House · Shipper · Address (IPA/2578/2026-27)  [bug sheet row 246]  not seen in IPA/2578/2026-27
+  - REG-002 · Mapping · Invoice and Packing List flagged Duplicate (IPA/2579/2026-27)  [bug sheet row 251]  not seen in IPA/2579/2026-27
+  (7 more passed but already have a re-test / Fixed status in the sheet, so they are not listed)
+
+RAISED BUGS NOT RE-TESTED TODAY (40)
+  - REG-003 · House · House Airway Bill Number  [bug sheet row 237]  not run today
+  - REG-003 · Mapping · Documents left unmatched  [bug sheet row 238]  not run today
+  - REG-011 · Mapping · Manifest house number / House draft / Direct BL House  [bug sheet row 249]  not run today
+  - SEA-REG-001 · Master · Other · Voyage Number  [bug sheet row 254]  sent, not validated
+  - SEA-REG-001 · House · Shipper · Address  sent, not validated
+  - SEA-REG-001 · House · Shipper · Postal Code  sent, not validated
+  - SEA-REG-001 · House · Consignee · Address  sent, not validated
+  - SEA-REG-001 · House · Consignee · Postal Code  sent, not validated
+  - SEA-REG-001 · Master / House · Approval · Master and House  [bug sheet row 252]  sent, not validated
+  - LOGISTEED · Unresolved Documents · Shipper / Consignee  [bug sheet row 253]  not run today
+  - SEA-REG-001 · House · Shipper / Consignee · Address and Postal Code  [bug sheet row 255]  sent, not validated
+  - SEA-REG-003 · Mapping · MASTER  sent, not validated
+  - SEA-REG-003 · Master / House mapping · Carrier bill of lading classified as House  [bug sheet row 256]  sent, not validated
+  - SEA-REG-004 · House · Consignee · Name  sent, not validated
+  - SEA-REG-004 · Others tab / Related Email · Follow up link  sent, not validated
+  - SEA-REG-007 · House · Consignee · Name  sent, not validated
+  - SEA-REG-004 · House · Consignee · Logisteed party name  [bug sheet row 258]  sent, not validated
+  - SEA-REG-009 · House · Freight · Freight Payment  not run today
+  - SEA-REG-009 · House · Shipper · Name  not run today
+  - SEA-REG-009 · House · Shipper · Address  not run today
+  - SEA-REG-009 · House · Consignee · Name  not run today
+  - SEA-REG-009 · House · Consignee · Address  not run today
+  - SEA-REG-009 · House · Other · Vessel Name  not run today
+  - SEA-REG-009 · House · Other · Place Of Delivery  not run today
+  - SEA-REG-009 · House · Other · Final Destination  not run today
+  - SEA-REG-009 · House · Other · Container Type  not run today
+  - SEA-REG-009 · House · Other · Volume Of Goods Value  not run today
+  - SEA-REG-009 · House · Other · Description  not run today
+  - SEA-REG-009 · House · Other · Place  not run today
+  - SEA-REG-009 · House · Incoterm · Incoterm  not run today
+  - SEA-REG-009 · House · Incoterm and other fields blank  [bug sheet row 259]  not run today
+  - SEA-REG-009 · House · Shipper · Address  not run today
+  - SEA-REG-009 · House (BWSS 13760427) · Incoterm, Place Of Delivery, Shipper Address  [bug sheet row 260]  not run today
+  - SEA-REG-009 · House · Freight · Freight Payment (both houses)  [bug sheet row 261]  not run today
+  - SEA-REG-002 · Pre-Alerts list · Search · Bill No (House bill)  [bug sheet row 262]  sent, not validated
+  - IPA-2477 · Unresolved Documents · Invoice · continuation page  [bug sheet row 263]  not run today
+  - REG-005 · Pre-Alerts · Mapping · Sea email linked into Air job  [bug sheet row 264]  Pre-Alerts data was not checked today
+  - SEA-REG-003 · Others tab · Related Email · Follow up link (Sea email linked to Air job)  [bug sheet row 265]  sent, not validated
+  - SEA-REG-007 · Others tab · Related Email · Follow up link (Sea email linked to Air job)  [bug sheet row 266]  sent, not validated
+  - SEA-REG-009 · Others tab · Related Email · Follow up link (unrelated Sea job)  [bug sheet row 267]  not run today
+
+DEVELOPMENT COMPLETED, RE-TEST BLANK: TO RE-TEST NOW (1)
+  - row 236 · IPA/2185/2026-27 · REG-002_IPA-2185_Mapping_PACKING-LIST.png
+
+ACCEPTED, NOT A BUG (18 seen, no action)
+
+Saved: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261110_151221.md
+HTML report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261110.html
