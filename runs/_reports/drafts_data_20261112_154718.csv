@@ -1,0 +1,7 @@
+case_id,ipa,check,expected,actual,result,note
+AMF-008,IPA/2652/2026-27,Master draft exists,1,1,PASS,
+AMF-008,IPA/2652/2026-27,Master draft number,232-17354245,232-17354245,PASS,
+AMF-008,IPA/2652/2026-27,Master draft type,Master draft,Master draft,PASS,
+AMF-008,IPA/2652/2026-27,House drafts count,1,1,PASS,
+AMF-008,IPA/2652/2026-27,House draft number CHJE262209,CHJE262209,CHJE262209,PASS,
+AMF-008,IPA/2652/2026-27,Draft lines as shown in Nexus,,Master draft: 232-17354245 (no shipper; Shipper Mapping Pending) | House draft: CHJE262209 (no shipper; From manifest — requires confirmation),INFO,

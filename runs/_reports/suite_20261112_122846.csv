@@ -1,0 +1,6 @@
+case_id,scenario,mode,sample_ref,status,subject,sent_at,screening,warnings,expected_mapping,expected_result,nexus_job,actual_nexus_result
+AMF-001,Air manifest first / order scenarios,individual,FJ-0002417,DRY_RUN,AMF-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert S00005958 | INDIVIDUAL | MANIFEST,,,,,,,
+AMF-002,Air manifest first / order scenarios,individual,FJ-0002564,DRY_RUN,AMF-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002564 | INDIVIDUAL | MANIFEST,,,,,,,
+AMF-003,Air manifest first / order scenarios,individual,FJ-0002945,DRY_RUN,AMF-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002945 | INDIVIDUAL | MANIFEST,,,,,,,
+AMF-004,Air manifest first / order scenarios,individual,FJ-0003067,DRY_RUN,AMF-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003067 | INDIVIDUAL | MANIFEST,,,,,,,
+AMF-006,Air manifest first / order scenarios,individual,FJ-0003221,DRY_RUN,AMF-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003221 | INDIVIDUAL | MANIFEST,,,,,,,

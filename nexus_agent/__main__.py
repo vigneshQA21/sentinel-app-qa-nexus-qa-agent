@@ -35,7 +35,7 @@ def _note_bugs(cfg, mapping_rows=None, groups=None) -> None:
     from . import testsuite as T
     from .store import Store
     try:
-        cases = {c.id: c for c in T.read_cases(cfg) + T.read_sea_cases(cfg)}
+        cases = {c.id: c for c in T.read_cases(cfg) + T.read_sea_cases(cfg) + T.read_extra_cases(cfg)}
         cands = B.candidates_from_mapping(mapping_rows or [], cases, cfg)
         for title, results in groups or []:
             cands += B.candidates_from_results(results, title, cases, cfg)
@@ -162,6 +162,14 @@ def main(argv: list[str] | None = None) -> int:
     pf.add_argument("cases", nargs="+", help="test case ids, e.g. REG-001 SEA-REG-002")
     pf.add_argument("--headless", action="store_true")
 
+    ph = sub.add_parser("phase", help="air manifest scenarios: load ONE phase of a sample's documents into samples/<CASE>/ in sending order (sends nothing)")
+    ph.add_argument("cases", nargs="+", help="scenario case ids, e.g. AMF-001 AMF-002")
+    ph.add_argument("--phase", required=True, choices=["manifest", "house-master", "master-house"],
+                    help="manifest = only the Manifest; house-master = House(s) then Master; master-house = Master, House(s), Manifest, Invoice, Packing List, Certificate of Origin")
+
+    vd = sub.add_parser("validate-drafts", help="air manifest scenarios: after ONLY the Manifest was sent, check the Master draft and House draft numbers in the Nexus UI")
+    vd.add_argument("--cases", nargs="+", required=True, help="scenario case ids, e.g. AMF-001 AMF-002")
+
     su = sub.add_parser("suite", help="stage, screen and send the sample documents of the test cases")
     su.add_argument("--cases", nargs="*", help="test case ids, e.g. REG-001 REG-006 (default: all in scope)")
     su.add_argument("--dry-run", action="store_true")
@@ -194,6 +202,22 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"(HTML run report not written: {type(exc).__name__}: {exc})")
         import atexit
         atexit.register(_report_after_run)
+
+    if args.cmd == "validate-drafts":
+        from . import drafts_check as DC
+        rows = DC.run(cfg, args.cases)
+        print(DC.report(rows))
+        print("Drafts report:", DC.write_report(cfg, rows))
+        return 0
+
+    if args.cmd == "phase":
+        from . import phases as PH
+        for cid in args.cases:
+            files, problem = PH.fill(cfg, cid, args.phase)
+            print(f"{cid}  phase {args.phase}: " + (problem if problem else f"{len(files)} file(s) in samples/{cid}/ (sent in this order)"))
+            for f in files:
+                print(f"    {f.name}")
+        return 0
 
     if args.cmd == "login":
         from .nexus.session import NexusSession

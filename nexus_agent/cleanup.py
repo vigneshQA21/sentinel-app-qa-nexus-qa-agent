@@ -347,12 +347,19 @@ def sample_refs(cfg: Config, case_id: str) -> list[str]:
         m = re.search(pat, f.stem, re.IGNORECASE)
         if m and m.group(1).upper() not in refs:
             refs.append(m.group(1).upper())
+    for c in (cfg.settings.get("testsuite", {}).get("extra_cases") or []):      # an extra case's own reference (e.g. a Master number when no FJ exists)
+        if c.get("id") == case_id and c.get("sample_ref") and str(c["sample_ref"]).upper() not in refs:
+            refs.append(str(c["sample_ref"]).upper())
     return refs
 
 
 def sample_bill_numbers(cfg: Config, case_id: str) -> list[str]:
     """Bill numbers of the case: those Nexus showed for it before (state/case_bills.json) plus the HAWBs read from an Air sample."""
     bills = list(known_bills(cfg, case_id))
+    sc = (cfg.settings.get("air_manifest_scenarios", {}).get("cases") or {}).get(case_id) or {}
+    for b in [sc.get("master")] + list(sc.get("houses") or []):               # numbers listed for an air manifest scenario
+        if b and b not in bills:
+            bills.append(b)
     if not case_id.upper().startswith("SEA-"):
         try:
             from .pdf_split import detect_parts, find_hawbs, page_texts

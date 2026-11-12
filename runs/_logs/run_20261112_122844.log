@@ -1,0 +1,12 @@
+2026-11-12 12:28:46,429 INFO nexus_agent.local_sender: [dry-run] would send 'AMF-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert S00005958 | INDIVIDUAL | MANIFEST' (01 FJ-0002417 - Manifest.pdf) to prealert.nexus@unifo.in
+2026-11-12 12:28:46,478 INFO nexus_agent.local_sender: [dry-run] would send 'AMF-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002564 | INDIVIDUAL | MANIFEST' (01 FJ-0002564 - Manifest.pdf) to prealert.nexus@unifo.in
+2026-11-12 12:28:46,516 INFO nexus_agent.local_sender: [dry-run] would send 'AMF-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002945 | INDIVIDUAL | MANIFEST' (01 FJ-0002945 - Manifest.pdf) to prealert.nexus@unifo.in
+2026-11-12 12:28:46,546 INFO nexus_agent.local_sender: [dry-run] would send 'AMF-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003067 | INDIVIDUAL | MANIFEST' (01 FJ-0003067 - Manifest.pdf) to prealert.nexus@unifo.in
+2026-11-12 12:28:46,568 INFO nexus_agent.local_sender: [dry-run] would send 'AMF-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003221 | INDIVIDUAL | MANIFEST' (01 FJ-0003221 - Manifest.pdf) to prealert.nexus@unifo.in
+AMF-001  DRY_RUN           AMF-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert S00005958 | INDIVIDUAL | MANIFEST
+AMF-002  DRY_RUN           AMF-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002564 | INDIVIDUAL | MANIFEST
+AMF-003  DRY_RUN           AMF-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002945 | INDIVIDUAL | MANIFEST
+AMF-004  DRY_RUN           AMF-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003067 | INDIVIDUAL | MANIFEST
+AMF-006  DRY_RUN           AMF-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003221 | INDIVIDUAL | MANIFEST
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261112_122846.csv

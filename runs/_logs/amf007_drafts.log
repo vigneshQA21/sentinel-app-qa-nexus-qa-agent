@@ -1,0 +1,10 @@
+2026-11-12 15:43:14,521 INFO nexus_agent.nexus.session: Reusing saved Nexus session /home/unifo/Downloads/nexus_agent/state/nexus_session.json
+AMF-007  FAIL  IPA/2651/2026-27
+    PASS  Master draft exists            expected 1              Nexus 1
+    PASS  Master draft number            expected 020-02468826   Nexus 020-02468826
+    PASS  Master draft type              expected Master draft   Nexus Master draft
+    FAIL  House drafts count             expected 1              Nexus 2
+    PASS  House draft number TWW-00221556 expected TWW-00221556   Nexus TWW-0022 1556
+    FAIL  Unexpected House draft         expected (none)         Nexus 020-02468826   [a House draft whose number is not printed in the Manifest]
+    Nexus lines: Master draft: 020-02468826 (KOB MEDICAL TEXTILES PVT LTD; CW Sync Pending) | House draft: TWW-0022 1556 (no shipper; From manifest — requires confirmation) | House: 020-02468826 (KOB MEDICAL TEXTILES PVT LTD; Direct BL — house from Master)
+Drafts report: /home/unifo/Downloads/nexus_agent/runs/_reports/drafts_data_20261112_154330.csv

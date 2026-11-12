@@ -69,7 +69,7 @@ local_docs:
   # Words in an individual file name that identify its type (otherwise the PDF text is checked).
   filename_types: {MASTER: MBL, MBL: MBL, MAWB: MBL, HOUSE: HBL, HBL: HBL, HAWB: HBL, INVOICE: INVOICE,
                    PACKING: PACKING, PACKINGLIST: PACKING, PL: PACKING, PKL: PACKING, MANIFEST: MANIFEST, SHIPPERDOC: SHIPPERDOC,
-                   SLI: SHIPPERDOC, PO: PO, DEBITNOTE: DEBITNOTE, DELIVERY: DELIVERY, DELIVERYNOTE: DELIVERY}
+                   SLI: SHIPPERDOC, CERTIFICATE: SHIPPERDOC, PO: PO, DEBITNOTE: DEBITNOTE, DELIVERY: DELIVERY, DELIVERYNOTE: DELIVERY}
 
 screening:
   # A consolidated PDF is only sent if every type listed here is found in it (use --force to override).
@@ -118,6 +118,16 @@ testsuite:
   scenarios: ['Consolidated Mapping', 'Individual Mapping']
   exclude_doc_contains: ['multiple house']         # drops multi-house cases (e.g. REG-004)
   sample_ref_pattern: '(FJ-\d{4,10})'             # sample (Quadance job) number inside the sheet cell / file name
+  # Air manifest / order scenarios (not part of the default run; asked for by id): see air_manifest_scenarios below
+  extra_cases:
+    - {id: AMF-001, scenario: 'Air manifest first / order scenarios', docs: 'Master + Manifest + House + Invoice + Packing List', sample_ref: FJ-0002417}
+    - {id: AMF-002, scenario: 'Air manifest first / order scenarios', docs: 'Master + Manifest + House', sample_ref: FJ-0002564}
+    - {id: AMF-003, scenario: 'Air manifest first / order scenarios', docs: 'Master + Manifest + 2 House (multi-house)', sample_ref: FJ-0002945}
+    - {id: AMF-004, scenario: 'Air manifest first / order scenarios', docs: 'Master + Manifest + House + Invoice + Packing List', sample_ref: FJ-0003067}
+    - {id: AMF-005, scenario: 'Air manifest first / order scenarios', docs: 'Master + House + Certificate of Origin (no manifest)', sample_ref: FJ-0003153}
+    - {id: AMF-006, scenario: 'Air manifest first / order scenarios', docs: 'Master + Manifest + House', sample_ref: FJ-0003221}
+    - {id: AMF-007, scenario: 'Logisteed raised bug sample (Transway)', docs: 'Master + Manifest + House + 2 Invoice', sample_ref: 020-02468826}
+    - {id: AMF-008, scenario: 'Logisteed raised bug sample (Triple Crown)', docs: 'Master + Manifest + House + Invoice + Packing List', sample_ref: 232-17354245}
   sample_ref_overrides: {REG-011: FJ-0001012}     # REG-011's sample is split from the FJ-0001012 PDF (+ a dummy document), so the subject uses that FJ number
   samples_dir: samples                            # samples/_inbox/ (downloads) and samples/<CASE>/ (library)
   case_interval_seconds: 300                      # wait between test cases (all emails of a case go together); 0 = no wait
@@ -197,3 +207,18 @@ bugsheet:
   # Bug ID, Date, Module, Test Case ID, Quadance Job No, Nexus Job No, Document, Field, Bug Summary, Expected Result,
   # Actual Result, Result, Note, Severity, Status, Evidence, Reported By
   columns: [Bug ID, Date, Module, Test Case ID, Quadance Job No, Nexus Job No, Bug Summary, Expected Result, Actual Result, Severity, Status, Evidence, Reported By]
+
+air_manifest_scenarios:
+  # Phases (./nx phase AMF-001 --phase manifest): manifest = only the Manifest; house-master = House(s) first, then Master;
+  # master-house = Master, House(s), Manifest, Invoice, Packing List, Certificate of Origin. 30 s between emails, delete the
+  # previous phase's pre-alerts first (same shipment).
+  folder: air manifest individual scenarios
+  cases:
+    AMF-001: {fj: FJ-0002417, master: 098-32591204, houses: [S00005958]}
+    AMF-002: {fj: FJ-0002564, master: 098-30723070, houses: [SCF26100068]}
+    AMF-003: {fj: FJ-0002945, master: 160-18759882, houses: [SJ202606239, SJ202606240]}
+    AMF-004: {fj: FJ-0003067, master: 112-95369492, houses: [SJ202606229]}
+    AMF-005: {fj: FJ-0003153, master: 312-77376736, houses: [ARV10429]}
+    AMF-006: {fj: FJ-0003221, master: 098-32197163, houses: [HY202611020]}
+    AMF-007: {fj: 020-02468826, master: 020-02468826, houses: [TWW-00221556]}      # no FJ number given: reference = Master number
+    AMF-008: {fj: 232-17354245, master: 232-17354245, houses: [CHJE262209]}

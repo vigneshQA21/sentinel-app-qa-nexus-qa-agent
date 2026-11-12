@@ -1,0 +1,10 @@
+AMF-007: CLEAR - not in Nexus (searched nothing to search for); it can be sent.
+AMF-008: CLEAR - not in Nexus (searched nothing to search for); it can be sent.
+2026-11-12 15:28:03,987 INFO nexus_agent.local_sender: Sent 'AMF-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1cf3162c8769a4)
+2026-11-12 15:28:03,988 INFO nexus_agent.testsuite: waiting 300s before case AMF-008
+2026-11-12 15:33:06,174 INFO nexus_agent.local_sender: Sent 'AMF-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1cf35ffc0f32e1)
+AMF-007  SENT              AMF-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST
+AMF-008  SENT              AMF-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261112_153306.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261112.html   (opened once at the end of the run by ./nx runreport)

@@ -15,7 +15,7 @@ for a in "$@"; do
     --validate) validate=1 ;;
     --no-wait) wait=(--interval 0) ;;
     --no-force) force=() ;;
-    REG-*|SEA-REG-*) cases+=("$a") ;;
+    REG-*|SEA-REG-*|AMF-*) cases+=("$a") ;;
     *) echo "unknown argument: $a"; exit 2 ;;
   esac
 done

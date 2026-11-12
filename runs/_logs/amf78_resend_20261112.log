@@ -1,0 +1,122 @@
+SENDING to prealert.nexus@unifo.in: AMF-007 AMF-008  (old pre-alerts must be deleted in Nexus first)
+2026-11-12 15:37:40,278 INFO nexus_agent.cleanup: Bill No search 020-02468826 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:37:43,542 INFO nexus_agent.cleanup: Bill No search 020-02468826 in Others: 0 row(s) []
+2026-11-12 15:37:46,736 INFO nexus_agent.cleanup: Bill No search TWW-00221556 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:37:49,921 INFO nexus_agent.cleanup: Bill No search TWW-00221556 in Others: 0 row(s) []
+2026-11-12 15:38:01,963 INFO nexus_agent.cleanup: Email Subject search 020-02468826 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:38:05,336 INFO nexus_agent.cleanup: Email Subject search 020-02468826 in Others: 0 row(s) []
+AMF-007: CLEAR - not in Nexus (searched 020-02468826, TWW-00221556, 020-02468826); it can be sent.
+2026-11-12 15:38:17,726 INFO nexus_agent.cleanup: Bill No search 232-17354245 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:38:20,931 INFO nexus_agent.cleanup: Bill No search 232-17354245 in Others: 0 row(s) []
+2026-11-12 15:38:24,109 INFO nexus_agent.cleanup: Bill No search CHJE262209 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:38:27,305 INFO nexus_agent.cleanup: Bill No search CHJE262209 in Others: 0 row(s) []
+2026-11-12 15:38:39,360 INFO nexus_agent.cleanup: Email Subject search 232-17354245 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:38:42,617 INFO nexus_agent.cleanup: Email Subject search 232-17354245 in Others: 0 row(s) []
+AMF-008: CLEAR - not in Nexus (searched 232-17354245, CHJE262209, 232-17354245); it can be sent.
+2026-11-12 15:38:49,020 INFO nexus_agent.local_sender: Sent 'AMF-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1cf3b3a07d316d)
+2026-11-12 15:38:49,021 INFO nexus_agent.testsuite: waiting 300s before case AMF-008
+2026-11-12 15:43:51,090 INFO nexus_agent.local_sender: Sent 'AMF-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1cf3fd6370637b)
+AMF-007  SENT              AMF-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST
+AMF-008  SENT              AMF-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261112_154351.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261112.html   (opened once at the end of the run by ./nx runreport)
+RUN REPORT 2026-11-12  (today's run only)
+
+OBSERVATIONS
+  No pre-alert from today's run was found in Nexus yet.
+  AMF-001  sent today (1 email(s)) but not validated in Nexus yet
+  AMF-002  sent today (1 email(s)) but not validated in Nexus yet
+  AMF-003  sent today (1 email(s)) but not validated in Nexus yet
+  AMF-004  sent today (1 email(s)) but not validated in Nexus yet
+  AMF-006  sent today (1 email(s)) but not validated in Nexus yet
+  AMF-007  sent today (2 email(s)) but not validated in Nexus yet
+  AMF-008  sent today (2 email(s)) but not validated in Nexus yet
+
+BUGS FOUND IN THIS RUN (0 new, waiting for your decision)
+  none
+
+RAISED BUGS STILL THERE (0)
+  none
+
+PREVIOUSLY RAISED BUGS THAT PASSED IN THIS RUN, NOT RE-TESTED YET (0)
+  none
+
+RAISED BUGS NOT RE-TESTED TODAY (66)
+  - REG-001 · House · Consignee · Postal Code  [bug sheet row 231]  not run today
+  - REG-001 · Packing List · Packing List · Date  [bug sheet row 230]  not run today
+  - REG-001 · House · Consignee · Name  [bug sheet row 232]  not run today
+  - REG-001 · House · Consignee · Address  [bug sheet row 233]  not run today
+  - REG-002 · Mapping · PACKING LIST  [bug sheet row 236]  not run today
+  - REG-002 · House · Consignee · Address  [bug sheet row 234]  not run today
+  - REG-002 · House · Cargo · Pieces  [bug sheet row 235]  not run today
+  - REG-003 · House · House Airway Bill Number  [bug sheet row 237]  not run today
+  - REG-003 · Mapping · Documents left unmatched  [bug sheet row 238]  not run today
+  - REG-006 · Mapping · House not linked to Master  [bug sheet row 240]  not run today
+  - REG-006 · Mapping · Manifest linked to House  [bug sheet row 241]  not run today
+  - REG-009 · House · Shipper · Address  [bug sheet row 246]  not run today
+  - REG-009 · House · Shipper · Postal Code  [bug sheet row 247]  not run today
+  - REG-007 · Master · Segment 1 · Flight Number  [bug sheet row 248]  not run today
+  - REG-007 · Master · Segment 2 · Flight Number  not run today
+  - REG-007 · Mapping · Invoice as Shipper Document + Delivery Note Unmatched  [bug sheet row 245]  not run today
+  - REG-011 · Mapping · Manifest house number / House draft / Direct BL House  [bug sheet row 249]  not run today
+  - REG-002 · Packing List · Packing List · Date  [bug sheet row 250]  not run today
+  - REG-002 · Mapping · Invoice and Packing List flagged Duplicate  [bug sheet row 251]  not run today
+  - SEA-REG-001 · Master · Other · Voyage Number  [bug sheet row 254]  not run today
+  - SEA-REG-001 · House · Shipper · Address  not run today
+  - SEA-REG-001 · House · Shipper · Postal Code  not run today
+  - SEA-REG-001 · House · Consignee · Address  not run today
+  - SEA-REG-001 · House · Consignee · Postal Code  not run today
+  - SEA-REG-001 · Master / House · Approval · Master and House  [bug sheet row 252]  not run today
+  - LOGISTEED · Unresolved Documents · Shipper / Consignee  [bug sheet row 253]  not run today
+  - SEA-REG-001 · House · Shipper / Consignee · Address and Postal Code  [bug sheet row 255]  not run today
+  - SEA-REG-003 · Mapping · MASTER  not run today
+  - SEA-REG-003 · Master / House mapping · Carrier bill of lading classified as House  [bug sheet row 256]  not run today
+  - SEA-REG-004 · House · Consignee · Name  not run today
+  - SEA-REG-004 · Others tab / Related Email · Follow up link  not run today
+  - SEA-REG-007 · House · Consignee · Name  not run today
+  - SEA-REG-004 · House · Consignee · Logisteed party name  [bug sheet row 258]  not run today
+  - SEA-REG-009 · House · Freight · Freight Payment  not run today
+  - SEA-REG-009 · House · Shipper · Name  not run today
+  - SEA-REG-009 · House · Shipper · Address  not run today
+  - SEA-REG-009 · House · Consignee · Name  not run today
+  - SEA-REG-009 · House · Consignee · Address  not run today
+  - SEA-REG-009 · House · Other · Vessel Name  not run today
+  - SEA-REG-009 · House · Other · Place Of Delivery  not run today
+  - SEA-REG-009 · House · Other · Final Destination  not run today
+  - SEA-REG-009 · House · Other · Container Type  not run today
+  - SEA-REG-009 · House · Other · Volume Of Goods Value  not run today
+  - SEA-REG-009 · House · Other · Description  not run today
+  - SEA-REG-009 · House · Other · Place  not run today
+  - SEA-REG-009 · House · Incoterm · Incoterm  not run today
+  - SEA-REG-009 · House · Incoterm and other fields blank  [bug sheet row 259]  not run today
+  - SEA-REG-009 · House · Shipper · Address  not run today
+  - SEA-REG-009 · House (BWSS 13760427) · Incoterm, Place Of Delivery, Shipper Address  [bug sheet row 260]  not run today
+  - SEA-REG-009 · House · Freight · Freight Payment (both houses)  [bug sheet row 261]  not run today
+  - SEA-REG-002 · Pre-Alerts list · Search · Bill No (House bill)  [bug sheet row 262]  not run today
+  - IPA-2477 · Unresolved Documents · Invoice · continuation page  [bug sheet row 263]  not run today
+  - REG-005 · Pre-Alerts · Mapping · Sea email linked into Air job  [bug sheet row 264]  not run today
+  - SEA-REG-003 · Others tab · Related Email · Follow up link (Sea email linked to Air job)  [bug sheet row 265]  not run today
+  - SEA-REG-007 · Others tab · Related Email · Follow up link (Sea email linked to Air job)  [bug sheet row 266]  not run today
+  - SEA-REG-009 · Others tab · Related Email · Follow up link (unrelated Sea job)  [bug sheet row 267]  not run today
+  - REG-007 · House · Cargo · Gross Weight Unit  [bug sheet row 274]  not run today
+  - REG-007 · House · Cargo · Chargeable Weight Unit  [bug sheet row 274]  not run today
+  - REG-006 · Invoice · Invoice · Gross Weight  [bug sheet row 272]  not run today
+  - REG-005 · Master · Segment 2 · Flight Number  [bug sheet row 273]  not run today
+  - REG-005 · Master · Segment 2 · Flight Date  [bug sheet row 273]  not run today
+  - REG-005 · House · Segment 2 · Flight Number  [bug sheet row 273]  not run today
+  - REG-005 · House · Segment 2 · Flight Date  [bug sheet row 273]  not run today
+  - REG-005 · Master / House · Segment 2 · Flight Number and Flight Date  [bug sheet row 273]  not run today
+  - REG-007 · House · Cargo · Gross Weight Unit and Chargeable Weight Unit  [bug sheet row 274]  not run today
+  - SEA-REG-002 · Mapping · Unresolved Documents · MBL / HBL / Unclassified pages remarked Duplicate  [bug sheet row 275]  not run today
+
+DEVELOPMENT COMPLETED, RE-TEST BLANK: TO RE-TEST NOW (2)
+  - row 236 · IPA/2185/2026-27 · REG-002_IPA-2185_Mapping_PACKING-LIST.png
+  - row 262 · IPA/2396/2026-27 · SEA-REG-002_IPA-2396_Pre-Alerts-list_Search-Bill-No-House-bill.png
+
+Saved: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261112_154353.md
+HTML report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261112.html
+2026-11-12: 22 screenshot(s) in 6 case folder(s) to upload
+screenshots: 2 uploaded, 20 already there
+report: Automated test report 2026-11-12.pdf updated in '03 Report'
+Drive folder of 2026-11-12: https://drive.google.com/drive/folders/1-ZyxzcL2pB6l7nf7AKnuktfKlpUOG5Sy

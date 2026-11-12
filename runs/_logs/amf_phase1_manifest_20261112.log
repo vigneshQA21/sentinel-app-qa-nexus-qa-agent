@@ -1,0 +1,34 @@
+2026-11-12 12:31:58,529 INFO nexus_agent.cleanup: Bill No search S00005958 in Pre-Alerts: 0 row(s) []
+2026-11-12 12:32:01,730 INFO nexus_agent.cleanup: Bill No search S00005958 in Others: 0 row(s) []
+2026-11-12 12:32:13,536 INFO nexus_agent.cleanup: Email Subject search FJ-0002417 in Pre-Alerts: 0 row(s) []
+2026-11-12 12:32:16,747 INFO nexus_agent.cleanup: Email Subject search FJ-0002417 in Others: 0 row(s) []
+AMF-001: CLEAR - not in Nexus (searched S00005958, FJ-0002417); it can be sent.
+2026-11-12 12:32:29,046 INFO nexus_agent.cleanup: Email Subject search FJ-0002564 in Pre-Alerts: 0 row(s) []
+2026-11-12 12:32:32,243 INFO nexus_agent.cleanup: Email Subject search FJ-0002564 in Others: 0 row(s) []
+AMF-002: CLEAR - not in Nexus (searched FJ-0002564); it can be sent.
+2026-11-12 12:32:44,001 INFO nexus_agent.cleanup: Email Subject search FJ-0002945 in Pre-Alerts: 0 row(s) []
+2026-11-12 12:32:47,190 INFO nexus_agent.cleanup: Email Subject search FJ-0002945 in Others: 0 row(s) []
+AMF-003: CLEAR - not in Nexus (searched FJ-0002945); it can be sent.
+2026-11-12 12:32:59,100 INFO nexus_agent.cleanup: Email Subject search FJ-0003067 in Pre-Alerts: 0 row(s) []
+2026-11-12 12:33:02,287 INFO nexus_agent.cleanup: Email Subject search FJ-0003067 in Others: 0 row(s) []
+AMF-004: CLEAR - not in Nexus (searched FJ-0003067); it can be sent.
+2026-11-12 12:33:14,138 INFO nexus_agent.cleanup: Email Subject search FJ-0003221 in Pre-Alerts: 0 row(s) []
+2026-11-12 12:33:17,332 INFO nexus_agent.cleanup: Email Subject search FJ-0003221 in Others: 0 row(s) []
+AMF-006: CLEAR - not in Nexus (searched FJ-0003221); it can be sent.
+2026-11-12 12:33:24,944 INFO nexus_agent.local_sender: Sent 'AMF-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert S00005958 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1ce917f3847057)
+2026-11-12 12:33:24,946 INFO nexus_agent.testsuite: waiting 30s before case AMF-002
+2026-11-12 12:33:56,583 INFO nexus_agent.local_sender: Sent 'AMF-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002564 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1ce91f90364765)
+2026-11-12 12:33:56,585 INFO nexus_agent.testsuite: waiting 30s before case AMF-003
+2026-11-12 12:34:28,416 INFO nexus_agent.local_sender: Sent 'AMF-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002945 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1ce9277e32c4fb)
+2026-11-12 12:34:28,417 INFO nexus_agent.testsuite: waiting 30s before case AMF-004
+2026-11-12 12:35:00,172 INFO nexus_agent.local_sender: Sent 'AMF-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003067 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1ce92f3761448c)
+2026-11-12 12:35:00,174 INFO nexus_agent.testsuite: waiting 30s before case AMF-006
+2026-11-12 12:35:32,125 INFO nexus_agent.local_sender: Sent 'AMF-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003221 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1ce936df87e3e7)
+AMF-001  SENT              AMF-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert S00005958 | INDIVIDUAL | MANIFEST
+AMF-002  SENT              AMF-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002564 | INDIVIDUAL | MANIFEST
+AMF-003  SENT              AMF-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002945 | INDIVIDUAL | MANIFEST
+AMF-004  SENT              AMF-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003067 | INDIVIDUAL | MANIFEST
+AMF-006  SENT              AMF-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003221 | INDIVIDUAL | MANIFEST
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261112_123532.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261112.html   (opened once at the end of the run by ./nx runreport)

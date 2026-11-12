@@ -127,3 +127,17 @@ cd /home/unifo/Downloads/nexus_agent && read -rp "Grant code: " CODE && set -a &
 | Run logs | `runs/_logs/` |
 | Day-by-day log | `docs/PROGRESS_LOG.md` |
 | Older command notes by tag | `regression_prompts/EXECUTE_CMD.md` |
+
+## Air manifest / order scenarios (AMF-001 ... AMF-006)
+One sample is sent in different orders, one phase at a time. The same shipment cannot be in Nexus twice: delete the previous phase's pre-alerts first (`./nx delete` on your command, or by hand).
+
+| Goal | Command |
+|---|---|
+| Load one phase of a sample into `samples/<CASE>/` (sends nothing) | `./nx phase AMF-001 AMF-002 AMF-003 AMF-004 AMF-006 --phase manifest` |
+| Phase 2: House(s) first, then Master | `./nx phase AMF-001 ... AMF-006 --phase house-master` |
+| Phase 3: Master, House(s), Manifest, Invoice, Packing List, Certificate of Origin | `./nx phase AMF-001 ... AMF-006 --phase master-house` |
+| Preview what would be sent | `./run_regression.sh AMF-001 AMF-002 ... --dry-run` |
+| Send the loaded phase (30 s between cases; AMF-005 has no Manifest, so it is not in the manifest phase) | `python -m nexus_agent suite --cases AMF-001 AMF-002 AMF-003 AMF-004 AMF-006 --interval 30` |
+| After the Manifest-only phase: check the Master draft and House draft numbers in the UI | `./nx validate-drafts --cases AMF-001 AMF-002 AMF-003 AMF-004 AMF-006` |
+
+Samples: `samples/air manifest individual scenarios/` (the six consolidated PDFs) and its `split/<FJ>/` folders (individual documents). Expected Master/House numbers: `air_manifest_scenarios` in `config/settings.yaml`.

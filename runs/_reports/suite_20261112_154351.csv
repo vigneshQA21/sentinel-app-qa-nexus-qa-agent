@@ -1,0 +1,3 @@
+case_id,scenario,mode,sample_ref,status,subject,sent_at,screening,warnings,expected_mapping,expected_result,nexus_job,actual_nexus_result
+AMF-007,Logisteed raised bug sample (Transway),individual,020-02468826,SENT,AMF-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST,2026-11-12T15:38:49,,,,,,
+AMF-008,Logisteed raised bug sample (Triple Crown),individual,232-17354245,SENT,AMF-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST,2026-11-12T15:43:51,,,,,,

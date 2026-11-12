@@ -1,0 +1,22 @@
+2026-11-12 15:37:40,278 INFO nexus_agent.cleanup: Bill No search 020-02468826 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:37:43,542 INFO nexus_agent.cleanup: Bill No search 020-02468826 in Others: 0 row(s) []
+2026-11-12 15:37:46,736 INFO nexus_agent.cleanup: Bill No search TWW-00221556 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:37:49,921 INFO nexus_agent.cleanup: Bill No search TWW-00221556 in Others: 0 row(s) []
+2026-11-12 15:38:01,963 INFO nexus_agent.cleanup: Email Subject search 020-02468826 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:38:05,336 INFO nexus_agent.cleanup: Email Subject search 020-02468826 in Others: 0 row(s) []
+AMF-007: CLEAR - not in Nexus (searched 020-02468826, TWW-00221556, 020-02468826); it can be sent.
+2026-11-12 15:38:17,726 INFO nexus_agent.cleanup: Bill No search 232-17354245 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:38:20,931 INFO nexus_agent.cleanup: Bill No search 232-17354245 in Others: 0 row(s) []
+2026-11-12 15:38:24,109 INFO nexus_agent.cleanup: Bill No search CHJE262209 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:38:27,305 INFO nexus_agent.cleanup: Bill No search CHJE262209 in Others: 0 row(s) []
+2026-11-12 15:38:39,360 INFO nexus_agent.cleanup: Email Subject search 232-17354245 in Pre-Alerts: 0 row(s) []
+2026-11-12 15:38:42,617 INFO nexus_agent.cleanup: Email Subject search 232-17354245 in Others: 0 row(s) []
+AMF-008: CLEAR - not in Nexus (searched 232-17354245, CHJE262209, 232-17354245); it can be sent.
+2026-11-12 15:38:49,020 INFO nexus_agent.local_sender: Sent 'AMF-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1cf3b3a07d316d)
+2026-11-12 15:38:49,021 INFO nexus_agent.testsuite: waiting 300s before case AMF-008
+2026-11-12 15:43:51,090 INFO nexus_agent.local_sender: Sent 'AMF-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST' to prealert.nexus@unifo.in (message id 1a1cf3fd6370637b)
+AMF-007  SENT              AMF-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST
+AMF-008  SENT              AMF-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261112_154351.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261112.html   (opened once at the end of the run by ./nx runreport)

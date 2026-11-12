@@ -83,11 +83,20 @@ def read_sea_cases(cfg: Config) -> list[Case]:
     return read_cases(cfg, "testsuite_sea")
 
 
+def read_extra_cases(cfg: Config) -> list[Case]:
+    """Cases defined in settings.yaml (testsuite.extra_cases), e.g. the air manifest scenarios AMF-001..."""
+    return [Case(x["id"], x.get("scenario", ""), "individual", x.get("docs", ""), x.get("sample_ref"), "", "", "", "")
+            for x in cfg.settings["testsuite"].get("extra_cases") or []]
+
+
 def read_cases_for(cfg: Config, wanted: set[str] | None) -> list[Case]:
-    """Air cases, plus the Sea cases when a SEA-REG id was asked for."""
+    """Air cases, plus the Sea cases when a SEA-REG id was asked for and the extra cases when one of their ids was."""
     cases = read_cases(cfg)
     if wanted and any(w.startswith("SEA-") for w in wanted):
         cases += read_sea_cases(cfg)
+    extra = read_extra_cases(cfg)
+    if wanted and any(c.id in wanted for c in extra):
+        cases += [c for c in extra if c.id in wanted]
     return cases
 
 

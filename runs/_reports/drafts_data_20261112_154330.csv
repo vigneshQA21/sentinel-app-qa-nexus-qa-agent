@@ -1,0 +1,8 @@
+case_id,ipa,check,expected,actual,result,note
+AMF-007,IPA/2651/2026-27,Master draft exists,1,1,PASS,
+AMF-007,IPA/2651/2026-27,Master draft number,020-02468826,020-02468826,PASS,
+AMF-007,IPA/2651/2026-27,Master draft type,Master draft,Master draft,PASS,
+AMF-007,IPA/2651/2026-27,House drafts count,1,2,FAIL,
+AMF-007,IPA/2651/2026-27,House draft number TWW-00221556,TWW-00221556,TWW-0022 1556,PASS,
+AMF-007,IPA/2651/2026-27,Unexpected House draft,(none),020-02468826,FAIL,a House draft whose number is not printed in the Manifest
+AMF-007,IPA/2651/2026-27,Draft lines as shown in Nexus,,Master draft: 020-02468826 (KOB MEDICAL TEXTILES PVT LTD; CW Sync Pending) | House draft: TWW-0022 1556 (no shipper; From manifest — requires confirmation) | House: 020-02468826 (KOB MEDICAL TEXTILES PVT LTD; Direct BL — house from Master),INFO,

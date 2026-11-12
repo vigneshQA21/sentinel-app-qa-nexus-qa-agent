@@ -1,120 +1,24 @@
-<!doctype html><meta charset=utf-8><title>Live run · validate-docs SEA-REG-001 SEA-REG-002 SEA-REG-003 SEA-REG-005 SEA-REG-006 SEA-REG-008 SEA-REG-009</title><style>body{font:15px system-ui;margin:24px;background:#f5f6f8;color:#1c2330}h1{font-size:20px;margin:0 0 4px}.s{color:#6b7280;margin:0 0 16px}table{border-collapse:collapse;width:100%;background:#fff}td,th{border:1px solid #d9dde3;padding:8px 10px;text-align:left;vertical-align:top}th{background:#eef0f3}.chip{display:inline-block;border:1px solid;border-radius:10px;padding:1px 8px;margin:2px 4px 2px 0;font-size:12px}pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;max-height:420px;overflow:auto;font-size:12px}.now{background:#fff;border:1px solid #d9dde3;border-radius:8px;padding:10px 14px;margin:0 0 16px}</style><h1>validate-docs SEA-REG-001 SEA-REG-002 SEA-REG-003 SEA-REG-005 SEA-REG-006 SEA-REG-008 SEA-REG-009 · FINISHED</h1><p class="s">Started 15:45:49, updated 15:47:57. This page refreshes by itself every 3 seconds while the run is going.</p><div class="now"><b>Now:</b> 15:47:57  --- run finished ---</div><table><tr><th>Case</th><th>State</th><th>Detail</th><th>Checks</th></tr></table><h3>Log (newest first)</h3><pre>15:47:57  --- run finished ---
-15:47:57  HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261110.html   (opened once at the end of the run by ./nx runreport)
-15:47:56  Debit Note Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/debitnote_data_20261110_154756.csv
-15:47:56  Packing List Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/packing_data_20261110_154756.csv
-15:47:56  Invoice Data report: /home/unifo/Downloads/nexus_agent/runs/_reports/invoice_data_20261110_154756.csv
-15:47:56    21 fields shown in Nexus | compared with the document: 2 (PASS 2, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 19 | NOT_VERIFIABLE: 0
-15:47:56      INFO            Incoterm                       doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Reference No                   doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Delivery No                    doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Account No                     doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Order No                       doc:                                          | nexus:    [empty in Nexus]
-15:47:56    [Debit Note]
-15:47:56      INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Name                           doc:                                          | nexus:    [empty in Nexus]
-15:47:56    [Consignee]
-15:47:56      INFO            Postal Code                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      INFO            Address                        doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Name                           doc:                                          | nexus:    [empty in Nexus]
-15:47:56    [Shipper]
-15:47:56      INFO            Gross Weight                   doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Po Number                      doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Currency Code                  doc:                                          | nexus: USD   [shown by Nexus, no rule for this field]
-15:47:56      INFO            Grand Total                    doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Invoice Date                   doc:                                          | nexus:    [empty in Nexus]
-15:47:56      INFO            Invoice Number                 doc:                                          | nexus:    [empty in Nexus]
-15:47:56      PASS            Master Bill No                 doc: (found on the document)                  | nexus: SITTAGBO667780   [value found on the document]
-15:47:56      PASS            House Bill No                  doc: HTHC26072463                             | nexus: HTHC26072463   [same as the value printed on the document]
-15:47:56    [Debit Note]
-15:47:56    VALIDATION AGAINST THE DOCUMENT
-15:47:56      count per section: Debit Note 15, Shipper 3, Consignee 3  =  21 fields
-15:47:56      21. Debit Note · Incoterm : (empty)
-15:47:56      20. Debit Note · Reference No : (empty)
-15:47:56      19. Debit Note · Supplier No : (empty)
-15:47:56      18. Debit Note · Delivery No : (empty)
-15:47:56      17. Debit Note · Customer No : (empty)
-15:47:56      16. Debit Note · Account No : (empty)
-15:47:56      15. Debit Note · Order No : (empty)
-15:47:56      14. Consignee · Postal Code : (empty)
-15:47:56      13. Consignee · Address : (empty)
-15:47:56      12. Consignee · Name : (empty)
-15:47:56      11. Shipper · Postal Code : (empty)
-15:47:56      10. Shipper · Address : (empty)
-15:47:56       9. Shipper · Name : (empty)
-15:47:56       8. Debit Note · Gross Weight : (empty)
-15:47:56       7. Debit Note · Po Number : (empty)
-15:47:56       6. Debit Note · Currency Code : USD
-15:47:56       5. Debit Note · Grand Total : (empty)
-15:47:56       4. Debit Note · Invoice Date : (empty)
-15:47:56       3. Debit Note · Invoice Number : (empty)
-15:47:56       2. Debit Note · Master Bill No : SITTAGBO667780
-15:47:56       1. Debit Note · House Bill No : HTHC26072463
-15:47:56    ALL FIELDS SHOWN IN NEXUS (21)
-15:47:56  SEA-REG-006  DEBIT NOTE DATA  PASS   IPA/2587/2026-27   source: FJ-0018972 - Consolidated-Debit note.pdf page 3
-15:47:56    16 fields shown in Nexus | compared with the document: 12 (PASS 11, FAIL 0, REVIEW 0, KNOWN 1) | INFO (no document value): 4 | NOT_VERIFIABLE: 0
-15:47:56      PASS            Postal Code                    doc: (found on the document)                  | nexus: 700091   [value found on the document]
-15:47:56      PASS            Address                        doc: (found on the document)                  | nexus: Infinium Digispace, 4th Floor, Plot No: 15   [17/17 words found on the document]
-15:47:56      PASS            Name                           doc: (found on the document)                  | nexus: Nicco Engineering Services Limited   [4/4 words found on the document]
-15:47:56    [Consignee]
-15:47:56      PASS            Postal Code                    doc: (found on the document)                  | nexus: HG1 4DS   [value found on the document]
-15:47:56      PASS            Address                        doc: (found on the document)                  | nexus: 280 Claro Road, HARROGATE, North Yorkshire   [14/14 words found on the document]
-15:47:56      PASS            Name                           doc: (found on the document)                  | nexus: Belzona Limited   [2/2 words found on the document]
-15:47:56    [Shipper]
-15:47:56      INFO            Incoterm                       doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      PASS            Po Number                      doc: (found on the document)                  | nexus: IMPO/2627/011   [value found on the document]
-15:47:56      PASS            Order No                       doc: (found on the document)                  | nexus: S002100520   [value found on the document]
-15:47:56      INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      PASS            Account No                     doc: (found on the document)                  | nexus: 001084   [value found on the document]
-15:47:56      INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      KNOWN           Gross Weight                   doc: 16                                       | nexus: 4043.001775   [KNOWN ISSUE (accepted, not a bug); scanned page read with OCR (may be misread): differs from the document]
-15:47:56      INFO            Invoice No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      PASS            Date                           doc: (found on the document)                  | nexus: 04/08/2026   [value found on the document]
-15:47:56      PASS            Packing List No                doc: (found on the document)                  | nexus: S002100520   [value found on the document]
-15:47:56    [Packing List]
-15:47:56    VALIDATION AGAINST THE DOCUMENT
-15:47:56      count per section: Packing List 10, Shipper 3, Consignee 3  =  16 fields
-15:47:56      16. Consignee · Postal Code : 700091
-15:47:56      15. Consignee · Address : Infinium Digispace, 4th Floor, Plot No: 15, Block-CP, Sector-V, Salt Lake City KOLKATA 700091 India
-15:47:56      14. Consignee · Name : Nicco Engineering Services Limited
-15:47:56      13. Shipper · Postal Code : HG1 4DS
-15:47:56      12. Shipper · Address : 280 Claro Road, HARROGATE, North Yorkshire HG1 4DS, United Kingdom ., Claro Road, United Kingdom
-15:47:56      11. Shipper · Name : Belzona Limited
-15:47:56      10. Packing List · Incoterm : (empty)
-15:47:56       9. Packing List · Po Number : IMPO/2627/011
-15:47:56       8. Packing List · Order No : S002100520
-15:47:56       7. Packing List · Customer No : (empty)
-15:47:56       6. Packing List · Account No : 001084
-15:47:56       5. Packing List · Supplier No : (empty)
-15:47:56       4. Packing List · Gross Weight : 4043.001775
-15:47:56       3. Packing List · Invoice No : (empty)
-15:47:56       2. Packing List · Date : 04/08/2026
-15:47:56       1. Packing List · Packing List No : S002100520
-15:47:56    ALL FIELDS SHOWN IN NEXUS (16)
-15:47:56  SEA-REG-005  PACKING LIST DATA  PASS   IPA/2586/2026-27   source: FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf page 7-15 (scan, OCR)   scanned page: read with OCR, differences are REVIEW, not FAIL
-15:47:56    16 fields shown in Nexus | compared with the document: 12 (PASS 12, FAIL 0, REVIEW 0, KNOWN 0) | INFO (no document value): 4 | NOT_VERIFIABLE: 0
-15:47:56      PASS            Postal Code                    doc: (found on the document)                  | nexus: 400051   [value found on the document]
-15:47:56      PASS            Address                        doc: (found on the document)                  | nexus: BHAVAN, G-9, ALI YAVAR JUNG EXW MARG BANDR   [16/16 words found on the document]
-15:47:56      PASS            Name                           doc: (found on the document)                  | nexus: INDIAN OIL CORPORATION LIMITED   [4/4 words found on the document]
-15:47:56    [Consignee]
-15:47:56      PASS            Postal Code                    doc: (found on the document)                  | nexus: 09068   [value found on the document]
-15:47:56      PASS            Address                        doc: (found on the document)                  | nexus: Macchiareddu VI Strada Ovest 09068 Uta ( C   [8/8 words found on the document]
-15:47:56      PASS            Name                           doc: (found on the document)                  | nexus: Remo SA Srl   [3/3 words found on the document]
-15:47:56    [Shipper]
-15:47:56      PASS            Incoterm                       doc: (found on the document)                  | nexus: EXW   [value found on the document]
-15:47:56      PASS            Po Number                      doc: (found on the document)                  | nexus: 9070M25C49 / 18037356   [value found on the document]
-15:47:56      PASS            Order No                       doc: (found on the document)                  | nexus: 9070M25C49 / 18037356   [value found on the document]
-15:47:56      INFO            Customer No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      INFO            Account No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      INFO            Supplier No                    doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      PASS            Gross Weight                   doc: 14.445                                   | nexus: 14.445   [same as the value printed on the document]
-15:47:56      INFO            Invoice No                     doc:                                          | nexus:    [empty in Nexus; no value located on the document]
-15:47:56      PASS            Date                           doc: (found on the document)                  | nexus: 30/12/25   [value found on the document]
-15:47:56      PASS            Packing List No                doc: (found on the document)                  | nexus: PL_B34332_S1_R1   [value found on the document]
-15:47:56    [Packing List]
-15:47:56    VALIDATION AGAINST THE DOCUMENT
-15:47:56      count per section: Packing List 10, Shipper 3, Consignee 3  =  16 fields
-15:47:56      16. Consignee · Postal Code : 400051
-15:47:56      15. Consignee · Address : BHAVAN, G-9, ALI YAVAR JUNG EXW MARG BANDRA EASTIN MUMBAI MH 9070M25C49 / 18037356 400051 INDIA</pre>
+<!doctype html><meta charset=utf-8><title>Live run · suite AMF-007 AMF-008</title><style>body{font:15px system-ui;margin:24px;background:#f5f6f8;color:#1c2330}h1{font-size:20px;margin:0 0 4px}.s{color:#6b7280;margin:0 0 16px}table{border-collapse:collapse;width:100%;background:#fff}td,th{border:1px solid #d9dde3;padding:8px 10px;text-align:left;vertical-align:top}th{background:#eef0f3}.chip{display:inline-block;border:1px solid;border-radius:10px;padding:1px 8px;margin:2px 4px 2px 0;font-size:12px}pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;max-height:420px;overflow:auto;font-size:12px}.now{background:#fff;border:1px solid #d9dde3;border-radius:8px;padding:10px 14px;margin:0 0 16px}</style><h1>suite AMF-007 AMF-008 · FINISHED</h1><p class="s">Started 15:37:27, updated 15:43:51. This page refreshes by itself every 3 seconds while the run is going.</p><div class="now"><b>Now:</b> 15:43:51  --- run finished ---</div><table><tr><th>Case</th><th>State</th><th>Detail</th><th>Checks</th></tr></table><h3>Log (newest first)</h3><pre>15:43:51  --- run finished ---
+15:43:51  HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261112.html   (opened once at the end of the run by ./nx runreport)
+15:43:51  Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261112_154351.csv
+15:43:51  AMF-008  SENT              AMF-008 | QA agent trigger / Don&#x27;t delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST
+15:43:51  AMF-007  SENT              AMF-007 | QA agent trigger / Don&#x27;t delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST
+15:43:51  INFO local_sender: Sent &#x27;AMF-008 | QA agent trigger / Don&#x27;t delete / Regression testing | Pre-Alert 232-17354245 | INDIVIDUAL | MANIFEST&#x27; to prealert.nexus@unifo.in (message id 1a1cf3fd6370637b)
+15:38:49  INFO testsuite: waiting 300s before case AMF-008
+15:38:49  INFO local_sender: Sent &#x27;AMF-007 | QA agent trigger / Don&#x27;t delete / Regression testing | Pre-Alert 020-02468826 | INDIVIDUAL | MANIFEST&#x27; to prealert.nexus@unifo.in (message id 1a1cf3b3a07d316d)
+15:38:46  AMF-008: CLEAR - not in Nexus (searched 232-17354245, CHJE262209, 232-17354245); it can be sent.
+15:38:42  INFO cleanup: Email Subject search 232-17354245 in Others: 0 row(s) []
+15:38:39  INFO cleanup: Email Subject search 232-17354245 in Pre-Alerts: 0 row(s) []
+15:38:27  INFO cleanup: Bill No search CHJE262209 in Others: 0 row(s) []
+15:38:24  INFO cleanup: Bill No search CHJE262209 in Pre-Alerts: 0 row(s) []
+15:38:20  INFO cleanup: Bill No search 232-17354245 in Others: 0 row(s) []
+15:38:17  INFO cleanup: Bill No search 232-17354245 in Pre-Alerts: 0 row(s) []
+15:38:09  AMF-007: CLEAR - not in Nexus (searched 020-02468826, TWW-00221556, 020-02468826); it can be sent.
+15:38:05  INFO cleanup: Email Subject search 020-02468826 in Others: 0 row(s) []
+15:38:01  INFO cleanup: Email Subject search 020-02468826 in Pre-Alerts: 0 row(s) []
+15:37:49  INFO cleanup: Bill No search TWW-00221556 in Others: 0 row(s) []
+15:37:46  INFO cleanup: Bill No search TWW-00221556 in Pre-Alerts: 0 row(s) []
+15:37:43  INFO cleanup: Bill No search 020-02468826 in Others: 0 row(s) []
+15:37:40  INFO cleanup: Bill No search 020-02468826 in Pre-Alerts: 0 row(s) []
+15:37:30  INFO session: Reusing saved Nexus session /home/unifo/Downloads/nexus_agent/state/nexus_session.json
+15:37:27  live page: /home/unifo/Downloads/nexus_agent/runs/_live/index.html</pre>
