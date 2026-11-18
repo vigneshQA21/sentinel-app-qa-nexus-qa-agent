@@ -1,0 +1,4 @@
+2026-11-18 13:58:41,982 INFO nexus_agent.local_sender: [dry-run] would send 'UNR-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003315 | CONSOLIDATED (MASTER+MANIFEST+HOUSE)' (FJ-0003315 - Consolidated.pdf) to test.prealert.nexus@unifo.in
+UNR-001  DRY_RUN           UNR-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003315 | CONSOLIDATED (MASTER+MANIFEST+HOUSE)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261118_135841.csv

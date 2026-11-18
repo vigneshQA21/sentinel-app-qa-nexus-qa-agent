@@ -13,7 +13,7 @@ Safety rules that apply to every command:
 
 | Command | What it does |
 |---|---|
-| `./run_regression.sh REG-001` | Sends one Air case to prealert.nexus@unifo.in (one email at a time, 30 s gaps) |
+| `./run_regression.sh REG-001` | Sends one Air case to test.prealert.nexus@unifo.in (one email at a time, 30 s gaps) |
 | `./run_regression.sh REG-006 REG-007` | Sends several cases, with a gap between cases |
 | `./run_regression.sh air-daily` | The whole AIR_SINGLE_HOUSE_DAILY set (6 cases, about 15 emails) |
 | `./run_regression.sh SEA-REG-001` | Sends one Sea case (Sea is send-only in the suite; validate per case, see section 2) |
@@ -141,3 +141,19 @@ One sample is sent in different orders, one phase at a time. The same shipment c
 | After the Manifest-only phase: check the Master draft and House draft numbers in the UI | `./nx validate-drafts --cases AMF-001 AMF-002 AMF-003 AMF-004 AMF-006` |
 
 Samples: `samples/air manifest individual scenarios/` (the six consolidated PDFs) and its `split/<FJ>/` folders (individual documents). Expected Master/House numbers: `air_manifest_scenarios` in `config/settings.yaml`.
+
+| `./nx patterns` | Learns which kinds of findings turned out to be real bugs (bug-sheet statuses + your decisions) and saves `state/bug_patterns.json`; the run report and `./nx bugs` show a Bug likelihood from it |
+
+
+## Air Direct BL (DBL-nnn)
+
+| Goal | Command |
+|---|---|
+| Send the Direct BL Master (case DBL-001) | `./run_regression.sh DBL-001 --no-wait` |
+| Pass / fail report per requirement point (read-only) | `./nx validate-directbl --cases DBL-001` -> `runs/_reports/directbl_report_*.md` + `directbl_data_*.csv` |
+| Stage one phase of the multi-house individual sends | `./nx mh-phase MH-002 --phase 1` |
+
+## Multi-house field check
+`./nx validate-mhfields --cases MH-003` - Master + every House of the job, each against its own page of the MH-001 source sample. Read-only; stores no bug candidates.
+
+Direct BL XML point: `./nx validate-directbl --cases DBL-001 --xml <folder>` (or put the files in samples/DBL-001/xml/). Judges the Job XMLs of the Push (NEXUS PUSH CONSOL = Master, NEXUS PUSH HOUSE = House): ShipmentType DRT on both, no Receiving/Sending Agent, waybill numbers agree with the document. The 4 reference XMLs of DBL-001 pass (samples/_dbl_xml_reference).

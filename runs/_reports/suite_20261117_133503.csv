@@ -1,0 +1,2 @@
+case_id,scenario,mode,sample_ref,status,subject,sent_at,screening,warnings,expected_mapping,expected_result,nexus_job,actual_nexus_result
+DBL-001,"Air Direct BL (Master only, MAWB 406-91177402, SZX to DEL, consignee not FLYJAC/LOGISTEED): House must be auto-created from the Master",individual,406-91177402,SENT,DBL-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 406-91177402 | INDIVIDUAL | MASTER,2026-11-17T13:35:03,,,,,,

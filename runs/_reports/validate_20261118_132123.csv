@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+-,,,SESSION_EXPIRED,ERROR,,Nexus session expired and NEXUS_USER/NEXUS_PASSWORD are not set. Run `./nx login` to log in again.,

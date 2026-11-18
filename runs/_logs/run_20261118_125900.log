@@ -1,0 +1,52 @@
+2026-11-18 12:59:11,010 INFO nexus_agent.cleanup: Bill No search 098-31251603 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:59:14,205 INFO nexus_agent.cleanup: Bill No search 098-31251603 in Others: 0 row(s) []
+2026-11-18 12:59:17,387 INFO nexus_agent.cleanup: Bill No search ORAE26040499 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:59:20,572 INFO nexus_agent.cleanup: Bill No search ORAE26040499 in Others: 0 row(s) []
+2026-11-18 12:59:23,758 INFO nexus_agent.cleanup: Bill No search AI142 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:59:26,953 INFO nexus_agent.cleanup: Bill No search AI142 in Others: 0 row(s) []
+2026-11-18 12:59:38,518 INFO nexus_agent.cleanup: ID search IPA/2756/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:59:41,692 INFO nexus_agent.cleanup: ID search IPA/2756/2026-27 in Others: 0 row(s) []
+2026-11-18 12:59:44,878 INFO nexus_agent.cleanup: ID search IPA/2698/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:59:48,066 INFO nexus_agent.cleanup: ID search IPA/2698/2026-27 in Others: 0 row(s) []
+2026-11-18 12:59:51,232 INFO nexus_agent.cleanup: ID search IPA/2574/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:59:54,411 INFO nexus_agent.cleanup: ID search IPA/2574/2026-27 in Others: 0 row(s) []
+2026-11-18 12:59:57,591 INFO nexus_agent.cleanup: ID search IPA/2512/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:00:00,753 INFO nexus_agent.cleanup: ID search IPA/2512/2026-27 in Others: 0 row(s) []
+REG-007: CLEAR - not in Nexus (searched 098-31251603, ORAE26040499, AI142, IPA/2756/2026-27, IPA/2698/2026-27, IPA/2574/2026-27, IPA/2512/2026-27); it can be sent.
+2026-11-18 13:00:12,433 INFO nexus_agent.cleanup: Bill No search SLLQDJAI611765 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:00:15,611 INFO nexus_agent.cleanup: Bill No search SLLQDJAI611765 in Others: 0 row(s) []
+2026-11-18 13:00:18,791 INFO nexus_agent.cleanup: Bill No search TAOJAI26165972 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:00:21,961 INFO nexus_agent.cleanup: Bill No search TAOJAI26165972 in Others: 0 row(s) []
+2026-11-18 13:00:33,541 INFO nexus_agent.cleanup: ID search IPA/2762/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:00:36,726 INFO nexus_agent.cleanup: ID search IPA/2762/2026-27 in Others: 0 row(s) []
+2026-11-18 13:00:39,901 INFO nexus_agent.cleanup: ID search IPA/2705/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:00:43,084 INFO nexus_agent.cleanup: ID search IPA/2705/2026-27 in Others: 0 row(s) []
+2026-11-18 13:00:46,254 INFO nexus_agent.cleanup: ID search IPA/2583/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:00:49,414 INFO nexus_agent.cleanup: ID search IPA/2583/2026-27 in Others: 0 row(s) []
+2026-11-18 13:00:52,591 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:00:55,774 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Others: 0 row(s) []
+2026-11-18 13:01:07,983 INFO nexus_agent.cleanup: Email Subject search FJ-0001497 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:01:11,176 INFO nexus_agent.cleanup: Email Subject search FJ-0001497 in Others: 0 row(s) []
+SEA-REG-002: CLEAR - not in Nexus (searched SLLQDJAI611765, TAOJAI26165972, IPA/2762/2026-27, IPA/2705/2026-27, IPA/2583/2026-27, IPA/2519/2026-27, FJ-0001497); it can be sent.
+2026-11-18 13:01:17,903 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER' to test.prealert.nexus@unifo.in (message id 1a1ed912cf36b0c9)
+2026-11-18 13:01:17,904 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-18 13:01:50,026 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MANIFEST' to test.prealert.nexus@unifo.in (message id 1a1ed91aae5c155d)
+2026-11-18 13:01:50,026 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-18 13:02:21,950 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | INVOICE' to test.prealert.nexus@unifo.in (message id 1a1ed92277c88b2c)
+2026-11-18 13:02:21,951 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-18 13:02:53,444 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | HOUSE' to test.prealert.nexus@unifo.in (message id 1a1ed92a28178fbb)
+2026-11-18 13:02:53,445 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-18 13:03:25,278 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | DELIVERY NOTE' to test.prealert.nexus@unifo.in (message id 1a1ed931f9afb6fa)
+2026-11-18 13:03:25,396 INFO nexus_agent.local_sender: SCREENING FJ-0001497 - Consolidated.pdf: 2 page(s): MBL pages 1; HBL pages 2
+2026-11-18 13:03:25,397 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001497)
+2026-11-18 13:03:25,399 INFO nexus_agent.local_sender: another run sent an email 0s ago: waiting 29s (one by one, never in parallel)
+2026-11-18 13:03:58,750 INFO nexus_agent.local_sender: Sent 'SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)' to test.prealert.nexus@unifo.in (message id 1a1ed93a121e71b6)
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MANIFEST
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | INVOICE
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | HOUSE
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | DELIVERY NOTE
+SEA-REG-002 SENT              SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261118_130358.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261118.html   (opened once at the end of the run by ./nx runreport)

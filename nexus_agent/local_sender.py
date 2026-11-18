@@ -204,8 +204,13 @@ class LocalSender:
                     continue
                 if not skip_off and self.store.was_doc_sent(folder.name, f.name):
                     continue
-                doc = self.label(self.individual_type(f, folder.name))
-                subject, case = self._subject(self.ld["subject_template"], f, ref=folder.name, doc=doc)
+                case_id = self.case_for_path.get(f, "")
+                same = (self.ld.get("same_subject_cases") or {}).get(case_id)
+                if same:                                        # every email of this case carries ONE subject (consolidated wording; ref and types fixed in settings)
+                    subject, case = self._subject(self.ld["consolidated_subject_template"], f, ref=same.get("ref", folder.name), types=same["types"])
+                else:
+                    doc = self.label(self.individual_type(f, folder.name))
+                    subject, case = self._subject(self.ld["subject_template"], f, ref=folder.name, doc=doc)
                 items.append(Item(folder.name, f, subject, None, case))
         return items
 

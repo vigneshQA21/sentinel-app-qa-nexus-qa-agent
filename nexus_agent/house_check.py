@@ -10,7 +10,7 @@ from pathlib import Path
 from .awb_extract import extract_master
 from .config import Config
 from .local_sender import LocalSender
-from .master_check import _exact, _text, address_check, norm, num, parse_date, row, tokens, verdict
+from .master_check import _exact, _text, nexus_to_document, address_check, norm, num, parse_date, row, tokens, verdict
 from .nexus.session import SessionExpired
 from .nexus.uat import UatPages, map_house_panel, read_panel_inputs, read_party_ids
 from .pdf_split import detect_parts, find_hawbs, page_labels, page_texts
@@ -242,17 +242,21 @@ def check_house_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_se
         return res
     res["ipa"] = info["ipa"]
     ui.expand_row(cell)
-    rec = next((r for r in ui.read_shipment_details() if r.get("Record Type", "").startswith("House")), None)
+    records = ui.read_shipment_details()                # read BEFORE the viewer opens (the table is not on the viewer page)
+    rec = next((r for r in records if r.get("Record Type", "").startswith("House")), None)
     ui.open_viewer(cell, expanded=True)
     house = next((o for o in ui.parent_options() if o.startswith("House")), None)
     if house is None:
         res["message"] = "no House parent in the viewer"
         return res
+    ui.assert_viewer_job([r.get("Bill No.", "") for r in records if r.get("Record Type", "").startswith("House")], house)
     ui.select_parent(house)
     ui.page.wait_for_timeout(1500)
     ui.screenshot(cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id / "house_data.png")
     fields = attach_details(map_house_panel(read_panel_inputs(ui.page), read_party_ids(ui.page)), rec)
     res["rows"] = compare_house(doc, src[2] or doc.get("house_number"), mdoc, fields, rec, v)
+    if not doc.get("ocr"):
+        res["rows"] = nexus_to_document(res["rows"], doc.get("text") or "")
     if doc.get("ocr"):
         from .master_check import ocr_adjust
         res["rows"] = ocr_adjust(res["rows"], doc.get("text") or "")

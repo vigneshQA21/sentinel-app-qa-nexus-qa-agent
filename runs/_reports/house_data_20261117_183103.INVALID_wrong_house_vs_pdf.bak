@@ -1,0 +1,58 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Job Number,,,INFO,assigned later when the job is created
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Page Nos.,,1,INFO,page of the house within its document group
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Bill No.,EVLHR035455,EVLHR035465,FAIL,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Shipper,"Acron Aviation L3COMMCWY Training Solutions Limited C/O ALLPORT CARGO SERVICES LTD UNIT 3, THE FARADAY CENTRE, FARADAY ROAD, CRAWLEY WEST SUSS RH10 9PX GB",Acron Aviation,PASS,shipper found in the document block
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Shipper ID,ACRAVILON,ACRAVILON,PASS,same as the Party ID in the data panel
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Consignee,Airbus India AIRINDDEL7 Training Centre Private Limited Sector 75 Block D Techno Park (P) LTD Badshahpur Gurugram HARYANA 122010 IN TE 0,Airbus India,PASS,consignee found in the document block
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Consignee ID,Select,,INFO,"party-master ID, not printed on the document"
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Branch,DEL,DEL,PASS,"DEL = Delhi, matches the document's destination"
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Job Type,New Job,New Job,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipment Details,Shipment Details · Status,CW Sync Pending,Consignee Mapping Pending,FAIL,not the final status yet: Nexus is still processing this House
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,House Air Waybill,House Air Waybill · House Number (top right),EVLHR035455,EVLHR035465,FAIL,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,House Air Waybill,House Air Waybill · House Number (bottom right),EVLHR035455,EVLHR035465,FAIL,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,House Air Waybill,House Air Waybill · Master AWB Reference,098-45997836,098-45997836,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipper,Shipper · Name,Acron Aviation L3COMMCWY Training Solutions Limited,Acron AviationTraining Solutions Limited,FAIL,similarity 0.45 (needs 0.9)
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipper,Shipper · Address,"C/O ALLPORT CARGO SERVICES LTD UNIT 3, THE FARADAY CENTRE, FARADAY ROAD, CRAWLEY WEST SUSS RH10 9PX GB","C/O ALLPORT CARGO SERVICES LTD
+UNIT 3, THE FARADAY CENTRE, FARADAY ROAD,
+CRAWLEY WEST SUSS RH10 9PX",PASS,14/14 words of the Nexus address are on the document
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipper,Shipper · Postal Code,RH10 9PX,RH10 9PX,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Shipper,Shipper · Party ID,,ACRAVILON,INFO,"assigned by the Nexus party master, not printed on the document"
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Consignee,Consignee · Name,Airbus India AIRINDDEL7 Training Centre Private Limited,Airbus IndiaPrivate Limited,FAIL,similarity 0.36 (needs 0.9)
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Consignee,Consignee · Address,Sector 75 Block D Techno Park (P) LTD Badshahpur Gurugram HARYANA 122010 IN,"LP7A-2 Terminal 3 Indira Gandi Opp Terminal 3
+Indira Gandi Intl Terminal District LP7A-2
+New Delhi 110037 IN",FAIL,"different address: only 0/10 words of the Nexus address are on the document; not on the document: 110037, DELHI, DISTRICT, GANDI, INDIRA, INTL, LP7A, NEW"
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Consignee,Consignee · Postal Code,122010,110037,FAIL,the party master's postal code is not the one printed on the document
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Consignee,Consignee · Party ID,,Select,INFO,"assigned by the Nexus party master, not printed on the document"
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Agent,Agent · Agent / Origin Party (free text),,"EV Cargo Global Forwarding Limited
+EmergeVest House, 13 Hayes Road
+Southall, UB2 5ND United Kingdom",INFO,not printed on the House page; no document value to compare
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Freight,Freight · Freight Payment,FREIGHT PREPAID (code PP),FREIGHT PREPAID,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Routing,Routing · Airport Of Departure,HEATHROW APT/LONDON,HEATHROW APT/LONDON,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Routing,Routing · Final Destination Airport,DELHI,DELHI,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Flight Route,Flight Route · Type,direct,direct,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · From,LHR,LHR,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · To,DEL,DEL,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · Polname,HEATHROW APT/LONDON,London,INFO,airport name differs from the document's departure airport
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · Polctry,,GB,INFO,country of the airport (Nexus airport master)
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · Podname,DELHI,Delhi,PASS,contained in the document's airport of destination
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · Podctry,,IN,INFO,country of the airport (Nexus airport master)
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · Carrier Name,(printed on the document),AIR INDIA,PASS,carrier name appears on the document
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · Carrier Code,AI,AI,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · Flight Number,AI162,AI162,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Segment 1,Segment 1 · Flight Date,day 4,04/08/2026,PASS,only the day is printed on the AWB
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Pieces,1,1,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Pieces Unit,,PCS,INFO,unit not printed on the AWB (PCS is the Nexus default)
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Gross Weight,3.0,1,FAIL,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Gross Weight Unit,KGS,KGS,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Chargeable Weight,8.0,1.5,FAIL,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Chargeable Weight Unit,KGS,KGS,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Nature And Quantity Of Goods,FLIGHT STIMULATOR PARTS VOL 0.046 M3,"FLIGHT STIMULATOR PARTS
+VOL 0.008 M3",PASS,similarity 0.93 (needs 0.9)
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Volume,0.046,0.008,FAIL,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Cargo,Cargo · Volume Unit,CBM,CBM,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Reference,Reference · Shippers Reference,CAE00684799,CAE00684799,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Reference,Reference · Executed On,03-Aug-26,03/08/2026,PASS,
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Reference,"Reference · (unlabelled, empty)",,,INFO,"empty field, no label"
+MH-003,IPA/2833/2026-27,01 FJ-0000088 - House 3.pdf page 1,Reference,Reference · Incoterm,DDP,DDP,PASS,

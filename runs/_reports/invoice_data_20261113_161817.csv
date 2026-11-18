@@ -1,0 +1,58 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Invoice Number,(found on the document),HK260810-HEIND,PASS,value found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Invoice Date,(found on the document),10/08/2026,PASS,value found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Grand Total,(found on the document),"1, 140.00",PASS,value found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Currency Code,(found on the document),USD,PASS,value found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Po Number,(found on the document),4502231928,PASS,value found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Gross Weight,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Seller,Seller · Name,(found on the document),"Hankuk Electrical Insulating (INSUKO) Co., Ltd.",PASS,6/6 words found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Seller,Seller · Address,(found on the document),"108 Donyu2-Ro, Paju-Eup Paju-Si, Gyeonggi-Do, KOREA",PASS,10/10 words found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Seller,Seller · Postal Code,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Buyer,Buyer · Name,(found on the document),Hitachi Energy India Limited,PASS,4/4 words found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Buyer,Buyer · Address,(found on the document),"PPTR-Dry Transformer, Vadodara Plot No.25 & 26, Majusar GIDC Estate Savli 391775 Gujarat India",PASS,15/15 words found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Buyer,Buyer · Postal Code,(found on the document),391775,PASS,value found on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Order No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Customer No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Delivery No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Reference No,,,INFO,empty in Nexus; no value located on the document
+REG-002,IPA/2696/2026-27,FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf page 6-10,Invoice,Invoice · Incoterm,(found on the document),FCA,PASS,value found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Invoice Number,(found on the document),0255210,PASS,value found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Invoice Date,10/07/2026,10/07/2026,PASS,same as the value printed on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Grand Total,(found on the document),"1 218, 41",PASS,value found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Currency Code,(found on the document),EUR,PASS,value found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Po Number,(found on the document),4892,PASS,value found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Gross Weight,(found on the document),589,PASS,value found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Seller,Seller · Name,(found on the document),ANVIS DECIZE SAS,PASS,3/3 words found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Seller,Seller · Address,,,INFO,empty in Nexus
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Seller,Seller · Postal Code,,,INFO,empty in Nexus; no value located on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Buyer,Buyer · Name,(found on the document),KIRLOSKAR OIL ENGINES LTD 722,PASS,5/5 words found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Buyer,Buyer · Address,(found on the document),22/23 JAY TOWERS KALBHOR NAGAR CHINCHWAD PUNE MH 41101 INDIA,PASS,11/11 words found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Buyer,Buyer · Postal Code,,,INFO,empty in Nexus; no value located on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Order No,,,INFO,empty in Nexus; no value located on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Account No,,,INFO,empty in Nexus; no value located on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Customer No,(found on the document),FLYLOGBOM,PASS,value found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Delivery No,,,INFO,empty in Nexus; no value located on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Reference No,(found on the document),INVOICE008584,PASS,value found on the document
+REG-007,IPA/2698/2026-27,3_Invoice_0255210.pdf page 1,Invoice,Invoice · Incoterm,(found on the document),FCA,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Invoice Number,CD20250534,CD20250534,PASS,same as the value printed on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Invoice Date,(found on the document),30/12/2025,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Grand Total,(found on the document),1987282.50,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Currency Code,(found on the document),EUR,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Po Number,(found on the document),9070M25C49/180373,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Gross Weight,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Seller,Seller · Name,(found on the document),Remo SA s.r.l.,PASS,5/5 words found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Seller,Seller · Address,(found on the document),"VI Strada Ovest, Loc. Macchiareddu, 09068 Uta (CA), Italy",PASS,9/9 words found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Seller,Seller · Postal Code,(found on the document),09068,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Buyer,Buyer · Name,(found on the document),INDIAN OIL CORPORATION LIMITED,PASS,4/4 words found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Buyer,Buyer · Address,(found on the document),"BHAVAN, G-9, ALI YAVAR JUNG MARG BANDRA EASTIN MUMBAI MH 400051 INDIA",PASS,13/13 words found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Buyer,Buyer · Postal Code,(found on the document),400051,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Order No,(found on the document),B34332,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Account No,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Customer No,(found on the document),104690,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Delivery No,(found on the document),IT01-20251681,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Supplier No,,,INFO,empty in Nexus; no value located on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Reference No,(found on the document),IFS Applications,PASS,value found on the document
+SEA-REG-001,IPA/2704/2026-27,FJ-0001380 - Consolidated - Invoice and Packing list.pdf page 5-18,Invoice,Invoice · Incoterm,(found on the document),EXW,PASS,value found on the document

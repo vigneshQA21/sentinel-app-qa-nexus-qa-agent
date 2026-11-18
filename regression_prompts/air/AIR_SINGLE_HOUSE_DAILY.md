@@ -52,7 +52,7 @@ STEP 2 - Execute (only after my explicit go)
   Report progress after each case.
 
 STEP 3 - Verify and report
-  - Confirm in Gmail Sent (to prealert.nexus@unifo.in, sent after the run started) that the number of
+  - Confirm in Gmail Sent (to test.prealert.nexus@unifo.in, sent after the run started) that the number of
     emails equals the dry-run count, each has exactly one attachment, and each is high priority.
   - Print the final table: case, subject, sent time, status, screening warnings.
   - Give me the report path (runs/_reports/suite_<timestamp>.csv) and remind me to fill the

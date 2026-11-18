@@ -296,3 +296,40 @@ def test_house_printed_codes_reads_a_code_glued_to_city_and_state():
     assert printed_codes("1523OLDEWATERFORDWAY LELANDNC28451USTEL:910-454-9442") == ["28451"]
     assert printed_codes("RUE 45400 SEMOY France") == ["45400"]
     assert printed_codes("no code here") == []
+
+
+def test_party_blocks_are_named_by_their_viewer_heading():
+    """Sea Master panel: Notify Party and For Delivery are their own sections, never a second 'Consignee'."""
+    panel = [
+        {"tag": "INPUT", "label": "", "value": "ONEYAARG05243800", "readonly": False, "block": ""},
+        {"tag": "INPUT", "label": "Name", "value": "BLUE WATER SHIPPING", "readonly": False, "block": "Shippers Name And Address"},
+        {"tag": "INPUT", "label": "Address", "value": "ODENSE", "readonly": False, "block": "Shippers Name And Address"},
+        {"tag": "INPUT", "label": "Postal Code", "value": "5220", "readonly": False, "block": "Shippers Name And Address"},
+        {"tag": "INPUT", "label": "Name", "value": "LOGISTEED INDIA PVT . LTD .", "readonly": False, "block": "Consignee Name And Address"},
+        {"tag": "INPUT", "label": "Address", "value": "316 3RD FLOOR", "readonly": False, "block": "Consignee Name And Address"},
+        {"tag": "INPUT", "label": "Postal Code", "value": "", "readonly": False, "block": "Consignee Name And Address"},
+        {"tag": "INPUT", "label": "Name", "value": "SAME AS CONSIGNEE", "readonly": False, "block": "Notify Party Details"},
+        {"tag": "INPUT", "label": "Address", "value": "SAME AS CONSIGNEE", "readonly": False, "block": "Notify Party Details"},
+        {"tag": "INPUT", "label": "Name", "value": "", "readonly": False, "block": "For Delivery Details"},
+        {"tag": "INPUT", "label": "Address", "value": "", "readonly": False, "block": "For Delivery Details"},
+    ]
+    ui = map_master_panel(panel)
+    sections = [(f["section"], f["label"]) for f in ui["fields"]]
+    assert ("Notify Party", "Name") in sections and ("For Delivery", "Address") in sections
+    assert sum(1 for s, _ in sections if s == "Consignee") >= 2 and ("Consignee", "Name") in sections
+    assert ui["consignee"]["name"] == "LOGISTEED INDIA PVT . LTD ." and "notify party" not in ui
+    # without headings (older data, mock Nexus) the order still decides: first = Shipper, later = Consignee
+    plain = [{k: v for k, v in i.items() if k != "block"} for i in panel[:7]]
+    assert ui2 if (ui2 := map_master_panel(plain)) else True
+    assert ui2["consignee"]["name"] == "LOGISTEED INDIA PVT . LTD ."
+
+
+def test_viewer_guard_stops_when_another_job_is_open():
+    import pytest
+    from nexus_agent.nexus.uat import UatPages
+    guard = UatPages.assert_viewer_job
+    guard(None, "ONEYAARG05243800", "Master (ONEYAARG05243800)")                       # the right job
+    guard(None, ["BWSS 13760427A", "BWSS 13760427"], "House (BWSS 13760427)")          # two houses: any listed bill is fine
+    guard(None, [], "Master (098-45997836)")                                           # nothing listed: nothing to compare against
+    with pytest.raises(RuntimeError, match="another job is open"):
+        guard(None, "SLLQDJAI611765", "Master (098-45997836)")

@@ -1,0 +1,14 @@
+2026-11-18 13:17:49,356 INFO nexus_agent.cleanup: Bill No search SSLSG0000350 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:17:52,517 INFO nexus_agent.cleanup: Bill No search SSLSG0000350 in Others: 0 row(s) []
+2026-11-18 13:18:04,062 INFO nexus_agent.cleanup: ID search IPA/2775/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:18:07,237 INFO nexus_agent.cleanup: ID search IPA/2775/2026-27 in Others: 0 row(s) []
+2026-11-18 13:18:10,408 INFO nexus_agent.cleanup: ID search IPA/2774/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:18:13,566 INFO nexus_agent.cleanup: ID search IPA/2774/2026-27 in Others: 0 row(s) []
+2026-11-18 13:18:24,847 INFO nexus_agent.cleanup: Email Subject search FJ-0002245 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:18:28,020 INFO nexus_agent.cleanup: Email Subject search FJ-0002245 in Others: 0 row(s) []
+SEA-RT-270: CLEAR - not in Nexus (searched SSLSG0000350, IPA/2775/2026-27, IPA/2774/2026-27, FJ-0002245); it can be sent.
+2026-11-18 13:18:34,665 INFO nexus_agent.local_sender: Sent 'SEA-RT-270 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002245 | INDIVIDUAL | MASTER' to test.prealert.nexus@unifo.in (message id 1a1eda0ff514b998)
+SEA-RT-270 SENT              SEA-RT-270 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002245 | INDIVIDUAL | MASTER
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261118_131834.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261118.html   (opened once at the end of the run by ./nx runreport)

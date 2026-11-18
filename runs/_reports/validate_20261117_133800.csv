@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+DBL-001,406-91177402,IPA/2824/2026-27,CREATED_IN_NEXUS,PASS,92,MASTER: PASS (in Master) | unexpected: HAWB in House | IPA/2824/2026-27 seen -> Master (406-91177402): MAWBx1; House (406-91177402): HAWBx1,/home/unifo/Downloads/nexus_agent/runs/2026-11-17/DBL-001

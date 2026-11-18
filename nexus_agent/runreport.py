@@ -3,6 +3,7 @@ Built from the day's validate / data CSVs in runs/_reports and from the bug hist
 from __future__ import annotations
 
 import csv
+import json
 import re
 from collections import defaultdict
 from datetime import datetime
@@ -68,7 +69,40 @@ def dev_completed_to_retest(cfg) -> list[dict] | None:
         return None
 
 
+def _compare(reports: Path, day: str) -> dict:
+    """Today's cases against each case's last earlier day (standing rule); never stops the report."""
+    try:
+        from . import daycompare
+        return daycompare.compare(reports, day)
+    except Exception as exc:
+        return {"day": day, "cases": [], "first_runs": [], "error": f"{type(exc).__name__}: {exc}"}
+
+
+def _patterns(store: Store, reports: Path):
+    """Bug patterns learned from the sheet statuses (cache written by `./nx patterns`) or, without the cache, from the local decisions."""
+    from . import bugprob
+    f = reports.parent.parent / "state" / "bug_patterns.json"
+    try:
+        if f.exists():
+            return bugprob.Patterns(json.loads(f.read_text(encoding="utf-8"))["records"])
+    except Exception:
+        pass
+    return bugprob.Patterns(bugprob.history_from_store(store))
+
+
+def _std(P, doc: str, x: dict) -> dict:
+    """class (MATCH / MISSING / MISMATCH ...) and, for the ones to review, the likelihood of a real bug with its basis."""
+    from . import stdcompare as SC
+    cls = SC.classify(x)
+    out = {"class": cls, "prob": None, "basis": ""}
+    if cls in SC.REVIEWABLE and x.get("result") in ("FAIL", "REVIEW"):
+        p, basis = P.estimate(doc, x.get("field", ""), SC.nature(cls))
+        out.update(prob=p, basis=basis)
+    return out
+
+
 def build(store: Store, reports: Path, date: str, retested: dict[str, bool] | None = None) -> dict:
+    P = _patterns(store, reports)
     day = date.replace("-", "")
     validates = sorted(reports.glob(f"validate_{day}_*.csv"), key=_stamp)
     current: dict[str, dict] = {}                         # latest check per case where the pre-alert exists in Nexus
@@ -148,16 +182,30 @@ def build(store: Store, reports: Path, date: str, retested: dict[str, bool] | No
                 c = counts.setdefault(doc, defaultdict(int))
                 c[x["result"]] += 1
         findings = [{"document": doc, "field": x.get("field", ""), "doc": x.get("expected_from_document", ""), "nexus": x.get("shown_in_nexus", ""),
-                     "result": x["result"], "note": x.get("note", ""), "source": x.get("source", "")}
+                     "result": x["result"], "note": x.get("note", ""), "source": x.get("source", ""), **_std(P, doc, x)}
                     for (doc, ipa, _f), x in latest_data.items() if ipa == r["ipa"] and x["result"] in ("FAIL", "REVIEW", "KNOWN", "NOT_VERIFIABLE")]
         rows_by_doc: dict[str, list[dict]] = defaultdict(list)
         for (doc, ipa, _f), x in latest_data.items():
             if ipa == r["ipa"]:
                 rows_by_doc[doc].append({"field": x.get("field", ""), "doc": x.get("expected_from_document", ""), "nexus": x.get("shown_in_nexus", ""),
-                                         "result": x.get("result", ""), "note": x.get("note", ""), "source": x.get("source", "")})
+                                         "result": x.get("result", ""), "note": x.get("note", ""), "source": x.get("source", ""), **_std(P, doc, x)})
         cases.append({"case_id": cid, "ipa": r["ipa"], "verdict": r["verdict"], "after": r.get("appeared_after_s", ""), "mapping": mapping,
                       "causes": causes, "seen": seen, "others": others, "counts": counts, "findings": findings,
                       "rows": dict(rows_by_doc), "attempts": attempts.get(cid, [])})
+
+    cmp_ = _compare(reports, day)
+    from . import stdcompare as SC
+    regressed = {(c["case_id"], ch["document"], ch["field"]) for c in cmp_.get("cases", []) for ch in c["changes"] if ch["kind"] == "REGRESSED"}
+    for c in cases:
+        tri = {SC.PASS_B: 0, SC.INFO_B: 0, SC.KNOWN_B: 0, SC.FAIL_B: [], SC.DISCUSS_B: []}
+        for doc, rows in c["rows"].items():
+            for x in rows:
+                b = SC.triage(x["class"], (c["case_id"], doc, x["field"]) in regressed)
+                if b in (SC.FAIL_B, SC.DISCUSS_B):
+                    tri[b].append({"document": doc, **{k: x[k] for k in ("field", "doc", "nexus", "class", "note", "prob")}})
+                else:
+                    tri[b] += 1
+        c["triage"] = tri
 
     # today's occurrences of bugs (from the bug history), joined with the bug table
     bugs = {b["fingerprint"]: b for st in ("PENDING", "APPROVED", "LOGGED", "NOT_A_BUG") for b in store.bugs_by_status(st)}
@@ -201,7 +249,7 @@ def build(store: Store, reports: Path, date: str, retested: dict[str, bool] | No
             not_tested.append({**item, "why": f"{doc} data was not checked today"})
     return {"date": date, "cases": cases, "runs": runs, "attempts": dict(attempts), "sent": dict(sent), "new": new, "still": still, "accepted": accepted,
             "passed": sorted(passed, key=lambda x: x["row"] or "0"), "not_tested": not_tested, "already": already,
-            "sheet_read": retested is not None and bool(retested)}
+            "sheet_read": retested is not None and bool(retested), "compare": cmp_}
 
 
 def _line(x: dict) -> str:
@@ -230,10 +278,27 @@ def report(d: dict) -> str:
     missing = [cid for cid in d["sent"] if cid not in {c["case_id"] for c in d["cases"]}]
     for cid in missing:
         out.append(f"  {cid}  sent today ({d['sent'][cid]} email(s)) but not validated in Nexus yet")
+    out += ["", "DATA VALIDATION RESULT  (Nexus field -> document; nothing below is a bug until you confirm it)"]
+    for c in d["cases"]:
+        t = c.get("triage")
+        if not t or not (t["PASS"] or t["FAIL"] or t["DISCUSSION NEEDED"]):
+            continue
+        out.append(f"  {c['case_id']}  {c['ipa']}:  PASS {t['PASS']}   FAIL {len(t['FAIL'])}   DISCUSSION NEEDED {len(t['DISCUSSION NEEDED'])}"
+                   f"   (info {t['INFO']}, known {t['KNOWN']})")
+        for title, key, why in (("FAIL - it matched in an earlier run and does not now", "FAIL", ""),
+                                ("DISCUSSION NEEDED - mismatches and doubts", "DISCUSSION NEEDED", "")):
+            if t[key]:
+                out.append(f"      {title}")
+                for x in t[key]:
+                    out.append(f"        [{x['class']}] {x['document']} · {x['field']}: document says '{(x['doc'] or '-')[:60]}' | Nexus shows '{(x['nexus'] or '-')[:60]}'")
     out += ["", f"BUGS FOUND IN THIS RUN ({len(d['new'])} new, waiting for your decision)"]
     out += [f"  - {_line(x)}" + (f"  [also seen on {x['first']}]" if x["first"] != d["date"] else "") for x in d["new"]] or ["  none"]
     out += ["", f"RAISED BUGS STILL THERE ({len(d['still'])})"]
     out += [f"  - {_line(x)}  [bug sheet row {x['row']}]" if x["row"] else f"  - {_line(x)}  [{x['status'].lower()}]" for x in d["still"]] or ["  none"]
+    if d.get("compare") and (d["compare"]["cases"] or d["compare"]["first_runs"]):
+        from . import daycompare
+        out += ["", "COMPARED WITH THE PREVIOUS RUN OF EACH CASE (fields reported by the checks: new / regressed / still there / no longer reported)"]
+        out += ["  " + ln for ln in daycompare.render(d["compare"])]
     out += ["", f"PREVIOUSLY RAISED BUGS THAT PASSED IN THIS RUN, NOT RE-TESTED YET ({len(d['passed'])})"]
     out += [f"  - {_line(x)}  [bug sheet row {x['row']}]  not seen in {x['ipa']}" for x in d["passed"]] or ["  none"]
     if d["already"]:
@@ -286,6 +351,47 @@ def _traces(runs_dir: Path, date: str, cid: str, ipa: str) -> dict:
     return {"latest": dirs[-1] if dirs else None, "mapping": mapping}
 
 
+def _compare_html(d: dict, esc) -> str:
+    cmp_ = d.get("compare") or {}
+    if not cmp_.get("cases"):
+        return ""
+    from . import daycompare as DC
+    rows, det = [], []
+    for c in cmp_["cases"]:
+        n = c["counts"]
+        warn = " ⚠" if c["not_comparable"] else ""
+        rows.append(f'<tr><td>{esc(c["case_id"])}</td><td>{esc(DC._pretty(c["prev_day"]))}</td><td>{esc(c["prev_ipa"])} → {esc(c["ipa"])}</td>'
+                    f'<td>{esc(c["mapping_before"] or "-")} → {esc(c["mapping_now"] or "-")}</td><td>{n.get("NEW", 0)}</td><td>{n.get("REGRESSED", 0)}</td>'
+                    f'<td>{n.get("STILL", 0)}</td><td>{n.get("FIXED", 0)}</td><td>{warn}</td></tr>')
+        ch = [x for x in c["changes"] if x["kind"] in ("REGRESSED", "NEW", "FIXED")][:12]
+        if ch:
+            body = "".join(f'<tr><td>{x["kind"]}</td><td>{esc(x["document"])}</td><td>{esc(x["field"])}</td><td>{esc(x["before"])} → {esc(x["after"])}</td>'
+                           f'<td>{esc(x["nexus_now"][:80])}</td></tr>' for x in ch)
+            det.append(f"<details><summary><b>{esc(c['case_id'])}</b>: what changed since {esc(DC._pretty(c['prev_day']))}</summary>"
+                       f"<table class='small'><tr><th>Change</th><th>Document</th><th>Field</th><th>Result</th><th>Nexus now</th></tr>{body}</table></details>")
+    note = ("<p class='sub'>⚠ Sea findings before 13-Nov came from the old checker (party blocks named by order, no document values): not strictly comparable. "
+            "Each case is compared with its last earlier day that has data.</p>")
+    return ("<section><h2>Compared with the previous run of each case</h2><table><tr><th>Case</th><th>Previous run</th><th>Pre-alert</th><th>Mapping</th>"
+            "<th>New</th><th>Regressed</th><th>Still there</th><th>No longer reported</th><th></th></tr>" + "".join(rows) + "</table>" + note + "".join(det) + "</section>")
+
+
+def _triage_html(d: dict, esc) -> str:
+    parts = []
+    for c in d["cases"]:
+        t = c.get("triage")
+        if not t or not (t["PASS"] or t["FAIL"] or t["DISCUSSION NEEDED"]):
+            continue
+        def tbl(key):
+            body = "".join(f'<tr><td>{esc(x["class"])}</td><td>{esc(x["document"])}</td><td>{esc(x["field"])}</td><td>{esc(x["doc"][:80] or "-")}</td>'
+                           f'<td>{esc(x["nexus"][:80] or "-")}</td></tr>' for x in t[key])
+            return (f"<table class='small'><tr><th>Class</th><th>Document</th><th>Field</th><th>Document says</th><th>Nexus shows</th></tr>{body}</table>"
+                    if t[key] else "<p class='sub'>none</p>")
+        parts.append(f"<h3>{esc(c['case_id'])} · {esc(c['ipa'])}: PASS {t['PASS']} · FAIL {len(t['FAIL'])} · DISCUSSION NEEDED {len(t['DISCUSSION NEEDED'])}</h3>"
+                     f"<p><b>FAIL</b> (matched in an earlier run, not now)</p>{tbl('FAIL')}<p><b>DISCUSSION NEEDED</b> (mismatches and doubts)</p>{tbl('DISCUSSION NEEDED')}")
+    return ("<section><h2>Data validation result</h2><p class='sub'>Nexus field → document. A FAIL or a discussion item becomes a bug only after you confirm it.</p>"
+            + "".join(parts) + "</section>") if parts else ""
+
+
 def html_report(d: dict, reports: Path) -> str:
     import html
     import os
@@ -314,10 +420,15 @@ def html_report(d: dict, reports: Path) -> str:
         for cause in c["causes"]:
             sec.append(f'<p class="cause"><b>Probable root cause:</b> {esc(cause)}</p>')
         if c["findings"]:
-            rows = "".join(f'<tr><td>{esc(f["document"])}</td><td>{esc(f["field"])}</td><td>{esc(f["doc"])}</td><td>{esc(f["nexus"])}</td>'
+            def _lk(f):
+                return f'<td title="{esc(f.get("basis", ""))}">{round(f["prob"] * 100)}%</td>' if f.get("prob") is not None else "<td></td>"
+            rows = "".join(f'<tr><td>{esc(f["document"])}</td><td>{esc(f["field"])}</td><td>{esc(f.get("class", ""))}</td>{_lk(f)}<td>{esc(f["doc"])}</td><td>{esc(f["nexus"])}</td>'
                            f'<td>{_chip(f["result"], f["result"])}</td><td>{esc(f["note"])}</td></tr>' for f in sorted(
-                               c["findings"], key=lambda f: ({"FAIL": 0, "REVIEW": 1}.get(f["result"], 2), f["document"], f["field"])))
-            sec.append("<h3>Data findings (fields that did not match)</h3><table><tr><th>Document</th><th>Field</th><th>Document says</th>"
+                               c["findings"], key=lambda f: (-(f.get("prob") if f.get("prob") is not None else -1), {"FAIL": 0, "REVIEW": 1}.get(f["result"], 2), f["document"], f["field"])))
+            sec.append("<h3>Data findings: what the document prints against the Nexus shipment data (most likely bugs first)</h3>"
+                       "<p class='sub'>MISSING = the document prints it, Nexus is empty · MISMATCH = both have a value, they differ · NOT IN DOCUMENT = Nexus holds a value the document does not print. "
+                       "Likelihood = share of earlier findings of the same kind that were real bugs in the bug sheet (hover for the basis); it only orders the list, it is not a verdict.</p>"
+                       "<table><tr><th>Document</th><th>Field</th><th>Class</th><th>Bug likelihood</th><th>Document says</th>"
                        f"<th>Nexus shows</th><th>Result</th><th>Note</th></tr>{rows}</table>")
         if c.get("attempts"):
             att = "".join(f'<tr><td>{esc(a["time"])}</td><td>{esc(a["what"])}</td><td>{esc(a.get("ipa", ""))}</td>'
@@ -328,12 +439,12 @@ def html_report(d: dict, reports: Path) -> str:
             cnt = defaultdict(int)
             for x in rws:
                 cnt[x["result"]] += 1
-            body = "".join(f'<tr><td>{esc(x["field"])}</td><td>{esc(x["doc"])}</td><td>{esc(x["nexus"])}</td><td>{_chip(x["result"], x["result"])}</td>'
+            body = "".join(f'<tr><td>{esc(x["field"])}</td><td>{esc(x.get("class", ""))}</td><td>{esc(x["doc"])}</td><td>{esc(x["nexus"])}</td><td>{_chip(x["result"], x["result"])}</td>'
                            f'<td>{esc(x["note"])}</td></tr>' for x in sorted(rws, key=lambda x: (order.get(x["result"], 9), x["field"])))
             head = ", ".join(f"{k} {v}" for k, v in sorted(cnt.items(), key=lambda kv: order.get(kv[0], 9)))
             src = esc(rws[0].get("source", "")) if rws else ""
             sec.append(f"<details><summary><b>{esc(doc)}</b>: every field checked ({len(rws)}) · {esc(head)}</summary><p class='sub'>Source: {src}</p>"
-                       f"<table class='small'><tr><th>Field</th><th>Document says</th><th>Nexus shows</th><th>Result</th><th>Note</th></tr>{body}</table></details>")
+                       f"<table class='small'><tr><th>Field</th><th>Class</th><th>Document says</th><th>Nexus shows</th><th>Result</th><th>Note</th></tr>{body}</table></details>")
         shots = []
         if tr["mapping"]:
             for pat, cap in (("*_prealert_expanded.png", "Pre-Alerts page, row expanded"), ("*_unresolved_row.png", "Unresolved Documents"),
@@ -399,7 +510,7 @@ def html_report(d: dict, reports: Path) -> str:
             f'<p>Nexus Pre-Alert regression · {esc(d["date"])} · consolidated: every run of the day · generated {datetime.now():%H:%M:%S}</p></div></header><main>'
             f'<div class="tiles">{tiles}</div>' + timeline +
             '<section><h2>Cases, latest result of the day</h2><table><tr><th>Case</th><th>Verdict</th><th>Pre-alert</th><th>Appeared after</th><th>Mapping</th>'
-            f'<th>Data checks</th><th>Trace</th></tr>{summary}</table></section>' + details + tail +
+            f'<th>Data checks</th><th>Trace</th></tr>{summary}</table></section>' + _triage_html(d, esc) + _compare_html(d, esc) + details + tail +
             '<p class="sub">Nothing in this report was added to the bug sheet; that needs your confirmation for each bug.</p></main>')
 
 

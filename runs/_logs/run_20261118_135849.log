@@ -1,0 +1,8 @@
+2026-11-18 13:58:59,514 INFO nexus_agent.cleanup: Email Subject search FJ-0003315 in Pre-Alerts: 0 row(s) []
+2026-11-18 13:59:02,686 INFO nexus_agent.cleanup: Email Subject search FJ-0003315 in Others: 0 row(s) []
+UNR-001: CLEAR - not in Nexus (searched FJ-0003315); it can be sent.
+2026-11-18 13:59:09,940 INFO nexus_agent.local_sender: Sent 'UNR-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003315 | CONSOLIDATED (MASTER+MANIFEST+HOUSE)' to test.prealert.nexus@unifo.in (message id 1a1edc6278476890)
+UNR-001  SENT              UNR-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0003315 | CONSOLIDATED (MASTER+MANIFEST+HOUSE)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261118_135909.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261118.html   (opened once at the end of the run by ./nx runreport)

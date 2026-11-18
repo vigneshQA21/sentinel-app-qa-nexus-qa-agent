@@ -137,3 +137,60 @@ def test_sample_refs_read_the_fj_number_from_the_file_names():
     cfg = Config("config", profile="uat")
     assert sample_refs(cfg, "REG-001") == ["FJ-0000723"]
     assert sample_refs(cfg, "SEA-REG-002") == ["FJ-0001497"]
+
+
+# --- the standard: document <-> Nexus shipment data (13-Nov-2026) -----------------------------------------------------------------------
+from pathlib import Path as _P
+
+_SEA009 = _P("samples/SEA-REG-009/FJ-0002952 - Consolidated - DAP Incoterm.pdf")
+
+
+def _src009():
+    from nexus_agent.pdf_split import page_texts_layout
+    data = _SEA009.read_bytes()
+    texts = page_texts_layout(data, ocr=False)
+    return {"pdf": _SEA009, "pages": [1, 2], "text": "\n".join(texts[:2]), "scanned": False}
+
+
+def _f(section, label, value=""):
+    return {"section": section, "label": label, "value": value, "readonly": False}
+
+
+import pytest as _pytest
+
+
+@_pytest.mark.skipif(not _SEA009.exists(), reason="sample not staged")
+def test_sea_empty_delivery_block_is_not_a_missing_consignee_and_same_as_consignee_is_fine():
+    from nexus_agent.sea_check import compare_sea
+    fields = {"fields": [_f("Consignee", "Name", "LOGISTEED INDIA PVT . LTD ."), _f("Consignee", "Address", "316 3RD FLOOR D-21 CORPORATE PARK SECTOR-21 DWARKA NEW DELHI-110077"),
+                         _f("Notify Party", "Name", "SAME AS CONSIGNEE"), _f("Notify Party", "Address", "SAME AS CONSIGNEE"),
+                         _f("For Delivery", "Name", ""), _f("For Delivery", "Address", "")]}
+    rows = {r["field"]: r for r in compare_sea(fields, _src009())}
+    assert rows["Consignee · Name"]["result"] == "PASS" and "LOGISTEED" in rows["Consignee · Name"]["expected_from_document"]    # the document's value is shown
+    assert rows["For Delivery · Name"]["result"] == "INFO" and "nothing to compare" in rows["For Delivery · Name"]["note"]
+    assert not [r for r in rows.values() if r["result"] in ("FAIL", "REVIEW")]
+
+
+@_pytest.mark.skipif(not _SEA009.exists(), reason="sample not staged")
+def test_sea_consignee_really_empty_in_nexus_is_missing_and_shows_the_bill_value():
+    from nexus_agent.sea_check import compare_sea
+    fields = {"fields": [_f("Consignee", "Name", ""), _f("Consignee", "Address", ""), _f("Shipper", "Name", "BLUE WATER SHIPPING A / S ( ODENSE )")]}
+    rows = {r["field"]: r for r in compare_sea(fields, _src009())}
+    r = rows["Consignee · Name"]
+    assert r["result"] == "FAIL" and r["note"].startswith("MISSING") and "LOGISTEED INDIA PVT. LTD." in r["expected_from_document"] and "page 1" in r["expected_from_document"]
+    assert rows["Shipper · Name"]["result"] == "PASS" and "BLUE WATER SHIPPING" in rows["Shipper · Name"]["expected_from_document"]
+
+
+@_pytest.mark.skipif(not _SEA009.exists(), reason="sample not staged")
+def test_sea_extra_empty_slot_of_a_filled_label_is_not_a_finding():
+    from nexus_agent.sea_check import compare_sea
+    fields = {"fields": [_f("Other", "Description", "BRAKE PARTS"), _f("Other", "Description", ""), _f("Other", "Description", "")]}
+    rows = compare_sea(fields, _src009())
+    assert [r["result"] for r in rows][1:] == ["INFO", "INFO"] and "extra empty slot" in rows[1]["note"]
+
+
+@_pytest.mark.skipif(not _SEA009.exists(), reason="sample not staged")
+def test_sea_description_empty_everywhere_is_missing_with_the_page_reference():
+    from nexus_agent.sea_check import compare_sea
+    rows = compare_sea({"fields": [_f("Other", "Description", "")]}, _src009())
+    assert rows[0]["result"] == "FAIL" and rows[0]["note"].startswith("MISSING") and "page" in rows[0]["expected_from_document"]

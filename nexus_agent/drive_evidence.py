@@ -116,3 +116,62 @@ def upload_day(cfg: Config, date: str | None = None, dry_run: bool = False, out=
     _state(cfg).write_text(json.dumps(data, indent=1))
     out(f"Drive folder of {date}: {url}")
     return url
+
+
+# --- automatic, never-stopping upload ---------------------------------------------------------------
+AUTO_CMDS = {"suite", "validate", "validate-master", "validate-house", "validate-docs", "validate-mhfields", "validate-directbl",
+             "validate-drafts", "runreport", "delete", "run", "forward", "send-local"}
+
+
+def days_to_upload(cfg: Config, today: str | None = None) -> list[str]:
+    """Today, plus every earlier day that has screenshots and no recorded Drive folder (catch-up), plus the last 2 days again (files added after
+    their last upload). Uploading is idempotent: files already in Drive are skipped."""
+    today = today or datetime.now().strftime("%Y-%m-%d")
+    try:
+        done = json.loads(_state(cfg).read_text())
+    except Exception:
+        done = {}
+    days = sorted(p.name for p in cfg.runs_dir.iterdir() if p.is_dir() and re.fullmatch(r"\d{4}-\d{2}-\d{2}", p.name) and any(p.rglob("*.png")))
+    recent = days[-3:]
+    return sorted({d for d in days if d not in done} | set(recent) | {today}, reverse=True)
+
+
+def auto_upload(cfg: Config, out=print, attempts: int = 4) -> int:
+    """Uploads every day from days_to_upload. A failure (network, Drive quota, expired token) is retried with a growing pause and logged; it NEVER
+    raises and never changes the exit code of a run. Returns the number of days that failed."""
+    import fcntl
+    import time
+    lock = open(cfg.state_dir / "drive_upload.lock", "w")
+    try:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        out("Drive upload: another upload is already running")
+        return 0
+    failed = 0
+    for day in days_to_upload(cfg):
+        for n in range(1, attempts + 1):
+            try:
+                upload_day(cfg, day, out=out)
+                break
+            except Exception as exc:
+                out(f"Drive upload {day}: attempt {n}/{attempts} failed ({type(exc).__name__}: {str(exc).splitlines()[0][:120] if str(exc) else ''})")
+                if n == attempts:
+                    failed += 1
+                else:
+                    time.sleep(30 * n)
+    return failed
+
+
+def start_background(cfg: Config) -> None:
+    """Fire and forget: a detached process runs the upload after the command that produced the evidence; the command never waits for it."""
+    import subprocess
+    import sys
+    log = cfg.runs_dir / "_logs" / "drive_upload.log"
+    log.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with open(log, "a") as fh:
+            fh.write(f"\n--- {datetime.now():%Y-%m-%d %H:%M:%S} auto upload started ---\n")
+            subprocess.Popen([sys.executable, "-m", "nexus_agent", "upload-evidence", "--auto"], stdout=fh, stderr=fh, stdin=subprocess.DEVNULL,
+                             cwd=str(cfg.root) if hasattr(cfg, "root") else None, start_new_session=True)
+    except Exception:
+        pass

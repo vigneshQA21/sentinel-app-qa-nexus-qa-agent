@@ -15,13 +15,13 @@ for a in "$@"; do
     --validate) validate=1 ;;
     --no-wait) wait=(--interval 0) ;;
     --no-force) force=() ;;
-    REG-*|SEA-REG-*|AMF-*) cases+=("$a") ;;
+    REG-*|SEA-REG-*|AMF-*|MH-*|SEA-MH-*|SEA-RT-*|DBL-*|UNR-*) cases+=("$a") ;;
     *) echo "unknown argument: $a"; exit 2 ;;
   esac
 done
 [ ${#cases[@]} -eq 0 ] && { sed -n '2,7p' "$0"; exit 2; }
 if [ ${#dry[@]} -eq 1 ]; then echo "DRY-RUN (nothing is sent): ${cases[*]}"
-else echo "SENDING to prealert.nexus@unifo.in: ${cases[*]}  (old pre-alerts must be deleted in Nexus first)"; fi
+else echo "SENDING to test.prealert.nexus@unifo.in: ${cases[*]}  (old pre-alerts must be deleted in Nexus first)"; fi
 val=(); [ $validate -eq 1 ] && val=(--validate)      # validate right after each case is sent (headed browser, buffer + polling)
 mkdir -p runs/_logs
 python -m nexus_agent suite "${dry[@]}" "${force[@]}" "${wait[@]}" "${val[@]}" --cases "${cases[@]}" 2>&1 | grep --line-buffered -v -e fontTools -e "INFO nexus_agent.nexus.session" | tee -a "runs/_logs/run_$(date +%Y%m%d_%H%M%S).log"

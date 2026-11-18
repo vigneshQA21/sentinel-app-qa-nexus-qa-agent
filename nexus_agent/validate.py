@@ -262,7 +262,17 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     if row["evidence"]:
         ui.screenshot(evidence / "list.png")
     pre_ipas = [ui.row_info(c).get("ipa", "") for c in ui.case_cells(f"{case.id} |")]     # all pre-alerts of this case (Pre-Alerts tab)
-    ui.open_viewer(cell)
+    for attempt in range(20):                   # a job that is still processing has no 'View documents' yet (Sea jobs take 8-18 min): wait, never crash
+        try:
+            ui.open_viewer(cell)
+            break
+        except Exception as exc:
+            if attempt == 19:
+                raise
+            log.info("%s: the viewer is not available yet (job still processing?): %s; looking again in 30 s", case.id, str(exc).splitlines()[0][:80])
+            time.sleep(30)
+            ui.open_list()
+            cell = ui.find_case_row(f"{case.id} |") or cell
     parents = ui.read_parents(evidence if row["evidence"] else None)
     in_pre = pre_ipas
     in_others = ui.capture_others(f"{case.id} |") if row["evidence"] else []      # follow-ups / duplicates of this case
@@ -283,6 +293,16 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     alternates = {k: [x.upper() for x in vals] for k, vals in (cfg.settings["validation"].get("type_alternates") or {}).items()}
     v = compare(expected, actual, cfg.settings["validation"]["type_aliases"], accept={"MANIFEST": {"Manifest"}}, alternates=alternates)
     ok = v.passed(cfg.settings["validation"].get("fail_on_unexpected", False))
+    mh_lines: list[str] = []
+    if case.id.upper().startswith(("MH-", "SEA-MH-")):                      # air multi-house: House count, each HAWB, manifest, duplicate page
+        from .multihouse import check_parents, expected_for_case, verdict as mh_verdict
+        exp = expected_for_case(cfg, case.id)
+        if exp is None:
+            mh_lines = ["MULTI-HOUSE: no sample file staged for this case, House checks not run"]
+        else:
+            checks = check_parents(parents, exp, getattr(ui, "unresolved", None))
+            mh_lines = [f"MULTI-HOUSE {c.status}: {c.name} - {c.detail}" for c in checks]
+            ok = ok and mh_verdict(checks) == "PASS"
     row["verdict"] = "PASS" if ok else "FAIL"
     seen = "; ".join(f"{p['parent']}: " + (", ".join(f"{g['label']}x{max(g['pages'],1)}" for g in p["linked"]) or "-") for p in parents)
     lines = [f"{r.doc_type}: {r.status} ({r.detail})" for r in v.results]
@@ -292,6 +312,7 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     if causes:
         ui.set_trace_notes(causes)
         lines += [f"PROBABLE ROOT CAUSE: {c}" for c in causes]
+    lines += mh_lines
     row["details"] = " | ".join(lines + [f"{info['ipa']} seen -> {seen}"] + ([f"also in Others tab: {', '.join(in_others)}"] if in_others else []))
     store.upsert(PreAlert(ref=key), Status.MAPPING_PASS if ok else Status.MAPPING_FAIL, f"{case.id}: {row['details']}")
     return row

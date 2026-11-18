@@ -12,7 +12,7 @@ bug sheet with the evidence attached as Drive links.
 > **Challenges:** see [docs/CHALLENGES.md](docs/CHALLENGES.md) (what made the regression hard, what we did, what is still open).
 
 ## The 30-second explanation
-1. **Send**: test documents from Quadance go to `prealert.nexus@unifo.in` (one email for a consolidated PDF, one per file for individual documents), high priority, with a subject that names the test case.
+1. **Send**: test documents from Quadance go to `test.prealert.nexus@unifo.in` (one email for a consolidated PDF, one per file for individual documents), high priority, with a subject that names the test case.
 2. **Wait and poll**: 3 minutes buffer, then check every 20 s for up to 7 minutes. The time Nexus takes is recorded.
 3. **Check the mapping**: Master, House, Manifest, Invoice and Packing List must sit under the right parents.
 4. **Check the data**: every field Nexus shows for Master (55), House (60), Manifest (8), Invoice (19) and Packing List (16) is compared with the PDF. The document is the source of truth, so nothing is hard-coded and any sample works.

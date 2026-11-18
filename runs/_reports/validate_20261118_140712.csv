@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+UNR-001,FJ-0003315,IPA/2878/2026-27,CREATED_IN_NEXUS,PASS,184,MASTER: PASS (in Master) | MANIFEST: PASS (in Manifest) | HOUSE: PASS (in House) | unexpected: UNCLASSIFIED in Unclassified; ? in Unclassified; UNCLASSIFIED in Unclassified; ? in Unclassified | IPA/2878/2026-27 seen -> Master (160-13868993): MAWBx1; House (WWP-264080): HAWBx1; Air Manifest: AIRMANIFESTx1 | also in Others tab: IPA/2880/2026-27,/home/unifo/Downloads/nexus_agent/runs/2026-11-18/UNR-001

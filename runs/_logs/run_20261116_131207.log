@@ -1,0 +1,240 @@
+2026-11-16 13:12:21,016 INFO nexus_agent.cleanup: Bill No search 020-27293980 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:12:24,409 INFO nexus_agent.cleanup: Bill No search 020-27293980 in Others: 0 row(s) []
+2026-11-16 13:12:27,606 INFO nexus_agent.cleanup: Bill No search ONAE26049373 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:12:30,797 INFO nexus_agent.cleanup: Bill No search ONAE26049373 in Others: 0 row(s) []
+2026-11-16 13:12:42,182 INFO nexus_agent.cleanup: ID search IPA/2693/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:12:45,379 INFO nexus_agent.cleanup: ID search IPA/2693/2026-27 in Others: 0 row(s) []
+2026-11-16 13:12:48,555 INFO nexus_agent.cleanup: ID search IPA/2559/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:12:51,744 INFO nexus_agent.cleanup: ID search IPA/2559/2026-27 in Others: 0 row(s) []
+2026-11-16 13:12:54,946 INFO nexus_agent.cleanup: ID search IPA/2503/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:12:58,141 INFO nexus_agent.cleanup: ID search IPA/2503/2026-27 in Others: 0 row(s) []
+2026-11-16 13:13:01,330 INFO nexus_agent.cleanup: ID search IPA/2465/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:13:04,516 INFO nexus_agent.cleanup: ID search IPA/2465/2026-27 in Others: 0 row(s) []
+2026-11-16 13:13:16,282 INFO nexus_agent.cleanup: Email Subject search FJ-0000723 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:13:19,479 INFO nexus_agent.cleanup: Email Subject search FJ-0000723 in Others: 0 row(s) []
+REG-001: CLEAR - not in Nexus (searched 020-27293980, ONAE26049373, IPA/2693/2026-27, IPA/2559/2026-27, IPA/2503/2026-27, IPA/2465/2026-27, FJ-0000723); it can be sent.
+2026-11-16 13:13:31,997 INFO nexus_agent.cleanup: Bill No search 160-15776084 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:13:35,206 INFO nexus_agent.cleanup: Bill No search 160-15776084 in Others: 0 row(s) []
+2026-11-16 13:13:38,393 INFO nexus_agent.cleanup: Bill No search CHJE262335 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:13:41,583 INFO nexus_agent.cleanup: Bill No search CHJE262335 in Others: 0 row(s) []
+2026-11-16 13:13:53,518 INFO nexus_agent.cleanup: ID search IPA/2696/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:13:56,715 INFO nexus_agent.cleanup: ID search IPA/2696/2026-27 in Others: 0 row(s) []
+2026-11-16 13:13:59,905 INFO nexus_agent.cleanup: ID search IPA/2579/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:14:03,093 INFO nexus_agent.cleanup: ID search IPA/2579/2026-27 in Others: 0 row(s) []
+2026-11-16 13:14:06,292 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:14:09,473 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Others: 0 row(s) []
+2026-11-16 13:14:12,649 INFO nexus_agent.cleanup: ID search IPA/2428/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:14:15,836 INFO nexus_agent.cleanup: ID search IPA/2428/2026-27 in Others: 0 row(s) []
+2026-11-16 13:14:27,762 INFO nexus_agent.cleanup: Email Subject search FJ-0000602 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:14:30,956 INFO nexus_agent.cleanup: Email Subject search FJ-0000602 in Others: 0 row(s) []
+REG-002: CLEAR - not in Nexus (searched 160-15776084, CHJE262335, IPA/2696/2026-27, IPA/2579/2026-27, IPA/2519/2026-27, IPA/2428/2026-27, FJ-0000602); it can be sent.
+2026-11-16 13:14:43,621 INFO nexus_agent.cleanup: Bill No search 057-05262084 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:14:46,818 INFO nexus_agent.cleanup: Bill No search 057-05262084 in Others: 0 row(s) []
+2026-11-16 13:14:50,011 INFO nexus_agent.cleanup: Bill No search SNY06007868 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:14:53,186 INFO nexus_agent.cleanup: Bill No search SNY06007868 in Others: 0 row(s) []
+2026-11-16 13:15:04,522 INFO nexus_agent.cleanup: ID search IPA/2716/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:15:07,721 INFO nexus_agent.cleanup: ID search IPA/2716/2026-27 in Others: 0 row(s) []
+2026-11-16 13:15:10,912 INFO nexus_agent.cleanup: ID search IPA/2564/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:15:14,093 INFO nexus_agent.cleanup: ID search IPA/2564/2026-27 in Others: 0 row(s) []
+2026-11-16 13:15:17,277 INFO nexus_agent.cleanup: ID search IPA/2504/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:15:20,464 INFO nexus_agent.cleanup: ID search IPA/2504/2026-27 in Others: 0 row(s) []
+2026-11-16 13:15:23,651 INFO nexus_agent.cleanup: ID search IPA/2469/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:15:26,839 INFO nexus_agent.cleanup: ID search IPA/2469/2026-27 in Others: 0 row(s) []
+2026-11-16 13:15:38,704 INFO nexus_agent.cleanup: Email Subject search FJ-0000883 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:15:41,910 INFO nexus_agent.cleanup: Email Subject search FJ-0000883 in Others: 0 row(s) []
+REG-005: CLEAR - not in Nexus (searched 057-05262084, SNY06007868, IPA/2716/2026-27, IPA/2564/2026-27, IPA/2504/2026-27, IPA/2469/2026-27, FJ-0000883); it can be sent.
+2026-11-16 13:15:54,159 INFO nexus_agent.cleanup: Bill No search 160-15585765 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:15:57,374 INFO nexus_agent.cleanup: Bill No search 160-15585765 in Others: 0 row(s) []
+2026-11-16 13:16:00,557 INFO nexus_agent.cleanup: Bill No search FLD6445 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:16:03,735 INFO nexus_agent.cleanup: Bill No search FLD6445 in Others: 0 row(s) []
+2026-11-16 13:16:15,242 INFO nexus_agent.cleanup: ID search IPA/2724/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:16:18,449 INFO nexus_agent.cleanup: ID search IPA/2724/2026-27 in Others: 0 row(s) []
+2026-11-16 13:16:21,636 INFO nexus_agent.cleanup: ID search IPA/2565/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:16:24,824 INFO nexus_agent.cleanup: ID search IPA/2565/2026-27 in Others: 0 row(s) []
+2026-11-16 13:16:28,008 INFO nexus_agent.cleanup: ID search IPA/2506/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:16:31,193 INFO nexus_agent.cleanup: ID search IPA/2506/2026-27 in Others: 0 row(s) []
+2026-11-16 13:16:34,366 INFO nexus_agent.cleanup: ID search IPA/2471/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:16:37,549 INFO nexus_agent.cleanup: ID search IPA/2471/2026-27 in Others: 0 row(s) []
+2026-11-16 13:16:49,510 INFO nexus_agent.cleanup: Email Subject search FJ-0000518 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:16:52,714 INFO nexus_agent.cleanup: Email Subject search FJ-0000518 in Others: 0 row(s) []
+REG-006: CLEAR - not in Nexus (searched 160-15585765, FLD6445, IPA/2724/2026-27, IPA/2565/2026-27, IPA/2506/2026-27, IPA/2471/2026-27, FJ-0000518); it can be sent.
+2026-11-16 13:17:05,226 INFO nexus_agent.cleanup: Bill No search 098-31251603 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:17:08,439 INFO nexus_agent.cleanup: Bill No search 098-31251603 in Others: 0 row(s) []
+2026-11-16 13:17:11,634 INFO nexus_agent.cleanup: Bill No search ORAE26040499 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:17:14,819 INFO nexus_agent.cleanup: Bill No search ORAE26040499 in Others: 0 row(s) []
+2026-11-16 13:17:18,000 INFO nexus_agent.cleanup: Bill No search AI142 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:17:21,180 INFO nexus_agent.cleanup: Bill No search AI142 in Others: 0 row(s) []
+2026-11-16 13:17:33,069 INFO nexus_agent.cleanup: ID search IPA/2698/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:17:36,281 INFO nexus_agent.cleanup: ID search IPA/2698/2026-27 in Others: 0 row(s) []
+2026-11-16 13:17:39,458 INFO nexus_agent.cleanup: ID search IPA/2574/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:17:42,651 INFO nexus_agent.cleanup: ID search IPA/2574/2026-27 in Others: 0 row(s) []
+2026-11-16 13:17:45,832 INFO nexus_agent.cleanup: ID search IPA/2512/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:17:49,018 INFO nexus_agent.cleanup: ID search IPA/2512/2026-27 in Others: 0 row(s) []
+2026-11-16 13:17:52,214 INFO nexus_agent.cleanup: ID search IPA/2478/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:17:55,414 INFO nexus_agent.cleanup: ID search IPA/2478/2026-27 in Others: 0 row(s) []
+REG-007: CLEAR - not in Nexus (searched 098-31251603, ORAE26040499, AI142, IPA/2698/2026-27, IPA/2574/2026-27, IPA/2512/2026-27, IPA/2478/2026-27); it can be sent.
+2026-11-16 13:18:07,269 INFO nexus_agent.cleanup: Bill No search 932-78831771 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:18:10,478 INFO nexus_agent.cleanup: Bill No search 932-78831771 in Others: 0 row(s) []
+2026-11-16 13:18:13,664 INFO nexus_agent.cleanup: Bill No search SUSAO008522 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:18:16,851 INFO nexus_agent.cleanup: Bill No search SUSAO008522 in Others: 0 row(s) []
+2026-11-16 13:18:28,235 INFO nexus_agent.cleanup: ID search IPA/2703/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:18:31,430 INFO nexus_agent.cleanup: ID search IPA/2703/2026-27 in Others: 0 row(s) []
+2026-11-16 13:18:34,616 INFO nexus_agent.cleanup: ID search IPA/2578/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:18:37,802 INFO nexus_agent.cleanup: ID search IPA/2578/2026-27 in Others: 0 row(s) []
+2026-11-16 13:18:40,992 INFO nexus_agent.cleanup: ID search IPA/2533/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:18:44,169 INFO nexus_agent.cleanup: ID search IPA/2533/2026-27 in Others: 0 row(s) []
+2026-11-16 13:18:47,355 INFO nexus_agent.cleanup: ID search IPA/2484/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:18:50,540 INFO nexus_agent.cleanup: ID search IPA/2484/2026-27 in Others: 0 row(s) []
+2026-11-16 13:19:02,496 INFO nexus_agent.cleanup: Email Subject search FJ-0001132 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:19:05,705 INFO nexus_agent.cleanup: Email Subject search FJ-0001132 in Others: 0 row(s) []
+REG-009: CLEAR - not in Nexus (searched 932-78831771, SUSAO008522, IPA/2703/2026-27, IPA/2578/2026-27, IPA/2533/2026-27, IPA/2484/2026-27, FJ-0001132); it can be sent.
+2026-11-16 13:19:17,475 INFO nexus_agent.cleanup: Bill No search 264580192 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:19:20,668 INFO nexus_agent.cleanup: Bill No search 264580192 in Others: 0 row(s) []
+2026-11-16 13:19:23,853 INFO nexus_agent.cleanup: Bill No search GEN2037979 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:19:27,026 INFO nexus_agent.cleanup: Bill No search GEN2037979 in Others: 0 row(s) []
+2026-11-16 13:19:38,422 INFO nexus_agent.cleanup: ID search IPA/2704/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:19:41,624 INFO nexus_agent.cleanup: ID search IPA/2704/2026-27 in Others: 0 row(s) []
+2026-11-16 13:19:44,816 INFO nexus_agent.cleanup: ID search IPA/2582/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:19:48,003 INFO nexus_agent.cleanup: ID search IPA/2582/2026-27 in Others: 0 row(s) []
+2026-11-16 13:19:51,197 INFO nexus_agent.cleanup: ID search IPA/2518/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:19:54,380 INFO nexus_agent.cleanup: ID search IPA/2518/2026-27 in Others: 0 row(s) []
+2026-11-16 13:19:57,568 INFO nexus_agent.cleanup: ID search IPA/2386/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:20:00,748 INFO nexus_agent.cleanup: ID search IPA/2386/2026-27 in Others: 0 row(s) []
+2026-11-16 13:20:12,595 INFO nexus_agent.cleanup: Email Subject search FJ-0001380 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:20:15,788 INFO nexus_agent.cleanup: Email Subject search FJ-0001380 in Others: 0 row(s) []
+SEA-REG-001: CLEAR - not in Nexus (searched 264580192, GEN2037979, IPA/2704/2026-27, IPA/2582/2026-27, IPA/2518/2026-27, IPA/2386/2026-27, FJ-0001380); it can be sent.
+2026-11-16 13:20:27,813 INFO nexus_agent.cleanup: Bill No search SLLQDJAI611765 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:20:31,018 INFO nexus_agent.cleanup: Bill No search SLLQDJAI611765 in Others: 0 row(s) []
+2026-11-16 13:20:34,217 INFO nexus_agent.cleanup: Bill No search TAOJAI26165972 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:20:37,399 INFO nexus_agent.cleanup: Bill No search TAOJAI26165972 in Others: 0 row(s) []
+2026-11-16 13:20:49,478 INFO nexus_agent.cleanup: ID search IPA/2705/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:20:52,733 INFO nexus_agent.cleanup: ID search IPA/2705/2026-27 in Others: 0 row(s) []
+2026-11-16 13:20:55,905 INFO nexus_agent.cleanup: ID search IPA/2583/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:20:59,091 INFO nexus_agent.cleanup: ID search IPA/2583/2026-27 in Others: 0 row(s) []
+2026-11-16 13:21:02,292 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:21:05,481 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Others: 0 row(s) []
+2026-11-16 13:21:08,649 INFO nexus_agent.cleanup: ID search IPA/2446/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:21:11,841 INFO nexus_agent.cleanup: ID search IPA/2446/2026-27 in Others: 0 row(s) []
+2026-11-16 13:21:23,698 INFO nexus_agent.cleanup: Email Subject search FJ-0001497 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:21:26,897 INFO nexus_agent.cleanup: Email Subject search FJ-0001497 in Others: 0 row(s) []
+SEA-REG-002: CLEAR - not in Nexus (searched SLLQDJAI611765, TAOJAI26165972, IPA/2705/2026-27, IPA/2583/2026-27, IPA/2519/2026-27, IPA/2446/2026-27, FJ-0001497); it can be sent.
+2026-11-16 13:21:38,410 INFO nexus_agent.cleanup: ID search IPA/2717/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:21:41,612 INFO nexus_agent.cleanup: ID search IPA/2717/2026-27 in Others: 0 row(s) []
+2026-11-16 13:21:44,805 INFO nexus_agent.cleanup: ID search IPA/2584/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:21:47,991 INFO nexus_agent.cleanup: ID search IPA/2584/2026-27 in Others: 0 row(s) []
+2026-11-16 13:21:51,180 INFO nexus_agent.cleanup: ID search IPA/2395/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:21:54,377 INFO nexus_agent.cleanup: ID search IPA/2395/2026-27 in Others: 0 row(s) []
+2026-11-16 13:21:57,576 INFO nexus_agent.cleanup: ID search IPA/2388/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:22:00,755 INFO nexus_agent.cleanup: ID search IPA/2388/2026-27 in Others: 0 row(s) []
+2026-11-16 13:22:12,490 INFO nexus_agent.cleanup: Email Subject search FJ-0001318 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:22:15,691 INFO nexus_agent.cleanup: Email Subject search FJ-0001318 in Others: 0 row(s) []
+SEA-REG-003: CLEAR - not in Nexus (searched IPA/2717/2026-27, IPA/2584/2026-27, IPA/2395/2026-27, IPA/2388/2026-27, FJ-0001318); it can be sent.
+2026-11-16 13:22:27,373 INFO nexus_agent.cleanup: Bill No search 274099774 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:22:30,571 INFO nexus_agent.cleanup: Bill No search 274099774 in Others: 0 row(s) []
+2026-11-16 13:22:33,771 INFO nexus_agent.cleanup: Bill No search FGTJ2607000062 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:22:36,959 INFO nexus_agent.cleanup: Bill No search FGTJ2607000062 in Others: 0 row(s) []
+2026-11-16 13:22:48,379 INFO nexus_agent.cleanup: ID search IPA/2718/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:22:51,574 INFO nexus_agent.cleanup: ID search IPA/2718/2026-27 in Others: 0 row(s) []
+2026-11-16 13:22:54,757 INFO nexus_agent.cleanup: ID search IPA/2526/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:22:57,944 INFO nexus_agent.cleanup: ID search IPA/2526/2026-27 in Others: 0 row(s) []
+2026-11-16 13:23:01,118 INFO nexus_agent.cleanup: ID search IPA/2450/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:23:04,316 INFO nexus_agent.cleanup: ID search IPA/2450/2026-27 in Others: 0 row(s) []
+2026-11-16 13:23:07,494 INFO nexus_agent.cleanup: ID search IPA/2397/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:23:10,677 INFO nexus_agent.cleanup: ID search IPA/2397/2026-27 in Others: 0 row(s) []
+2026-11-16 13:23:22,622 INFO nexus_agent.cleanup: Email Subject search FJ-0001090 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:23:25,827 INFO nexus_agent.cleanup: Email Subject search FJ-0001090 in Others: 0 row(s) []
+SEA-REG-004: CLEAR - not in Nexus (searched 274099774, FGTJ2607000062, IPA/2718/2026-27, IPA/2526/2026-27, IPA/2450/2026-27, IPA/2397/2026-27, FJ-0001090); it can be sent.
+2026-11-16 13:23:38,113 INFO nexus_agent.cleanup: Bill No search FMSXJ0056841 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:23:41,406 INFO nexus_agent.cleanup: Bill No search FMSXJ0056841 in Others: 0 row(s) []
+2026-11-16 13:23:44,588 INFO nexus_agent.cleanup: Bill No search SEJ001104 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:23:47,774 INFO nexus_agent.cleanup: Bill No search SEJ001104 in Others: 0 row(s) []
+2026-11-16 13:23:59,147 INFO nexus_agent.cleanup: ID search IPA/2706/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:24:02,347 INFO nexus_agent.cleanup: ID search IPA/2706/2026-27 in Others: 0 row(s) []
+2026-11-16 13:24:05,530 INFO nexus_agent.cleanup: ID search IPA/2586/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:24:08,731 INFO nexus_agent.cleanup: ID search IPA/2586/2026-27 in Others: 0 row(s) []
+2026-11-16 13:24:11,911 INFO nexus_agent.cleanup: ID search IPA/2535/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:24:15,089 INFO nexus_agent.cleanup: ID search IPA/2535/2026-27 in Others: 0 row(s) []
+2026-11-16 13:24:18,277 INFO nexus_agent.cleanup: ID search IPA/2451/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:24:21,475 INFO nexus_agent.cleanup: ID search IPA/2451/2026-27 in Others: 0 row(s) []
+2026-11-16 13:24:33,398 INFO nexus_agent.cleanup: Email Subject search FJ-0001382 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:24:36,604 INFO nexus_agent.cleanup: Email Subject search FJ-0001382 in Others: 0 row(s) []
+SEA-REG-005: CLEAR - not in Nexus (searched FMSXJ0056841, SEJ001104, IPA/2706/2026-27, IPA/2586/2026-27, IPA/2535/2026-27, IPA/2451/2026-27, FJ-0001382); it can be sent.
+2026-11-16 13:24:48,504 INFO nexus_agent.cleanup: Bill No search HTHC26072463 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:24:51,701 INFO nexus_agent.cleanup: Bill No search HTHC26072463 in Others: 0 row(s) []
+2026-11-16 13:24:54,894 INFO nexus_agent.cleanup: Bill No search SITTAGBO667780 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:24:58,081 INFO nexus_agent.cleanup: Bill No search SITTAGBO667780 in Others: 0 row(s) []
+2026-11-16 13:25:09,478 INFO nexus_agent.cleanup: ID search IPA/2707/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:25:12,681 INFO nexus_agent.cleanup: ID search IPA/2707/2026-27 in Others: 0 row(s) []
+2026-11-16 13:25:15,865 INFO nexus_agent.cleanup: ID search IPA/2587/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:25:19,058 INFO nexus_agent.cleanup: ID search IPA/2587/2026-27 in Others: 0 row(s) []
+2026-11-16 13:25:22,247 INFO nexus_agent.cleanup: ID search IPA/2528/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:25:25,431 INFO nexus_agent.cleanup: ID search IPA/2528/2026-27 in Others: 0 row(s) []
+2026-11-16 13:25:28,616 INFO nexus_agent.cleanup: ID search IPA/2452/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:25:31,797 INFO nexus_agent.cleanup: ID search IPA/2452/2026-27 in Others: 0 row(s) []
+2026-11-16 13:25:43,536 INFO nexus_agent.cleanup: Email Subject search FJ-0018972 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:25:46,736 INFO nexus_agent.cleanup: Email Subject search FJ-0018972 in Others: 0 row(s) []
+SEA-REG-006: CLEAR - not in Nexus (searched HTHC26072463, SITTAGBO667780, IPA/2707/2026-27, IPA/2587/2026-27, IPA/2528/2026-27, IPA/2452/2026-27, FJ-0018972); it can be sent.
+2026-11-16 13:25:59,240 INFO nexus_agent.cleanup: Bill No search FGSH2608000033 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:26:02,440 INFO nexus_agent.cleanup: Bill No search FGSH2608000033 in Others: 0 row(s) []
+2026-11-16 13:26:05,628 INFO nexus_agent.cleanup: Bill No search OOLU2333050260 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:26:08,819 INFO nexus_agent.cleanup: Bill No search OOLU2333050260 in Others: 0 row(s) []
+2026-11-16 13:26:20,208 INFO nexus_agent.cleanup: ID search IPA/2720/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:26:23,415 INFO nexus_agent.cleanup: ID search IPA/2720/2026-27 in Others: 0 row(s) []
+2026-11-16 13:26:26,611 INFO nexus_agent.cleanup: ID search IPA/2453/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:26:29,802 INFO nexus_agent.cleanup: ID search IPA/2453/2026-27 in Others: 0 row(s) []
+2026-11-16 13:26:32,981 INFO nexus_agent.cleanup: ID search IPA/2416/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:26:36,165 INFO nexus_agent.cleanup: ID search IPA/2416/2026-27 in Others: 0 row(s) []
+2026-11-16 13:26:48,251 INFO nexus_agent.cleanup: Email Subject search FJ-0001393 in Pre-Alerts: 0 row(s) []
+2026-11-16 13:26:51,449 INFO nexus_agent.cleanup: Email Subject search FJ-0001393 in Others: 0 row(s) []
+SEA-REG-007: CLEAR - not in Nexus (searched FGSH2608000033, OOLU2333050260, IPA/2720/2026-27, IPA/2453/2026-27, IPA/2416/2026-27, FJ-0001393); it can be sent.
+2026-11-16 13:26:55,718 WARNING nexus_agent.nexus.uat: Nexus was slow to load (Error), retrying
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/__main__.py", line 607, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/__main__.py", line 473, in main
+    existing = CL.preflight(cfg, [c.id for c in chosen])
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/cleanup.py", line 447, in preflight
+    rows = search_terms(ui, terms) if terms else []
+           ~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/cleanup.py", line 187, in search_terms
+    ui.open_list()
+    ~~~~~~~~~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/nexus/uat.py", line 154, in open_list
+    self.page.goto(url, wait_until="domcontentloaded", timeout=60000)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/sync_api/_generated.py", line 18528, in goto
+    self._sync(
+    ~~~~~~~~~~^
+        self._impl_obj.goto(
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        )
+        ^
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_sync_base.py", line 111, in _sync
+    return task.result()
+           ~~~~~~~~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_page.py", line 564, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_frame.py", line 157, in goto
+    await self._channel.send(
+        "goto", self._navigation_timeout, locals_to_params(locals())
+    )
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 78, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/playwright/_impl/_connection.py", line 636, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://uat.sentinel.unifo.in/sentinel-nexus/email
+Call log:
+  - navigating to "https://uat.sentinel.unifo.in/sentinel-nexus/email", waiting until "domcontentloaded"
+
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261116.html   (opened once at the end of the run by ./nx runreport)

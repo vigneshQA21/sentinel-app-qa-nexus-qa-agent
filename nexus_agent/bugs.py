@@ -520,6 +520,14 @@ def review(cfg: Config, store: Store, ask=input, out=print, service=None, includ
         out(f"  Field        : {c['field']}")
         out(f"  Document says: {c['expected']}")
         out(f"  Nexus shows  : {c['shown']}")
+        try:                                                  # the standard: class + how likely this kind of finding is a real bug (learned from the sheet)
+            from . import bugprob, stdcompare as SC
+            cls = SC.classify({"result": c["result"], "expected_from_document": c["expected"], "shown_in_nexus": c["shown"], "note": c.get("note", "")})
+            if cls in SC.REVIEWABLE:
+                p, basis = bugprob.Patterns.load(cfg, store).estimate(c["document"], c["field"], SC.nature(cls))
+                out(f"  Class        : {cls}   Bug likelihood: {round(p * 100)}%  ({basis})")
+        except Exception:
+            pass
         if c["note"]:
             out(f"  Note         : {c['note']}")
         if c["evidence"]:

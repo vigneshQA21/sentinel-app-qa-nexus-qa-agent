@@ -22,7 +22,7 @@ from .store import Store
 from .testsuite import sample_files
 
 log = logging.getLogger(__name__)
-CASE_ID = re.compile(r"^(SEA-)?REG-\d{3}$")
+CASE_ID = re.compile(r"^((SEA-)?(REG|MH)-\d{3}|SEA-RT-\d{3}|DBL-\d{3}|UNR-\d{3})$")
 IPA_ID = re.compile(r"^IPA/\d+/\d{4}-\d{2}$", re.IGNORECASE)
 TAG = "QA agent trigger"
 GROUPS = {"AIR-DAILY": ["REG-001", "REG-002", "REG-005", "REG-009", "REG-006", "REG-007"],
@@ -86,6 +86,11 @@ def _rows(ui: UatPages, case_id: str) -> list[dict]:
 
 def _open_menu(ui: UatPages, cell) -> bool:
     pg = ui.page
+    try:
+        cell.scroll_into_view_if_needed(timeout=5000)           # a row below the visible part of the list has no clickable position yet
+        pg.wait_for_timeout(500)
+    except Exception:
+        pass
     box = cell.bounding_box()
     if not box:
         return False
@@ -211,49 +216,79 @@ def search_bills(ui: UatPages, bills: list[str]) -> list[dict]:
     return search_terms(ui, [("Bill No", b) for b in bills])
 
 
-def plan_case(ui: UatPages, cfg: Config, case_id: str, extra_bills: list[str], sender: str = "") -> dict:
-    """Decides what is safe to delete. A row is the case's own when its subject starts with '<CASE> |' AND (when the sample text is readable
-    and the row's bills are readable) one of its bills is printed in the sample. Everything else on the same bill number, or with the case's
-    subject but other bills, is NOT deleted: it is returned as `review` for the user to confirm by hand."""
-    text = sample_text(cfg, case_id)
-    own, review, bills = [], [], set(extra_bills) | set(known_bills(cfg, case_id))
+def plan_cases(ui: UatPages, cfg: Config, case_ids: list[str], extra_bills: list[str], sender: str = "") -> dict[str, dict]:
+    """Decides what is safe to delete, for ALL cases in one pass (each tab is loaded once and every bill number is searched once, instead of once
+    per case: 16 cases went from ~13 min to a few). A row is the case's own when its subject starts with '<CASE> |' AND (when the sample text is
+    readable and the row's bills are readable) one of its bills is printed in the sample. Everything else on the same bill number, or with the
+    case's subject but other bills, is NOT deleted: it is returned as `review` for the user to confirm by hand.
+    Returns {case: {own, own_tabs, review, bills, excluded}}."""
+    per = {c: {"own": [], "own_tabs": set(), "review": [], "bills": set(extra_bills) | set(known_bills(cfg, c)), "text": sample_text(cfg, c)} for c in case_ids}
     for tab in ("Pre-Alerts", "Others"):
         ui.open_list()
         if tab == "Others":
             ui.page.get_by_text("Others (", exact=False).first.click(); ui.page.wait_for_timeout(3500)
-        for r in _rows(ui, case_id):
-            row = _full_row(r["cell"])
-            meta = row_meta(row) if row is not None else {"ipa": r["ipa"], "subject": r["subject"], "from": "?", "received": "?"}   # read before the row is expanded
-            b = row_bills(ui, r["cell"]) if tab == "Pre-Alerts" else []
-            if sender and meta["from"].lower() != sender.lower():
-                review.append({**meta, "tab": tab, "bill": ", ".join(b), "why": f"subject matches the case, but it was sent from {meta['from']}, not {sender}"})
-            elif text and b and not any(norm(x) in text for x in b):
-                review.append({**meta, "tab": tab, "bill": ", ".join(b), "why": "subject matches the case, but its bill number is not in the case's sample document"})
-            else:
-                own.append(r["ipa"]); bills |= set(b)
-    if bills:
-        remember_bills(cfg, case_id, sorted(bills))
-    for m in search_bills(ui, sorted(bills)):
-        if m["ipa"] not in own and all(x["ipa"] != m["ipa"] for x in review):
-            review.append({**m, "why": f"carries bill {m['bill']} of this case, but its subject is not '{case_id} | ... QA agent trigger'"})
-    return {"own": own, "review": review, "bills": sorted(bills), "excluded": {x["ipa"] for x in review}}
+        for case_id, p in per.items():
+            for r in _rows(ui, case_id):
+                row = _full_row(r["cell"])
+                meta = row_meta(row) if row is not None else {"ipa": r["ipa"], "subject": r["subject"], "from": "?", "received": "?"}   # read before the row is expanded
+                b = row_bills(ui, r["cell"]) if tab == "Pre-Alerts" else []
+                if sender and meta["from"].lower() != sender.lower():
+                    p["review"].append({**meta, "tab": tab, "bill": ", ".join(b), "why": f"subject matches the case, but it was sent from {meta['from']}, not {sender}"})
+                elif p["text"] and b and not any(norm(x) in p["text"] for x in b):
+                    p["review"].append({**meta, "tab": tab, "bill": ", ".join(b), "why": "subject matches the case, but its bill number is not in the case's sample document"})
+                else:
+                    p["own"].append(r["ipa"]); p["own_tabs"].add(tab); p["bills"] |= set(b)
+    for case_id, p in per.items():
+        if p["bills"]:
+            remember_bills(cfg, case_id, sorted(p["bills"]))
+    all_bills = sorted(set().union(*(p["bills"] for p in per.values()))) if per else []
+    found = search_bills(ui, all_bills) if all_bills else []                      # ONE search session for every case's bill numbers
+    for case_id, p in per.items():
+        for m in found:
+            if m["bill"] in p["bills"] and m["ipa"] not in p["own"] and all(x["ipa"] != m["ipa"] for x in p["review"]):
+                p["review"].append({**m, "why": f"carries bill {m['bill']} of this case, but its subject is not '{case_id} | ... QA agent trigger'"})
+        p["excluded"] = {x["ipa"] for x in p["review"]}
+        p["bills"] = sorted(p["bills"])
+    return per
+
+
+def plan_case(ui: UatPages, cfg: Config, case_id: str, extra_bills: list[str], sender: str = "") -> dict:
+    return plan_cases(ui, cfg, [case_id], extra_bills, sender)[case_id]
+
+
+def _id_filter(ui: UatPages, ipa: str, on: bool) -> None:
+    """The list only loads the newest rows; an older row (e.g. from September) is found with the list's own ID search. `on=False` clears it again
+    (a filter left on makes the next list load hang)."""
+    box = ui.page.get_by_placeholder("Search").first
+    box.fill(ipa if on else "")
+    ui.page.wait_for_timeout(2500 if on else 1500)
 
 
 def delete_ipa(ui: UatPages, ipa: str, evidence: Path, dry_run: bool = False) -> list[dict]:
-    """Deletes ONE pre-alert named by its IPA id (an approved row that is not the agent's own). The 'Delete job' dialog must name this IPA, else Cancel."""
+    """Deletes ONE pre-alert named by its IPA id (an approved row that is not the agent's own). The 'Delete job' dialog must name this IPA, else Cancel.
+    The row is looked for on the loaded list first, then with the list's ID search (old rows are not loaded)."""
     for tab in ("Pre-Alerts", "Others"):
         ui.open_list()
         if tab == "Others":
             ui.page.get_by_text("Others (", exact=False).first.click(); ui.page.wait_for_timeout(3500)
         ui.page.mouse.move(5, 5)
         cell = ui.page.get_by_text(ipa, exact=True)
+        filtered = False
         if not cell.count():
+            _id_filter(ui, ipa, True); filtered = True
+            cell = ui.page.get_by_text(ipa, exact=True)
+        if not cell.count():
+            if filtered:
+                _id_filter(ui, ipa, False)
             continue
         rec = {"tab": tab, "ipa": ipa, "subject": "", "result": ""}
         row = _full_row(cell.first)
         rec["subject"] = row_meta(row)["subject"] if row is not None else ""
         if dry_run:
-            rec["result"] = "would delete"; return [rec]
+            rec["result"] = "would delete" + (" (found with the ID search)" if filtered else "")
+            if filtered:
+                _id_filter(ui, ipa, False)
+            return [rec]
         ui.screenshot(evidence / f"{datetime.now():%H%M%S}_{tab}_{ipa.replace('/', '-')}_before_delete.png")
         try:
             if not _open_menu(ui, cell.first):
@@ -263,16 +298,25 @@ def delete_ipa(ui: UatPages, ipa: str, evidence: Path, dry_run: bool = False) ->
                 raise RuntimeError("the row menu has no Delete option")
             menu.last.click()
             how = _confirm(ui, evidence / f"{datetime.now():%H%M%S}_{ipa.replace('/', '-')}_confirm_dialog.png", ipa)
-            ui.open_list()
-            if tab == "Others":
-                ui.page.get_by_text("Others (", exact=False).first.click(); ui.page.wait_for_timeout(3500)
-            gone = not ui.page.get_by_text(ipa, exact=True).count()
+            if filtered:
+                gone = False
+                for _ in range(10):                             # the list refreshes a few seconds after the dialog: look again before calling it a failure
+                    ui.page.wait_for_timeout(1000)
+                    if not ui.page.get_by_text(ipa, exact=True).count():
+                        gone = True; break
+                _id_filter(ui, ipa, False)
+                ui.open_list()                                  # reload without the filter
+            else:
+                ui.open_list()
+                if tab == "Others":
+                    ui.page.get_by_text("Others (", exact=False).first.click(); ui.page.wait_for_timeout(3500)
+                gone = not ui.page.get_by_text(ipa, exact=True).count()
             rec["result"] = f"deleted ({how})" if gone else f"FAILED: {how}, but the row is still listed"
         except Exception as exc:
             rec["result"] = f"FAILED: {type(exc).__name__}: {str(exc).splitlines()[0][:140]}"
             ui.screenshot(evidence / f"{datetime.now():%H%M%S}_failed.png")
         return [rec]
-    return [{"tab": "-", "ipa": ipa, "subject": "", "result": "not found in Nexus"}]
+    return [{"tab": "-", "ipa": ipa, "subject": "", "result": "not found in Nexus (loaded list and ID search, both tabs)"}]
 
 
 def counts(ui: UatPages) -> str:
@@ -282,10 +326,10 @@ def counts(ui: UatPages) -> str:
     return f"Pre-Alerts {pa.group(1) if pa else '?'}, Others {ot.group(1) if ot else '?'}"
 
 
-def delete_case(ui: UatPages, case_id: str, evidence: Path, dry_run: bool, excluded: set | None = None) -> list[dict]:
+def delete_case(ui: UatPages, case_id: str, evidence: Path, dry_run: bool, excluded: set | None = None, tabs: tuple = ("Pre-Alerts", "Others")) -> list[dict]:
     """Deletes every row of the case in Pre-Alerts and in Others. Returns one dict per row: {tab, ipa, subject, result}."""
     results: list[dict] = []
-    for tab in ("Pre-Alerts", "Others"):
+    for tab in tabs:
         rows = None                                            # rows read after the previous delete (same page): no reload needed
         for attempt in range(30):                              # the list re-renders after each delete: look again, take the first row
             if rows is None:
@@ -438,13 +482,18 @@ def run(cfg: Config, names: list[str], dry_run: bool = False, headless: bool = F
                 for r in delete_ipa(ui, case_id, ev, dry_run):
                     out(f"{case_id}: {r['tab']:10} {r['result']}   {r['subject'][:70]}")
                     failed |= r["result"].startswith("FAILED")
-            for case_id in [c for c in cases if not IPA_ID.match(c)]:
+            todo = [c for c in cases if not IPA_ID.match(c)]
+            plans = plan_cases(ui, cfg, todo, bills or [], sender) if todo else {}
+            for case_id in todo:
                 evidence = cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case_id / "cleanup"
                 evidence.mkdir(parents=True, exist_ok=True)
-                ui.open_list(); before = counts(ui)
-                plan = plan_case(ui, cfg, case_id, bills or [], sender)
+                before = ""
+                plan = plans[case_id]
                 report_review(case_id, plan, out)
-                res = delete_case(ui, case_id, evidence, dry_run, plan["excluded"])
+                tabs = tuple(t for t in ("Pre-Alerts", "Others") if t in plan["own_tabs"])
+                if tabs and not dry_run:
+                    ui.open_list(); before = counts(ui)
+                res = delete_case(ui, case_id, evidence, dry_run, plan["excluded"], tabs) if tabs else []
                 if not res:
                     out(f"{case_id}: nothing to delete in Nexus" + (f" (but {len(plan['review'])} row(s) were left for your confirmation)" if plan["review"] else ""))
                 for r in res:

@@ -4,7 +4,7 @@
 gmail:
   # Gmail search that identifies NEW pre-alert emails.
   query: 'in:inbox subject:(pre-alert OR prealert) has:attachment -label:Nexus/Forwarded newer_than:2d'
-  forward_to: prealert.nexus@unifo.in
+  forward_to: test.prealert.nexus@unifo.in
   processed_label: Nexus/Forwarded
   credentials_file: secrets/gmail_credentials.json   # OAuth client (Desktop app) from Google Cloud
   token_file: secrets/gmail_token.json               # created on first authorisation
@@ -56,6 +56,7 @@ local_docs:
   individual_dir: individual
   # Agent: "Nexus E2E Regression QA Agent". The tag lets Nexus testers filter QA mail from real pre-alerts.
   subject_tag: "QA agent trigger / Don't delete / Regression testing"
+  same_subject_cases: {UNR-001: {ref: FJ-0003315, types: 'MASTER+MANIFEST+HOUSE'}}   # every email of these cases carries ONE identical subject
   priority: high                      # sets X-Priority / Importance headers on every email
   # The same documents are used again and again for regression, so nothing is moved or hidden after sending.
   archive_after_send: false           # true = move each sent file to <root>/sent_dir/<REF>/ (sent_dir: sent)
@@ -128,6 +129,14 @@ testsuite:
     - {id: AMF-006, scenario: 'Air manifest first / order scenarios', docs: 'Master + Manifest + House', sample_ref: FJ-0003221}
     - {id: AMF-007, scenario: 'Logisteed raised bug sample (Transway)', docs: 'Master + Manifest + House + 2 Invoice', sample_ref: 020-02468826}
     - {id: AMF-008, scenario: 'Logisteed raised bug sample (Triple Crown)', docs: 'Master + Manifest + House + Invoice + Packing List', sample_ref: 232-17354245}
+    - {id: MH-001, scenario: 'Air multi-house consolidated (1 Master + 3 Houses + manifest + 1 duplicate House page)', docs: 'Master + Manifest + 3 House (multi-house, consolidated)', sample_ref: FJ-0000088}
+    - {id: MH-002, scenario: 'Air multi-house, Houses uploaded before the Master (REG-014): 3 Houses first, then Master + Manifest', docs: 'House x3, then Master + Manifest (individual sends)', sample_ref: FJ-0000088}
+    - {id: MH-003, scenario: 'Air multi-house, a new House added after the first processing (REG-015): Master + 2 Houses, then the third House', docs: 'Master + House x2, then House (individual sends)', sample_ref: FJ-0000088}
+    - {id: MH-004, scenario: 'Air multi-house, a House that is never sent (REG-020): Master + Manifest + 2 Houses', docs: 'Master + Manifest + House x2 (third House omitted)', sample_ref: FJ-0000088}
+    - {id: DBL-001, scenario: 'Air Direct BL (Master only, MAWB 406-91177402, SZX to DEL, consignee not FLYJAC/LOGISTEED): House must be auto-created from the Master', docs: 'Master only (no House document)', sample_ref: 406-91177402}
+    - {id: SEA-MH-001, scenario: 'Sea multi-house consolidated (1 Master + 2 Houses, one House with an attachment page)', docs: 'Master + 2 House (multi-house, consolidated)', sample_ref: FJ-0001314}
+    - {id: SEA-RT-270, scenario: 'Bug row 270 re-test: Sea MBL sent first, HBL sent separately afterwards (HBL must link to the existing Master)', docs: 'MBL then HBL (separate emails)', sample_ref: FJ-0002245}
+    - {id: UNR-001, scenario: 'Valid multi-document PDF sent first, then an UNRELATED document in the same email subject (the unrelated one must not be mapped into the job)', docs: 'Master + Manifest + House, then an unrelated PDF (same subject)', sample_ref: FJ-0003315}
   sample_ref_overrides: {REG-011: FJ-0001012}     # REG-011's sample is split from the FJ-0001012 PDF (+ a dummy document), so the subject uses that FJ number
   samples_dir: samples                            # samples/_inbox/ (downloads) and samples/<CASE>/ (library)
   case_interval_seconds: 300                      # wait between test cases (all emails of a case go together); 0 = no wait

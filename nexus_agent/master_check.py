@@ -16,6 +16,7 @@ from .nexus.session import NexusSession, SessionExpired
 from .nexus.uat import UatPages, map_master_panel, read_panel_inputs, read_party_ids
 from .pdf_split import page_labels, page_texts
 from .store import Store
+from . import stdcompare as SC
 from .testsuite import Case, sample_files
 from .validate import plan_wait, _buffer
 
@@ -374,6 +375,41 @@ def ocr_adjust(rows: list[dict], text: str) -> list[dict]:
     return rows
 
 
+# values Nexus assigns itself: never expected on the document
+_HELD = ("Job Number", "Page Nos.", "Party ID", "Shipper ID", "Consignee ID", "Status", "Job Type", "Branch")
+_SKIP_NOTE = ("assigned", "party master", "default", "airport master", "derive", "works this out")
+
+
+def nexus_to_document(rows: list[dict], page_text: str) -> list[dict]:
+    """Nexus field -> document: a value Nexus shows that is NOT anywhere on the document page becomes 'NOT IN DOCUMENT' (a review item with both
+    sides stated); a differing value that IS on the page stays a MISMATCH (the document prints it in another place). Adds r['class']."""
+    flat = " ".join((page_text or "").upper().split())
+    toks = tokens(page_text)
+    nums = {float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*\.?\d*", page_text or "") if x.replace(",", "").replace(".", "", 1).isdigit()}
+    for r in rows:
+        shown = (r.get("shown_in_nexus") or "").strip()
+        note = (r.get("note") or "").lower()
+        if shown and r.get("label", r["field"]) not in _HELD and not any(k in note for k in _SKIP_NOTE) and flat and (
+                r["result"] in ("FAIL", "REVIEW") or (r["result"] == "INFO" and "not printed" in note)):
+            spaced = re.sub(r"(?<=[a-z0-9])(?=[A-Z][a-z])", " ", shown)       # Nexus shows two lines glued together: 'IndiaPrivate' = 'India Private'
+            doc_t, nex_t = tokens(r.get("expected_from_document")), tokens(spaced)
+            if r["result"] == "FAIL" and len(nex_t) >= 2 and nex_t <= doc_t:       # same name; the document also prints the party code inside it
+                r["result"], r["note"] = "PASS", "same name (the document also prints the party code: " + ", ".join(sorted(doc_t - nex_t)) + ")"
+                r["class"] = SC.classify(r)
+                continue
+            ok, how = _found_in_scan(spaced, flat, toks, nums, r.get("label", r["field"]))
+            if not ok:
+                r["result"], r["expected_from_document"] = "REVIEW", "(not available in the document)"
+                r["note"] = "the document prints no such value: not available in the document (" + how + ")"
+            elif r["result"] == "INFO":
+                r["result"], r["note"] = "PASS", "found on the document page"
+            else:
+                r["note"] = (r.get("note") or "") + "  [the Nexus value IS printed on the page, in another place]"
+        r["class"] = SC.classify(r)
+    return rows
+
+
+
 def format_report(results: list[dict], title: str = "MASTER DATA") -> str:
     lines = []
     for r in results:
@@ -455,6 +491,7 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
     if master is None:
         res["message"] = "no Master parent in the viewer"
         return res
+    ui.assert_viewer_job([r.get("Bill No.", "") for r in records if r.get("Record Type", "").startswith("Master")], master)
     ui.select_parent(master)
     ui.page.wait_for_timeout(1500)
     evidence = cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id
@@ -462,6 +499,8 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
     fields = map_master_panel(read_panel_inputs(ui.page), read_party_ids(ui.page))
     attach_details(fields, mrec)
     res["rows"] = compare_master(doc, fields, mrec, cfg.settings["validation"])
+    if not doc.get("ocr"):
+        res["rows"] = nexus_to_document(res["rows"], doc.get("text") or "")      # Nexus field -> document: not printed = NOT IN DOCUMENT
     if doc.get("ocr"):
         res["rows"] = ocr_adjust(res["rows"], doc.get("text") or "")
         res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"

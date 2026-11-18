@@ -1,0 +1,2 @@
+case_id,scenario,mode,sample_ref,status,subject,sent_at,screening,warnings,expected_mapping,expected_result,nexus_job,actual_nexus_result
+SEA-MH-001,"Sea multi-house consolidated (1 Master + 2 Houses, one House with an attachment page)",individual,FJ-0001314,SENT,SEA-MH-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001314 | INDIVIDUAL | HOUSE,2026-11-13T16:23:33,,,,,,

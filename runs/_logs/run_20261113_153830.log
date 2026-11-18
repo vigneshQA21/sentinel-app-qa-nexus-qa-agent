@@ -1,0 +1,240 @@
+2026-11-13 15:38:44,083 INFO nexus_agent.cleanup: Bill No search 160-15776084 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:38:47,279 INFO nexus_agent.cleanup: Bill No search 160-15776084 in Others: 0 row(s) []
+2026-11-13 15:38:50,463 INFO nexus_agent.cleanup: Bill No search CHJE262335 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:38:53,677 INFO nexus_agent.cleanup: Bill No search CHJE262335 in Others: 0 row(s) []
+2026-11-13 15:39:05,881 INFO nexus_agent.cleanup: ID search IPA/2579/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:39:09,071 INFO nexus_agent.cleanup: ID search IPA/2579/2026-27 in Others: 0 row(s) []
+2026-11-13 15:39:13,172 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:39:16,360 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Others: 0 row(s) []
+2026-11-13 15:39:19,539 INFO nexus_agent.cleanup: ID search IPA/2428/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:39:22,720 INFO nexus_agent.cleanup: ID search IPA/2428/2026-27 in Others: 0 row(s) []
+2026-11-13 15:39:25,909 INFO nexus_agent.cleanup: ID search IPA/2359/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:39:29,082 INFO nexus_agent.cleanup: ID search IPA/2359/2026-27 in Others: 0 row(s) []
+2026-11-13 15:39:45,113 INFO nexus_agent.cleanup: Email Subject search FJ-0000602 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:39:48,303 INFO nexus_agent.cleanup: Email Subject search FJ-0000602 in Others: 0 row(s) []
+REG-002: CLEAR - not in Nexus (searched 160-15776084, CHJE262335, IPA/2579/2026-27, IPA/2519/2026-27, IPA/2428/2026-27, IPA/2359/2026-27, FJ-0000602); it can be sent.
+2026-11-13 15:40:03,931 INFO nexus_agent.cleanup: Bill No search 160-15585765 in Pre-Alerts: 1 row(s) ['IPA/2682/2026-27']
+2026-11-13 15:40:07,116 INFO nexus_agent.cleanup: Bill No search 160-15585765 in Others: 0 row(s) []
+2026-11-13 15:40:10,482 INFO nexus_agent.cleanup: Bill No search FLD6445 in Pre-Alerts: 1 row(s) ['IPA/2682/2026-27']
+2026-11-13 15:40:13,685 INFO nexus_agent.cleanup: Bill No search FLD6445 in Others: 0 row(s) []
+2026-11-13 15:40:26,864 INFO nexus_agent.cleanup: ID search IPA/2565/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:40:30,075 INFO nexus_agent.cleanup: ID search IPA/2565/2026-27 in Others: 0 row(s) []
+2026-11-13 15:40:33,254 INFO nexus_agent.cleanup: ID search IPA/2506/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:40:36,427 INFO nexus_agent.cleanup: ID search IPA/2506/2026-27 in Others: 0 row(s) []
+2026-11-13 15:40:39,597 INFO nexus_agent.cleanup: ID search IPA/2471/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:40:42,788 INFO nexus_agent.cleanup: ID search IPA/2471/2026-27 in Others: 0 row(s) []
+2026-11-13 15:40:45,963 INFO nexus_agent.cleanup: ID search IPA/2430/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:40:49,142 INFO nexus_agent.cleanup: ID search IPA/2430/2026-27 in Others: 0 row(s) []
+2026-11-13 15:41:01,797 INFO nexus_agent.cleanup: Email Subject search FJ-0000518 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:41:05,171 INFO nexus_agent.cleanup: Email Subject search FJ-0000518 in Others: 0 row(s) []
+REG-006: BLOCKED - 1 row(s) of this sample exist in Nexus (searched 160-15585765, FLD6445, IPA/2565/2026-27, IPA/2506/2026-27, IPA/2471/2026-27, IPA/2430/2026-27, FJ-0000518); NOT sent. Confirm manually which to delete:
+    Pre-Alerts IPA/2682/2026-27   subject: 271
+               from: sarathkumar.saravanan@unifo.in   received: 13-11-2026 01:29:42 PM   matched: 160-15585765, FLD6445   (NOT the agent's: delete only if you name it)
+2026-11-13 15:41:17,913 INFO nexus_agent.cleanup: Bill No search 098-31251603 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:41:23,243 INFO nexus_agent.cleanup: Bill No search 098-31251603 in Others: 0 row(s) []
+2026-11-13 15:41:30,044 INFO nexus_agent.cleanup: Bill No search ORAE26040499 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:41:33,241 INFO nexus_agent.cleanup: Bill No search ORAE26040499 in Others: 0 row(s) []
+2026-11-13 15:41:37,859 INFO nexus_agent.cleanup: Bill No search AI142 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:41:41,040 INFO nexus_agent.cleanup: Bill No search AI142 in Others: 0 row(s) []
+2026-11-13 15:41:53,459 INFO nexus_agent.cleanup: ID search IPA/2574/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:41:56,636 INFO nexus_agent.cleanup: ID search IPA/2574/2026-27 in Others: 0 row(s) []
+2026-11-13 15:41:59,824 INFO nexus_agent.cleanup: ID search IPA/2512/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:42:03,052 INFO nexus_agent.cleanup: ID search IPA/2512/2026-27 in Others: 0 row(s) []
+2026-11-13 15:42:06,244 INFO nexus_agent.cleanup: ID search IPA/2478/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:42:09,441 INFO nexus_agent.cleanup: ID search IPA/2478/2026-27 in Others: 0 row(s) []
+2026-11-13 15:42:12,625 INFO nexus_agent.cleanup: ID search IPA/2436/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:42:15,808 INFO nexus_agent.cleanup: ID search IPA/2436/2026-27 in Others: 0 row(s) []
+REG-007: CLEAR - not in Nexus (searched 098-31251603, ORAE26040499, AI142, IPA/2574/2026-27, IPA/2512/2026-27, IPA/2478/2026-27, IPA/2436/2026-27); it can be sent.
+2026-11-13 15:42:28,932 INFO nexus_agent.cleanup: Bill No search 932-78831771 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:42:32,171 INFO nexus_agent.cleanup: Bill No search 932-78831771 in Others: 0 row(s) []
+2026-11-13 15:42:35,358 INFO nexus_agent.cleanup: Bill No search SUSAO008522 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:42:38,558 INFO nexus_agent.cleanup: Bill No search SUSAO008522 in Others: 0 row(s) []
+2026-11-13 15:42:51,544 INFO nexus_agent.cleanup: ID search IPA/2578/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:42:54,719 INFO nexus_agent.cleanup: ID search IPA/2578/2026-27 in Others: 0 row(s) []
+2026-11-13 15:42:57,926 INFO nexus_agent.cleanup: ID search IPA/2533/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:43:01,122 INFO nexus_agent.cleanup: ID search IPA/2533/2026-27 in Others: 0 row(s) []
+2026-11-13 15:43:04,307 INFO nexus_agent.cleanup: ID search IPA/2484/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:43:07,489 INFO nexus_agent.cleanup: ID search IPA/2484/2026-27 in Others: 0 row(s) []
+2026-11-13 15:43:10,673 INFO nexus_agent.cleanup: ID search IPA/2442/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:43:13,847 INFO nexus_agent.cleanup: ID search IPA/2442/2026-27 in Others: 0 row(s) []
+2026-11-13 15:43:26,693 INFO nexus_agent.cleanup: Email Subject search FJ-0001132 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:43:29,924 INFO nexus_agent.cleanup: Email Subject search FJ-0001132 in Others: 0 row(s) []
+REG-009: CLEAR - not in Nexus (searched 932-78831771, SUSAO008522, IPA/2578/2026-27, IPA/2533/2026-27, IPA/2484/2026-27, IPA/2442/2026-27, FJ-0001132); it can be sent.
+2026-11-13 15:43:43,724 INFO nexus_agent.cleanup: ID search IPA/2582/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:43:46,897 INFO nexus_agent.cleanup: ID search IPA/2582/2026-27 in Others: 0 row(s) []
+2026-11-13 15:43:50,088 INFO nexus_agent.cleanup: ID search IPA/2518/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:43:53,272 INFO nexus_agent.cleanup: ID search IPA/2518/2026-27 in Others: 0 row(s) []
+2026-11-13 15:43:56,456 INFO nexus_agent.cleanup: ID search IPA/2386/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:43:59,642 INFO nexus_agent.cleanup: ID search IPA/2386/2026-27 in Others: 0 row(s) []
+2026-11-13 15:44:11,978 INFO nexus_agent.cleanup: Email Subject search FJ-0001380 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:44:15,244 INFO nexus_agent.cleanup: Email Subject search FJ-0001380 in Others: 0 row(s) []
+SEA-REG-001: CLEAR - not in Nexus (searched IPA/2582/2026-27, IPA/2518/2026-27, IPA/2386/2026-27, FJ-0001380); it can be sent.
+2026-11-13 15:44:27,811 INFO nexus_agent.cleanup: Bill No search SLLQDJAI611765 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:44:31,002 INFO nexus_agent.cleanup: Bill No search SLLQDJAI611765 in Others: 0 row(s) []
+2026-11-13 15:44:34,278 INFO nexus_agent.cleanup: Bill No search TAOJAI26165972 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:44:37,470 INFO nexus_agent.cleanup: Bill No search TAOJAI26165972 in Others: 0 row(s) []
+2026-11-13 15:44:49,693 INFO nexus_agent.cleanup: ID search IPA/2583/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:44:52,881 INFO nexus_agent.cleanup: ID search IPA/2583/2026-27 in Others: 0 row(s) []
+2026-11-13 15:44:56,076 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:44:59,272 INFO nexus_agent.cleanup: ID search IPA/2519/2026-27 in Others: 0 row(s) []
+2026-11-13 15:45:02,457 INFO nexus_agent.cleanup: ID search IPA/2446/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:45:06,517 INFO nexus_agent.cleanup: ID search IPA/2446/2026-27 in Others: 0 row(s) []
+2026-11-13 15:45:09,697 INFO nexus_agent.cleanup: ID search IPA/2396/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:45:12,897 INFO nexus_agent.cleanup: ID search IPA/2396/2026-27 in Others: 0 row(s) []
+2026-11-13 15:45:27,876 INFO nexus_agent.cleanup: Email Subject search FJ-0001497 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:45:31,062 INFO nexus_agent.cleanup: Email Subject search FJ-0001497 in Others: 0 row(s) []
+SEA-REG-002: CLEAR - not in Nexus (searched SLLQDJAI611765, TAOJAI26165972, IPA/2583/2026-27, IPA/2519/2026-27, IPA/2446/2026-27, IPA/2396/2026-27, FJ-0001497); it can be sent.
+2026-11-13 15:45:43,995 INFO nexus_agent.cleanup: ID search IPA/2584/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:45:47,178 INFO nexus_agent.cleanup: ID search IPA/2584/2026-27 in Others: 0 row(s) []
+2026-11-13 15:45:50,365 INFO nexus_agent.cleanup: ID search IPA/2395/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:45:53,545 INFO nexus_agent.cleanup: ID search IPA/2395/2026-27 in Others: 0 row(s) []
+2026-11-13 15:45:56,721 INFO nexus_agent.cleanup: ID search IPA/2388/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:45:59,888 INFO nexus_agent.cleanup: ID search IPA/2388/2026-27 in Others: 0 row(s) []
+2026-11-13 15:46:14,182 INFO nexus_agent.cleanup: Email Subject search FJ-0001318 in Pre-Alerts: 1 row(s) ['IPA/2667/2026-27']
+2026-11-13 15:46:17,377 INFO nexus_agent.cleanup: Email Subject search FJ-0001318 in Others: 0 row(s) []
+SEA-REG-003: BLOCKED - 1 row(s) of this sample exist in Nexus (searched IPA/2584/2026-27, IPA/2395/2026-27, IPA/2388/2026-27, FJ-0001318); NOT sent. Confirm manually which to delete:
+    Pre-Alerts IPA/2667/2026-27   subject: prealert/FJ-0001318
+               from: sagar.p@unifo.in   received: 12-11-2026 06:24:33 PM   matched: FJ-0001318   (NOT the agent's: delete only if you name it)
+2026-11-13 15:46:29,427 INFO nexus_agent.cleanup: ID search IPA/2526/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:46:32,628 INFO nexus_agent.cleanup: ID search IPA/2526/2026-27 in Others: 0 row(s) []
+2026-11-13 15:46:35,808 INFO nexus_agent.cleanup: ID search IPA/2450/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:46:38,990 INFO nexus_agent.cleanup: ID search IPA/2450/2026-27 in Others: 0 row(s) []
+2026-11-13 15:46:42,186 INFO nexus_agent.cleanup: ID search IPA/2397/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:46:45,360 INFO nexus_agent.cleanup: ID search IPA/2397/2026-27 in Others: 0 row(s) []
+2026-11-13 15:46:58,539 INFO nexus_agent.cleanup: Email Subject search FJ-0001090 in Pre-Alerts: 1 row(s) ['IPA/2627/2026-27']
+2026-11-13 15:47:01,916 INFO nexus_agent.cleanup: Email Subject search FJ-0001090 in Others: 0 row(s) []
+SEA-REG-004: BLOCKED - 1 row(s) of this sample exist in Nexus (searched IPA/2526/2026-27, IPA/2450/2026-27, IPA/2397/2026-27, FJ-0001090); NOT sent. Confirm manually which to delete:
+    Pre-Alerts IPA/2627/2026-27   subject: Checking the Follow-up -FJ-0001090
+               from: pradeep.e@unifo.in   received: 11-11-2026 05:53:05 PM   matched: FJ-0001090   (NOT the agent's: delete only if you name it)
+2026-11-13 15:47:15,409 INFO nexus_agent.cleanup: Bill No search FMSXJ0056841 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:47:18,623 INFO nexus_agent.cleanup: Bill No search FMSXJ0056841 in Others: 0 row(s) []
+2026-11-13 15:47:21,789 INFO nexus_agent.cleanup: Bill No search SEJ001104 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:47:24,969 INFO nexus_agent.cleanup: Bill No search SEJ001104 in Others: 0 row(s) []
+2026-11-13 15:47:38,708 INFO nexus_agent.cleanup: ID search IPA/2586/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:47:42,094 INFO nexus_agent.cleanup: ID search IPA/2586/2026-27 in Others: 0 row(s) []
+2026-11-13 15:47:45,275 INFO nexus_agent.cleanup: ID search IPA/2535/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:47:48,466 INFO nexus_agent.cleanup: ID search IPA/2535/2026-27 in Others: 0 row(s) []
+2026-11-13 15:47:51,638 INFO nexus_agent.cleanup: ID search IPA/2451/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:47:54,802 INFO nexus_agent.cleanup: ID search IPA/2451/2026-27 in Others: 0 row(s) []
+2026-11-13 15:47:57,974 INFO nexus_agent.cleanup: ID search IPA/2409/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:48:01,524 INFO nexus_agent.cleanup: ID search IPA/2409/2026-27 in Others: 0 row(s) []
+2026-11-13 15:48:15,087 INFO nexus_agent.cleanup: Email Subject search FJ-0001382 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:48:18,270 INFO nexus_agent.cleanup: Email Subject search FJ-0001382 in Others: 0 row(s) []
+SEA-REG-005: CLEAR - not in Nexus (searched FMSXJ0056841, SEJ001104, IPA/2586/2026-27, IPA/2535/2026-27, IPA/2451/2026-27, IPA/2409/2026-27, FJ-0001382); it can be sent.
+2026-11-13 15:48:31,036 INFO nexus_agent.cleanup: Bill No search HTHC26072463 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:48:36,708 INFO nexus_agent.cleanup: Bill No search HTHC26072463 in Others: 0 row(s) []
+2026-11-13 15:48:39,889 INFO nexus_agent.cleanup: Bill No search SITTAGBO667780 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:48:43,074 INFO nexus_agent.cleanup: Bill No search SITTAGBO667780 in Others: 0 row(s) []
+2026-11-13 15:48:57,042 INFO nexus_agent.cleanup: ID search IPA/2587/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:49:00,215 INFO nexus_agent.cleanup: ID search IPA/2587/2026-27 in Others: 0 row(s) []
+2026-11-13 15:49:03,403 INFO nexus_agent.cleanup: ID search IPA/2528/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:49:06,587 INFO nexus_agent.cleanup: ID search IPA/2528/2026-27 in Others: 0 row(s) []
+2026-11-13 15:49:09,771 INFO nexus_agent.cleanup: ID search IPA/2452/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:49:12,952 INFO nexus_agent.cleanup: ID search IPA/2452/2026-27 in Others: 0 row(s) []
+2026-11-13 15:49:16,127 INFO nexus_agent.cleanup: ID search IPA/2414/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:49:19,317 INFO nexus_agent.cleanup: ID search IPA/2414/2026-27 in Others: 0 row(s) []
+2026-11-13 15:49:34,309 INFO nexus_agent.cleanup: Email Subject search FJ-0018972 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:49:37,498 INFO nexus_agent.cleanup: Email Subject search FJ-0018972 in Others: 0 row(s) []
+SEA-REG-006: CLEAR - not in Nexus (searched HTHC26072463, SITTAGBO667780, IPA/2587/2026-27, IPA/2528/2026-27, IPA/2452/2026-27, IPA/2414/2026-27, FJ-0018972); it can be sent.
+2026-11-13 15:49:50,252 INFO nexus_agent.cleanup: ID search IPA/2453/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:49:53,426 INFO nexus_agent.cleanup: ID search IPA/2453/2026-27 in Others: 0 row(s) []
+2026-11-13 15:49:56,611 INFO nexus_agent.cleanup: ID search IPA/2416/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:49:59,784 INFO nexus_agent.cleanup: ID search IPA/2416/2026-27 in Others: 0 row(s) []
+2026-11-13 15:50:14,159 INFO nexus_agent.cleanup: Email Subject search FJ-0001393 in Pre-Alerts: 1 row(s) ['IPA/2648/2026-27']
+2026-11-13 15:50:17,362 INFO nexus_agent.cleanup: Email Subject search FJ-0001393 in Others: 0 row(s) []
+SEA-REG-007: BLOCKED - 1 row(s) of this sample exist in Nexus (searched IPA/2453/2026-27, IPA/2416/2026-27, FJ-0001393); NOT sent. Confirm manually which to delete:
+    Pre-Alerts IPA/2648/2026-27   subject: prelaert/FJ-0001393
+               from: sagar.p@unifo.in   received: 12-11-2026 03:34:17 PM   matched: FJ-0001393   (NOT the agent's: delete only if you name it)
+2026-11-13 15:50:30,950 INFO nexus_agent.cleanup: Bill No search FGNB2608000132 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:50:34,139 INFO nexus_agent.cleanup: Bill No search FGNB2608000132 in Others: 0 row(s) []
+2026-11-13 15:50:37,312 INFO nexus_agent.cleanup: Bill No search YNB6BHJ729800 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:50:40,494 INFO nexus_agent.cleanup: Bill No search YNB6BHJ729800 in Others: 0 row(s) []
+2026-11-13 15:50:52,586 INFO nexus_agent.cleanup: ID search IPA/2589/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:50:55,764 INFO nexus_agent.cleanup: ID search IPA/2589/2026-27 in Others: 0 row(s) []
+2026-11-13 15:50:58,951 INFO nexus_agent.cleanup: ID search IPA/2529/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:51:02,138 INFO nexus_agent.cleanup: ID search IPA/2529/2026-27 in Others: 0 row(s) []
+2026-11-13 15:51:05,323 INFO nexus_agent.cleanup: ID search IPA/2455/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:51:08,497 INFO nexus_agent.cleanup: ID search IPA/2455/2026-27 in Others: 0 row(s) []
+2026-11-13 15:51:11,676 INFO nexus_agent.cleanup: ID search IPA/2417/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:51:14,865 INFO nexus_agent.cleanup: ID search IPA/2417/2026-27 in Others: 0 row(s) []
+2026-11-13 15:51:29,307 INFO nexus_agent.cleanup: Email Subject search FJ-0001498 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:51:32,512 INFO nexus_agent.cleanup: Email Subject search FJ-0001498 in Others: 0 row(s) []
+SEA-REG-008: CLEAR - not in Nexus (searched FGNB2608000132, YNB6BHJ729800, IPA/2589/2026-27, IPA/2529/2026-27, IPA/2455/2026-27, IPA/2417/2026-27, FJ-0001498); it can be sent.
+2026-11-13 15:51:45,731 INFO nexus_agent.cleanup: Bill No search BWSS 13760427 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:51:48,918 INFO nexus_agent.cleanup: Bill No search BWSS 13760427 in Others: 0 row(s) []
+2026-11-13 15:51:53,010 INFO nexus_agent.cleanup: Bill No search BWSS 13760427A in Pre-Alerts: 0 row(s) []
+2026-11-13 15:51:56,197 INFO nexus_agent.cleanup: Bill No search BWSS 13760427A in Others: 0 row(s) []
+2026-11-13 15:51:59,387 INFO nexus_agent.cleanup: Bill No search ONEYAARG05243800 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:52:02,574 INFO nexus_agent.cleanup: Bill No search ONEYAARG05243800 in Others: 0 row(s) []
+2026-11-13 15:52:15,499 INFO nexus_agent.cleanup: ID search IPA/2592/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:52:18,687 INFO nexus_agent.cleanup: ID search IPA/2592/2026-27 in Others: 0 row(s) []
+2026-11-13 15:52:22,247 INFO nexus_agent.cleanup: ID search IPA/2456/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:52:25,439 INFO nexus_agent.cleanup: ID search IPA/2456/2026-27 in Others: 0 row(s) []
+2026-11-13 15:52:28,622 INFO nexus_agent.cleanup: ID search IPA/2420/2026-27 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:52:31,813 INFO nexus_agent.cleanup: ID search IPA/2420/2026-27 in Others: 0 row(s) []
+2026-11-13 15:52:45,208 INFO nexus_agent.cleanup: Email Subject search FJ-0002952 in Pre-Alerts: 0 row(s) []
+2026-11-13 15:52:48,406 INFO nexus_agent.cleanup: Email Subject search FJ-0002952 in Others: 0 row(s) []
+SEA-REG-009: CLEAR - not in Nexus (searched BWSS 13760427, BWSS 13760427A, ONEYAARG05243800, IPA/2592/2026-27, IPA/2456/2026-27, IPA/2420/2026-27, FJ-0002952); it can be sent.
+NOT sent (sample already in Nexus, confirm which rows to delete): REG-006, SEA-REG-003, SEA-REG-004, SEA-REG-007
+Sending the cases that are clear: REG-002, REG-007, REG-009, SEA-REG-001, SEA-REG-002, SEA-REG-005, SEA-REG-006, SEA-REG-008, SEA-REG-009
+2026-11-13 15:52:53,277 INFO nexus_agent.local_sender: SCREENING FJ-0000602_-_Consolidated-_DebitNote_and_PO_confirmation_deduped.pdf: 10 page(s): MBL pages 1; MANIFEST pages 2-3; DEBITNOTE pages 4; HBL pages 5; INVOICE pages 6; PACKING pages 7; PO pages 8; PACKING pages 9; INVOICE pages 10
+2026-11-13 15:52:53,277 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0000602
+2026-11-13 15:52:59,588 INFO nexus_agent.local_sender: Sent 'REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0000602 | CONSOLIDATED (MASTER+MANIFEST+DEBIT NOTE+HOUSE+INVOICE+PACKING LIST+PO)' to test.prealert.nexus@unifo.in (message id 1a1d46e8ce9656b2)
+2026-11-13 15:52:59,760 INFO nexus_agent.local_sender: another run sent an email 1s ago: waiting 28s (one by one, never in parallel)
+2026-11-13 15:53:30,505 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER' to test.prealert.nexus@unifo.in (message id 1a1d46f098c85a06)
+2026-11-13 15:53:30,506 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-13 15:54:02,708 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MANIFEST' to test.prealert.nexus@unifo.in (message id 1a1d46f8646d1cc2)
+2026-11-13 15:54:02,709 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-13 15:54:34,938 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | INVOICE' to test.prealert.nexus@unifo.in (message id 1a1d470048853522)
+2026-11-13 15:54:34,939 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-13 15:55:06,753 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | HOUSE' to test.prealert.nexus@unifo.in (message id 1a1d47082e8e656c)
+2026-11-13 15:55:06,754 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-13 15:55:38,730 INFO nexus_agent.local_sender: Sent 'REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | DELIVERY NOTE' to test.prealert.nexus@unifo.in (message id 1a1d470fece95c54)
+2026-11-13 15:55:38,754 INFO nexus_agent.local_sender: SCREENING FJ-0001132-Consolidated with UN.pdf: 5 page(s): OTHER pages 1-5
+2026-11-13 15:55:38,755 INFO nexus_agent.local_sender:     WARNING: no HAWB found in the PDF text, using file name reference FJ-0001132
+2026-11-13 15:55:38,756 INFO nexus_agent.local_sender:     MISSING required: MBL, HBL
+2026-11-13 15:55:38,763 INFO nexus_agent.local_sender: another run sent an email 1s ago: waiting 28s (one by one, never in parallel)
+2026-11-13 15:56:10,345 INFO nexus_agent.local_sender: Sent 'REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | CONSOLIDATED (UNCLASSIFIED)' to test.prealert.nexus@unifo.in (message id 1a1d4717947cbc85)
+2026-11-13 15:56:12,693 INFO nexus_agent.local_sender: SCREENING FJ-0001380 - Consolidated - Invoice and Packing list.pdf: 19 page(s): MBL pages 1-3; HBL pages 4; INVOICE pages 5-18; PACKING pages 19
+2026-11-13 15:56:12,694 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001380)
+2026-11-13 15:56:12,713 INFO nexus_agent.local_sender: another run sent an email 3s ago: waiting 26s (one by one, never in parallel)
+2026-11-13 15:56:41,703 INFO nexus_agent.local_sender: Sent 'SEA-REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001380 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)' to test.prealert.nexus@unifo.in (message id 1a1d471f562f4e7d)
+2026-11-13 15:56:42,050 INFO nexus_agent.local_sender: SCREENING FJ-0001497 - Consolidated.pdf: 2 page(s): MBL pages 1; HBL pages 2
+2026-11-13 15:56:42,050 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001497)
+2026-11-13 15:56:42,064 INFO nexus_agent.local_sender: another run sent an email 1s ago: waiting 28s (one by one, never in parallel)
+2026-11-13 15:57:12,666 INFO nexus_agent.local_sender: Sent 'SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)' to test.prealert.nexus@unifo.in (message id 1a1d4726f61f9711)
+2026-11-13 15:57:13,585 INFO nexus_agent.local_sender: SCREENING FJ-0001382 - Consolidated - Certificate of Origin - PL - Sep 24 .pdf: 15 page(s): MBL pages 1-2; HBL pages 3; INVOICE pages 4-6; PACKING pages 7-15
+2026-11-13 15:57:13,586 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001382)
+2026-11-13 15:57:13,725 INFO nexus_agent.local_sender: another run sent an email 1s ago: waiting 28s (one by one, never in parallel)
+2026-11-13 15:58:04,358 INFO nexus_agent.local_sender: Sent 'SEA-REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001382 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)' to test.prealert.nexus@unifo.in (message id 1a1d47339ae5ff88)
+2026-11-13 15:58:04,933 INFO nexus_agent.local_sender: SCREENING FJ-0018972 - Consolidated-Debit note.pdf: 4 page(s): HBL pages 1; INVOICE pages 2; DEBITNOTE pages 3; HBL pages 4
+2026-11-13 15:58:04,934 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0018972)
+2026-11-13 15:58:04,939 INFO nexus_agent.local_sender:     WARNING: more than one House bill found: not a single-house sample?
+2026-11-13 15:58:04,940 INFO nexus_agent.local_sender:     MISSING required: MBL
+2026-11-13 15:58:04,970 INFO nexus_agent.local_sender: another run sent an email 1s ago: waiting 28s (one by one, never in parallel)
+2026-11-13 15:58:38,320 INFO nexus_agent.local_sender: Sent 'SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0018972 | CONSOLIDATED (HOUSE+INVOICE+DEBIT NOTE)' to test.prealert.nexus@unifo.in (message id 1a1d473bd3595cc3)
+2026-11-13 15:58:39,141 INFO nexus_agent.local_sender: SCREENING FJ-0001498 - Consolidated.pdf: 3 page(s): MBL pages 1-3
+2026-11-13 15:58:39,142 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0001498)
+2026-11-13 15:58:39,143 INFO nexus_agent.local_sender:     MISSING required: HBL
+2026-11-13 15:58:39,161 INFO nexus_agent.local_sender: another run sent an email 1s ago: waiting 28s (one by one, never in parallel)
+2026-11-13 15:59:10,523 INFO nexus_agent.local_sender: Sent 'SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER)' to test.prealert.nexus@unifo.in (message id 1a1d47438850e774)
+2026-11-13 15:59:11,477 INFO nexus_agent.local_sender: SCREENING FJ-0002952 - Consolidated - DAP Incoterm.pdf: 4 page(s): MBL pages 1-2; HBL pages 3-4
+2026-11-13 15:59:11,478 INFO nexus_agent.local_sender:     WARNING: sea file: reference taken from the file name (FJ-0002952)
+2026-11-13 15:59:11,492 INFO nexus_agent.local_sender: another run sent an email 2s ago: waiting 27s (one by one, never in parallel)
+2026-11-13 15:59:41,217 INFO nexus_agent.local_sender: Sent 'SEA-REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002952 | CONSOLIDATED (MASTER+HOUSE)' to test.prealert.nexus@unifo.in (message id 1a1d474b383df37b)
+REG-002  SENT              REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0000602 | CONSOLIDATED (MASTER+MANIFEST+DEBIT NOTE+HOUSE+INVOICE+PACKING LIST+PO)
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MASTER
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | MANIFEST
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | INVOICE
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | HOUSE
+REG-007  SENT              REG-007 | QA agent trigger / Don't delete / Regression testing | Pre-Alert ORAE26040499 | INDIVIDUAL | DELIVERY NOTE
+REG-009  SENT              REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001132 | CONSOLIDATED (UNCLASSIFIED)
+SEA-REG-001 SENT              SEA-REG-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001380 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)
+SEA-REG-002 SENT              SEA-REG-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001497 | CONSOLIDATED (MASTER+HOUSE)
+SEA-REG-005 SENT              SEA-REG-005 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001382 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)
+SEA-REG-006 SENT              SEA-REG-006 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0018972 | CONSOLIDATED (HOUSE+INVOICE+DEBIT NOTE)
+SEA-REG-008 SENT              SEA-REG-008 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0001498 | CONSOLIDATED (MASTER)
+SEA-REG-009 SENT              SEA-REG-009 | QA agent trigger / Don't delete / Regression testing | Pre-Alert FJ-0002952 | CONSOLIDATED (MASTER+HOUSE)
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261113_155941.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261113.html   (opened once at the end of the run by ./nx runreport)

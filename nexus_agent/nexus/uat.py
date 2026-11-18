@@ -209,14 +209,46 @@ class UatPages:
             time.sleep(poll_s)
 
     # --- viewer ---------------------------------------------------------------------------
+    def _nearest_below(self, loc, cell):
+        """Among several matches (one per expanded row on the page) the one just below this row: each row's expansion sits right under it.
+        Another expanded row higher in the list must never be read for this case."""
+        cb = cell.bounding_box() if cell is not None else None
+        items = loc.all()
+        if cb is None or len(items) <= 1:
+            return loc.first
+        best = None
+        for it in items:
+            b = it.bounding_box()
+            if b and b["y"] >= cb["y"] and (best is None or b["y"] < best[0]):
+                best = (b["y"], it)
+        return best[1] if best else loc.first
+
+    def _expanded_view_button(self, cell):
+        """The 'View documents' button of THIS row's expansion, or None when this row is not expanded (another row may be)."""
+        cb = cell.bounding_box()
+        if not cb:
+            return None
+        heads = [h.bounding_box() for h in self.page.get_by_text("Shipment Details", exact=True).all()]
+        below = sorted(b["y"] for b in heads if b and b["y"] > cb["y"])
+        if not below:
+            return None
+        hy = below[0]
+        for m in self.page.locator(self.u["row_marker"]).all():           # another row between this row and that expansion: it is not ours
+            b = m.bounding_box()
+            if b and cb["y"] + cb["height"] + 2 < b["y"] < hy:
+                return None
+        btns = [(b["y"], x) for x in self.page.get_by_label(self.u["view_documents"]).all() if (b := x.bounding_box()) and b["y"] >= hy - 2]
+        return min(btns, key=lambda t: t[0])[1] if btns else None
+
     def expand_row(self, cell) -> None:
         """Expands the pre-alert's row so its records and 'View documents' buttons show. A click toggles the row, and Nexus can bring a
-        row back already expanded, so the result is checked and the click repeated once if the row ended up collapsed."""
-        view = self.page.get_by_label(self.u["view_documents"])
+        row back already expanded, so the result is checked and the click repeated once if the row ended up collapsed.
+        'Expanded' means THIS row's own expansion (not some other row's) and every later read is tied to this row."""
+        self._row_cell = cell
         for _ in range(2):
             cell.click()
             self.page.wait_for_timeout(2500)
-            if view.count():
+            if self._expanded_view_button(cell) is not None:
                 self.page.wait_for_timeout(1500)                                  # 'Unresolved Documents' renders a little after Shipment Details
                 self.unresolved = self.read_unresolved()
                 if getattr(self, "case_dir", None):
@@ -230,7 +262,7 @@ class UatPages:
     def read_unresolved(self) -> dict:
         """The 'Unresolved Documents : N' block of the expanded row: {count, rows: [{document, remark}]}. Empty when the row has none."""
         try:
-            head = self.page.get_by_text(re.compile(r"Unresolved Documents\s*:\s*\d+")).first
+            head = self._nearest_below(self.page.get_by_text(re.compile(r"Unresolved Documents\s*:\s*\d+")), getattr(self, "_row_cell", None))
             if not head.count():
                 return {"count": 0, "rows": []}
             count = int(re.search(r"(\d+)", head.inner_text().split(":")[-1]).group(1))
@@ -239,14 +271,14 @@ class UatPages:
             body = lines[lines.index("Actions") + 1:] if "Actions" in lines else lines[1:]
             rows = [{"document": body[0], "remark": next((x for x in body if re.search(r"not (yet )?linked|unmatched", x, re.I)), "")}] if body else []
             head.scroll_into_view_if_needed()
-            return {"count": count, "rows": rows}
+            return {"count": count, "rows": rows, "lines": body}
         except Exception as exc:
             log.warning("could not read the Unresolved Documents block: %s", exc)
             return {"count": 0, "rows": []}
 
     def read_shipment_details(self) -> list[dict]:
         """The 'Shipment Details' table of the expanded row: one dict per record (Master / House), keyed by column."""
-        raw = self.page.get_by_text("Record Type", exact=True).first.evaluate("""h => {
+        raw = self._nearest_below(self.page.get_by_text("Record Type", exact=True), getattr(self, "_row_cell", None)).evaluate("""h => {
             let node = h.parentElement;
             for (let i = 0; i < 8; i++) {
               const sib = [...node.parentElement.children].filter(x => x !== node && /Master|House/.test(x.innerText));
@@ -261,7 +293,13 @@ class UatPages:
     def open_viewer(self, cell, expanded: bool = False) -> None:
         if not expanded:
             self.expand_row(cell)
-        self.page.get_by_label(self.u["view_documents"]).first.click()
+        btn = self._expanded_view_button(cell)
+        if btn is None:                                       # this row is not expanded (another one is): never click that one's button
+            self.expand_row(cell)
+            btn = self._expanded_view_button(cell)
+        if btn is None:
+            raise RuntimeError("the pre-alert row is not expanded, so its 'View documents' button was not clicked (another row's button would open another job)")
+        btn.click()
         self.page.wait_for_url(f"**{self.u['viewer_url_part']}**", timeout=30000)
         self.page.wait_for_timeout(3000)
 
@@ -303,6 +341,15 @@ class UatPages:
         self._open_dropdown()
         self.page.get_by_text(name, exact=True).last.click()        # the option (the header button shows the same text first)
         self.page.wait_for_timeout(2500)
+
+    def assert_viewer_job(self, bills, parent: str) -> None:
+        """The parent name in the viewer ends with the bill number, e.g. 'Master (ONEYAARG05243800)'. If none of the bills this pre-alert row lists
+        for that record type is in it, the viewer belongs to another job: stop instead of comparing the wrong data."""
+        key = lambda t: re.sub(r"[^A-Z0-9]", "", (t or "").upper())
+        bills = [bills] if isinstance(bills, str) else [b for b in (bills or [])]
+        bills = [b for b in bills if key(b)]
+        if bills and parent and "(" in parent and not any(key(b) in key(parent) for b in bills):
+            raise RuntimeError(f"the viewer shows '{parent}', but this pre-alert lists the bill(s) {', '.join(bills)}: another job is open, nothing was compared")
 
     def _panel(self) -> dict:
         heads = self.u["left_headings"]
@@ -410,7 +457,11 @@ def map_master_panel(items: list[dict], party_ids: dict | None = None) -> dict:
             add("Air Waybill", "Air Waybill Number", value, ro)
         elif label in ("Name", "Address", "Postal Code"):
             n = seen[label] = seen.get(label, 0) + 1
-            who = "Shipper" if n == 1 else "Consignee"
+            blk = PARTY_BLOCK.get((it.get("block") or "").strip().lower())          # the heading Nexus prints above this block
+            if blk in ("Notify Party", "For Delivery"):                              # never the consignee: its own section
+                add(blk, label, value, ro)
+                continue
+            who = blk or ("Shipper" if n == 1 else "Consignee")
             party = out[who.lower()]
             party[label.lower().replace(" ", "_")] = value
             party["readonly_" + label.lower().replace(" ", "_")] = ro
@@ -440,14 +491,34 @@ def map_master_panel(items: list[dict], party_ids: dict | None = None) -> dict:
     return out
 
 
+PARTY_BLOCK = {"shippers name and address": "Shipper", "shipper name and address": "Shipper", "consignee name and address": "Consignee",
+               "notify party details": "Notify Party", "for delivery details": "For Delivery"}
+
+
 def read_panel_inputs(page: Page) -> list[dict]:
+    """Every input of the 'Shipment Data' panel in page order: {tag, label, value, readonly, block}. `block` is the party block heading above the
+    input as Nexus prints it ('Consignee Name And Address', 'Notify Party Details', 'For Delivery Details' ...): the panel names a party by that
+    heading, not by how many Name fields came before."""
     panel = page.get_by_text("Shipment Data", exact=True).first.locator("xpath=ancestor::div[2]")
-    return panel.evaluate("""p => [...p.querySelectorAll('input,textarea,select')].map(e => ({
-        tag: e.tagName,
-        label: ([...e.parentElement.querySelectorAll('label,span')].map(x => x.innerText.trim()).filter(Boolean)[0] || '')
-               || (e.tagName === 'SELECT' ? (e.getAttribute('aria-label') || '') : ''),
-        value: e.tagName === 'SELECT' ? (e.selectedOptions[0] ? e.selectedOptions[0].text : e.value) : (e.value || ''),
-        readonly: !!(e.readOnly || e.disabled)}))""")
+    return panel.evaluate(r"""p => {
+        const head = /(Name And Address|Party Details|Delivery Details)\s*$/i;
+        let cur = '';
+        const out = [];
+        const w = document.createTreeWalker(p, NodeFilter.SHOW_ELEMENT);
+        let e;
+        while ((e = w.nextNode())) {
+          if (e.matches('input,textarea,select')) {
+            out.push({tag: e.tagName,
+              label: ([...e.parentElement.querySelectorAll('label,span')].map(x => x.innerText.trim()).filter(Boolean)[0] || '')
+                     || (e.tagName === 'SELECT' ? (e.getAttribute('aria-label') || '') : ''),
+              value: e.tagName === 'SELECT' ? (e.selectedOptions[0] ? e.selectedOptions[0].text : e.value) : (e.value || ''),
+              readonly: !!(e.readOnly || e.disabled), block: cur});
+          } else if (e.children.length === 0) {
+            const t = (e.innerText || '').trim();
+            if (t && t.length < 45 && head.test(t)) cur = t;
+          }
+        }
+        return out; }""")
 
 
 def read_party_ids(page: Page) -> dict:
@@ -482,7 +553,11 @@ def map_house_panel(items: list[dict], party_ids: dict | None = None) -> dict:
             out["master_ref"] = value; add("House Air Waybill", "Master AWB Reference", value, ro)
         elif label in ("Name", "Address", "Postal Code"):
             n = seen[label] = seen.get(label, 0) + 1
-            who = "Shipper" if n == 1 else "Consignee"
+            blk = PARTY_BLOCK.get((it.get("block") or "").strip().lower())
+            if blk in ("Notify Party", "For Delivery"):
+                add(blk, label, value, ro)
+                continue
+            who = blk or ("Shipper" if n == 1 else "Consignee")
             party = out[who.lower()]
             party[label.lower().replace(" ", "_")] = value
             add(who, label, value, ro)

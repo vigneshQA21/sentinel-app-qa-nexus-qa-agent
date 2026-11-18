@@ -1,0 +1,97 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Job Number,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Page Nos.,,2,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Bill No.,,ONEYAARG05243800,PASS,printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Shipper,,BLUE WATER SHIPPING A / S ( ODENSE ),PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Shipper ID,,BLUWATODE,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Consignee,,LOGISTEED INDIA PVT . LTD .,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Consignee ID,,LIN_INDEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Branch,,DEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Job Type,,New Job,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipment Details,Shipment Details · Status,,CW Sync Pending,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Air Waybill,Air Waybill · Air Waybill Number,,ONEYAARG05243800,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipper,Shipper · Name,"BLUE WATER SHIPPING A/S (ODENSE) EMIL NECKELMANNS VEJ 20 ODENSE S 5220 DENMARK ATTN:LENA THAISEN SH>  [bill page 1, box 'SHIPPER']",BLUE WATER SHIPPING A / S ( ODENSE ),PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipper,Shipper · Address,"BLUE WATER SHIPPING A/S (ODENSE) EMIL NECKELMANNS VEJ 20 ODENSE S 5220 DENMARK ATTN:LENA THAISEN SH>  [bill page 1, box 'SHIPPER']",EMIL NECKELMANNS VEJ 20ODENSE S 5220 DENMARKATTN : LENA THAISEN,REVIEW,7/8 words are on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipper,Shipper · Postal Code,,5220,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Shipper,Shipper · Party ID,,BLUWATODE,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Consignee,Consignee · Name,"LOGISTEED INDIA PVT. LTD. 316,3RD FLOOR,D-21 CORPORATE PARK, SECTOR-21, NEAR DWARKA SECTOR 8 METRO STATION,DWARKA , CN>  [bill page 1, box 'CONSIGNEE']",LOGISTEED INDIA PVT . LTD .,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Consignee,Consignee · Address,"LOGISTEED INDIA PVT. LTD. 316,3RD FLOOR,D-21 CORPORATE PARK, SECTOR-21, NEAR DWARKA SECTOR 8 METRO STATION,DWARKA , CN>  [bill page 1, box 'CONSIGNEE']","316 , 3RD FLOOR , D-21 CORPORATE PARK ,SECTOR-21 , NEAR DWARKA SECTOR 8METRO STATION , DWARKA CN >",PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Consignee,Consignee · Postal Code,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Consignee,Consignee · Party ID,,LIN_INDEL,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Notify Party,Notify Party · Name,"SAME AS CONSIGNEE MAIL ID RANJANA.DEL@LOGISTEED.COM REG: AAA FF 0319D CNDEL4 IEC:0303062258 NP>  [bill page 1, box 'NOTIFY PARTY']",SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Notify Party,Notify Party · Address,"SAME AS CONSIGNEE MAIL ID RANJANA.DEL@LOGISTEED.COM REG: AAA FF 0319D CNDEL4 IEC:0303062258 NP>  [bill page 1, box 'NOTIFY PARTY']",SAME AS CONSIGNEE,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,For Delivery,For Delivery · Name,,,INFO,the bill has no 'for delivery' box that could be read; nothing to compare
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,For Delivery,For Delivery · Address,,,INFO,the bill has no 'for delivery' box that could be read; nothing to compare
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Vessel Name,,ONE RELIABILITY,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Voyage Number,,020E,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Port Of Loading,,"FREDERICIA , DENMARK",PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Ctn Pol City,,FRC,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Ctn Pol Ctry,,DENMARK,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Port Of Discharge,,"MUNDRA , INDIA",PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Place Of Delivery,,"PATLI , INDIA",PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Final Destination,,"PATLI , INDIA",PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Ctn Pod City,,MUN,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Ctn Pod Ctry,,INDIA,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container No,,FCIU5505762,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Seal No,,MD550943,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container Type,,20GB,KNOWN,"KNOWN ISSUE (accepted, not a bug); only 0/1 words are on the document (the party master / Nexus value may differ from the bill)"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · No Of Pieces Value,,17,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · No Of Pieces Unit,,PALLETS,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Gross Weight Value,,23821,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Description,,BRAKE PARTS,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container No,,KKTU8157350,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Seal No,,MD550944,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container Type,,20GP,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · No Of Pieces Value,,18,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · No Of Pieces Unit,,PALLETS,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Gross Weight Value,,24532,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Description,,BRAKE PARTS,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container No,,KKTU8072442,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Seal No,,MD550949,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container Type,,20GP,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · No Of Pieces Value,,16,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · No Of Pieces Unit,,PALLETS,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Gross Weight Value,,24543,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Description,,,INFO,another 'Description' field of this record holds the value; this one is an extra empty slot
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container No,,BEAU2146687,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Seal No,,MD550992,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Seal No1,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container Qty,,1,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Container Type,,20GP,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · No Of Pieces Value,,18,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · No Of Pieces Unit,,PALLETS,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Gross Weight Value,,24155,PASS,number printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Gross Weight Unit,,KGS,PASS,unit printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Volume Of Goods Value,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Volume Of Goods Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Description,,,INFO,another 'Description' field of this record holds the value; this one is an extra empty slot
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Split Info,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · (unlabelled field),,FREDERICIA,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Freight,Freight · Freight Payment,,FREIGHT PREPAID,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Cargo,Cargo · Pieces,,FCL,INFO,"in the Sea panel this field holds the service type (FCL / LCL), not a piece count"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Cargo,Cargo · Pieces Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Place,,AARHUS,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Date,,04/09/2026,PASS,date printed on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Carrier Name,,Ocean Network Express Pte . Ltd.,PASS,every word is on the document
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Other,Other · Carrier Code,,ONEY_WW,INFO,assigned or held by Nexus; no document value
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Cargo,Cargo · Gross Weight,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Cargo,Cargo · Gross Weight Unit,,,INFO,"empty field, nothing to compare"
+SEA-REG-009,IPA/2708/2026-27,FJ-0002952 - Consolidated - DAP Incoterm.pdf page 1-2,Incoterm,Incoterm · Incoterm,,,INFO,"empty field, nothing to compare"

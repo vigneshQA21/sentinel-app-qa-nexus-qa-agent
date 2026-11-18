@@ -323,6 +323,9 @@ def check_docs_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_sec
             items = read_panel_fields(ui.page)
             shown[kind] = items
             res["rows"] = compare_doc(kind, items, raw)
+            if "(scan, OCR)" not in where:
+                from .master_check import nexus_to_document
+                res["rows"] = nexus_to_document(res["rows"], raw)
             if "(scan, OCR)" in where:                                       # OCR may misread: a difference is REVIEW, not FAIL
                 from .master_check import ocr_adjust                              # a value Nexus shows is looked up in the OCR text first
                 res["rows"] = ocr_adjust(res["rows"], raw)

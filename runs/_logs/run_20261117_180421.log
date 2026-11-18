@@ -1,0 +1,18 @@
+2026-11-17 18:04:40,335 INFO nexus_agent.cleanup: Bill No search EVLHR035465 in Pre-Alerts: 0 row(s) []
+2026-11-17 18:04:43,550 INFO nexus_agent.cleanup: Bill No search EVLHR035465 in Others: 0 row(s) []
+2026-11-17 18:04:46,742 INFO nexus_agent.cleanup: Bill No search EVLHR035456 in Pre-Alerts: 0 row(s) []
+2026-11-17 18:04:49,927 INFO nexus_agent.cleanup: Bill No search EVLHR035456 in Others: 0 row(s) []
+2026-11-17 18:05:03,149 INFO nexus_agent.cleanup: Email Subject search FJ-0000088 in Pre-Alerts: 0 row(s) []
+2026-11-17 18:05:06,367 INFO nexus_agent.cleanup: Email Subject search FJ-0000088 in Others: 0 row(s) []
+MH-003: CLEAR - not in Nexus (searched EVLHR035465, EVLHR035456, FJ-0000088); it can be sent.
+2026-11-17 18:05:15,917 INFO nexus_agent.local_sender: Sent 'MH-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | MASTER' to test.prealert.nexus@unifo.in (message id 1a1e9811ba972c5c)
+2026-11-17 18:05:15,917 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-17 18:05:54,127 INFO nexus_agent.local_sender: Sent 'MH-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE' to test.prealert.nexus@unifo.in (message id 1a1e981ae5c9e1ae)
+2026-11-17 18:05:54,128 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-17 18:07:49,527 INFO nexus_agent.local_sender: Sent 'MH-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE' to test.prealert.nexus@unifo.in (message id 1a1e9836e2cf29f7)
+MH-003   SENT              MH-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | MASTER
+MH-003   SENT              MH-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE
+MH-003   SENT              MH-003 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261117_180749.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261117.html   (opened once at the end of the run by ./nx runreport)

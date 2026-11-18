@@ -1,0 +1,2 @@
+case_id,ipa,source,section,field,expected_from_document,shown_in_nexus,result,note
+DBL-001,,,,,,,ERROR,RuntimeError: parent dropdown did not open in the viewer header

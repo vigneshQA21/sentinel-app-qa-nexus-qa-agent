@@ -1,0 +1,80 @@
+2026-11-17: 21 screenshot(s) in 3 case folder(s) to upload
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/__main__.py", line 642, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/__main__.py", line 314, in main
+    DE.upload_day(cfg, args.date, dry_run=args.dry_run)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/drive_evidence.py", line 94, in upload_day
+    _link_, done = _upload_version(drive, f, folders[sub], name)
+                   ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/drive_evidence.py", line 47, in _upload_version
+    return B.drive_upload(drive, path, folder, name)[1], True
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/nexus_agent/bugs.py", line 201, in drive_upload
+    fields="id", supportsAllDrives=True).execute()["id"]
+                                         ~~~~~~~^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/googleapiclient/http.py", line 1003, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/googleapiclient/http.py", line 222, in _retry_request
+    raise exception
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 214, in request
+    response, content = self.http.request(
+                        ~~~~~~~~~~~~~~~~~^
+        uri,
+        ^^^^
+    ...<5 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/httplib2/__init__.py", line 1755, in request
+    (response, content) = self._request(
+                          ~~~~~~~~~~~~~^
+        conn, authority, uri, request_uri, method, body, headers, redirections, cachekey,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/httplib2/__init__.py", line 1475, in _request
+    (response, content) = self._conn_request(conn, request_uri, method, body, headers)
+                          ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/unifo/Downloads/nexus_agent/.venv/lib/python3.13/site-packages/httplib2/__init__.py", line 1398, in _conn_request
+    conn.request(method, request_uri, body, headers)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/http/client.py", line 1358, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/http/client.py", line 1404, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/http/client.py", line 1353, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/http/client.py", line 1152, in _send_output
+    self.send(chunk)
+    ~~~~~~~~~^^^^^^^
+  File "/usr/lib/python3.13/http/client.py", line 1077, in send
+    self.sock.sendall(data)
+    ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.13/ssl.py", line 1263, in sendall
+    v = self.send(byte_view[count:])
+  File "/usr/lib/python3.13/ssl.py", line 1232, in send
+    return self._sslobj.write(data)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+TimeoutError: The write operation timed out

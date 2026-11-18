@@ -1,0 +1,10 @@
+2026-11-17 13:34:37,392 INFO nexus_agent.cleanup: Bill No search 406-91177402 in Pre-Alerts: 0 row(s) []
+2026-11-17 13:34:40,651 INFO nexus_agent.cleanup: Bill No search 406-91177402 in Others: 0 row(s) []
+2026-11-17 13:34:52,413 INFO nexus_agent.cleanup: Email Subject search 406-91177402 in Pre-Alerts: 0 row(s) []
+2026-11-17 13:34:55,669 INFO nexus_agent.cleanup: Email Subject search 406-91177402 in Others: 0 row(s) []
+DBL-001: CLEAR - not in Nexus (searched 406-91177402, 406-91177402); it can be sent.
+2026-11-17 13:35:03,842 INFO nexus_agent.local_sender: Sent 'DBL-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 406-91177402 | INDIVIDUAL | MASTER' to test.prealert.nexus@unifo.in (message id 1a1e889bb1d3107a)
+DBL-001  SENT              DBL-001 | QA agent trigger / Don't delete / Regression testing | Pre-Alert 406-91177402 | INDIVIDUAL | MASTER
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261117_133503.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261117.html   (opened once at the end of the run by ./nx runreport)

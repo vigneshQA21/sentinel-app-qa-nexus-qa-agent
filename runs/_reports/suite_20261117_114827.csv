@@ -1,0 +1,4 @@
+case_id,scenario,mode,sample_ref,status,subject,sent_at,screening,warnings,expected_mapping,expected_result,nexus_job,actual_nexus_result
+MH-002,"Air multi-house, Houses uploaded before the Master (REG-014): 3 Houses first, then Master + Manifest",individual,FJ-0000088,SENT,MH-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE,2026-11-17T11:47:23,,,,,,
+MH-002,"Air multi-house, Houses uploaded before the Master (REG-014): 3 Houses first, then Master + Manifest",individual,FJ-0000088,SENT,MH-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE,2026-11-17T11:47:55,,,,,,
+MH-002,"Air multi-house, Houses uploaded before the Master (REG-014): 3 Houses first, then Master + Manifest",individual,FJ-0000088,SENT,MH-002 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE,2026-11-17T11:48:27,,,,,,

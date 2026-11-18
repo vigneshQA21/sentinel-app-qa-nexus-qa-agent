@@ -111,7 +111,7 @@ def test_consolidated_sent_unsplit_as_one_email_then_archived(tmp_path):
     done = sender.send_all()
     assert len(done) == 1 and len(fwd.svc.sent) == 1
     m = decode(fwd.svc.sent[0])
-    assert m["Subject"] == TAG + " | Pre-Alert UNF1001 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)" and m["To"] == "prealert.nexus@unifo.in"
+    assert m["Subject"] == TAG + " | Pre-Alert UNF1001 | CONSOLIDATED (MASTER+HOUSE+INVOICE+PACKING LIST)" and m["To"] == "test.prealert.nexus@unifo.in"
     atts = list(m.iter_attachments())
     assert len(atts) == 1 and atts[0].get_filename() == "scan_001.pdf"
     assert atts[0].get_payload(decode=True) == original          # byte-for-byte, not split

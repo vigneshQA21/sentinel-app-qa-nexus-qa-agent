@@ -81,7 +81,7 @@ def _run_data_check(cfg, chosen, kind, air_runner, args) -> list:
     return results
 
 
-def main(argv: list[str] | None = None) -> int:
+def _main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="nexus_agent")
     ap.add_argument("--config", help="config directory (default: ./config)")
     ap.add_argument("-v", "--verbose", action="store_true")
@@ -122,12 +122,20 @@ def main(argv: list[str] | None = None) -> int:
     vh.add_argument("--wait", type=int, help="seconds to wait for the pre-alert (default: buffer + polling from the send time)")
     vh.add_argument("--headless", action="store_true", help="hide the browser (default: shown)")
 
+    vf = sub.add_parser("validate-mhfields", help="field-by-field check of the Master and every House of a multi-house job (MH-002..004), each against its own page")
+    vf.add_argument("--cases", nargs="+", default=["MH-003"], help="multi-house case ids")
+    vf.add_argument("--headless", action="store_true", help="hide the browser (default: shown)")
+
     vd = sub.add_parser("validate-docs", help="compare the Manifest, Invoice and Packing List data Nexus extracted with the documents")
     vd.add_argument("--cases", nargs="+", default=["REG-001"], help="test case ids (default: REG-001)")
     vd.add_argument("--only", nargs="+", choices=["manifest", "invoice", "packing"], help="check only these documents")
     vd.add_argument("--wait", type=int, help="seconds to wait for the pre-alert (default: buffer + polling from the send time)")
     vd.add_argument("--headless", action="store_true", help="hide the browser (default: shown)")
 
+    cp = sub.add_parser("compare", help="compare a day's runs with the previous run of each case (mapping, new / fixed / still-there findings); needs no Nexus")
+    cp.add_argument("--date", default=None, help="yyyy-mm-dd (default: the newest day with data)")
+    cp.add_argument("--cases", nargs="+", default=None)
+    sub.add_parser("patterns", help="learn which kinds of findings turn out to be real bugs (bug sheet statuses + your decisions); feeds the bug likelihood in the reports")
     rr = sub.add_parser("runreport", help="today's run only: observations, bugs found, and earlier raised bugs that passed (no history)")
     rr.add_argument("--date", help="yyyy-mm-dd (default: today)")
     sub.add_parser("history", help="internal bug history: bugs found, how often each repeats, status")
@@ -157,6 +165,7 @@ def main(argv: list[str] | None = None) -> int:
     ue = sub.add_parser("upload-evidence", help="upload a day's screenshots and the report (PDF) to the Google Drive evidence folder")
     ue.add_argument("--date", help="yyyy-mm-dd (default today)")
     ue.add_argument("--dry-run", action="store_true", help="only count what would be uploaded")
+    ue.add_argument("--auto", action="store_true", help="upload today + the days not in Drive yet, retrying; never fails (used after every run)")
 
     pf = sub.add_parser("preflight", help="before sending: look the cases' bill numbers and FJ references up in Nexus; exit 3 if a sample already exists")
     pf.add_argument("cases", nargs="+", help="test case ids, e.g. REG-001 SEA-REG-002")
@@ -166,6 +175,16 @@ def main(argv: list[str] | None = None) -> int:
     ph.add_argument("cases", nargs="+", help="scenario case ids, e.g. AMF-001 AMF-002")
     ph.add_argument("--phase", required=True, choices=["manifest", "house-master", "master-house"],
                     help="manifest = only the Manifest; house-master = House(s) then Master; master-house = Master, House(s), Manifest, Invoice, Packing List, Certificate of Origin")
+
+    mp = sub.add_parser("mh-phase", help="air multi-house individual sends (MH-002..004): split the MH-001 sample and load ONE phase into samples/<CASE>/ (sends nothing)")
+    mp.add_argument("case", help="MH-002 (Houses first, then Master + Manifest), MH-003 (Master + 2 Houses, then the third House), MH-004 (third House never sent)")
+    mp.add_argument("--phase", default="1", help="1 = first sending, 2 = the later one (MH-002, MH-003)")
+
+    dbl = sub.add_parser("validate-directbl", help="air Direct BL (DBL-nnn): check every point of the Direct BL requirement on the pre-alert in Nexus and write a pass / fail report")
+    dbl.add_argument("--cases", nargs="+", default=["DBL-001"], help="test case ids (default: DBL-001)")
+    dbl.add_argument("--wait", type=int, help="seconds to wait for the pre-alert")
+    dbl.add_argument("--xml", help="folder with the XML files Nexus pushed (Job XMLs 'NEXUS PUSH CONSOL' / 'NEXUS PUSH HOUSE'); default samples/<case>/xml if it exists")
+    dbl.add_argument("--headless", action="store_true", help="hide the browser (default: shown)")
 
     vd = sub.add_parser("validate-drafts", help="air manifest scenarios: after ONLY the Manifest was sent, check the Master draft and House draft numbers in the Nexus UI")
     vd.add_argument("--cases", nargs="+", required=True, help="scenario case ids, e.g. AMF-001 AMF-002")
@@ -178,6 +197,8 @@ def main(argv: list[str] | None = None) -> int:
                     help="after each case is sent, wait a buffer, poll until Nexus shows the pre-alert and validate its mapping (headed browser)")
     su.add_argument("--interval", type=int, help="seconds to wait between cases (default: testsuite.case_interval_seconds; 0 = none)")
     su.add_argument("--resend", action="store_true", help="send again even if the file was sent before")
+    su.add_argument("--follow-up", action="store_true",
+                    help="the named cases are a follow-up send to a job that is meant to exist (e.g. HBL after its MBL): skip the 'sample already in Nexus' stop for them only")
 
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
@@ -185,6 +206,7 @@ def main(argv: list[str] | None = None) -> int:
     import os
     profile = args.profile or (None if os.getenv("NEXUS_MOCK") else "uat")
     cfg = Config(args.config, profile=None if profile == "mock" else profile)
+    _CTX.update(cfg=cfg, cmd=args.cmd, dry=bool(getattr(args, "dry_run", False)) or bool(getattr(args, "auto", False)))
 
     if args.cmd in ("suite", "validate", "validate-master", "validate-house", "validate-docs") and not getattr(args, "dry_run", False) \
             and not os.getenv("NEXUS_NO_LIVE"):
@@ -219,6 +241,18 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"    {f.name}")
         return 0
 
+    if args.cmd == "mh-phase":
+        from . import mhphase as MP
+        try:
+            files = MP.fill(cfg, args.case.upper(), args.phase)
+        except (ValueError, FileNotFoundError) as exc:
+            print(f"{args.case}: {exc}")
+            return 2
+        print(f"{args.case.upper()}  phase {args.phase}: {len(files)} file(s) in samples/{args.case.upper()}/ (sent in this order; nothing sent)")
+        for f in files:
+            print(f"    {f.name}")
+        return 0
+
     if args.cmd == "login":
         from .nexus.session import NexusSession
         with NexusSession(cfg, headless=False) as s:
@@ -230,6 +264,31 @@ def main(argv: list[str] | None = None) -> int:
         from .store import Store
         fwd = GmailForwarder(cfg, Store(cfg.state_dir / "agent.db")).forward_new(args.dry_run)
         print(f"{len(fwd)} pre-alert(s) {'would be ' if args.dry_run else ''}forwarded")
+        return 0
+
+    if args.cmd == "compare":
+        from . import daycompare as DC
+        reports = cfg.runs_dir / "_reports"
+        day = (args.date or "").replace("-", "") or (DC.days_available(reports) or [""])[-1]
+        print(f"Run of {DC._pretty(day)} compared with the previous run of each case\n")
+        print("\n".join(DC.render(DC.compare(reports, day, args.cases))))
+        return 0
+
+    if args.cmd == "patterns":
+        from . import bugprob
+        from .store import Store
+        d = bugprob.refresh(cfg, Store(cfg.state_dir / "agent.db"))
+        rec = d["records"]
+        real = sum(1 for r in rec if r[3])
+        print(f"Learned from {len(rec)} decided findings ({real} real = {100 * real // max(len(rec), 1)}%); bug sheet rows read: {d['sheet_rows']}; saved {bugprob.cache_file(cfg)}")
+        P = bugprob.Patterns(rec)
+        for nat in ("missing", "mismatch"):
+            r_, n_ = P._group(lambda r, nat=nat: r[2] == nat)
+            print(f"  {nat.upper():9} real {r_} of {n_}  (about {100 * (r_ + 1) // (n_ + 2)}%)")
+        docs = sorted({r[0] for r in rec})
+        for doc in docs:
+            r_, n_ = P._group(lambda r, doc=doc: r[0] == doc)
+            print(f"  {doc:14} real {r_} of {n_}")
         return 0
 
     if args.cmd == "runreport":
@@ -259,6 +318,9 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "upload-evidence":
         from . import drive_evidence as DE
+        if getattr(args, "auto", False):
+            DE.auto_upload(cfg)
+            return 0
         DE.upload_day(cfg, args.date, dry_run=args.dry_run)
         return 0
 
@@ -369,6 +431,33 @@ def main(argv: list[str] | None = None) -> int:
         _note_bugs(cfg, groups=[(B.DOC_TITLES[k], [r for r in results if r["kind"] == k]) for k in shown_kinds])
         return 0 if all(r["verdict"] == "PASS" for r in results) else 2
 
+    if args.cmd == "validate-directbl":
+        from . import directbl as DB
+        from . import master_check as MC
+        from . import testsuite as T
+        wanted = {c.upper() for c in args.cases}
+        chosen = [c for c in T.read_cases_for(cfg, wanted) if c.id in wanted]
+        results = DB.run_directbl_check(cfg, chosen, headless=args.headless, wait_seconds=args.wait)
+        for r in results:                                       # XML point: from the files of the Push, when given
+            xdir = Path(args.xml) if args.xml else cfg.path(cfg.settings["testsuite"]["samples_dir"]) / r["case_id"].split(" ")[0] / "xml"
+            if r.get("rows") and xdir.is_dir():
+                files = {f.name: f.read_bytes() for f in sorted(xdir.glob("*.xml")) if f.stat().st_size < 5_000_000}
+                r["rows"] = DB.apply_xml(r["rows"], DB.check_xml(files))
+                r["verdict"] = DB.verdict(r["rows"])
+        print(DB.format_report(results))
+        print(f"\nReport (csv): {MC.write_report(cfg, results, 'directbl_data')}")
+        print(f"Report (pass / fail by requirement point): {DB.write_markdown(cfg, results)}")
+        return 0 if results and all(r["verdict"] == "PASS" for r in results) else 2
+
+    if args.cmd == "validate-mhfields":
+        from . import master_check as MC
+        from . import mhfields as MF
+        results = MF.run_mh_fields(cfg, [c.upper() for c in args.cases], headless=args.headless)
+        print(MC.format_report(results, "FIELDS"))
+        print("\n" + MF.triage_text(results))
+        print(f"\nReport: {MF.write_csv(cfg, results)}")
+        return 0 if results and all(r["verdict"] == "PASS" for r in results) else 2
+
     if args.cmd == "validate-house":
         from . import house_check as HC
         from . import master_check as MC
@@ -437,7 +526,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.validate and not args.dry_run and any(T.is_sea(c.id) for c in chosen):
             print("Sea cases can be sent but not validated yet (the Nexus checks are Air-only). Run without --validate; nothing was sent.")
             return 2
-        if not args.dry_run:                  # standing order: never send a sample that already exists in Nexus
+        if not args.dry_run and not getattr(args, "follow_up", False):                  # standing order: never send a sample that already exists in Nexus
             from . import cleanup as CL
             from .nexus.session import SessionExpired
             try:
@@ -572,6 +661,22 @@ def main(argv: list[str] | None = None) -> int:
     print(f"\nReport: {report / 'summary.html'}")
     ok = {Status.PASS, Status.DRY_RUN_OK, Status.APPROVAL_PENDING, Status.NOT_RECEIVED}
     return 0 if all(r.status in ok for r in results) else 2
+
+
+_CTX: dict = {}
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Every command that produces evidence ends by starting the Drive upload in the background (daily evidence, never stops the run)."""
+    try:
+        return _main(argv)
+    finally:
+        try:
+            from . import drive_evidence as DE
+            if _CTX.get("cmd") in DE.AUTO_CMDS and not _CTX.get("dry") and os.getenv("NEXUS_NO_AUTO_UPLOAD") is None:
+                DE.start_background(_CTX["cfg"])
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":

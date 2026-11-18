@@ -1,0 +1,2 @@
+case_id,ref,ipa,nexus_status,verdict,appeared_after_s,details,evidence
+SEA-RT-270,FJ-0002245,IPA/2774/2026-27,CREATED_IN_NEXUS,PASS,107,"MASTER: PASS (in Master) | unexpected: B/L in Master | IPA/2774/2026-27 seen -> Master (83714040): MBLx1, B/Lx1",/home/unifo/Downloads/nexus_agent/runs/2026-11-16/SEA-RT-270

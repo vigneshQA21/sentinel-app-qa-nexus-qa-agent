@@ -13,7 +13,7 @@ Wrong things the agent did, found by the user or by checking, and how each was f
 - **What happened:** I listed 17 Sea items (3 to 19) as failures that need the user's confirmation, using the checker's wording ("empty in Nexus, but the bill prints ..."). When the evidence was opened, three groups were not bugs: SEA-REG-003 House "Consignee Address" (item 15), the Master "empty Consignee Name and Address" items (3, 9, 12) and SEA-REG-001 Master Place of Delivery / Final Destination (item 4). I also called item 15 "Consignee Address" and item 4 "looks real" before looking.
 - **Cause:** the Sea checker (`sea_check.py`) names a party block by the heading above it in Nexus's field list, so an empty Notify Party address (bill prints `SAME AS CONSIGNEE`, no address) or an empty "For Delivery Details" block (bill has no such party) is reported as an empty Consignee. For item 4 my text extraction joined the ports row into one line (`CMA CGM COLUMBIA GENOA KOLKATA(CALCUTTA)`) and I read KOLKATA as the final place of delivery; the word positions show it under PORT OF DISCHARGE, and the FINAL PLACE OF DELIVERY box is blank.
 - **Fix / rule:** each item was checked against Nexus and the bill with a screenshot or crop and shown to the user; item 15 was marked not a bug on the user's word; items 3, 4, 9, 12 await the user's decision. Before an item goes in a "needs your confirmation" list: (a) name the Nexus block by its own heading in the viewer, (b) read the bill column by position (word coordinates or a crop), not from joined text, (c) show the evidence.
-- **Still to fix:** `sea_check.py` should name the block by the viewer heading (Consignee / Notify Party / For Delivery Details) and not report an empty address when the bill prints `SAME AS CONSIGNEE`.
+- **Fixed 13-Nov:** party blocks are named by the Nexus viewer heading (Consignee / Notify Party / For Delivery), `SAME AS CONSIGNEE` and a box the bill does not have are not findings, and the document's value is shown next to Nexus's (see PROGRESS_LOG 13-Nov, nexus_agent/docvalue.py, sea_check.compare_sea).
 
 ### 3. Said REG-009 had the same `K` vs `KGS` pattern and was accepted as not a bug
 - **What happened:** when I first raised the REG-007 House weight units I said REG-009 House had the same pattern, accepted on 28-Oct. The stored REG-009 candidates have `KGS` in Nexus and "not found in the scan" as the expected value, reviewed on 29-Oct as scan / OCR limits. The real `K` vs `KGS` candidates were REG-003 (26-Oct) and REG-001 (05-Nov), both still pending.
@@ -31,6 +31,23 @@ Wrong things the agent did, found by the user or by checking, and how each was f
 ### 6. The message said "19 items, numbered 3 to 19 plus the Master mapping"
 - **What happened:** items 3 to 19 are 17 items; the Master mapping is item 19, not an extra one. The user caught the number when asking to see them again.
 - **Fix / rule:** count a list from the list, not from the numbering text.
+
+## 13-Nov
+
+### 2. The data check read ANOTHER job's viewer (SEA-REG-008 compared with an Air Master)
+- **What happened:** the SEA-REG-008 Master check on 13-Nov listed 28 findings (Air Waybill Number, flight segments, Executed On ...). The saved `master_data.png` showed the Air Master 098-45997836 (EV Cargo, the MH-001 job IPA/2710), not the Sea job IPA/2709. The comparison with the day-over-day report (`./nx compare`) made it visible: Sea fields turned into Air values.
+- **Cause:** `expand_row` accepted ANY 'View documents' button on the page and `open_viewer` clicked the first one; `read_shipment_details` / `read_unresolved` also read the first table on the page. Another row (the MH-001 job validated minutes earlier) was still expanded higher in the list, so its button, table and viewer were used.
+- **Fix (13-Nov):** every read is tied to the clicked row (`_nearest_below`, `_expanded_view_button`); `open_viewer` refuses to click a button that is not that row's; `assert_viewer_job` stops a Master / House / Sea check when the viewer's parent name does not carry a bill the row lists. Tests added. The 28 SEA-REG-008 findings of 13-Nov are invalid and are re-checked.
+- **Rule:** a finding list is only as good as the job it came from: check that the viewer shows the case's own bill before comparing, and treat a sudden pile of unrelated fields (Air fields on a Sea case) as a tooling fault first.
+
+### 3. The full regression chain went on after the internet failed and counted an old report as today's sends
+- **What happened (16-Nov):** the delete step finished, then the internet dropped during the send (Nexus "ERR_INTERNET_DISCONNECTED", Google name resolution failed). Nothing was sent (checked in the sent-file records and the logs), but the chain went on: its "sent list" came from the newest suite report, which was 13-Nov's (REG-006), so it started a 20-minute wait for a pre-alert that was never sent. I first told the user that cases were being sent.
+- **Cause:** same family as 06-Nov item 5 (checks after a failed send) and the `ps`/`completed` reading: no guard on connectivity, and "newest report" was taken as "this run's report".
+- **Fix:** the chain checks Nexus and Google before sending (waits for them), takes the sent list only from reports newer than the send start, and stops with a message when nothing was sent. Stopped by process id.
+
+### 1. Stopped a run with `pkill -f` again and killed my own shell
+- **What happened:** to stop the dry-run I used `pkill -f "nexus_agent delete ..."` in the same command that then started the real delete; the pattern matched the shell, the command died (exit 144) and the delete never started. Same mistake as 06-Nov item 8.
+- **Fix / rule:** stop a run by process id (`kill <pid>` from `ps`), and start the next command separately.
 
 ## 06-Nov
 

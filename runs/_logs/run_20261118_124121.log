@@ -1,0 +1,21 @@
+2026-11-18 12:41:34,374 INFO nexus_agent.cleanup: Bill No search EVLHR035465 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:41:37,594 INFO nexus_agent.cleanup: Bill No search EVLHR035465 in Others: 0 row(s) []
+2026-11-18 12:41:40,789 INFO nexus_agent.cleanup: Bill No search EVLHR035456 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:41:43,973 INFO nexus_agent.cleanup: Bill No search EVLHR035456 in Others: 0 row(s) []
+2026-11-18 12:41:56,062 INFO nexus_agent.cleanup: Email Subject search FJ-0000088 in Pre-Alerts: 0 row(s) []
+2026-11-18 12:41:59,251 INFO nexus_agent.cleanup: Email Subject search FJ-0000088 in Others: 0 row(s) []
+MH-004: CLEAR - not in Nexus (searched EVLHR035465, EVLHR035456, FJ-0000088); it can be sent.
+2026-11-18 12:42:08,952 INFO nexus_agent.local_sender: Sent 'MH-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | MASTER' to test.prealert.nexus@unifo.in (message id 1a1ed7fa50d24b5a)
+2026-11-18 12:42:08,952 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-18 12:42:41,292 INFO nexus_agent.local_sender: Sent 'MH-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | MANIFEST' to test.prealert.nexus@unifo.in (message id 1a1ed80225854e19)
+2026-11-18 12:42:41,293 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-18 12:43:12,984 INFO nexus_agent.local_sender: Sent 'MH-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE' to test.prealert.nexus@unifo.in (message id 1a1ed809fb43f26d)
+2026-11-18 12:43:12,985 INFO nexus_agent.local_sender: waiting 30s before the next email (one by one, never in parallel)
+2026-11-18 12:43:44,666 INFO nexus_agent.local_sender: Sent 'MH-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE' to test.prealert.nexus@unifo.in (message id 1a1ed811b89d4054)
+MH-004   SENT              MH-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | MASTER
+MH-004   SENT              MH-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | MANIFEST
+MH-004   SENT              MH-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE
+MH-004   SENT              MH-004 | QA agent trigger / Don't delete / Regression testing | Pre-Alert EVLHR035465 | INDIVIDUAL | HOUSE
+
+Report: /home/unifo/Downloads/nexus_agent/runs/_reports/suite_20261118_124344.csv
+HTML run report: /home/unifo/Downloads/nexus_agent/runs/_reports/runreport_20261118.html   (opened once at the end of the run by ./nx runreport)

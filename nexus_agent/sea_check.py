@@ -16,6 +16,7 @@ from .master_check import MONTHS, _legal, attach_details as attach_master, norm,
 from .house_check import attach_details as attach_house
 from .nexus.session import SessionExpired
 from .nexus.uat import UatPages, map_house_panel, map_master_panel, read_panel_inputs, read_party_ids
+from . import docvalue
 from .pdf_split import detect_parts_sea, page_texts_layout
 from .store import Store
 from .testsuite import Case, sample_files
@@ -136,18 +137,71 @@ def empty_finding(section: str, label: str, text: str) -> str:
     return ""
 
 
+PARTY_BOX = {"Shipper": "shipper", "Consignee": "consignee", "Notify Party": "notify party", "For Delivery": "for delivery"}
+SAME_AS = re.compile(r"^\W*SAME\s+AS\s+CONSIGNEE\b", re.IGNORECASE)
+
+
+def _doc_boxes(src: dict) -> dict:
+    """{'consignee': (text, page), ...}: the boxes of the bill read by position (cached on the source)."""
+    if "boxes" not in src:
+        try:
+            src["boxes"] = docvalue.blocks_from_pdf(src["pdf"].read_bytes(), src["pages"]) if not src.get("scanned") else {}
+        except Exception as exc:
+            log.warning("boxes of %s not read: %s", src.get("pdf"), exc)
+            src["boxes"] = {}
+    return src["boxes"]
+
+
+def _box_value(boxes: dict, key: str) -> str:
+    t, pg = boxes[key]
+    return f"{t}  [bill page {pg}, box '{key.upper()}']"
+
+
+def _consistent(value: str, box_text: str) -> bool:
+    """The box read by position really is the party Nexus shows: most words of the Nexus value are in it."""
+    v = {t for t in tokens(_legal(value)) if len(t) > 2}
+    return bool(v) and len(v & tokens(_legal(box_text))) / len(v) >= 0.5
+
+
 def compare_sea(fields: dict, src: dict) -> list[dict]:
+    """Every Nexus field against the bill. Standard (Air and Sea): a value the bill prints must be in the Nexus shipment data, so an empty
+    field is MISSING only when the bill really prints that value; a party block is the one Nexus headed it with (Notify Party and For
+    Delivery are never the consignee); the document's value is shown next to Nexus's."""
     text, nums = src["text"], _numbers(src["text"])
+    boxes = _doc_boxes(src)
+    flds = fields.get("fields", [])
+    filled = {(f["section"], f["label"]) for f in flds if (f["value"] or "").strip()}
     rows = []
-    for f in fields.get("fields", []):
+    for f in flds:
         label, value, section = f["label"] or "(unlabelled field)", (f["value"] or "").strip(), f["section"]
         name = f"{section} · {label}"
+        box_key = PARTY_BOX.get(section) if label in ("Name", "Address") else None
         if not value:
-            why = empty_finding(section, label, text)
-            if why:
-                r = row(name, "", "", "REVIEW" if src["scanned"] else "FAIL", f"empty in Nexus, but {why}")
+            why = ""
+            doc_value = ""
+            if (section, label) in filled:
+                r = row(name, "", "", "INFO", f"another '{label}' field of this record holds the value; this one is an extra empty slot")
+            elif box_key:
+                if box_key in boxes:
+                    if SAME_AS.match(boxes[box_key][0]):
+                        r = row(name, boxes[box_key][0][:60], "", "INFO", "the bill says SAME AS CONSIGNEE; nothing printed to compare")
+                    else:
+                        r = row(name, _box_value(boxes, box_key), "", "REVIEW" if src["scanned"] else "FAIL",
+                                f"MISSING: empty in Nexus ({section}), the bill prints this box")
+                elif section in ("Notify Party", "For Delivery"):
+                    r = row(name, "", "", "INFO", f"the bill has no '{box_key}' box that could be read; nothing to compare")
+                else:
+                    why = empty_finding(section, label, text)
+                    r = (row(name, "", "", "REVIEW" if src["scanned"] else "FAIL", f"MISSING: empty in Nexus, but {why} (box not located by position: check by eye)")
+                         if why else row(name, "", "", "INFO", "empty field, nothing to compare"))
             else:
-                r = row(name, "", "", "INFO", "empty field, nothing to compare")
+                why = empty_finding(section, label, text)
+                if why:
+                    pages = ", ".join(str(p) for p in src.get("pages", [])[:3])
+                    doc_value = f"(printed on the bill, page {pages}; value not read by position)"
+                    r = row(name, doc_value, "", "REVIEW" if src["scanned"] else "FAIL", f"MISSING: empty in Nexus, but {why}")
+                else:
+                    r = row(name, "", "", "INFO", "empty field, nothing to compare")
         elif section == "Cargo" and label == "Pieces" and not re.fullmatch(r"[\d.,]+", value):
             r = row(name, "", value, "INFO", "in the Sea panel this field holds the service type (FCL / LCL), not a piece count")
         elif label.startswith("Volume") and not re.search(r"\b(M3|CBM|MTQ|CUBIC|VOLUME|MEASUREMENT)\b", text, re.IGNORECASE):
@@ -158,7 +212,12 @@ def compare_sea(fields: dict, src: dict) -> list[dict]:
             res, note = check_value(label, value, text, nums)
             if res == "FAIL" and src["scanned"]:
                 res, note = "REVIEW", note + " (scanned page read with OCR)"
-            r = row(name, "", value, res, note)
+            doc_value = ""
+            if box_key in boxes and _consistent(value, boxes[box_key][0]):
+                doc_value = _box_value(boxes, box_key)                   # the document's value, shown next to Nexus's (also for PASS)
+            if res in ("FAIL", "REVIEW") and box_key and box_key in boxes and not doc_value:
+                doc_value = _box_value(boxes, box_key) + "  (Nexus value does not look like this box: check by eye)"
+            r = row(name, doc_value, value, res, note)
         r["section"], r["label"] = section, label
         rows.append(r)
     return rows
@@ -209,6 +268,7 @@ def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str
     if parent is None:
         res["message"] = f"no {title} parent in the viewer"
         return res
+    ui.assert_viewer_job([r.get("Bill No.", "") for r in rows_], parent)
     ui.select_parent(parent)
     ui.page.wait_for_timeout(1500)
     ui.screenshot(cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id / f"{title.lower()}_data.png")
