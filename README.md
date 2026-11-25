@@ -53,7 +53,7 @@ Quadance PDF -> samples/<CASE>/ -> Gmail send -> (3 min buffer, poll) -> Nexus U
 ## Setup (one time)
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.lock.txt   # exact versions the regression baseline was taken with (requirements.txt = minimums)
 playwright install chromium     # OCR (rapidocr-onnxruntime) comes with requirements.txt
 ```
 1. **Gmail:** Google Cloud project, Gmail API, OAuth client "Desktop app" saved as `secrets/gmail_credentials.json`; the first send asks you to authorise the sending mailbox.
