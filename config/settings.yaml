@@ -197,6 +197,17 @@ validation:
   type_alternates: {PO: [SHIPPER DOCUMENT]}
   fail_on_unexpected: false           # true = extra/unclassified documents also fail the case
   evidence: true                      # screenshots in runs/<date>/<case>/
+  # Tenant-specific hints shown in the trace's "Probable root cause" box (validate.root_causes). Another tenant sets its own or none.
+  known_root_causes:
+    master_split: "dev finding on the REG-006 bug: the MAWB number is normalised inconsistently, e.g. a missing '-', when the job is first created by the Manifest and the Master arrives later in a different email"
+
+direct_bl:
+  # India's Direct BL rules (requirement "Direct BL Shipment Requirement (Only for Air MOT)", point 1). Each tenant sets its own;
+  # a tenant without this block gets NOT_RUN for these points, never India's values.
+  destination_country: IN                         # Segment 1 Podctry must equal this
+  destination_name: India
+  destination_expected: India (DELHI on the document)
+  excluded_consignees: [FLYJAC, LOGISTEED]        # these consignees follow the existing flow, not Direct BL
 
 bugsheet:
   # UAT functionality bug sheet. Nothing is EVER added without your confirmation (./nx bugs asks per bug).

@@ -42,3 +42,15 @@ Full rollback at any time: `git checkout baseline-2026-11-25`. India stays in to
 | Existing behaviour affected | None for India: `./nx --tenant india cases` = `./nx cases` (stdout identical); `run_regression.sh` dry-run of all 23 cases lists the same 32 emails as the 23 Nov 2026 dry-run, logs still go to `runs/_logs`, the "SENDING to ..." line names the same mailbox (now read from config). A dry-run still ends with exit 1, as before |
 | Tests | Offline gate: see the stage 2 commit message. Live Golden gate: pending your authorisation |
 | Rollback | `git revert <stage 2 commit>` |
+
+## Stage 3 - India rules moved to settings (2026-11-25)
+| Item | Detail |
+| --- | --- |
+| Files | `nexus_agent/directbl.py` (`INDIA_RULES`, `rules_for`, `evaluate(..., rules=)`, tenant point-1 title, `summary` ordering), `nexus_agent/validate.py` (`INDIA_MASTER_SPLIT_NOTE`, `known_cause_note`, `root_causes(..., master_split_note=)`), `config/settings.yaml` (new `direct_bl:` block and `validation.known_root_causes`, India's current values), `tests/test_tenant_rules.py` (new, 7 tests) |
+| Rules moved | Direct BL destination country / name / expected text and excluded consignees (were `"IN"` and `("FLYJAC", "LOGISTEED")` in code); the REG-006 developer note in the "Probable root cause" box. `hawb_pattern` and `airport_names` were already in settings: unchanged |
+| Reason | Audit H2: India's rules applied to every tenant silently |
+| India | Values written explicitly into `config/settings.yaml`; built-in India defaults kept as a fallback. 15 input combinations give rows, summary and report text identical to `baseline-2026-11-25`; point-1 sections and fields equal the frozen Golden report of 20 Nov 2026 |
+| Other tenants | Use only their own `direct_bl:` (nothing merged from India). Without it, the destination and consignee points are NOT_RUN with the reason; no root-cause note unless they set one |
+| Fixed on the way | The point-1 row "Identified as Direct BL" now carries the tenant's point-1 title too (identical for India) |
+| Tests | Offline gate: see the stage 3 commit message. Live Golden gate: due (stages 2 and 3), pending your authorisation |
+| Rollback | `git revert <stage 3 commit>` |
