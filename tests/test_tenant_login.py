@@ -179,3 +179,11 @@ def test_direct_landing_in_nexus_skips_the_product_page(monkeypatch):
     assert p.clicks == [] and p.gotos == ["https://x/sentinel-nexus/email"]
     p = _flow(monkeypatch, FlowPage("https://x/sentinel-nexus/email"))
     assert p.clicks == [] and p.gotos == []                                 # already on the list: nothing to do
+
+
+def test_a_tenant_can_have_its_own_login(monkeypatch):
+    monkeypatch.setenv("NEXUS_USER", "shared"); monkeypatch.setenv("NEXUS_PASSWORD", "p1")
+    monkeypatch.setenv("NEXUS_USER_JAPAN", "jp-user"); monkeypatch.setenv("NEXUS_PASSWORD_JAPAN", "p2")
+    jp, india = Config(profile="uat", tenant="japan"), Config(profile="uat")
+    assert (jp.nexus_user, jp.nexus_password) == ("jp-user", "p2")
+    assert (india.nexus_user, india.nexus_password) == ("shared", "p1")

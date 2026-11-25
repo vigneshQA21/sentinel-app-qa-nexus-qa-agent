@@ -107,11 +107,12 @@ class Config:
 
     @property
     def nexus_user(self) -> str | None:
-        return os.getenv("NEXUS_USER")
+        """NEXUS_USER_<TENANT> (e.g. NEXUS_USER_JAPAN) when a tenant has its own login, else the shared NEXUS_USER."""
+        return os.getenv(f"NEXUS_USER_{self.tenant.upper()}") or os.getenv("NEXUS_USER")
 
     @property
     def nexus_password(self) -> str | None:
-        return os.getenv("NEXUS_PASSWORD")
+        return os.getenv(f"NEXUS_PASSWORD_{self.tenant.upper()}") or os.getenv("NEXUS_PASSWORD")
 
     def timing(self, key: str) -> float:
         return float(self.settings["timing"][key])
