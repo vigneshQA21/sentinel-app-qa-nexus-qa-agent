@@ -220,11 +220,13 @@ def _main(argv: list[str] | None = None) -> int:
     print(cfg.banner(), file=sys.stderr)          # stderr: stdout stays exactly as before for anything that reads it
     _CTX.update(cfg=cfg, cmd=args.cmd, dry=bool(getattr(args, "dry_run", False)) or bool(getattr(args, "auto", False)))
 
-    if args.cmd in ("suite", "validate", "validate-master", "validate-house", "validate-docs") and not getattr(args, "dry_run", False) \
-            and not os.getenv("NEXUS_NO_LIVE"):
+    report_cmds = ("suite", "validate", "validate-master", "validate-house", "validate-docs")
+    live_cmds = report_cmds + ("preflight", "delete", "validate-drafts", "validate-directbl", "validate-mhfields")   # every long Nexus job shows its live page
+    if args.cmd in live_cmds and not getattr(args, "dry_run", False) and not os.getenv("NEXUS_NO_LIVE"):
         from . import live                        # live status page in the browser (runs/_live/index.html), refreshes by itself
         live.install(cfg.runs_dir, f"{args.cmd} {' '.join(getattr(args, 'cases', None) or [])}".strip(), open_browser=True)    # standing rule: the live status page opens in the browser as soon as a run starts
 
+    if args.cmd in report_cmds and not getattr(args, "dry_run", False) and not os.getenv("NEXUS_NO_LIVE"):
         def _report_after_run():                  # the detailed report of today's cases opens in the browser when a run ends
             try:
                 import webbrowser
