@@ -45,7 +45,7 @@ local_docs:
   subject_org_code: false   # the Org Code goes in the BODY, not the subject (user, 25 Nov 2026)
   subject_org_format: ' | org : {org}'   # how the Org Code is written at the end of the subject (user, 25 Nov 2026)
   body_org_code: true                      # first body line 'org : <Org Code>': one shared mailbox, Nexus routes by it
-  body_org_format: 'org : {org}'
+  body_org_format: 'Org:{org}'   # exactly as Logisteed's own pre-alerts write it (e.g. 'Org:LJP', reference IPA/7 in Japan)
   same_subject_cases:
     UNR-001:
       ref: FJ-0003315
