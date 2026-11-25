@@ -201,3 +201,18 @@ def test_org_code_wording_comes_from_settings(tmp_path):
     sender.case_for_path[p] = "SEA-JPN-001"
     subject = sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="JPN-REG-001", types="MASTER")[0]
     assert subject.startswith("SEA-JPN-001 | ") and subject.endswith(" | org : LJP")
+
+
+def test_org_code_is_the_first_body_line_not_in_the_subject(tmp_path):
+    from nexus_agent.local_sender import build_message
+    cfg, sender, fwd, kb = setup(tmp_path)
+    cfg.settings["local_docs"].update(subject_org_code=False, body_org_code=True, body_org_format="org : {org}")
+    cfg.settings["nexus"]["organisation_code"] = "LJP"
+    p = kb / "consolidated" / "scan_001.pdf"
+    sender.case_for_path[p] = "SEA-JPN-001"
+    subject = sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="JPN-REG-001", types="MASTER")[0]
+    assert "LJP" not in subject
+    msg = build_message(p, "x@y", subject, "JPN-REG-001", "", sender.org_line())
+    assert msg.get_body(preferencelist=("plain",)).get_content().splitlines()[0] == "org : LJP"
+    cfg.settings["local_docs"]["body_org_code"] = False
+    assert sender.org_line() == ""

@@ -46,14 +46,15 @@ class Item:
     case: str | None = None
 
 
-def build_message(path: Path, to_addr: str, subject: str, ref: str, priority: str = "") -> EmailMessage:
+def build_message(path: Path, to_addr: str, subject: str, ref: str, priority: str = "", org_line: str = "") -> EmailMessage:
+    """org_line (e.g. 'org : LJP') is the first line of the body: every tenant shares one mailbox and Nexus routes by it."""
     msg = EmailMessage()
     msg["To"] = to_addr
     msg["Subject"] = subject
     if priority.lower() == "high":
         msg["X-Priority"] = "1 (Highest)"
         msg["Importance"] = "High"
-    msg.set_content(f"Pre-alert {ref}\n\nAttached document: {path.name}\n")
+    msg.set_content((f"{org_line}\n\n" if org_line else "") + f"Pre-alert {ref}\n\nAttached document: {path.name}\n")
     pdf = path.suffix.lower() == ".pdf"
     msg.add_attachment(path.read_bytes(), maintype="application", subtype="pdf" if pdf else "octet-stream",
                        filename=path.name)
@@ -114,6 +115,13 @@ class LocalSender:
         if self.ld.get("subject_org_code") and org:          # every tenant shares one mailbox: Nexus routes the email by the Org Code in the subject
             subject = subject + str(self.ld.get("subject_org_format") or " | {org}").format(org=org)   # e.g. ' | org : LJP'
         return subject, case
+
+    def org_line(self) -> str:
+        """The body line that routes the email to this tenant's organisation, e.g. 'org : LJP' ('' when switched off)."""
+        org = str(self.cfg.settings.get("nexus", {}).get("organisation_code") or "").strip()
+        if not (self.ld.get("body_org_code") and org):
+            return ""
+        return str(self.ld.get("body_org_format") or "org : {org}").format(org=org)
 
     def _dir(self, key: str) -> Path:
         return self.root / self.ld[key]
@@ -253,7 +261,7 @@ class LocalSender:
                     time.sleep(wait)
                 self.fwd = self.fwd or GmailForwarder(self.cfg, self.store)
                 users = self.fwd.svc.users()
-                msg = build_message(it.path, to, it.subject, it.ref, self.ld.get("priority", ""))
+                msg = build_message(it.path, to, it.subject, it.ref, self.ld.get("priority", ""), self.org_line())
                 try:
                     with _SendGate(self.cfg, gap):
                         resp = self._send_once(users, msg, it.subject)

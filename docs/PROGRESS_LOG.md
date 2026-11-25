@@ -371,3 +371,4 @@ The agent (Claude) also adds an entry whenever we finish a piece of work.
 - Japan recipient = uat.prealert.nexus@unifo.in. The 4 round-1 emails sent to test.prealert (16:54-16:56) landed in INDIA (UNI) as IPA/3093-3096, not in Japan: test.prealert feeds UNI regardless of the subject
 - Deleted the 4 Japan emails that landed in India (IPA/3093-3096, SEA-JPN-001..004) on the user's command; Dubai mailbox = uat.prealert.nexus@unifo.in; Japan round 1 resent to uat.prealert
 - Subject ends with ' | org : <Org Code>' for every tenant (user); 5 wrong SEA-JPN rows deleted from India (IPA/3097-3101): uat.prealert with ' | LJP' had also landed in UNI
+- Org Code moved from the subject to the first body line 'org : <code>' for every tenant (user): subject ' | org : LJP' test email of 17:15 reached neither India nor Japan
