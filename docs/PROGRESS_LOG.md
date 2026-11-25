@@ -353,3 +353,4 @@ The agent (Claude) also adds an entry whenever we finish a piece of work.
 
 - Framework hardening stage 0 done on branch framework-hardening: baseline tag baseline-2026-11-25, .gitignore, requirements.lock.txt, Golden baseline frozen in runs/golden (23 cases), change log docs/CHANGELOG_FRAMEWORK.md
 - Framework hardening stage 1: config check at start-up (Config.validate/problems, ConfigError) and a [nexus-agent] banner on stderr naming tenant, Nexus, config, db, runs; stdout unchanged; 183 tests pass
+- Framework hardening stage 2: --tenant for nx and run_regression.sh; India stays in config/, state/, runs/; other tenants need config/<name>/ with their own state, runs and session (checked at start-up); 193 tests pass

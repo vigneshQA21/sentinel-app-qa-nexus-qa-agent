@@ -67,7 +67,8 @@ def write(cfg: Config, case_ids: list[str], workbook: Path | None = None) -> tup
     if any(sea) and not all(sea):
         raise ValueError("give either Air cases (REG-nnn) or Sea cases (SEA-REG-nnn), they live in different workbooks")
     tab = TAB_SEA if all(sea) else TAB
-    wb_path = workbook or sorted(cfg.path("knowledge_base/testcases").glob("Sea_Single_House*.xlsx" if all(sea) else "Air_Single_House*.xlsx"),
+    wb_dir = cfg.path(cfg.settings["testsuite_sea" if all(sea) else "testsuite"]["workbook"]).parent   # the tenant's own workbook folder (India: knowledge_base/testcases)
+    wb_path = workbook or sorted(wb_dir.glob("Sea_Single_House*.xlsx" if all(sea) else "Air_Single_House*.xlsx"),
                                  key=lambda f: ("backup" in f.name, f.name))[0]
     backup = wb_path.with_name(wb_path.stem + f".backup_{datetime.now():%Y%m%d_%H%M%S}.xlsx")
     shutil.copy2(wb_path, backup)

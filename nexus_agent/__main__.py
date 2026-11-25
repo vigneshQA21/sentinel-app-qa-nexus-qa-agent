@@ -84,6 +84,7 @@ def _run_data_check(cfg, chosen, kind, air_runner, args) -> list:
 def _main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="nexus_agent")
     ap.add_argument("--config", help="config directory (default: ./config)")
+    ap.add_argument("--tenant", help="india (default: today's config/, state/, runs/) or a tenant with its own config/<tenant>/")
     ap.add_argument("-v", "--verbose", action="store_true")
     ap.add_argument("--profile", help="selector profile: uat (default, the real Nexus) or mock")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -205,9 +206,9 @@ def _main(argv: list[str] | None = None) -> int:
                         format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     import os
     profile = args.profile or (None if os.getenv("NEXUS_MOCK") else "uat")
-    cfg = Config(args.config, profile=None if profile == "mock" else profile)
     from .config import ConfigError
-    try:                                          # stage 1: a wrong or partial config stops here, before Nexus, Gmail or the database
+    try:                                          # a wrong or partial config stops here, before Nexus, Gmail or the database
+        cfg = Config(args.config, profile=None if profile == "mock" else profile, tenant=args.tenant)
         cfg.validate()
     except ConfigError as exc:
         print(f"Nothing was run. {exc}", file=sys.stderr)

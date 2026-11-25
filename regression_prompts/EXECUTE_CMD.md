@@ -114,7 +114,9 @@ Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same 
 | `--no-wait` | no 5-minute gap between cases (send only; `--validate` spaces cases itself) |
 | `--no-force` | skip cases that fail screening (REG-002 and REG-009 would be skipped) |
 | `--dry-run` | preview only, sends nothing |
+| `--tenant <name>` | run for that tenant only (default `india`: today's `config/`, `state/`, `runs/`). Another tenant needs `config/<name>/settings.yaml` with `tenant: <name>` and its own `state/<name>/`, `runs/<name>/` and session file, else nothing runs |
 
+Every `./nx` command takes the same `--tenant <name>` before the command: `./nx --tenant dubai validate --cases ...`.
 `./nx validate`, `validate-master`, `validate-house` and `validate-docs` also take `--cases REG-002 ...`, `--wait <seconds>` and `--headless`.
 
 ## Occasionally
