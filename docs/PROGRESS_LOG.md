@@ -362,3 +362,4 @@ The agent (Claude) also adds an entry whenever we finish a piece of work.
 - Run report fixed and regenerated for 25 Nov: screenshots from any viewer parent (AMF-007 now shown), sections for not-received cases (REG-001, REG-002), AMF drafts and Direct BL; written after validate-drafts / validate-directbl too
 - Rule: evidence goes to Google Drive after every run (auto upload now also after preflight; FULL_DAILY_REGRESSION corrected). 25 Nov: 173 screenshots + corrected report PDF in Drive
 - Tenant login: same user for India/Dubai/Japan, Org Code per tenant; sessions checked against the ID token's organisation (India = UNI, live check passed); automatic sign-in with the tenant's Org Code from .env credentials
+- Dubai (LAE) and Japan (LJP) configs created; automatic sign-in with Org Code verified for UNI, LAE, LJP; the three sessions stay valid side by side (no re-login needed between tenants)

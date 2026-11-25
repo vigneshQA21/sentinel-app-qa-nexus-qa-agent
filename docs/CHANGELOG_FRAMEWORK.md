@@ -94,3 +94,12 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | India | Organisation UNI, read from the India session in use; live check 25 Nov 2026: signed in, UNI = UNI |
 | Tests | Offline gate: 223 passed |
 | Rollback | `git revert <commit>` |
+
+## Dubai and Japan tenants signed in (2026-11-25)
+| Item | Detail |
+| --- | --- |
+| Commit | `0da47d8`: `config/dubai` (Org Code LAE), `config/japan` (LJP); sign-in handles 'Choose where to go' -> Sentinel Nexus, Proceed when shown, or a direct landing in Nexus; guards stop sends / bug logging / Drive uploads while a tenant value is TO-BE-PROVIDED |
+| Credentials | Shared test user in `.env` (not in git, never logged) |
+| Live check | All three organisations sign in; sessions saved per tenant; India (UNI), Dubai (LAE) and Japan (LJP) sessions all stay valid side by side without re-login |
+| Still to provide per tenant | recipient mailbox, bug sheet, Drive evidence folder, case workbooks and samples, Direct BL rules, branch airports |
+| Tests | Offline gate: 226 passed |
