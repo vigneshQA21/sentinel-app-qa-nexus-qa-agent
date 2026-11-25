@@ -19,7 +19,7 @@ while [ $# -gt 0 ]; do
     --validate) validate=1 ;;
     --no-wait) wait=(--interval 0) ;;
     --no-force) force=() ;;
-    REG-*|SEA-REG-*|AMF-*|MH-*|SEA-MH-*|SEA-RT-*|DBL-*|UNR-*) cases+=("$a") ;;
+    REG-*|SEA-REG-*|SEA-JPN-*|AMF-*|MH-*|SEA-MH-*|SEA-RT-*|DBL-*|UNR-*) cases+=("$a") ;;
     *) echo "unknown argument: $a"; exit 2 ;;
   esac
 done

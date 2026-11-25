@@ -1,6 +1,7 @@
 # Japan tenant (Org Code LJP). Created 25 Nov 2026 from India's settings; every India-specific value was removed or set to
 # TO-BE-PROVIDED: recipient mailbox, bug sheet, Drive evidence folder, case workbooks, samples, Direct BL rules, branch airports.
 # Fill them from the tenant's own requirements; never copy India's values.
+# Mapping validation (type aliases, document -> parent) is the same for every tenant.
 gmail:
   query: in:inbox subject:(pre-alert OR prealert) has:attachment -label:Nexus/Forwarded newer_than:2d
   forward_to: TO-BE-PROVIDED
@@ -165,15 +166,14 @@ pdf_split:
     - MASTER AWB
   hawb_label_pattern: \bHAWB\s*(?:NO\.?|NUMBER|#)?\s*[:：#]?\s*([A-Z0-9]+(?:\s?-\s?[A-Z0-9]+)*)
 testsuite:
-  workbook: knowledge_base/japan/testcases/*.xlsx
-  sheet_tab: AIr Master and House - Single
-  id_pattern: ^REG-\d+$
+  workbook: knowledge_base/japan/testcases/Japan_Sea_Regression.xlsx
+  sheet_tab: Japan Sea - Regression
+  id_pattern: ^SEA-JPN-\d{3}$
   scenarios:
   - Consolidated Mapping
   - Individual Mapping
-  exclude_doc_contains:
-  - multiple house
-  sample_ref_pattern: (FJ-\d{4,10})
+  exclude_doc_contains: []
+  sample_ref_pattern: (JPN-REG-\d{3})
   extra_cases: []
   sample_ref_overrides: {}
   samples_dir: samples/japan
@@ -189,9 +189,9 @@ testsuite:
     quadance_job: Quadance Job no.
     nexus_job: NexusJob no.
 testsuite_sea:
-  workbook: knowledge_base/japan/testcases/Sea_*.xlsx
-  sheet_tab: Sea Single House - Daily
-  id_pattern: ^SEA-REG-\d+$
+  workbook: knowledge_base/japan/testcases/Japan_Sea_Regression.xlsx
+  sheet_tab: Japan Sea - Regression
+  id_pattern: ^(?!)$
   scenarios: []
   exclude_doc_contains: []
   sample_ref_pattern: (FJ-\d{4,10})
@@ -241,6 +241,9 @@ validation:
     - PURCHASE ORDER
     - ORDER CONFIRMATION
     - PO
+    CREDIT NOTE:
+    - CREDIT NOTE
+    - CREDIT
   initial_wait_seconds: 180
   poll_seconds: 20
   max_wait_seconds: 420
