@@ -348,3 +348,8 @@ The agent (Claude) also adds an entry whenever we finish a piece of work.
 
 - Added regression_prompts/FULL_DAILY_REGRESSION.md: the nine-step full daily regression prompt, run by naming the file
 - Standing rule: the live status page (runs/_live/index.html) now opens in the browser as soon as a suite/validate run starts (open_browser=True in __main__.py)
+
+## 2026-11-25
+
+- Framework hardening stage 0 done on branch framework-hardening: baseline tag baseline-2026-11-25, .gitignore, requirements.lock.txt, Golden baseline frozen in runs/golden (23 cases), change log docs/CHANGELOG_FRAMEWORK.md
+- Framework hardening stage 1: config check at start-up (Config.validate/problems, ConfigError) and a [nexus-agent] banner on stderr naming tenant, Nexus, config, db, runs; stdout unchanged; 183 tests pass

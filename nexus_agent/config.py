@@ -28,11 +28,23 @@ def _deep_merge(base: dict, over: dict) -> dict:
     return out
 
 
+class ConfigError(ValueError):
+    """The configuration is incomplete: the run stops before touching Nexus, Gmail or the database."""
+
+
+# Keys every command relies on (settings.yaml). A missing one used to fail mid-run with a KeyError.
+REQUIRED_SETTINGS = {"nexus": ["base_url", "home_path", "session_file"], "paths": ["state_dir", "runs_dir", "corrections_dir"]}
+# Selector keys UatPages reads when the real-Nexus profile is loaded (selectors.uat.yaml).
+REQUIRED_UAT_SELECTORS = ["loading", "row_marker", "subject_cell", "view_documents", "viewer_url_part", "parent_search",
+                          "header_buttons_ignore", "left_headings"]
+
+
 class Config:
     def __init__(self, config_dir: str | Path | None = None, root: str | Path | None = None,
                  profile: str | None = None):
         self.root = Path(root) if root else ROOT
         cdir = Path(config_dir or os.getenv("NEXUS_AGENT_CONFIG") or self.root / "config")
+        self.config_dir = cdir
         self.settings = _load(cdir / "settings.yaml")
         self.selectors = _load(cdir / "selectors.yaml")
         self.profile = profile
@@ -78,3 +90,45 @@ class Config:
 
     def timing(self, key: str) -> float:
         return float(self.settings["timing"][key])
+
+    # ---- start-up check ------------------------------------------------
+    @property
+    def tenant(self) -> str:
+        """The tenant this configuration belongs to (settings `tenant:`); the original config is India's."""
+        return str(self.settings.get("tenant") or "india")
+
+    def problems(self) -> list[str]:
+        """What is missing or unusable in this configuration (empty = fine). Reads only; changes nothing."""
+        out = []
+        for section, keys in REQUIRED_SETTINGS.items():
+            block = self.settings.get(section)
+            if not isinstance(block, dict):
+                out.append(f"settings.yaml: section '{section}' is missing")
+                continue
+            for k in keys:
+                v = block.get(k)
+                if k == "home_path" and v == "":
+                    continue
+                if not isinstance(v, str) or not v.strip():
+                    out.append(f"settings.yaml: '{section}.{k}' is missing or empty")
+        url = (self.settings.get("nexus") or {}).get("base_url") or ""
+        if isinstance(url, str) and url and not url.startswith(("http://", "https://")):
+            out.append(f"settings.yaml: 'nexus.base_url' must start with http:// or https:// (got '{url}')")
+        if self.profile == "uat":
+            uat = self.selectors.get("uat")
+            if not isinstance(uat, dict):
+                out.append(f"selectors.uat.yaml: section 'uat' is missing (profile 'uat' in {self.config_dir})")
+            else:
+                out += [f"selectors.uat.yaml: 'uat.{k}' is missing" for k in REQUIRED_UAT_SELECTORS if k not in uat]
+        return out
+
+    def validate(self) -> None:
+        """Raises ConfigError listing every problem at once, so a wrong or partial config stops before the run starts."""
+        found = self.problems()
+        if found:
+            raise ConfigError(f"configuration in {self.config_dir} is not usable:\n  - " + "\n  - ".join(found))
+
+    def banner(self) -> str:
+        """One line naming what this run will use. No credentials: the session file is named, never read."""
+        return (f"[nexus-agent] tenant={self.tenant} profile={self.profile or 'mock'} nexus={self.base_url} "
+                f"config={self.config_dir} db={self.state_dir / 'agent.db'} runs={self.runs_dir}")

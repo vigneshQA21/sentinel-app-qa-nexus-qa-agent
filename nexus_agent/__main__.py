@@ -206,6 +206,13 @@ def _main(argv: list[str] | None = None) -> int:
     import os
     profile = args.profile or (None if os.getenv("NEXUS_MOCK") else "uat")
     cfg = Config(args.config, profile=None if profile == "mock" else profile)
+    from .config import ConfigError
+    try:                                          # stage 1: a wrong or partial config stops here, before Nexus, Gmail or the database
+        cfg.validate()
+    except ConfigError as exc:
+        print(f"Nothing was run. {exc}", file=sys.stderr)
+        return 2
+    print(cfg.banner(), file=sys.stderr)          # stderr: stdout stays exactly as before for anything that reads it
     _CTX.update(cfg=cfg, cmd=args.cmd, dry=bool(getattr(args, "dry_run", False)) or bool(getattr(args, "auto", False)))
 
     if args.cmd in ("suite", "validate", "validate-master", "validate-house", "validate-docs") and not getattr(args, "dry_run", False) \

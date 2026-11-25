@@ -21,3 +21,13 @@ Full rollback at any time: `git checkout baseline-2026-11-25`. India stays in to
 | Database | Backup `state/backup/agent_20261125_stage0.db`; schema unchanged |
 | Tests | Offline gate: see the stage 0 commit message |
 | Rollback | `git revert <stage 0 commit>`; `runs/golden/` can be deleted, nothing reads it yet |
+
+## Stage 1 - Config check and start-up banner (2026-11-25)
+| Item | Detail |
+| --- | --- |
+| Files | `nexus_agent/config.py` (`ConfigError`, `REQUIRED_SETTINGS`, `REQUIRED_UAT_SELECTORS`, `Config.config_dir`, `.tenant`, `.problems()`, `.validate()`, `.banner()`), `nexus_agent/__main__.py` (validate + banner right after the config is built), `tests/test_config.py` (new, 6 tests), `README.md` |
+| Reason | Audit H5: a missing key failed mid-run with a KeyError; nothing showed which tenant, Nexus, database or runs folder a run used |
+| Existing behaviour affected | None for a valid config. The banner goes to **stderr**, so stdout is unchanged: `cases` (18 lines), `bugs --list` (1,347 lines) and `history` (1,206 lines) were byte-identical to the baseline tag. `Config()` used directly (tests, modules) does not validate, as before |
+| New behaviour | Every `./nx` command prints `[nexus-agent] tenant=... profile=... nexus=... config=... db=... runs=...` on stderr; a broken config stops with exit 2 and lists every problem at once. `tenant` defaults to `india` when settings has no `tenant:` key (India's settings.yaml is not changed) |
+| Tests | Offline gate: see the stage 1 commit message. Live Golden gate: not needed (no Nexus behaviour changed) |
+| Rollback | `git revert <stage 1 commit>` |

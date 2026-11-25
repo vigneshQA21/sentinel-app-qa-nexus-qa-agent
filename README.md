@@ -56,6 +56,9 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.lock.txt   # exact versions the regression baseline was taken with (requirements.txt = minimums)
 playwright install chromium     # OCR (rapidocr-onnxruntime) comes with requirements.txt
 ```
+Every `./nx` command first checks the configuration and prints one line on stderr naming what it will use:
+`[nexus-agent] tenant=india profile=uat nexus=... config=... db=... runs=...`. A missing or empty key stops the
+command with "Nothing was run." and the list of problems, before Nexus, Gmail or the database is touched.
 1. **Gmail:** Google Cloud project, Gmail API, OAuth client "Desktop app" saved as `secrets/gmail_credentials.json`; the first send asks you to authorise the sending mailbox.
 2. **Nexus login:** `./nx login` (log in by hand, close the window; only the browser session is saved, never a password). Repeat when a run says the session expired (every few days).
 3. **Google bug sheet and Drive:** enable the **Google Sheets API** and the **Google Drive API** in the same Cloud project, then run `./nx bugs --check-sheet` once and click Allow. It connects read-only, finds the tab, maps the columns and checks the evidence folder. Set `bugsheet.evidence_folder_id` (the Drive folder id) and `bugsheet.reported_by` in `config/settings.yaml`.
