@@ -57,7 +57,7 @@ class FakeFwd:
 def setup(tmp_path):
     cfg = Config(root=tmp_path, config_dir=Config().root / "config")
     cfg.settings["local_docs"].update(archive_after_send=True, skip_already_sent=True)   # legacy behaviour under test
-    kb = tmp_path / "knowledge_base"
+    kb = tmp_path / "knowledge_base" / "india"
     (kb / "consolidated").mkdir(parents=True)
     pdf = make_pdf(["MASTER AIR WAYBILL 176-12345675", "continuation page",
                     "HAWB No: UNF1001", "COMMERCIAL INVOICE", "PACKING LIST"])

@@ -365,3 +365,4 @@ The agent (Claude) also adds an entry whenever we finish a piece of work.
 - Dubai (LAE) and Japan (LJP) configs created; automatic sign-in with Org Code verified for UNI, LAE, LJP; the three sessions stay valid side by side (no re-login needed between tenants)
 - Created per-tenant knowledge-base folders: knowledge_base/{dubai,japan}/{testcases,requirements,consolidated,individual} and samples/{dubai,japan}/_inbox (local, not in git); Dubai/Japan send staging now in their own knowledge base
 - Samples grouped per tenant: samples/india (109 files moved with git mv), samples/dubai, samples/japan; India dry-run still 32 emails
+- Knowledge base grouped per tenant: knowledge_base/india (195 files moved with git mv: workbooks, reference documents, staging), knowledge_base/dubai, knowledge_base/japan; India cases and the 32-email dry-run unchanged

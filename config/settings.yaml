@@ -55,7 +55,7 @@ local_docs:
   # Knowledge base. Consolidated PDFs are NOT split: each one is screened and mailed as-is (one email).
   #   consolidated/*.pdf   -> screening check -> one email with the original file -> moved to sent/<REF>/
   #   individual/<REF>/*   -> documents that already come separately: one email per file
-  root: knowledge_base
+  root: knowledge_base/india
   consolidated_dir: consolidated
   individual_dir: individual
   # Agent: "Nexus E2E Regression QA Agent". The tag lets Nexus testers filter QA mail from real pre-alerts.
@@ -115,8 +115,8 @@ pdf_split:
   hawb_label_pattern: '\bHAWB\s*(?:NO\.?|NUMBER|#)?\s*[:：#]?\s*([A-Z0-9]+(?:\s?-\s?[A-Z0-9]+)*)'
 
 testsuite:
-  # Test cases are read from the Excel suite you export into knowledge_base/testcases/ (re-export when it changes).
-  workbook: 'knowledge_base/testcases/*.xlsx'
+  # Test cases are read from the Excel suite you export into knowledge_base/india/testcases/ (re-export when it changes).
+  workbook: 'knowledge_base/india/testcases/*.xlsx'
   sheet_tab: 'AIr Master and House - Single'      # tab title prefix (case-insensitive)
   id_pattern: '^REG-\d+$'                         # only rows whose test-case id matches (skips VAG-*, repeated headers)
   # Scope: Consolidated and single-house Individual mapping scenarios.
@@ -157,7 +157,7 @@ testsuite:
 
 testsuite_sea:
   # Sea single-house daily set (own workbook, human-readable columns). Selected by asking for SEA-REG-nnn cases; never part of the Air default.
-  workbook: 'knowledge_base/testcases/Sea_Single_House_Daily_Regression.xlsx'
+  workbook: 'knowledge_base/india/testcases/Sea_Single_House_Daily_Regression.xlsx'
   sheet_tab: 'Sea Single House - Daily'
   id_pattern: '^SEA-REG-\d+$'
   scenarios: []                                   # every row of the daily sheet is in scope

@@ -28,14 +28,14 @@ ROWS = [
 def setup(tmp_path):
     cfg = Config(root=tmp_path, config_dir=Config().root / "config")
     cfg.settings["local_docs"].update(archive_after_send=True, skip_already_sent=True)
-    (tmp_path / "knowledge_base" / "testcases").mkdir(parents=True)
+    (tmp_path / "knowledge_base" / "india" / "testcases").mkdir(parents=True)
     wb = openpyxl.Workbook()
     wb.active.title = "Sheet1"
     ws = wb.create_sheet("AIr Master and House - Single -")
     ws.append(HEADER)
     for r in ROWS:
         ws.append(r)
-    wb.save(tmp_path / "knowledge_base" / "testcases" / "suite.xlsx")
+    wb.save(tmp_path / "knowledge_base" / "india" / "testcases" / "suite.xlsx")
     fwd = FakeFwd()
     cfg.settings["local_docs"]["email_gap_seconds"] = 0     # no waiting between emails in tests
     return cfg, LocalSender(cfg, Store(tmp_path / "state" / "agent.db"), fwd), fwd
@@ -81,7 +81,7 @@ def test_suite_dry_run_then_send_consolidated_and_individual(tmp_path):
     rows = T.run_suite(cfg, sender, cases, dry_run=True)
     assert fwd.svc.sent == []
     assert {r["case_id"]: r["status"] for r in rows if r["status"] == "DRY_RUN"} == {"REG-001": "DRY_RUN", "REG-006": "DRY_RUN"}
-    assert not [f for d in ("consolidated", "individual") for f in (tmp_path / "knowledge_base" / d).rglob("*.pdf")]
+    assert not [f for d in ("consolidated", "individual") for f in (tmp_path / "knowledge_base" / "india" / d).rglob("*.pdf")]
     assert len(list(s.rglob("*.pdf"))) == 3                                    # samples untouched
 
     rows = T.run_suite(cfg, sender, cases)
@@ -95,7 +95,7 @@ def test_suite_dry_run_then_send_consolidated_and_individual(tmp_path):
 
     again = T.run_suite(cfg, sender, cases)                                    # re-run: not sent twice
     assert len(fwd.svc.sent) == 3 and {r["status"] for r in again if r["case_id"] == "REG-001"} == {"ALREADY_SENT"}
-    assert not (tmp_path / "knowledge_base" / "consolidated" / "FJ-0000001 - Consolidated.pdf").exists()
+    assert not (tmp_path / "knowledge_base" / "india" / "consolidated" / "FJ-0000001 - Consolidated.pdf").exists()
     T.run_suite(cfg, sender, cases, resend=True)                               # regression re-run: sent again
     assert len(fwd.svc.sent) == 6
 
