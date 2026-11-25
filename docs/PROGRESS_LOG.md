@@ -367,3 +367,4 @@ The agent (Claude) also adds an entry whenever we finish a piece of work.
 - Samples grouped per tenant: samples/india (109 files moved with git mv), samples/dubai, samples/japan; India dry-run still 32 emails
 - Knowledge base grouped per tenant: knowledge_base/india (195 files moved with git mv: workbooks, reference documents, staging), knowledge_base/dubai, knowledge_base/japan; India cases and the 32-email dry-run unchanged
 - Japan test cases written: knowledge_base/japan/testcases/Japan_Sea_Regression.xlsx, 18 cases (SEA-JPN-001..009 consolidated, 101..109 individual) built from the 9 Japan pre-alerts; mapping rules as India (same for all tenants); dry-run 32 emails; waiting for the Japan recipient mailbox to send
+- Org Code in every subject (' | UNI', ' | LJP', ' | LAE'): one shared mailbox, Nexus routes by it. Japan/Dubai: shared mailbox, Drive evidence under their own sub-folder; Japan references JPN-REG-nnn

@@ -4,7 +4,7 @@
 # Mapping validation (type aliases, document -> parent) is the same for every tenant.
 gmail:
   query: in:inbox subject:(pre-alert OR prealert) has:attachment -label:Nexus/Forwarded newer_than:2d
-  forward_to: TO-BE-PROVIDED
+  forward_to: test.prealert.nexus@unifo.in   # shared by every tenant; the Org Code in the subject routes the email
   processed_label: Nexus/Forwarded
   credentials_file: secrets/gmail_credentials.json
   token_file: secrets/gmail_token.json
@@ -12,7 +12,7 @@ gmail:
 references:
   match_by: hawb
   hawb_pattern: \b(UNF\d{4,10})\b
-  job_pattern: (?<![A-Za-z0-9])(FJ-\d{4,10})(?!\d)
+  job_pattern: '(?<![A-Za-z0-9])(JPN-REG-\d{3})(?!\d)'
   mawb_pattern: \b(\d{3}-?\d{8})\b
 nexus:
   base_url: https://uat.sentinel.unifo.in
@@ -42,6 +42,7 @@ local_docs:
   consolidated_dir: consolidated
   individual_dir: individual
   subject_tag: QA agent trigger / Don't delete / Regression testing
+  subject_org_code: true   # ' | <Org Code>' at the end of every subject: one shared mailbox, Nexus routes by the Org Code (not case sensitive)
   same_subject_cases:
     UNR-001:
       ref: FJ-0003315
@@ -262,10 +263,11 @@ bugsheet:
   tab_name: ''
   backend: auto
   token_file: secrets/google_bugs_token.json
-  evidence_folder_id: TO-BE-PROVIDED
+  evidence_folder_id: 1eHTlsLWfCO0zNkMFEdYvsLVppRdXZVYe   # the team's evidence folder; this tenant writes only under its own 'Japan' sub-folder
   evidence_path:
   - Regression testing
   - Nexus Automated Test Evidence
+  - Japan
   - '{date}'
   - 02 Bugs
   evidence_date_format: '%Y-%m-%d'

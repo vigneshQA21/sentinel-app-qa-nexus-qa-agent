@@ -27,7 +27,7 @@ ROWS = [
 
 def setup(tmp_path):
     cfg = Config(root=tmp_path, config_dir=Config().root / "config")
-    cfg.settings["local_docs"].update(archive_after_send=True, skip_already_sent=True)
+    cfg.settings["local_docs"].update(archive_after_send=True, skip_already_sent=True, subject_org_code=False)   # Org Code ending tested apart
     (tmp_path / "knowledge_base" / "india" / "testcases").mkdir(parents=True)
     wb = openpyxl.Workbook()
     wb.active.title = "Sheet1"

@@ -20,6 +20,11 @@ from .config import Config
 
 log = logging.getLogger(__name__)
 ROOT = ["Regression testing", "Nexus Automated Test Evidence"]
+
+
+def root_path(cfg: Config) -> list[str]:
+    """India keeps today's folders; another tenant gets its own sub-folder (.../Nexus Automated Test Evidence/Japan/<date>/), never India's days."""
+    return ROOT if cfg.tenant == "india" else ROOT + [cfg.tenant.title()]
 RUNS, BUGS, REPORT = "01 Test runs", "02 Bugs", "03 Report"
 
 
@@ -85,7 +90,7 @@ def upload_day(cfg: Config, date: str | None = None, dry_run: bool = False, out=
     if dry_run:
         return ""
     drive = B.drive_service(cfg)
-    day = B.ensure_folder_path(drive, cfg.settings["bugsheet"]["evidence_folder_id"], ROOT + [date])
+    day = B.ensure_folder_path(drive, cfg.settings["bugsheet"]["evidence_folder_id"], root_path(cfg) + [date])
     runs = B.ensure_folder_path(drive, day, [RUNS])
     B.ensure_folder_path(drive, day, [BUGS])
     rep = B.ensure_folder_path(drive, day, [REPORT])

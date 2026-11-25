@@ -56,7 +56,7 @@ class FakeFwd:
 
 def setup(tmp_path):
     cfg = Config(root=tmp_path, config_dir=Config().root / "config")
-    cfg.settings["local_docs"].update(archive_after_send=True, skip_already_sent=True)   # legacy behaviour under test
+    cfg.settings["local_docs"].update(archive_after_send=True, skip_already_sent=True, subject_org_code=False)   # legacy behaviour under test (subject layout without the Org Code: tested apart)
     kb = tmp_path / "knowledge_base" / "india"
     (kb / "consolidated").mkdir(parents=True)
     pdf = make_pdf(["MASTER AIR WAYBILL 176-12345675", "continuation page",
@@ -178,3 +178,16 @@ def test_reuse_mode_keeps_files_and_sends_again(tmp_path):
     pdf = kb / "consolidated" / "scan_001.pdf"
     assert len(sender.send_all()) == 1 and pdf.exists() and not (kb / "sent").exists()
     assert len(sender.send_all()) == 1 and len(fwd.svc.sent) == 2             # same document, sent again
+
+
+def test_every_subject_ends_with_the_tenants_org_code(tmp_path):
+    """One mailbox for every tenant: Nexus routes a pre-alert by the Org Code in its subject (not case sensitive)."""
+    cfg, sender, fwd, kb = setup(tmp_path)
+    cfg.settings["local_docs"]["subject_org_code"] = True
+    cfg.settings["nexus"]["organisation_code"] = "LJP"
+    p = kb / "consolidated" / "scan_001.pdf"
+    sender.case_for_path[p] = "SEA-JPN-001"
+    subject, case = sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="R1", types="MASTER+HOUSE")
+    assert subject.startswith("SEA-JPN-001 | ") and subject.endswith(" | LJP") and case == "SEA-JPN-001"
+    cfg.settings["local_docs"]["subject_org_code"] = False
+    assert not sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="R1", types="X")[0].endswith("LJP")
