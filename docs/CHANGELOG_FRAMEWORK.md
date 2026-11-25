@@ -74,3 +74,13 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | Safety | Only a CLEAR result is reused, only within 60 minutes, and only if nothing of that case was sent since; any other case is searched again. `0` or no setting = always search (old behaviour). The per-run cache returns exactly the rows a fresh search would |
 | Tests | Offline gate: see the commit message |
 | Rollback | `git revert <commit>`, or set `preflight_reuse_minutes: 0` |
+
+## Run report: every checked case with its screenshots (2026-11-25)
+| Item | Detail |
+| --- | --- |
+| Files | `nexus_agent/runreport.py` (`_traces` any parent; `build` adds `missing`, `drafts`, `directbl`; HTML sections for them), `nexus_agent/__main__.py` (`validate-drafts` / `validate-directbl` rewrite the report), `tests/test_runreport_sections.py` (new) |
+| Problem | Screenshots were taken only from a trace with a House viewer screenshot (a Manifest-first case has none: AMF-007 showed 0); not-received cases, AMF drafts and Direct BL results were not in the report, and the report was written before those checks ran |
+| Now | Viewer screenshots from any parent; a section with the not-received screenshot for each case missing from Pre-Alerts; AMF drafts and Direct BL sections with every point and their screenshots; a check that could not find its pre-alert says so as a possible lookup problem |
+| 25 Nov report | Regenerated from the existing files: 24 case sections, 0 broken image links; nothing re-run in Nexus |
+| Tests | Offline gate: 214 passed |
+| Rollback | `git revert <commit>` |
