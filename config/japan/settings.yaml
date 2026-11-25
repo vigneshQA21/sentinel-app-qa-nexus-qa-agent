@@ -4,7 +4,7 @@
 # Mapping validation (type aliases, document -> parent) is the same for every tenant.
 gmail:
   query: in:inbox subject:(pre-alert OR prealert) has:attachment -label:Nexus/Forwarded newer_than:2d
-  forward_to: test.prealert.nexus@unifo.in   # shared by every tenant; the Org Code in the subject routes the email
+  forward_to: uat.prealert.nexus@unifo.in   # Japan test pre-alerts (user, 25 Nov 2026); the Org Code in the subject routes the email
   processed_label: Nexus/Forwarded
   credentials_file: secrets/gmail_credentials.json
   token_file: secrets/gmail_token.json
