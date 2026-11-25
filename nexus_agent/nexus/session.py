@@ -141,12 +141,45 @@ class NexusSession:
         self.page.fill(self.sel["username"], user)
         self.page.fill(self.sel["password"], pwd)
         self.page.click(self.sel["submit"])
+        self._choose_product(home)
         try:
             self.page.locator(self.sel["logged_in_marker"]).first.wait_for(state="visible", timeout=60000)
         except PWTimeout:
             raise SessionExpired("signing in to Nexus failed (check NEXUS_USER / NEXUS_PASSWORD and the organisation code): nothing was run")
         self.assert_org()                            # signed in: it must be this tenant's organisation before the session is kept
         self.save()
+
+    def _choose_product(self, home: str) -> None:
+        """After Sign In the account lands on 'Choose where to go' (/auth/select-product: Admin panel, Sentinel Gateway, Sentinel Nexus):
+        pick Sentinel Nexus, click Proceed if Nexus asks for it, then open the pre-alert list. Missing steps are skipped, never guessed."""
+        import re
+        product, proceed = self.sel.get("product", ""), self.sel.get("proceed", "")
+        try:
+            self.page.wait_for_url(lambda u: "/auth/logIn" not in u, timeout=30000)
+        except Exception:
+            return                                         # still on the login form: the caller reports the failed sign-in
+        self.page.wait_for_timeout(1500)                   # let the redirect after Sign In settle
+        landed = self.page.url
+        if "/select-product" in landed and product:      # 'Choose where to go': pick Sentinel Nexus
+            try:
+                card = self.page.get_by_text(product, exact=True).first
+                card.wait_for(state="visible", timeout=10000)
+                card.click()
+                self.page.wait_for_timeout(2000)
+            except Exception:
+                log.warning("the product page did not show '%s'", product)
+        elif "/select-product" not in landed:
+            log.info("Sign In landed directly in %s (no product page)", landed.split("?")[0])
+        if proceed:                                        # only when Nexus asks for it; a direct landing has no such button
+            try:
+                btn = self.page.get_by_role("button", name=re.compile(rf"^\s*{re.escape(proceed)}", re.I)).first
+                btn.wait_for(state="visible", timeout=3000)
+                btn.click()
+                self.page.wait_for_timeout(2000)
+            except Exception:
+                pass
+        if not self.page.url.startswith(home):
+            self.page.goto(home)
 
     def interactive_login(self, wait_seconds: int = 300) -> None:
         """Opens Nexus in a visible browser; a person types their own credentials (OTP/SSO ok).

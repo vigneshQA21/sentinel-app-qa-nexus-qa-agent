@@ -1,0 +1,61 @@
+# UI selectors for Nexus (Playwright syntax: CSS, text=, xpath=, :has-text()).
+# The values below match the bundled mock Nexus (mock_nexus/app.py) so the agent can be
+# tested end to end. Replace each one with the selector from the real Nexus screens
+# (Chrome DevTools -> right-click element -> Copy selector, or `playwright codegen <url>`).
+# `{ref}` is replaced with the HAWB/MAWB being processed.
+
+login:
+  username: '#username'
+  password: '#password'
+  submit: '#login-btn'
+  logged_in_marker: '#user-menu'          # visible only when logged in
+
+prealert_list:
+  search_input: '#search'
+  search_button: '#search-btn'
+  row: 'table#prealerts tbody tr:has-text("{ref}")'
+  open_link: 'a.open-link'                # inside the row
+
+documents:
+  row: 'table#documents tbody tr'
+  name_cell: 'td.doc-name'
+  type_cell: 'td.doc-type'
+
+mapping:                                   # where the pre-alert page shows documents per section (Master / House)
+  sections: [Master, House]
+  section_tab: ''                          # click to reveal a section, e.g. 'role=tab[name="{section}"]'; empty = always visible
+  section: '[data-section="{section}"]'    # container of one section ({section} = Master / House)
+  doc_row: 'tr.doc-row'                    # one document row inside a section
+  doc_name: '.doc-name'
+  doc_type: '.doc-type'                    # the type label Nexus shows for the document (optional)
+
+shipper:
+  edit_button: '#edit-shipper'
+  save_button: '#save-shipper'
+  saved_marker: '#toast:has-text("Saved")'
+  fields:                                  # Nexus field name -> selector of its input / value
+    mawb: '#f-mawb'
+    hawb: '#f-hawb'
+    shipper_name: '#f-shipper_name'
+    shipper_address1: '#f-shipper_address1'
+    shipper_city: '#f-shipper_city'
+    shipper_country: '#f-shipper_country'
+    consignee_name: '#f-consignee_name'
+    pieces: '#f-pieces'
+    gross_weight: '#f-gross_weight'
+    origin: '#f-origin'
+    destination: '#f-destination'
+    etd: '#f-etd'
+
+tms:
+  push_button: '#push-tms'
+  confirm_button: ''                       # e.g. '#confirm-yes' if Nexus asks "Are you sure?"
+  status_label: '#tms-status'
+  approved_text: 'Approved'
+  rejected_text: 'Rejected'
+
+xml:
+  open_button: '#view-xml'                 # opens the XML viewer after approval
+  container: 'pre#xml-content'             # mode=text: element that holds the XML
+  download_button: '#download-xml'         # mode=download
+  copy_button: '#copy-xml'                 # mode=clipboard

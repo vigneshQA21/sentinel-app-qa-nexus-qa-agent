@@ -6,6 +6,8 @@ login:
   username: '#username'
   password: '#password'
   submit: 'button[type="submit"]'
+  product: 'Sentinel Nexus'                                        # 'Choose where to go' card after Sign In (/auth/select-product)
+  proceed: 'Proceed'                                               # clicked when Nexus asks for it after choosing the product
 
 uat:
   loading: 'text=Loading emails'

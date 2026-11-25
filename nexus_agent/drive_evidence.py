@@ -67,6 +67,9 @@ def report_pdf(cfg: Config, date: str) -> Path | None:
 
 def upload_day(cfg: Config, date: str | None = None, dry_run: bool = False, out=print) -> str:
     date = date or datetime.now().strftime("%Y-%m-%d")
+    if cfg.unset(cfg.settings["bugsheet"].get("evidence_folder_id")):
+        out(f"no Drive evidence folder for tenant '{cfg.tenant}' (bugsheet.evidence_folder_id): nothing uploaded")
+        return ""
     day_dir = cfg.runs_dir / date
     from . import runreport as RR
     from .store import Store

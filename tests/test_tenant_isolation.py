@@ -28,7 +28,7 @@ def _tenant(root: Path, name: str, **paths):
 
 @pytest.fixture
 def root(tmp_path):
-    shutil.copytree(ROOT / "config", tmp_path / "config")        # India: today's layout
+    shutil.copytree(ROOT / "config", tmp_path / "config", ignore=lambda d, names: [n for n in names if (Path(d) / n).is_dir()])   # India only
     _tenant(tmp_path, "dubai")
     _tenant(tmp_path, "japan")
     return tmp_path

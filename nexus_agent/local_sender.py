@@ -218,6 +218,8 @@ class LocalSender:
                  force: bool = False, only: set[Path] | None = None, resend: bool = False) -> list[PreAlert]:
         sent: list[PreAlert] = []
         to = self.cfg.settings["gmail"]["forward_to"]
+        if not dry_run and (self.cfg.unset(to) or "@" not in str(to)):
+            raise RuntimeError(f"no recipient mailbox for tenant '{self.cfg.tenant}' (gmail.forward_to = '{to}'): nothing was sent")
         gap = int(self.ld.get("email_gap_seconds", 0))
         sent_one = False                       # emails go strictly one by one: Nexus groups them wrongly when they arrive together
         for it in self.pending(refs, force or resend, only):

@@ -167,6 +167,10 @@ class Config:
                            f"e.g. state/{self.tenant}/ or runs/{self.tenant}/, so tenant '{self.tenant}' shares nothing with another tenant")
         return out
 
+    def unset(self, value) -> bool:
+        """A setting that still says TO-BE-PROVIDED (or is empty): the action that needs it must not run."""
+        return not str(value or "").strip() or "TO-BE-PROVIDED" in str(value)
+
     def validate(self) -> None:
         """Raises ConfigError listing every problem at once, so a wrong or partial config stops before the run starts."""
         found = self.problems()

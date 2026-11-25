@@ -121,3 +121,61 @@ def test_mock_profile_has_no_org_check(monkeypatch):
 
 def test_banner_names_the_organisation():
     assert "org=UNI" in Config(profile="uat").banner()
+
+
+class FlowPage:
+    """After Sign In: lands on `landing`; clicking the product card goes to the dashboard; a Proceed button may be shown."""
+    def __init__(self, landing, with_proceed=False):
+        self.url, self.clicks, self.gotos, self.with_proceed = landing, [], [], with_proceed
+
+    def wait_for_url(self, pred, timeout=None):
+        assert pred(self.url)
+
+    def wait_for_timeout(self, ms):
+        pass
+
+    def goto(self, url, **k):
+        self.gotos.append(url); self.url = url
+
+    def _el(self, name, visible, on_click):
+        page = self
+
+        class E:
+            first = None
+            def wait_for(self, state="visible", timeout=None):
+                if not visible():
+                    raise TimeoutError(name)
+            def click(self):
+                page.clicks.append(name); on_click()
+        e = E(); e.first = e
+        return e
+
+    def get_by_text(self, text, exact=False):
+        return self._el(text, lambda: "/select-product" in self.url, lambda: setattr(self, "url", "https://x/sentinel-nexus/dashboard"))
+
+    def get_by_role(self, role, name=None):
+        return self._el("Proceed", lambda: self.with_proceed, lambda: setattr(self, "with_proceed", False))
+
+
+def _flow(monkeypatch, page):
+    s = make(monkeypatch, org_in_session="UNI")
+    s.page = page
+    s._choose_product("https://x/sentinel-nexus/email")
+    return page
+
+
+def test_product_page_picks_sentinel_nexus_then_opens_the_list(monkeypatch):
+    p = _flow(monkeypatch, FlowPage("https://x/auth/select-product"))
+    assert p.clicks == ["Sentinel Nexus"] and p.gotos == ["https://x/sentinel-nexus/email"]
+
+
+def test_proceed_is_clicked_only_when_nexus_shows_it(monkeypatch):
+    p = _flow(monkeypatch, FlowPage("https://x/auth/select-product", with_proceed=True))
+    assert p.clicks == ["Sentinel Nexus", "Proceed"]
+
+
+def test_direct_landing_in_nexus_skips_the_product_page(monkeypatch):
+    p = _flow(monkeypatch, FlowPage("https://x/sentinel-nexus/dashboard"))
+    assert p.clicks == [] and p.gotos == ["https://x/sentinel-nexus/email"]
+    p = _flow(monkeypatch, FlowPage("https://x/sentinel-nexus/email"))
+    assert p.clicks == [] and p.gotos == []                                 # already on the list: nothing to do

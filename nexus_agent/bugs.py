@@ -486,6 +486,8 @@ def sheets_append(cfg: Config, rows: list[list[str]], service=None) -> str:
 
 def log_confirmed(cfg: Config, store: Store, c: dict, service=None, drive=None) -> str:
     """Called ONLY after the user typed 'y' for this bug. Returns what happened."""
+    if cfg.unset(cfg.settings["bugsheet"].get("spreadsheet_id")):
+        raise RuntimeError(f"no bug sheet for tenant '{cfg.tenant}' (bugsheet.spreadsheet_id): nothing was logged")
     if effective_backend(cfg) == "sheets":
         service = service or sheets_service(cfg)
         copy_evidence(cfg, c)
