@@ -46,7 +46,8 @@ xml_capture:
   mode: text
 
 local_docs:
-  email_gap_seconds: 30                          # wait between emails: sent strictly one by one, never in parallel (Nexus groups parallel emails wrongly)
+  preflight_reuse_minutes: 60   # a send within 60 min of a CLEAR preflight (nothing sent since) skips the second Nexus search; 0 = always search again
+  email_gap_seconds: 30                         # wait between emails: sent strictly one by one, never in parallel (Nexus groups parallel emails wrongly)
   case_email_gap_seconds: {REG-011: 60}   # this scenario only: 60 s between its mails (House, Manifest, Master, then the unclassified document)
   # Knowledge base. Consolidated PDFs are NOT split: each one is screened and mailed as-is (one email).
   #   consolidated/*.pdf   -> screening check -> one email with the original file -> moved to sent/<REF>/

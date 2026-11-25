@@ -65,3 +65,12 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | Existing behaviour affected | None (new read-only command) |
 | Tests | Offline gate: see the commit message |
 | Rollback | `git revert <commit>` |
+
+## Run time: one Nexus search pass per run (2026-11-25)
+| Item | Detail |
+| --- | --- |
+| Files | `nexus_agent/cleanup.py` (per-run search cache in `preflight`; `remember_preflight`, `fresh_clear`; rows carry their search filter), `nexus_agent/__main__.py` (suite reuses a fresh CLEAR preflight), `config/settings.yaml` (`local_docs.preflight_reuse_minutes: 60`), `tests/test_preflight_reuse.py` (new, 3 tests) |
+| Reason | A run searched every bill up to three times (delete, preflight, the send's own check), and the 7 AMF cases repeat 13 shared bills: about 40 to 50 minutes of a 2.5-hour run |
+| Safety | Only a CLEAR result is reused, only within 60 minutes, and only if nothing of that case was sent since; any other case is searched again. `0` or no setting = always search (old behaviour). The per-run cache returns exactly the rows a fresh search would |
+| Tests | Offline gate: see the commit message |
+| Rollback | `git revert <commit>`, or set `preflight_reuse_minutes: 0` |

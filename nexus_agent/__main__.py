@@ -555,7 +555,11 @@ def _main(argv: list[str] | None = None) -> int:
             from . import cleanup as CL
             from .nexus.session import SessionExpired
             try:
-                existing = CL.preflight(cfg, [c.id for c in chosen])
+                reuse = CL.fresh_clear(cfg, [c.id for c in chosen], Store(cfg.state_dir / "agent.db"))   # CLEAR in a preflight minutes ago, nothing sent since
+                if reuse:
+                    print(f"Pre-send check reused from the preflight just run (CLEAR, nothing sent since): {', '.join(reuse)}")
+                rest = [c.id for c in chosen if c.id not in reuse]
+                existing = {**{cid: [] for cid in reuse}, **(CL.preflight(cfg, rest) if rest else {})}
             except SessionExpired as exc:
                 print(f"Nothing was sent. {exc}")
                 return 2
