@@ -116,6 +116,8 @@ Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same 
 | `--dry-run` | preview only, sends nothing |
 | `--tenant <name>` | run for that tenant only (default `india`: today's `config/`, `state/`, `runs/`). Another tenant needs `config/<name>/settings.yaml` with `tenant: <name>` and its own `state/<name>/`, `runs/<name>/` and session file, else nothing runs |
 
+**Golden gate** (after a regression run, needs no Nexus): `./nx golden --day yyyy-mm-dd` compares that day's reports with the frozen baseline in `runs/golden/`. FAIL = something that passed in the baseline fails or was not checked now (blocks); INCOMPLETE = only not-received / read errors (re-run those cases); PASS otherwise. Exit codes 0 / 1 / 3; CSV in `runs/_reports/golden_*.csv`.
+
 Every `./nx` command takes the same `--tenant <name>` before the command: `./nx --tenant dubai validate --cases ...`.
 `./nx validate`, `validate-master`, `validate-house` and `validate-docs` also take `--cases REG-002 ...`, `--wait <seconds>` and `--headless`.
 

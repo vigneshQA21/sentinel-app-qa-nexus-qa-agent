@@ -54,3 +54,14 @@ Full rollback at any time: `git checkout baseline-2026-11-25`. India stays in to
 | Fixed on the way | The point-1 row "Identified as Direct BL" now carries the tenant's point-1 title too (identical for India) |
 | Tests | Offline gate: see the stage 3 commit message. Live Golden gate: due (stages 2 and 3), pending your authorisation |
 | Rollback | `git revert <stage 3 commit>` |
+
+## Quality-gate step 1 - `./nx golden` (2026-11-25)
+Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov 2026), step 1.
+| Item | Detail |
+| --- | --- |
+| Files | `nexus_agent/golden.py` (new), `nexus_agent/__main__.py` (`golden` command), `tests/test_golden.py` (new, 10 tests), `regression_prompts/EXECUTE_CMD.md` |
+| What | Compares a run's reports (mapping, all field checks, AMF drafts, Direct BL) with the frozen baseline per Golden case. REGRESSION / NOT CHECKED / MISSING block (FAIL, exit 1); ENVIRONMENT (not received, read ERROR) gives INCOMPLETE (exit 3); IMPROVED, KNOWN and NEW FINDING are reported. The baseline is checked against its SHA-256 manifest first; a changed file stops the gate |
+| Checked on real data | 20 Nov 2026 reports: 0 regressions (SEA-REG-002 missing that day, REG-001 not received); 19 + 20 Nov: INCOMPLETE, only REG-001 |
+| Existing behaviour affected | None (new read-only command) |
+| Tests | Offline gate: see the commit message |
+| Rollback | `git revert <commit>` |

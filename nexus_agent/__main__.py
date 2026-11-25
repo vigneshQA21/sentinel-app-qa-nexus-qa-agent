@@ -136,6 +136,10 @@ def _main(argv: list[str] | None = None) -> int:
     cp = sub.add_parser("compare", help="compare a day's runs with the previous run of each case (mapping, new / fixed / still-there findings); needs no Nexus")
     cp.add_argument("--date", default=None, help="yyyy-mm-dd (default: the newest day with data)")
     cp.add_argument("--cases", nargs="+", default=None)
+    gd = sub.add_parser("golden", help="Golden Regression gate: compare a run's reports with the frozen baseline (runs/golden); needs no Nexus. "
+                                       "Exit 0 PASS, 1 FAIL (regression / not checked / missing), 3 INCOMPLETE (environment only)")
+    gd.add_argument("--day", action="append", default=None, help="yyyy-mm-dd of the run (repeatable: the newest day with the case is used; default: today)")
+    gd.add_argument("--cases", nargs="+", default=None, help="only these Golden cases (default: all of them)")
     sub.add_parser("patterns", help="learn which kinds of findings turn out to be real bugs (bug sheet statuses + your decisions); feeds the bug likelihood in the reports")
     rr = sub.add_parser("runreport", help="today's run only: observations, bugs found, and earlier raised bugs that passed (no history)")
     rr.add_argument("--date", help="yyyy-mm-dd (default: today)")
@@ -281,6 +285,19 @@ def _main(argv: list[str] | None = None) -> int:
         print(f"Run of {DC._pretty(day)} compared with the previous run of each case\n")
         print("\n".join(DC.render(DC.compare(reports, day, args.cases))))
         return 0
+
+    if args.cmd == "golden":
+        from datetime import datetime
+        from . import golden as GD
+        days = args.day or [datetime.now().strftime("%Y-%m-%d")]
+        try:
+            result = GD.run(cfg.runs_dir, days, args.cases)
+        except GD.GoldenError as exc:
+            print(f"Golden gate not run: {exc}")
+            return 2
+        print("\n".join(GD.render(result)))
+        print(f"\nGolden report: {GD.write_report(cfg.runs_dir, result)}")
+        return {"PASS": 0, "FAIL": 1, "INCOMPLETE": 3}[result["verdict"]]
 
     if args.cmd == "patterns":
         from . import bugprob
