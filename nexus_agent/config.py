@@ -157,6 +157,9 @@ class Config:
         if self.tenant == DEFAULT_TENANT:
             return out
         paths, nexus = self.settings.get("paths") or {}, self.settings.get("nexus") or {}
+        if not str(nexus.get("organisation_code") or "").strip():
+            out.append(f"settings.yaml: 'nexus.organisation_code' is missing: tenant '{self.tenant}' needs its own Org Code "
+                       f"(the same Nexus login serves every tenant; the organisation tells them apart)")
         for label, value in (("paths.state_dir", paths.get("state_dir")), ("paths.runs_dir", paths.get("runs_dir")),
                              ("nexus.session_file", nexus.get("session_file"))):
             if isinstance(value, str) and value.strip() and self.tenant not in Path(value).parts:
@@ -172,5 +175,6 @@ class Config:
 
     def banner(self) -> str:
         """One line naming what this run will use. No credentials: the session file is named, never read."""
-        return (f"[nexus-agent] tenant={self.tenant} profile={self.profile or 'mock'} nexus={self.base_url} "
+        org = str((self.settings.get("nexus") or {}).get("organisation_code") or "-")
+        return (f"[nexus-agent] tenant={self.tenant} org={org} profile={self.profile or 'mock'} nexus={self.base_url} "
                 f"config={self.config_dir} db={self.state_dir / 'agent.db'} runs={self.runs_dir}")

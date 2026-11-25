@@ -2,6 +2,10 @@
 # Found by exploring https://uat.sentinel.unifo.in/sentinel-nexus/email with a saved session (view-only).
 login:
   logged_in_marker: 'button:has-text("Pre Alert Documents")'      # top-left module switcher: only visible when signed in
+  org_code: '#orgId'                                               # login form (/auth/logIn): Org Code, Username, Password, Sign In
+  username: '#username'
+  password: '#password'
+  submit: 'button[type="submit"]'
 
 uat:
   loading: 'text=Loading emails'

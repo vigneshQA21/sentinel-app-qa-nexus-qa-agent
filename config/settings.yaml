@@ -24,7 +24,10 @@ nexus:
   home_path: /sentinel-nexus/email              # pre-alert (email) list
   # Part of the URL that only the login page has (e.g. /login). Leave empty if unknown:
   # the agent then relies on login.logged_in_marker in selectors.yaml.
-  login_path: ''
+  login_path: /auth/logIn
+  # The organisation (Org Code on the login form) this tenant's runs must be signed in to. Every UI run checks it against the
+  # session's ID token and stops on any other organisation. India = UNI (read from the India session in use, 25 Nov 2026).
+  organisation_code: UNI
   # To test against the bundled mock instead: base_url http://127.0.0.1:5055, home_path /prealerts, login_path /login
   session_file: state/nexus_session.json
   navigation_timeout_ms: 30000

@@ -84,3 +84,13 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | 25 Nov report | Regenerated from the existing files: 24 case sections, 0 broken image links; nothing re-run in Nexus |
 | Tests | Offline gate: 214 passed |
 | Rollback | `git revert <commit>` |
+
+## Tenant login: one user, one Org Code per tenant (2026-11-25)
+| Item | Detail |
+| --- | --- |
+| Files | `nexus_agent/nexus/session.py` (`org_from_cookies`, `WrongOrganisation`, `active_org`, `assert_org`, login with Org Code), `nexus_agent/config.py` (banner `org=`; non-India tenants must set `nexus.organisation_code`), `config/settings.yaml` (`login_path: /auth/logIn`, `organisation_code: UNI`), `config/selectors.uat.yaml` (login fields `#orgId`, `#username`, `#password`, submit), `tests/test_tenant_login.py` (new, 9 tests) |
+| Why | India, Dubai and Japan share one Nexus URL and one test user; only the Org Code on the login form differs, so a saved session alone cannot tell tenants apart |
+| How | The session's ID token carries `custom:organization_code`. Every UI run checks it against the tenant's `organisation_code`; a missing, expired or other-organisation session is signed in again with the tenant's Org Code (NEXUS_USER / NEXUS_PASSWORD from `.env`), checked, then saved to that tenant's session file only. Without credentials, a wrong organisation stops the run. The mock (no Org Code field) is not checked |
+| India | Organisation UNI, read from the India session in use; live check 25 Nov 2026: signed in, UNI = UNI |
+| Tests | Offline gate: 223 passed |
+| Rollback | `git revert <commit>` |
