@@ -22,7 +22,7 @@ from .store import Store
 from .testsuite import sample_files
 
 log = logging.getLogger(__name__)
-CASE_ID = re.compile(r"^((SEA-)?(REG|MH)-\d{3}|SEA-RT-\d{3}|DBL-\d{3}|UNR-\d{3})$")
+CASE_ID = re.compile(r"^((SEA-)?(REG|MH)-\d{3}|SEA-RT-\d{3}|DBL-\d{3}|UNR-\d{3}|AMF-\d{3})$")
 IPA_ID = re.compile(r"^IPA/\d+/\d{4}-\d{2}$", re.IGNORECASE)
 TAG = "QA agent trigger"
 GROUPS = {"AIR-DAILY": ["REG-001", "REG-002", "REG-005", "REG-009", "REG-006", "REG-007"],
@@ -178,6 +178,23 @@ def row_bills(ui: UatPages, cell) -> list[str]:
         return []
 
 
+def _click_when_ready(pg, locator, attempts: int = 4) -> None:
+    """Click after Nexus's full-page loader (data-testid=emails-page-loader) is gone; a click under the loader times out, so wait and retry."""
+    for attempt in range(1, attempts + 1):
+        try:
+            pg.locator('[data-testid="emails-page-loader"]').first.wait_for(state="hidden", timeout=60000)
+        except Exception:
+            pass
+        try:
+            locator.click(timeout=30000)
+            return
+        except Exception as exc:
+            if attempt == attempts:
+                raise
+            log.warning("click not possible yet (attempt %d/%d): %s", attempt, attempts, str(exc).splitlines()[0][:120])
+            pg.wait_for_timeout(3000)
+
+
 def search_terms(ui: UatPages, terms: list[tuple[str, str]]) -> list[dict]:
     """The list's own search, both tabs, for every (filter, text) pair, e.g. ('Bill No', 'TAOJAI26165972') or ('Email Subject', 'FJ-0000723').
     The page is loaded and the filter chosen once per filter. Returns [{tab, ipa, subject, from, received, term}]."""
@@ -186,12 +203,12 @@ def search_terms(ui: UatPages, terms: list[tuple[str, str]]) -> list[dict]:
     for mode in dict.fromkeys(m for m, _ in terms):
         ui.open_list()
         if mode != "ID":                                          # 'ID' is the list's default filter
-            pg.get_by_text("ID", exact=True).first.click()
-            pg.get_by_text(mode, exact=True).first.click()
+            _click_when_ready(pg, pg.get_by_text("ID", exact=True).first)
+            _click_when_ready(pg, pg.get_by_text(mode, exact=True).first)
         box = pg.get_by_placeholder("Search").first
         for _m, term in [t for t in terms if t[0] == mode]:
             for tab in ("Pre-Alerts", "Others"):
-                pg.get_by_text(f"{tab} (", exact=False).first.click()
+                _click_when_ready(pg, pg.get_by_text(f"{tab} (", exact=False).first)
                 pg.wait_for_timeout(600)
                 box.fill(""); box.fill(term)                     # the filter has to be typed again after a tab change, else Others lists every row
                 pg.wait_for_timeout(2500)
@@ -204,7 +221,7 @@ def search_terms(ui: UatPages, terms: list[tuple[str, str]]) -> list[dict]:
                         seen.add(m["ipa"]); out.append({**m, "tab": tab, "term": term, "bill": term})
                 log.info("%s search %s in %s: %d row(s) %s", mode, term, tab, len(seen), sorted(seen))
         for tab in ("Others", "Pre-Alerts"):                    # leave BOTH tabs unfiltered: a stuck filter makes the next list load hang
-            pg.get_by_text(f"{tab} (", exact=False).first.click()
+            _click_when_ready(pg, pg.get_by_text(f"{tab} (", exact=False).first)
             pg.wait_for_timeout(500)
             box.fill("")
             pg.wait_for_timeout(1500)

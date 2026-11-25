@@ -211,7 +211,7 @@ def _main(argv: list[str] | None = None) -> int:
     if args.cmd in ("suite", "validate", "validate-master", "validate-house", "validate-docs") and not getattr(args, "dry_run", False) \
             and not os.getenv("NEXUS_NO_LIVE"):
         from . import live                        # live status page in the browser (runs/_live/index.html), refreshes by itself
-        live.install(cfg.runs_dir, f"{args.cmd} {' '.join(getattr(args, 'cases', None) or [])}".strip(), open_browser=False)   # no extra browser tab during the run
+        live.install(cfg.runs_dir, f"{args.cmd} {' '.join(getattr(args, 'cases', None) or [])}".strip(), open_browser=True)    # standing rule: the live status page opens in the browser as soon as a run starts
 
         def _report_after_run():                  # the detailed report of today's cases opens in the browser when a run ends
             try:

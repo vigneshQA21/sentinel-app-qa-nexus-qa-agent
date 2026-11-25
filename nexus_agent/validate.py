@@ -273,7 +273,12 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
             time.sleep(30)
             ui.open_list()
             cell = ui.find_case_row(f"{case.id} |") or cell
-    parents = ui.read_parents(evidence if row["evidence"] else None)
+    try:
+        parents = ui.read_parents(evidence if row["evidence"] else None)
+    except RuntimeError as exc:                 # the viewer lagged on a parent switch: read once more rather than judge a half-loaded page
+        log.warning("%s: %s; reading the viewer once more", case.id, str(exc).splitlines()[0][:120])
+        time.sleep(10)
+        parents = ui.read_parents(evidence if row["evidence"] else None)
     in_pre = pre_ipas
     in_others = ui.capture_others(f"{case.id} |") if row["evidence"] else []      # follow-ups / duplicates of this case
     in_others = [i for i in in_others if i and i != info["ipa"]]

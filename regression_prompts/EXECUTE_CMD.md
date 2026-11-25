@@ -135,6 +135,7 @@ Cases with samples: REG-001, 002, 005, 006, 007, 009. REG-003 is excluded (same 
 - Party addresses are compared with the document (a different place = FAIL, same place with different wording = REVIEW).
 - The check looks in Nexus's **Pre-Alerts** tab only. A duplicate in *Others* shows as NOT_RECEIVED.
 - Same flow with Claude: say "Execute AIR_SINGLE_HOUSE_DAILY" (uses many more tokens; see `air/AIR_SINGLE_HOUSE_DAILY.md`).
+- Full flow in nine steps (clean up, preflight, send, validate, compare, re-test, candidates, report, approvals): say "Execute FULL_DAILY_REGRESSION" (see `FULL_DAILY_REGRESSION.md`).
 
 _Last updated 2026-10-26: trace folders, root cause, baseline, bug history, case documentation, default mapping._
 
