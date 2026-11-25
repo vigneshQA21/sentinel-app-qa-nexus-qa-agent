@@ -142,7 +142,7 @@ def test_sample_refs_read_the_fj_number_from_the_file_names():
 # --- the standard: document <-> Nexus shipment data (13-Nov-2026) -----------------------------------------------------------------------
 from pathlib import Path as _P
 
-_SEA009 = _P("samples/SEA-REG-009/FJ-0002952 - Consolidated - DAP Incoterm.pdf")
+_SEA009 = _P("samples/india/SEA-REG-009/FJ-0002952 - Consolidated - DAP Incoterm.pdf")
 
 
 def _src009():

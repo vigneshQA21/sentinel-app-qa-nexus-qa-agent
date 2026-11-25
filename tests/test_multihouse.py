@@ -4,7 +4,7 @@ import pytest
 
 from nexus_agent.multihouse import check_parents, expected_from_pdf, verdict
 
-SAMPLE = Path("samples/MH-001/FJ-0000088 - Consolidated- Multiple Houses.pdf")
+SAMPLE = Path("samples/india/MH-001/FJ-0000088 - Consolidated- Multiple Houses.pdf")
 
 
 def P(parent, kind, linked=(), unmatched=(), unclassified=()):
@@ -54,7 +54,7 @@ def test_duplicate_page_turned_into_a_house_with_another_number_fails_the_duplic
     assert any(c.name.startswith("Duplicate of") and c.status == "FAIL" for c in cs)
 
 
-SEA = Path("samples/SEA-MH-001/FJ-0001314 - Consolidated.pdf")
+SEA = Path("samples/india/SEA-MH-001/FJ-0001314 - Consolidated.pdf")
 
 
 @pytest.mark.skipif(not SEA.exists(), reason="sea sample not staged")

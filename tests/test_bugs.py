@@ -339,7 +339,7 @@ def evidence_setup(tmp_path):
     shot.parent.mkdir(parents=True)
     shot.write_bytes(b"png")
     c["evidence"] = str(shot)
-    pdf = tmp_path / "samples" / "REG-001" / c["doc_file"]
+    pdf = tmp_path / "samples" / "india" / "REG-001" / c["doc_file"]
     pdf.parent.mkdir(parents=True)
     pdf.write_bytes(b"%PDF")
     return cfg, store, c

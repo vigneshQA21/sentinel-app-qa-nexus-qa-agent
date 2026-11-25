@@ -103,3 +103,12 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | Live check | All three organisations sign in; sessions saved per tenant; India (UNI), Dubai (LAE) and Japan (LJP) sessions all stay valid side by side without re-login |
 | Still to provide per tenant | recipient mailbox, bug sheet, Drive evidence folder, case workbooks and samples, Direct BL rules, branch airports |
 | Tests | Offline gate: 226 passed |
+
+## Samples grouped per tenant (2026-11-25)
+| Item | Detail |
+| --- | --- |
+| Layout | `samples/india/` (all 109 India sample files, moved with `git mv`: tracking unchanged), `samples/dubai/`, `samples/japan/`, each with `_inbox/` |
+| Files | `config/settings.yaml` (`testsuite.samples_dir: samples/india`), `nexus_agent/testsuite.py` (the SAMPLE_MISSING message names the tenant's folder), tests pointed at `samples/india` |
+| India unchanged | `./nx cases` finds every sample; an offline dry-run of the 23 daily cases lists the same 32 emails with no SAMPLE_MISSING |
+| Tests | Offline gate: 226 passed, 0 skipped |
+| Rollback | `git revert <commit>` |

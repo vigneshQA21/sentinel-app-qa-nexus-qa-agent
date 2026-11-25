@@ -142,7 +142,7 @@ testsuite:
     - {id: SEA-RT-270, scenario: 'Bug row 270 re-test: Sea MBL sent first, HBL sent separately afterwards (HBL must link to the existing Master)', docs: 'MBL then HBL (separate emails)', sample_ref: FJ-0002245}
     - {id: UNR-001, scenario: 'Valid multi-document PDF sent first, then an UNRELATED document in the same email subject (the unrelated one must not be mapped into the job)', docs: 'Master + Manifest + House, then an unrelated PDF (same subject)', sample_ref: FJ-0003315}
   sample_ref_overrides: {REG-011: FJ-0001012}     # REG-011's sample is split from the FJ-0001012 PDF (+ a dummy document), so the subject uses that FJ number
-  samples_dir: samples                            # samples/_inbox/ (downloads) and samples/<CASE>/ (library)
+  samples_dir: samples/india                      # samples/india/_inbox/ (downloads) and samples/india/<CASE>/ (library); Dubai / Japan: samples/dubai, samples/japan
   case_interval_seconds: 300                      # wait between test cases (all emails of a case go together); 0 = no wait
   subject_includes_case_id: true                  # <tag> | REG-001 | Pre-Alert ...
   columns:

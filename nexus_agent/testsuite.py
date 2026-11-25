@@ -156,7 +156,8 @@ def stage(cfg: Config, sender: LocalSender, case: Case) -> tuple[list[Path], str
     """Copies the case's samples into knowledge_base/. Returns (staged paths, problem or '')."""
     files = sample_files(cfg, case)
     if not files:
-        return [], f"SAMPLE_MISSING: put the document(s) in samples/{case.id}/ or samples/_inbox/"
+        where = samples_root(cfg).relative_to(cfg.root) if samples_root(cfg).is_relative_to(cfg.root) else samples_root(cfg)
+        return [], f"SAMPLE_MISSING: put the document(s) in {where}/{case.id}/ or {where}/_inbox/"
     if case.mode == "consolidated":
         if len(files) != 1:
             return [], f"NOT_STAGED: consolidated case needs exactly 1 file, found {len(files)}"

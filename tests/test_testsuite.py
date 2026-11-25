@@ -57,20 +57,20 @@ def test_read_cases_scope(tmp_path):
 
 def test_ingest_by_fj_and_case_id(tmp_path):
     cfg, *_ = setup(tmp_path)
-    inbox = tmp_path / "samples" / "_inbox"
+    inbox = tmp_path / "samples" / "india" / "_inbox"
     inbox.mkdir(parents=True)
     (inbox / "FJ-0000001 - Consolidated.pdf").write_bytes(b"a")
     (inbox / "REG-006_master.pdf").write_bytes(b"b")
     (inbox / "random.pdf").write_bytes(b"c")
     filed, unmatched = T.ingest(cfg, T.read_cases(cfg))
     assert filed == {"REG-001": ["FJ-0000001 - Consolidated.pdf"], "REG-006": ["REG-006_master.pdf"]}
-    assert unmatched == ["random.pdf"] and (tmp_path / "samples" / "REG-001" / "FJ-0000001 - Consolidated.pdf").exists()
+    assert unmatched == ["random.pdf"] and (tmp_path / "samples" / "india" / "REG-001" / "FJ-0000001 - Consolidated.pdf").exists()
     assert not (inbox / "random.pdf").unlink() and not list(inbox.iterdir())
 
 
 def test_suite_dry_run_then_send_consolidated_and_individual(tmp_path):
     cfg, sender, fwd = setup(tmp_path)
-    s = tmp_path / "samples"
+    s = tmp_path / "samples" / "india"
     (s / "REG-001").mkdir(parents=True)
     (s / "REG-001" / "FJ-0000001 - Consolidated.pdf").write_bytes(good_consolidated())
     (s / "REG-006").mkdir()
@@ -106,7 +106,7 @@ def test_suite_dry_run_then_send_consolidated_and_individual(tmp_path):
 
 def test_failed_screening_and_staging_problems(tmp_path):
     cfg, sender, fwd = setup(tmp_path)
-    s = tmp_path / "samples"
+    s = tmp_path / "samples" / "india"
     (s / "REG-001").mkdir(parents=True)
     (s / "REG-001" / "a.pdf").write_bytes(make_pdf(["COMMERCIAL INVOICE only"]))     # no master/house
     (s / "REG-005").mkdir()                                                          # consolidated case, 2 files
@@ -120,7 +120,7 @@ def test_failed_screening_and_staging_problems(tmp_path):
 
 def test_wait_between_cases_only_when_sending_and_next_case_has_samples(tmp_path):
     cfg, sender, fwd = setup(tmp_path)
-    s = tmp_path / "samples"
+    s = tmp_path / "samples" / "india"
     for cid in ("REG-001", "REG-005"):
         (s / cid).mkdir(parents=True)
         (s / cid / f"{cid}.pdf").write_bytes(good_consolidated())
