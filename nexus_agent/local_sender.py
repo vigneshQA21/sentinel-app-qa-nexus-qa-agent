@@ -112,7 +112,7 @@ class LocalSender:
             subject = f"{case} | {subject}"
         org = str(self.cfg.settings.get("nexus", {}).get("organisation_code") or "").strip()
         if self.ld.get("subject_org_code") and org:          # every tenant shares one mailbox: Nexus routes the email by the Org Code in the subject
-            subject = f"{subject} | {org}"
+            subject = subject + str(self.ld.get("subject_org_format") or " | {org}").format(org=org)   # e.g. ' | org : LJP'
         return subject, case
 
     def _dir(self, key: str) -> Path:

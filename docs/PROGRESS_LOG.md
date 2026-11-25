@@ -369,3 +369,5 @@ The agent (Claude) also adds an entry whenever we finish a piece of work.
 - Japan test cases written: knowledge_base/japan/testcases/Japan_Sea_Regression.xlsx, 18 cases (SEA-JPN-001..009 consolidated, 101..109 individual) built from the 9 Japan pre-alerts; mapping rules as India (same for all tenants); dry-run 32 emails; waiting for the Japan recipient mailbox to send
 - Org Code in every subject (' | UNI', ' | LJP', ' | LAE'): one shared mailbox, Nexus routes by it. Japan/Dubai: shared mailbox, Drive evidence under their own sub-folder; Japan references JPN-REG-nnn
 - Japan recipient = uat.prealert.nexus@unifo.in. The 4 round-1 emails sent to test.prealert (16:54-16:56) landed in INDIA (UNI) as IPA/3093-3096, not in Japan: test.prealert feeds UNI regardless of the subject
+- Deleted the 4 Japan emails that landed in India (IPA/3093-3096, SEA-JPN-001..004) on the user's command; Dubai mailbox = uat.prealert.nexus@unifo.in; Japan round 1 resent to uat.prealert
+- Subject ends with ' | org : <Org Code>' for every tenant (user); 5 wrong SEA-JPN rows deleted from India (IPA/3097-3101): uat.prealert with ' | LJP' had also landed in UNI

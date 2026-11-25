@@ -43,6 +43,7 @@ local_docs:
   individual_dir: individual
   subject_tag: QA agent trigger / Don't delete / Regression testing
   subject_org_code: true   # ' | <Org Code>' at the end of every subject: one shared mailbox, Nexus routes by the Org Code (not case sensitive)
+  subject_org_format: ' | org : {org}'   # how the Org Code is written at the end of the subject (user, 25 Nov 2026)
   same_subject_cases:
     UNR-001:
       ref: FJ-0003315

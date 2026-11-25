@@ -188,6 +188,16 @@ def test_every_subject_ends_with_the_tenants_org_code(tmp_path):
     p = kb / "consolidated" / "scan_001.pdf"
     sender.case_for_path[p] = "SEA-JPN-001"
     subject, case = sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="R1", types="MASTER+HOUSE")
-    assert subject.startswith("SEA-JPN-001 | ") and subject.endswith(" | LJP") and case == "SEA-JPN-001"
+    assert subject.startswith("SEA-JPN-001 | ") and subject.endswith(" | org : LJP") and case == "SEA-JPN-001"
     cfg.settings["local_docs"]["subject_org_code"] = False
     assert not sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="R1", types="X")[0].endswith("LJP")
+
+
+def test_org_code_wording_comes_from_settings(tmp_path):
+    cfg, sender, fwd, kb = setup(tmp_path)
+    cfg.settings["local_docs"].update(subject_org_code=True, subject_org_format=" | org : {org}")
+    cfg.settings["nexus"]["organisation_code"] = "LJP"
+    p = kb / "consolidated" / "scan_001.pdf"
+    sender.case_for_path[p] = "SEA-JPN-001"
+    subject = sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="JPN-REG-001", types="MASTER")[0]
+    assert subject.startswith("SEA-JPN-001 | ") and subject.endswith(" | org : LJP")
