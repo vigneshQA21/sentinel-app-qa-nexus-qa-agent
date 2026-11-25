@@ -2,7 +2,7 @@
 
 Say "Execute FULL_DAILY_REGRESSION" and follow this prompt step by step, in order, without skipping a step.
 Standing rules still apply: delete only the agent's own tagged pre-alerts, send emails one by one with a gap, run headed,
-never log a bug / update a tracker / upload to Drive / post to Cliq or Sprints without approval (see the memory rules).
+never log a bug / update a tracker / post to Cliq or Sprints without approval (see the memory rules). Evidence IS uploaded to Google Drive automatically after every run (standing rule, 25 Nov 2026).
 
 ---
 
@@ -59,4 +59,4 @@ Produce the report with:
 - Observations, risks and recommendations.
 
 9. ASK BEFORE THE FINAL STEPS
-Don't upload evidence to Drive, log bugs, update the tracker, or post the daily update to Zoho Cliq or Sprints until I approve.
+Don't log bugs, update the tracker, or post the daily update to Zoho Cliq or Sprints until I approve. (Evidence goes to Google Drive automatically after every run: standing rule.)

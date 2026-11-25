@@ -120,7 +120,7 @@ def upload_day(cfg: Config, date: str | None = None, dry_run: bool = False, out=
 
 # --- automatic, never-stopping upload ---------------------------------------------------------------
 AUTO_CMDS = {"suite", "validate", "validate-master", "validate-house", "validate-docs", "validate-mhfields", "validate-directbl",
-             "validate-drafts", "runreport", "delete", "run", "forward", "send-local"}
+             "validate-drafts", "runreport", "delete", "preflight", "run", "forward", "send-local"}
 
 
 def days_to_upload(cfg: Config, today: str | None = None) -> list[str]:
