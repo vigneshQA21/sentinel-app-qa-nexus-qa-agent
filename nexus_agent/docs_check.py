@@ -315,6 +315,25 @@ def check_docs_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_sec
                 ui.page.wait_for_timeout(1500)
                 pattern = PATTERNS[kind]
                 if not open_document_page(ui.page, pattern):
+                    from . import debit_rule
+                    house = next((o for o in opts if o.startswith("House")), None)
+                    if kind == "DEBITNOTE" and house and debit_rule.sample_has_agent_bill(cfg, case):
+                        ui.select_parent(house)                             # Nexus files the agent's debit note as an Invoice (feature gap)
+                        ui.page.wait_for_timeout(1500)
+                        if open_document_page(ui.page, PATTERNS["INVOICE"]):
+                            gap = debit_rule.gap_result(v)
+                            ui.screenshot(evidence / f"{kind.lower()}_data.png")
+                            items = read_panel_fields(ui.page)
+                            rows = compare_doc("INVOICE", items, raw)
+                            if "(scan, OCR)" not in where:
+                                from .master_check import nexus_to_document
+                                rows = nexus_to_document(rows, raw)
+                            res["rows"] = [{"section": "Document", "label": "Document type", "field": "Document · type and parent",
+                                            "expected_from_document": f"Debit Note under the Master (an invoice with a LOGISTEED party on it, {where})",
+                                            "shown_in_nexus": f"Invoice under {house}", "result": gap, "note": debit_rule.GAP_NOTE}] + rows
+                            res["message"] = debit_rule.GAP_NOTE + "; the fields are checked on the Invoice panel"
+                            res["verdict"] = "FAIL" if any(r["result"] == "FAIL" for r in rows) or gap == "FAIL" else "KNOWN"
+                            continue
                     res["message"] = f"{kind.lower()} expected under {under} but Nexus has none linked"
                     if kind == "PACKING":
                         res["verdict"] = "FAIL"

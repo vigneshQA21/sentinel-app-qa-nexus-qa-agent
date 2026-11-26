@@ -337,10 +337,34 @@ class UatPages:
         box = self.page.get_by_placeholder(self.u["parent_search"]).locator("xpath=ancestor::div[2]")
         return [ln.strip() for ln in box.inner_text().splitlines() if ln.strip()]
 
-    def select_parent(self, name: str) -> None:
-        self._open_dropdown()
-        self.page.get_by_text(name, exact=True).last.click()        # the option (the header button shows the same text first)
-        self.page.wait_for_timeout(2500)
+    def _parent_shown(self) -> str:
+        try:
+            btn = self._parent_button()
+            return (btn.inner_text(timeout=3000) or "").strip() if btn is not None else ""
+        except Exception:
+            return ""
+
+    def select_parent(self, name: str, attempts: int = 3, settle_s: float = 15.0) -> None:
+        """Selects the parent and WAITS until the header shows it. On a slow page the switch can lag: reading the panel then would show the
+        previous parent's documents and the checker would report a document as missing. It retries the click and, if the header still does not
+        show `name`, raises (an ERROR, never a wrong FAIL)."""
+        for attempt in range(1, attempts + 1):
+            try:
+                self._open_dropdown()
+                self.page.get_by_text(name, exact=True).last.click(timeout=10000)   # the option (the header button shows the same text first)
+            except Exception as exc:
+                log.warning("select_parent %s: attempt %d/%d could not click (%s)", name, attempt, attempts, str(exc).splitlines()[0][:80])
+                self.page.wait_for_timeout(2000)
+                continue
+            waited = 0.0
+            while waited < settle_s:
+                self.page.wait_for_timeout(500)
+                waited += 0.5
+                if self._parent_shown() == name:
+                    self.page.wait_for_timeout(1500)                 # the panels load after the header changes
+                    return
+            log.warning("select_parent %s: attempt %d/%d, the header still shows '%s'", name, attempt, attempts, self._parent_shown())
+        raise RuntimeError(f"could not switch the viewer to '{name}' (the page stayed on '{self._parent_shown()}'): nothing was compared")
 
     def assert_viewer_job(self, bills, parent: str) -> None:
         """The parent name in the viewer ends with the bill number, e.g. 'Master (ONEYAARG05243800)'. If none of the bills this pre-alert row lists

@@ -46,14 +46,15 @@ class Item:
     case: str | None = None
 
 
-def build_message(path: Path, to_addr: str, subject: str, ref: str, priority: str = "") -> EmailMessage:
+def build_message(path: Path, to_addr: str, subject: str, ref: str, priority: str = "", org_line: str = "") -> EmailMessage:
+    """org_line (e.g. 'org : LJP') is the first line of the body: every tenant shares one mailbox and Nexus routes by it."""
     msg = EmailMessage()
     msg["To"] = to_addr
     msg["Subject"] = subject
     if priority.lower() == "high":
         msg["X-Priority"] = "1 (Highest)"
         msg["Importance"] = "High"
-    msg.set_content(f"Pre-alert {ref}\n\nAttached document: {path.name}\n")
+    msg.set_content((f"{org_line}\n\n" if org_line else "") + f"Pre-alert {ref}\n\nAttached document: {path.name}\n")
     pdf = path.suffix.lower() == ".pdf"
     msg.add_attachment(path.read_bytes(), maintype="application", subtype="pdf" if pdf else "octet-stream",
                        filename=path.name)
@@ -110,7 +111,17 @@ class LocalSender:
         subject = template.format(tag=self.ld["subject_tag"], **kw)
         if case:
             subject = f"{case} | {subject}"
+        org = str(self.cfg.settings.get("nexus", {}).get("organisation_code") or "").strip()
+        if self.ld.get("subject_org_code") and org:          # every tenant shares one mailbox: Nexus routes the email by the Org Code in the subject
+            subject = subject + str(self.ld.get("subject_org_format") or " | {org}").format(org=org)   # e.g. ' | org : LJP'
         return subject, case
+
+    def org_line(self) -> str:
+        """The body line that routes the email to this tenant's organisation, e.g. 'org : LJP' ('' when switched off)."""
+        org = str(self.cfg.settings.get("nexus", {}).get("organisation_code") or "").strip()
+        if not (self.ld.get("body_org_code") and org):
+            return ""
+        return str(self.ld.get("body_org_format") or "org : {org}").format(org=org)
 
     def _dir(self, key: str) -> Path:
         return self.root / self.ld[key]
@@ -166,9 +177,11 @@ class LocalSender:
         stem = path.stem.upper()
         if stem.startswith(ref.upper()):
             stem = stem[len(ref):]
-        for tok in re.split(r"[^A-Z0-9]+", stem):
-            if tok in self.ld["filename_types"]:
-                return self.ld["filename_types"][tok]
+        toks = [t for t in re.split(r"[^A-Z0-9]+", stem) if t]
+        for i, tok in enumerate(toks):
+            for cand in ((tok + toks[i + 1]) if i + 1 < len(toks) else "", tok):   # 'DEBIT NOTE' = DEBITNOTE, 'PACKING LIST' = PACKINGLIST
+                if cand and cand in self.ld["filename_types"]:
+                    return self.ld["filename_types"][cand]
         if path.suffix.lower() == ".pdf":
             try:
                 for lb in detect_parts(page_texts(path.read_bytes()), self.cfg.settings["pdf_split"]["keywords"]):
@@ -218,6 +231,8 @@ class LocalSender:
                  force: bool = False, only: set[Path] | None = None, resend: bool = False) -> list[PreAlert]:
         sent: list[PreAlert] = []
         to = self.cfg.settings["gmail"]["forward_to"]
+        if not dry_run and (self.cfg.unset(to) or "@" not in str(to)):
+            raise RuntimeError(f"no recipient mailbox for tenant '{self.cfg.tenant}' (gmail.forward_to = '{to}'): nothing was sent")
         gap = int(self.ld.get("email_gap_seconds", 0))
         sent_one = False                       # emails go strictly one by one: Nexus groups them wrongly when they arrive together
         for it in self.pending(refs, force or resend, only):
@@ -248,7 +263,7 @@ class LocalSender:
                     time.sleep(wait)
                 self.fwd = self.fwd or GmailForwarder(self.cfg, self.store)
                 users = self.fwd.svc.users()
-                msg = build_message(it.path, to, it.subject, it.ref, self.ld.get("priority", ""))
+                msg = build_message(it.path, to, it.subject, it.ref, self.ld.get("priority", ""), self.org_line())
                 try:
                     with _SendGate(self.cfg, gap):
                         resp = self._send_once(users, msg, it.subject)

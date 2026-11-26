@@ -22,7 +22,7 @@ from .store import Store
 from .testsuite import sample_files
 
 log = logging.getLogger(__name__)
-CASE_ID = re.compile(r"^((SEA-)?(REG|MH)-\d{3}|SEA-RT-\d{3}|DBL-\d{3}|UNR-\d{3})$")
+CASE_ID = re.compile(r"^((SEA-)?(REG|MH)-\d{3}|SEA-RT-\d{3}|SEA-JPN-\d{3}|DBL-\d{3}|UNR-\d{3}|AMF-\d{3})$")
 IPA_ID = re.compile(r"^IPA/\d+/\d{4}-\d{2}$", re.IGNORECASE)
 TAG = "QA agent trigger"
 GROUPS = {"AIR-DAILY": ["REG-001", "REG-002", "REG-005", "REG-009", "REG-006", "REG-007"],
@@ -178,6 +178,23 @@ def row_bills(ui: UatPages, cell) -> list[str]:
         return []
 
 
+def _click_when_ready(pg, locator, attempts: int = 4) -> None:
+    """Click after Nexus's full-page loader (data-testid=emails-page-loader) is gone; a click under the loader times out, so wait and retry."""
+    for attempt in range(1, attempts + 1):
+        try:
+            pg.locator('[data-testid="emails-page-loader"]').first.wait_for(state="hidden", timeout=60000)
+        except Exception:
+            pass
+        try:
+            locator.click(timeout=30000)
+            return
+        except Exception as exc:
+            if attempt == attempts:
+                raise
+            log.warning("click not possible yet (attempt %d/%d): %s", attempt, attempts, str(exc).splitlines()[0][:120])
+            pg.wait_for_timeout(3000)
+
+
 def search_terms(ui: UatPages, terms: list[tuple[str, str]]) -> list[dict]:
     """The list's own search, both tabs, for every (filter, text) pair, e.g. ('Bill No', 'TAOJAI26165972') or ('Email Subject', 'FJ-0000723').
     The page is loaded and the filter chosen once per filter. Returns [{tab, ipa, subject, from, received, term}]."""
@@ -186,12 +203,12 @@ def search_terms(ui: UatPages, terms: list[tuple[str, str]]) -> list[dict]:
     for mode in dict.fromkeys(m for m, _ in terms):
         ui.open_list()
         if mode != "ID":                                          # 'ID' is the list's default filter
-            pg.get_by_text("ID", exact=True).first.click()
-            pg.get_by_text(mode, exact=True).first.click()
+            _click_when_ready(pg, pg.get_by_text("ID", exact=True).first)
+            _click_when_ready(pg, pg.get_by_text(mode, exact=True).first)
         box = pg.get_by_placeholder("Search").first
         for _m, term in [t for t in terms if t[0] == mode]:
             for tab in ("Pre-Alerts", "Others"):
-                pg.get_by_text(f"{tab} (", exact=False).first.click()
+                _click_when_ready(pg, pg.get_by_text(f"{tab} (", exact=False).first)
                 pg.wait_for_timeout(600)
                 box.fill(""); box.fill(term)                     # the filter has to be typed again after a tab change, else Others lists every row
                 pg.wait_for_timeout(2500)
@@ -201,10 +218,10 @@ def search_terms(ui: UatPages, terms: list[tuple[str, str]]) -> list[dict]:
                     row = _full_row(cells.nth(i))
                     m = row_meta(row) if row is not None else {}
                     if m.get("ipa") and m["ipa"] not in seen:
-                        seen.add(m["ipa"]); out.append({**m, "tab": tab, "term": term, "bill": term})
+                        seen.add(m["ipa"]); out.append({**m, "tab": tab, "term": term, "bill": term, "mode": mode})
                 log.info("%s search %s in %s: %d row(s) %s", mode, term, tab, len(seen), sorted(seen))
         for tab in ("Others", "Pre-Alerts"):                    # leave BOTH tabs unfiltered: a stuck filter makes the next list load hang
-            pg.get_by_text(f"{tab} (", exact=False).first.click()
+            _click_when_ready(pg, pg.get_by_text(f"{tab} (", exact=False).first)
             pg.wait_for_timeout(500)
             box.fill("")
             pg.wait_for_timeout(1500)
@@ -437,6 +454,7 @@ def preflight(cfg: Config, case_ids: list[str], headless: bool = False, out=prin
     """Standing order: before sending, look the case's bill numbers and FJ reference up in Nexus (Bill No and Email Subject search, Pre-Alerts and
     Others). Returns {case: rows that already exist}; an empty list means the sample is not in Nexus and the case can be sent."""
     result: dict[str, list[dict]] = {}
+    seen_terms: dict[tuple[str, str], list[dict]] = {}       # one search per (filter, text) per run: the AMF cases share 13 bills
     with NexusSession(cfg, headless=headless) as sess:
         sess.ensure_logged_in()
         ui = UatPages(sess.page, cfg)
@@ -444,7 +462,14 @@ def preflight(cfg: Config, case_ids: list[str], headless: bool = False, out=prin
             bills, refs = sample_bill_numbers(cfg, case_id), sample_refs(cfg, case_id)
             ipas = recent_ipas(cfg, case_id)
             terms = [("Bill No", b) for b in bills] + [("ID", i) for i in ipas] + [("Email Subject", r) for r in refs]   # 1) bill number, 2) IPA number, then the FJ reference
-            rows = search_terms(ui, terms) if terms else []
+            need = list(dict.fromkeys(t for t in terms if t not in seen_terms))
+            for t in need:
+                seen_terms[t] = []
+            for r in (search_terms(ui, need) if need else []):
+                seen_terms[(r.get("mode", ""), r["term"])].append(r)
+            if len(need) < len(terms):
+                log.info("%s: %d search(es) reused from earlier cases of this run", case_id, len(terms) - len(need))
+            rows = [r for t in dict.fromkeys(terms) for r in seen_terms.get(t, [])]
             uniq: dict[str, dict] = {}
             for r in rows:
                 u = uniq.setdefault(r["ipa"], {**r, "terms": []})
@@ -465,7 +490,53 @@ def preflight(cfg: Config, case_ids: list[str], headless: bool = False, out=prin
                     who = "the agent's own row: ./nx delete " + case_id if r["own"] else "NOT the agent's: delete only if you name it"
                     out(f"    {r['tab']:10} {r['ipa']:18} subject: {r['subject']}\n"
                         f"               from: {r['from']}   received: {r['received']}   matched: {', '.join(dict.fromkeys(r['terms']))}   ({who})")
+    remember_preflight(cfg, {cid: not rows for cid, rows in result.items()})
     return result
+
+
+def _preflight_file(cfg: Config) -> Path:
+    return cfg.state_dir / "preflight.json"
+
+
+def remember_preflight(cfg: Config, clear: dict[str, bool], now: datetime | None = None) -> None:
+    """Keeps each case's last preflight verdict with its time, so a send right after it need not search Nexus again (see fresh_clear)."""
+    path = _preflight_file(cfg)
+    try:
+        data = json.loads(path.read_text()) if path.exists() else {}
+    except (OSError, ValueError):
+        data = {}
+    stamp = (now or datetime.now()).isoformat(timespec="seconds")
+    data.update({cid: {"clear": bool(ok), "at": stamp} for cid, ok in clear.items()})
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=1))
+
+
+def fresh_clear(cfg: Config, case_ids: list[str], store: Store, now: datetime | None = None) -> list[str]:
+    """Cases whose last preflight said CLEAR less than `local_docs.preflight_reuse_minutes` ago (0 or unset = never reuse) and that nothing was
+    sent for since. Only these skip the second search; every other case is searched again before sending."""
+    minutes = float((cfg.settings.get("local_docs") or {}).get("preflight_reuse_minutes") or 0)
+    if minutes <= 0:
+        return []
+    try:
+        data = json.loads(_preflight_file(cfg).read_text())
+    except (OSError, ValueError):
+        return []
+    now = now or datetime.now()
+    out = []
+    for cid in case_ids:
+        rec = data.get(cid) or {}
+        try:
+            at = datetime.fromisoformat(rec.get("at", ""))
+        except ValueError:
+            continue
+        if not rec.get("clear") or (now - at).total_seconds() > minutes * 60:
+            continue
+        ref = store.ref_for_case(cid)
+        sent = store.last_sent_at(ref) if ref else None
+        if sent and sent >= at:                                   # something of this case went out after the check: search again
+            continue
+        out.append(cid)
+    return out
 
 
 def run(cfg: Config, names: list[str], dry_run: bool = False, headless: bool = False, out=print, bills: list[str] | None = None, sender: str = "") -> int:

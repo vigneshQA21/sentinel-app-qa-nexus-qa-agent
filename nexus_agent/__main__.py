@@ -84,6 +84,7 @@ def _run_data_check(cfg, chosen, kind, air_runner, args) -> list:
 def _main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="nexus_agent")
     ap.add_argument("--config", help="config directory (default: ./config)")
+    ap.add_argument("--tenant", help="india (default: today's config/, state/, runs/) or a tenant with its own config/<tenant>/")
     ap.add_argument("-v", "--verbose", action="store_true")
     ap.add_argument("--profile", help="selector profile: uat (default, the real Nexus) or mock")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -135,6 +136,10 @@ def _main(argv: list[str] | None = None) -> int:
     cp = sub.add_parser("compare", help="compare a day's runs with the previous run of each case (mapping, new / fixed / still-there findings); needs no Nexus")
     cp.add_argument("--date", default=None, help="yyyy-mm-dd (default: the newest day with data)")
     cp.add_argument("--cases", nargs="+", default=None)
+    gd = sub.add_parser("golden", help="Golden Regression gate: compare a run's reports with the frozen baseline (runs/golden); needs no Nexus. "
+                                       "Exit 0 PASS, 1 FAIL (regression / not checked / missing), 3 INCOMPLETE (environment only)")
+    gd.add_argument("--day", action="append", default=None, help="yyyy-mm-dd of the run (repeatable: the newest day with the case is used; default: today)")
+    gd.add_argument("--cases", nargs="+", default=None, help="only these Golden cases (default: all of them)")
     sub.add_parser("patterns", help="learn which kinds of findings turn out to be real bugs (bug sheet statuses + your decisions); feeds the bug likelihood in the reports")
     rr = sub.add_parser("runreport", help="today's run only: observations, bugs found, and earlier raised bugs that passed (no history)")
     rr.add_argument("--date", help="yyyy-mm-dd (default: today)")
@@ -186,6 +191,10 @@ def _main(argv: list[str] | None = None) -> int:
     dbl.add_argument("--xml", help="folder with the XML files Nexus pushed (Job XMLs 'NEXUS PUSH CONSOL' / 'NEXUS PUSH HOUSE'); default samples/<case>/xml if it exists")
     dbl.add_argument("--headless", action="store_true", help="hide the browser (default: shown)")
 
+    dx = sub.add_parser("check-doc-xml", help="Japan bug sheet Sl 19: no Debit Note in the Master Document XML Nexus pushed to CargoWise ('NEXUS PUSH DOC', ForwardingConsol); reads the PDFs inside the XML")
+    dx.add_argument("--cases", nargs="+", required=True, help="case ids whose samples/<case>/xml folder holds the pushed XML files")
+    dx.add_argument("--xml", help="folder with the pushed XML files instead of samples/<case>/xml (one case)")
+
     vd = sub.add_parser("validate-drafts", help="air manifest scenarios: after ONLY the Manifest was sent, check the Master draft and House draft numbers in the Nexus UI")
     vd.add_argument("--cases", nargs="+", required=True, help="scenario case ids, e.g. AMF-001 AMF-002")
 
@@ -205,14 +214,23 @@ def _main(argv: list[str] | None = None) -> int:
                         format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     import os
     profile = args.profile or (None if os.getenv("NEXUS_MOCK") else "uat")
-    cfg = Config(args.config, profile=None if profile == "mock" else profile)
+    from .config import ConfigError
+    try:                                          # a wrong or partial config stops here, before Nexus, Gmail or the database
+        cfg = Config(args.config, profile=None if profile == "mock" else profile, tenant=args.tenant)
+        cfg.validate()
+    except ConfigError as exc:
+        print(f"Nothing was run. {exc}", file=sys.stderr)
+        return 2
+    print(cfg.banner(), file=sys.stderr)          # stderr: stdout stays exactly as before for anything that reads it
     _CTX.update(cfg=cfg, cmd=args.cmd, dry=bool(getattr(args, "dry_run", False)) or bool(getattr(args, "auto", False)))
 
-    if args.cmd in ("suite", "validate", "validate-master", "validate-house", "validate-docs") and not getattr(args, "dry_run", False) \
-            and not os.getenv("NEXUS_NO_LIVE"):
+    report_cmds = ("suite", "validate", "validate-master", "validate-house", "validate-docs", "validate-drafts", "validate-directbl")   # each rewrites today's HTML report
+    live_cmds = report_cmds + ("preflight", "delete", "validate-drafts", "validate-directbl", "validate-mhfields")   # every long Nexus job shows its live page
+    if args.cmd in live_cmds and not getattr(args, "dry_run", False) and not os.getenv("NEXUS_NO_LIVE"):
         from . import live                        # live status page in the browser (runs/_live/index.html), refreshes by itself
-        live.install(cfg.runs_dir, f"{args.cmd} {' '.join(getattr(args, 'cases', None) or [])}".strip(), open_browser=False)   # no extra browser tab during the run
+        live.install(cfg.runs_dir, f"{args.cmd} {' '.join(getattr(args, 'cases', None) or [])}".strip(), open_browser=True)    # standing rule: the live status page opens in the browser as soon as a run starts
 
+    if args.cmd in report_cmds and not getattr(args, "dry_run", False) and not os.getenv("NEXUS_NO_LIVE"):
         def _report_after_run():                  # the detailed report of today's cases opens in the browser when a run ends
             try:
                 import webbrowser
@@ -273,6 +291,19 @@ def _main(argv: list[str] | None = None) -> int:
         print(f"Run of {DC._pretty(day)} compared with the previous run of each case\n")
         print("\n".join(DC.render(DC.compare(reports, day, args.cases))))
         return 0
+
+    if args.cmd == "golden":
+        from datetime import datetime
+        from . import golden as GD
+        days = args.day or [datetime.now().strftime("%Y-%m-%d")]
+        try:
+            result = GD.run(cfg.runs_dir, days, args.cases)
+        except GD.GoldenError as exc:
+            print(f"Golden gate not run: {exc}")
+            return 2
+        print("\n".join(GD.render(result)))
+        print(f"\nGolden report: {GD.write_report(cfg.runs_dir, result)}")
+        return {"PASS": 0, "FAIL": 1, "INCOMPLETE": 3}[result["verdict"]]
 
     if args.cmd == "patterns":
         from . import bugprob
@@ -431,6 +462,20 @@ def _main(argv: list[str] | None = None) -> int:
         _note_bugs(cfg, groups=[(B.DOC_TITLES[k], [r for r in results if r["kind"] == k]) for k in shown_kinds])
         return 0 if all(r["verdict"] == "PASS" for r in results) else 2
 
+    if args.cmd == "check-doc-xml":
+        from . import doc_xml_check as DX
+        sea = cfg.settings.get("pdf_split_sea") or {}
+        bad = 0
+        for case in args.cases:
+            xdir = Path(args.xml) if args.xml else cfg.path(cfg.settings["testsuite"]["samples_dir"]) / case / "xml"
+            files = {f.name: f.read_bytes() for f in sorted(xdir.glob("*.xml"))} if xdir.is_dir() else {}
+            rows = DX.check_master_doc_xml(files, sea.get("agent_bill_to") or ["LOGISTEED"], sea.get("agent_bill_starts") or ["LOGISTEED"])
+            print(f"\n{case}  ({xdir})")
+            for r in rows:
+                print(f"  {r['result']:8} {r['label']}\n           Nexus: {r['shown_in_nexus']}\n           {r['note']}")
+            bad += sum(r["result"] == "FAIL" for r in rows)
+        return 2 if bad else 0
+
     if args.cmd == "validate-directbl":
         from . import directbl as DB
         from . import master_check as MC
@@ -530,7 +575,11 @@ def _main(argv: list[str] | None = None) -> int:
             from . import cleanup as CL
             from .nexus.session import SessionExpired
             try:
-                existing = CL.preflight(cfg, [c.id for c in chosen])
+                reuse = CL.fresh_clear(cfg, [c.id for c in chosen], Store(cfg.state_dir / "agent.db"))   # CLEAR in a preflight minutes ago, nothing sent since
+                if reuse:
+                    print(f"Pre-send check reused from the preflight just run (CLEAR, nothing sent since): {', '.join(reuse)}")
+                rest = [c.id for c in chosen if c.id not in reuse]
+                existing = {**{cid: [] for cid in reuse}, **(CL.preflight(cfg, rest) if rest else {})}
             except SessionExpired as exc:
                 print(f"Nothing was sent. {exc}")
                 return 2

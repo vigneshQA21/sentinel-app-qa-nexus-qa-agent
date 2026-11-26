@@ -160,7 +160,7 @@ def test_validation_runs_right_after_each_case_is_sent_in_order(tmp_path):
     from nexus_agent import testsuite as T
     from .test_testsuite import ROWS, setup as suite_setup, good_consolidated
     cfg, sender, fwd = suite_setup(tmp_path)
-    s = tmp_path / "samples"
+    s = tmp_path / "samples" / "india"
     for cid in ("REG-001", "REG-005"):
         (s / cid).mkdir(parents=True)
         (s / cid / f"{cid}.pdf").write_bytes(good_consolidated())

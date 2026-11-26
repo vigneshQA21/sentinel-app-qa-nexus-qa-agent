@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import logging
 import re
+
+from . import house_pick
 from datetime import datetime
 from pathlib import Path
 
@@ -18,7 +20,19 @@ from .config import Config
 log = logging.getLogger(__name__)
 
 MAWB_FORMAT = re.compile(r"^\d{3}[- ]?\d{4}[- ]?\d{4}$|^\d{3}[- ]?\d{8}$")        # 123-12345678, 123 1234 5678, 123-1234 5678, 12312345678
-EXCLUDED_CONSIGNEES = ("FLYJAC", "LOGISTEED")
+# India's Direct BL rules (the requirement this check was written for). Every tenant sets its own in settings.yaml `direct_bl:`;
+# these defaults are used ONLY for India, so another tenant never silently inherits India's destination or consignee rules.
+INDIA_RULES = {"destination_country": "IN", "destination_name": "India", "destination_expected": "India (DELHI on the document)",
+               "excluded_consignees": ["FLYJAC", "LOGISTEED"]}
+EXCLUDED_CONSIGNEES = tuple(INDIA_RULES["excluded_consignees"])                         # kept for existing imports
+
+
+def rules_for(cfg: Config) -> dict | None:
+    """The tenant's Direct BL rules: settings `direct_bl:` over India's defaults for India; None for a tenant that has not set any."""
+    own = cfg.settings.get("direct_bl")
+    if own:
+        return {**INDIA_RULES, **own} if cfg.tenant == "india" else dict(own)
+    return dict(INDIA_RULES) if cfg.tenant == "india" else None
 SKIP_LABELS = ("Party ID", "(unlabelled")                                             # compared on the Shipment Details rows / not a Master value
 
 POINTS = {
@@ -58,12 +72,24 @@ def _off(b: dict) -> bool:
     return bool(b.get("disabled") or b.get("ariaDisabled") == "true" or b.get("op", "1") != "1")
 
 
+def _point1_title(rules: dict | None) -> str:
+    """India's title is the original text, so its reports and the Golden comparison keep the same section name."""
+    if rules is None:
+        return "1. Direct BL identification (MAWB 11 digits; no destination / consignee rules configured for this tenant)"
+    cons = "/".join(rules.get("excluded_consignees") or []) or "none excluded"
+    return f"1. Direct BL identification (MAWB 11 digits, {rules.get('destination_name') or rules.get('destination_country')} destination, consignee not {cons})"
+
+
 def evaluate(case_sample_ref: str, parents: list[str], records: list[dict], master_fields: list[dict], house_fields: list[dict],
-             house_inputs: list[dict], row_controls: list[dict], bar_house: list[dict], bar_master: list[dict]) -> list[dict]:
+             house_inputs: list[dict], row_controls: list[dict], bar_house: list[dict], bar_master: list[dict],
+             rules: dict | None = INDIA_RULES) -> list[dict]:
+    """`rules` = the tenant's Direct BL rules (see rules_for); None = not configured: those identification points are NOT_RUN."""
     rows: list[dict] = []
+    title1 = _point1_title(rules)
+    _row1 = lambda *a, **k: {**_row("1", *a, **k), "section": title1}
     m_rec = next((r for r in records if r.get("Record Type", "").startswith("Master")), {})
     h_recs = [r for r in records if r.get("Record Type", "").startswith("House")]
-    h_rec = h_recs[0] if h_recs else {}
+    h_rec = house_pick.choose(records, "House")[0] or {}                  # a House with a real bill, not an extra empty one
     m = {_key(f): f["value"] for f in master_fields}
     h = {_key(f): f["value"] for f in house_fields}
     mawb = m.get(("Air Waybill", "Air Waybill Number"), "") or m_rec.get("Bill No.", "")
@@ -71,19 +97,28 @@ def evaluate(case_sample_ref: str, parents: list[str], records: list[dict], mast
     # 1 identification ----------------------------------------------------------------------------------------------------------------
     ok = bool(MAWB_FORMAT.match((mawb or "").strip()))
     same = not case_sample_ref or _norm(case_sample_ref) == _norm(mawb)
-    rows.append(_row("1", "MAWB format (11 digits)", f"{case_sample_ref} (11-digit format)", mawb, "PASS" if ok and same else "FAIL",
-                     "" if ok and same else ("MAWB is not an 11-digit number" if not ok else "MAWB differs from the sample's number")))
+    rows.append(_row1("MAWB format (11 digits)", f"{case_sample_ref} (11-digit format)", mawb, "PASS" if ok and same else "FAIL",
+                      "" if ok and same else ("MAWB is not an 11-digit number" if not ok else "MAWB differs from the sample's number")))
     dest = m.get(("Segment 1", "Podctry"), "")
-    rows.append(_row("1", "Destination is India", "India (DELHI on the document)", f"{m.get(('Routing', 'Final Destination Airport'), '')} ({dest})",
-                     "PASS" if dest.upper() == "IN" else "FAIL", "" if dest.upper() == "IN" else "destination country is not IN"))
     cons = m.get(("Consignee", "Name"), "")
-    bad = [x for x in EXCLUDED_CONSIGNEES if x in cons.upper()]
-    rows.append(_row("1", "Consignee is not FLYJAC / LOGISTEED", "not FLYJAC / LOGISTEED", cons, "FAIL" if bad else "PASS",
-                     "this consignee follows the existing flow, not Direct BL" if bad else ""))
+    shown_dest = f"{m.get(('Routing', 'Final Destination Airport'), '')} ({dest})"
+    if rules is None:
+        why = "no Direct BL rules in this tenant's settings.yaml (direct_bl:); nothing is assumed from another tenant"
+        rows.append(_row1("Destination country", "(not configured)", shown_dest, "NOT_RUN", why))
+        rows.append(_row1("Consignee not excluded", "(not configured)", cons, "NOT_RUN", why))
+    else:
+        want, name = str(rules.get("destination_country") or "").upper(), rules.get("destination_name") or rules.get("destination_country")
+        rows.append(_row1(f"Destination is {name}", rules.get("destination_expected") or name, shown_dest,
+                          "PASS" if dest.upper() == want else "FAIL", "" if dest.upper() == want else f"destination country is not {want}"))
+        excluded = [str(x) for x in rules.get("excluded_consignees") or []]
+        bad = [x for x in excluded if x.upper() in cons.upper()]
+        label = " / ".join(excluded) or "an excluded consignee"
+        rows.append(_row1(f"Consignee is not {label}", f"not {label}", cons, "FAIL" if bad else "PASS",
+                          "this consignee follows the existing flow, not Direct BL" if bad else ""))
     houses = [p for p in parents if p.startswith("House")]
     status = h_rec.get("Status", "")
     one = len(houses) == 1 and _norm(mawb) in _norm(houses[0])
-    rows.append(_row("1", "Identified as Direct BL: exactly one House, named after the Master", "1 House parent, number = Master number",
+    rows.append(_row1("Identified as Direct BL: exactly one House, named after the Master", "1 House parent, number = Master number",
                      f"{len(houses)} House parent(s): {', '.join(houses) or 'none'}; status '{status}'", "PASS" if one and "DIRECT BL" in status.upper() else "FAIL",
                      "" if one and "DIRECT BL" in status.upper() else "Nexus did not create exactly one House marked Direct BL"))
 
@@ -245,8 +280,11 @@ def summary(rows: list[dict]) -> dict[str, dict[str, int]]:
     """{point title: {result: count}} in requirement order."""
     out: dict[str, dict[str, int]] = {t: {} for t in POINTS.values()}
     for r in rows:
-        out[r["section"]][r["result"]] = out[r["section"]].get(r["result"], 0) + 1
-    return {k: v for k, v in out.items() if v}
+        sec = out.setdefault(r["section"], {})              # a tenant's own point-1 title is not in POINTS
+        sec[r["result"]] = sec.get(r["result"], 0) + 1
+    order = list(POINTS)
+    pos = lambda t: order.index(t.split(".", 1)[0]) if t.split(".", 1)[0] in order else order.index("X")
+    return {k: v for k, v in sorted(out.items(), key=lambda kv: pos(kv[0])) if v}
 
 
 def point_result(counts: dict[str, int]) -> str:
@@ -340,11 +378,11 @@ def check_one(cfg: Config, ui, case, wait_seconds: float | None) -> dict:
         got[kind] = {"fields": mapped["fields"], "inputs": inputs, "bar": ui.page.evaluate(BAR_JS)}
     if "House" not in got or "Master" not in got:
         res["message"] = "Nexus did not create both a Master and a House" if "Master" in got else "no Master parent in the viewer"
-        res["rows"] = evaluate(case.sample_ref or "", parents, records, got.get("Master", {}).get("fields", []), [], [], row_controls, [], got.get("Master", {}).get("bar", []))
+        res["rows"] = evaluate(case.sample_ref or "", parents, records, got.get("Master", {}).get("fields", []), [], [], row_controls, [], got.get("Master", {}).get("bar", []), rules=rules_for(cfg))
         res["verdict"] = verdict(res["rows"])
         return res
     res["rows"] = evaluate(case.sample_ref or "", parents, records, got["Master"]["fields"], got["House"]["fields"], got["House"]["inputs"], row_controls,
-                           got["House"]["bar"], got["Master"]["bar"])
+                           got["House"]["bar"], got["Master"]["bar"], rules=rules_for(cfg))
     res["verdict"] = verdict(res["rows"])
     return res
 

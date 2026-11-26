@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from pypdf import PdfReader, PdfWriter
 
 from .config import Config
+from .debit_rule import is_agent_bill
 
 
 @dataclass
@@ -93,6 +94,8 @@ def sea_page_labels(texts: list[str], sea: dict) -> list[str | None]:
             continue
         first, head = lines[0], " ".join(t.split())[:n]
         if has(sea["debitnote"], head):
+            labels.append("DEBITNOTE")
+        elif is_agent_bill(t, sea.get("agent_bill_to") or [], sea.get("agent_bill_starts") or []):   # INVOICE with LOGISTEED EXPRESS = Debit Note
             labels.append("DEBITNOTE")
         elif has(sea["packing"], head):
             labels.append("PACKING")

@@ -116,3 +116,122 @@ def blocks_from_pdf(pdf_bytes: bytes, pages_1based: list[int], keys: list[str] |
     except Exception as exc:                                           # a document problem must never stop a check
         log.warning("could not read the boxes of the document by position: %s", exc)
     return out
+
+
+# Small boxes of a bill (one value under a heading in a grid row). Read only the line directly under the heading, inside the heading's own
+# column, and only if it looks like a value of that kind; a blank box gives '' (never the next table row's text).
+SMALL_BOXES: dict[str, tuple[list[str], str]] = {
+    "vessel": ([r"OCEAN\s+VESSEL", r"VESSEL(?:\s+NAME)?", r"VESSEL\s*/\s*VOYAGE"], r"[A-Za-z]{3,}"),
+    "voyage": ([r"VOY(?:AGE)?\.?\s*(?:NO\.?)?"], r"\w{2,}"),
+    "port of loading": ([r"PORT\s+OF\s+LOADING"], r"[A-Za-z]{3,}"),
+    "port of discharge": ([r"PORT\s+OF\s+DISCHARGE"], r"[A-Za-z]{3,}"),
+    "place of receipt": ([r"PLACE\s+OF\s+RECEIPT"], r"[A-Za-z]{3,}"),
+    "place of delivery": ([r"PLACE\s+OF\s+DELIVERY"], r"[A-Za-z]{3,}"),
+    "final destination": ([r"FINAL\s+DESTINATION"], r"[A-Za-z]{3,}"),
+    "place of issue": ([r"PLACE\s+(?:AND\s+DATE\s+)?OF\s+(?:BILL\(S\)\s+)?ISSUE"], r"[A-Za-z]{3,}"),
+    "date of issue": ([r"DATE\s+OF\s+ISSUE", r"ISSUE\s+DATE"], r"\d"),
+    "on board date": ([r"(?:SHIPPED\s+)?ON\s+BOARD\s+DATE", r"LADEN\s+ON\s+BOARD"], r"\d"),
+    "booking": ([r"BOOKING\s*(?:NO\.?|NUMBER)"], r"\d{4,}|[A-Z]{2,}\d{3,}"),
+    "bill no": ([r"B/L\s*(?:NO\.?|NUMBER)", r"BILL\s+OF\s+LADING\s*(?:NO\.?|NUMBER)", r"(?:SEA\s+)?WAYBILL\s*(?:NO\.?|NUMBER)"], r"[A-Z0-9]{6,}"),
+    "type of movement": ([r"TYPE\s+OF\s+MOVEMENT", r"MOVE\s+TYPE", r"SERVICE\s+TYPE"], r"[A-Za-z]{2,}"),
+}
+
+
+HEADING_ONLY = re.compile(r"^(?:(?:VOYAGE|VOY|NO\.?|FLAG|PORT|OF|PLACE|DELIVERY|DISCHARGE|LOADING|RECEIPT|VESSEL|NAME|TYPE|MOVEMENT|"
+                          r"FINAL|DESTINATION|DATE|ISSUE|BOOKING|NUMBER|B/L|AND|PRE-?CARRIAGE|BY)\W*)+$", re.IGNORECASE)
+
+
+def _box_value_ok(val: str, looks: str) -> bool:
+    """A box value: matches its kind, is not another heading, and is not a sentence of the bill's printed terms (mostly lower case)."""
+    if not val or STOPPERS.match(val) or HEADING_ONLY.match(val) or not re.search(looks, val) or val.lstrip().startswith("("):
+        return False
+    if len(re.findall(r"PORT\s+OF|PLACE\s+OF|FINAL\s+DEST|\bVESSEL\b|\bVOYAGE\b|\bFLAG\b|TYPE\s+OF\s+MOVEMENT|DESCRIPTION\s+OF", val, re.IGNORECASE)) >= 2:
+        return False                                                     # a row of other headings, not a value
+    words = re.findall(r"[A-Za-z]{2,}", val)
+    lower = [w for w in words if w.islower()]
+    return not (len(lower) >= 3 and len(lower) >= len(words) / 2)
+
+
+BLANK = "\x00blank"                                                       # heading printed, nothing in its box
+
+
+def _crosses(words, col) -> bool:
+    """The column's first word continues a phrase that started left of the column (gap like a normal word space)."""
+    left = [w for w in words if w["x1"] <= col[0]["x0"] + 1]
+    return bool(left) and col[0]["x0"] - left[-1]["x1"] < 8
+
+
+def _is_heading_row(line) -> bool:
+    """A line made of other box headings (Pick-up inland / Port of transshipment / Place of delivery)."""
+    t = _text(line["words"])
+    return len(re.findall(r"PORT\s+OF|PLACE\s+OF|PRE-?CARRIAGE|PICK-?UP|VESSEL|MARKS\s+AND|FINAL\s+DEST|DESCRIPTION|GROSS\s+WEIGHT|"
+                          r"FREIGHT\s+PAYABLE|NO\.?\s+OF\s+ORIGINALS|FEEDER|VOYAGE\s+NO", t, re.I)) >= 1 \
+        and not re.search(r"\d{2,}", t)
+
+
+def small_box_on_page(page, key: str) -> str:
+    pats, looks = SMALL_BOXES[key]
+    rx = [re.compile(r"(?<![A-Za-z])" + p + r"(?![A-Za-z])", re.IGNORECASE) for p in pats]
+    lines = _lines(page)
+    width = float(page.width)
+    blank = ""                                                            # BLANK when the heading is printed but its box is empty
+    for li, ln in enumerate(lines):
+        cells = _cells(ln)
+        for ci, cell in enumerate(cells):
+            head = _text(cell)
+            m = next((r.match(head) for r in rx if r.match(head)), None)  # a box heading STARTS its cell; never a phrase inside a clause
+            if not m:
+                continue
+            rest = head[m.end():].strip(" :：.-/")
+            if rest and head[m.end():].lstrip().startswith((".", "(")) and re.search(r"[a-z]{3,}", rest):
+                rest = ""                                                 # 'Place of Receipt. Applicable only when ...': a heading with its note
+            elif not m.group(0).isupper() and rest and re.search(r"\b[a-z]{2,}\b", rest):
+                continue                                                  # mixed case: a phrase inside the bill's terms, not a heading
+            if rest and _box_value_ok(rest, looks):
+                return rest[:100]                                        # 'PORT OF LOADING: SHANGHAI' on one line
+            x0 = cell[0]["x0"] - 3
+            x1 = (cells[ci + 1][0]["x0"] - 2) if ci + 1 < len(cells) else width
+            height = max(ln["bottom"] - ln["top"], 6.0)
+            blank_below = False
+            for nl in lines[li + 1: li + 3]:
+                if nl["top"] - ln["bottom"] > 2.6 * height:               # too far below: this box is blank, look for another heading
+                    blank_below = True
+                    break
+                col = [w for w in nl["words"] if w["x0"] >= x0 and w["x1"] <= x1 + 2]
+                if not col:
+                    continue
+                if any(w["x0"] < x0 - 1 < w["x1"] - 3 for w in nl["words"]) and _crosses(nl["words"], col):
+                    blank_below = True                                     # a banner running across the box edge: the box itself is empty
+                    break
+                val = _text(col).strip()
+                if _is_heading_row(nl):
+                    blank_below = True                                     # the next row of headings: this box is empty
+                    break
+                if _box_value_ok(val, looks):
+                    return val[:100]
+                blank_below = _is_heading_row(nl)                        # the next row of headings: this box is empty
+                break                                                     # not a value: keep looking for another heading
+            else:
+                blank_below = True
+            if blank_below and not rest:
+                blank = blank or BLANK
+    return blank
+
+
+def small_boxes_from_pdf(pdf_bytes: bytes, pages_1based: list[int], keys: list[str]) -> dict[str, tuple[str, int]]:
+    """{key: (value, page)} for the small boxes found on the given pages. Never raises."""
+    import pdfplumber
+    out: dict[str, tuple[str, int]] = {}
+    try:
+        with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+            for no in pages_1based:
+                if no - 1 >= len(pdf.pages):
+                    continue
+                for k in keys:
+                    if k not in out or out[k][0] == BLANK:               # a real value on a later page beats a blank box
+                        v = small_box_on_page(pdf.pages[no - 1], k)
+                        if v and (v != BLANK or k not in out):
+                            out[k] = (v, no)
+    except Exception as exc:
+        log.warning("could not read the small boxes of the document by position: %s", exc)
+    return out

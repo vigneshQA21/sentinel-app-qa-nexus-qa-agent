@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import logging
 import re
+
+from . import house_pick
 from datetime import datetime
 
 from .awb_extract import extract_master
@@ -37,7 +39,8 @@ def write_csv(cfg: Config, results: list[dict]):
         w = csv.writer(fh)
         w.writerow(["record", "ipa", "source", "section", "field", "document_says", "nexus_shows", "class", "result", "note"])
         for r in results:
-            for x in r["rows"] or [{"field": "", "expected_from_document": "", "shown_in_nexus": "", "class": r["verdict"], "result": r["verdict"], "note": r["message"]}]:
+            from .docextract import fill_blanks
+            for x in fill_blanks(r["rows"] or [{"field": "", "expected_from_document": "", "shown_in_nexus": "", "class": r["verdict"], "result": r["verdict"], "note": r["message"]}]):
                 w.writerow([r["case_id"], r["ipa"], r["source"], x.get("section", ""), x["field"], x["expected_from_document"], x["shown_in_nexus"],
                             x.get("class", ""), x["result"], x["note"]])
     return path
@@ -57,7 +60,8 @@ def check_case(cfg: Config, ui: UatPages, case_id: str) -> list[dict]:
     day = cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case_id
     for name in [o for o in ui.parent_options() if o.startswith(("Master", "House"))]:
         kind = "Master" if name.startswith("Master") else "House"
-        bill = re.search(r"\((.*)\)", name).group(1)
+        m = re.search(r"\((.*)\)", name)
+        bill = m.group(1) if m else ""                                    # 'House 1': a House without a bill number
         rec = next((r for r in records if r.get("Record Type", "").startswith(kind) and KEY(r.get("Bill No.")) == KEY(bill)), None)
         res = {"case_id": f"{case_id} · {name}", "ipa": info["ipa"], "source": "", "verdict": "ERROR", "rows": [], "message": ""}
         try:
@@ -75,8 +79,10 @@ def check_case(cfg: Config, ui: UatPages, case_id: str) -> list[dict]:
                     res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
             else:
                 page = next((p for h, p in hpages.items() if KEY(h) == KEY(bill)), None)
-                if page is None:
-                    res["message"] = f"{bill} is not a House of the source sample"
+                if page is None:                                          # Nexus made a House the sample does not have: a finding
+                    res["rows"] = house_pick.extra_rows([rec or {"Bill No.": bill}], "House", list(hpages))
+                    res["verdict"] = "FAIL"
+                    res["message"] = f"{bill or name} is not a House of the source sample (additional House)"
                     out.append(res)
                     continue
                 res["source"] = f"{pdf.name} page {page + 1}"

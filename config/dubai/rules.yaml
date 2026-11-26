@@ -1,0 +1,37 @@
+# Validation rules
+
+documents:
+  # Canonical type -> labels Nexus may show for it, and how many are allowed.
+  types:
+    master:
+      labels: ['MAWB', 'Master AWB', 'Master Airway Bill', 'MBL', 'Master Bill of Lading', 'Master']
+      min: 1
+      max: 1
+    house:
+      labels: ['HAWB', 'House AWB', 'House Airway Bill', 'HBL', 'House Bill of Lading', 'House']
+      min: 1
+    invoice:
+      labels: ['Commercial Invoice', 'Invoice', 'CI']
+      min: 1
+    shipper:
+      labels: ['Packing List', 'Shipper Document', 'Shipper Doc', 'SLI', "Shipper's Letter of Instruction"]
+      min: 1
+  unclassified_labels: ['', 'Unclassified', 'Unknown', 'Others', 'Pending']
+  # Fail if Nexus shows fewer documents than attachments forwarded from Gmail.
+  check_attachment_count: true
+
+shipper:
+  mandatory: [shipper_name, shipper_address1, shipper_city, shipper_country, consignee_name, mawb, hawb]
+  patterns:
+    mawb: '^\d{3}-\d{8}$'
+    shipper_country: '^[A-Z]{2}$'
+    origin: '^[A-Z]{3}$'
+    destination: '^[A-Z]{3}$'
+  positive_numbers: [gross_weight, pieces]
+  mawb_check_digit: true
+  # Safe automatic fixes applied before validation (and saved to Nexus as edits).
+  autofix:
+    trim: [shipper_name, shipper_address1, shipper_city, shipper_country, consignee_name, origin, destination, mawb, hawb]
+    upper: [shipper_country, origin, destination, hawb]
+    collapse_spaces: [shipper_name, shipper_address1, consignee_name]
+    mawb_dash: [mawb]          # 17612345675 -> 176-12345675

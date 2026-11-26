@@ -284,7 +284,7 @@ def test_company_suffix_abbreviations_and_cut_table_cell():
 def test_curly_apostrophe_headings_are_found():
     from pathlib import Path
     from nexus_agent.awb_extract import extract_master
-    f = Path(__file__).resolve().parent.parent / "samples" / "REG-006" / "FJ-0000518 - MA-1.pdf"
+    f = Path(__file__).resolve().parent.parent / "samples" / "india" / "REG-006" / "FJ-0000518 - MA-1.pdf"
     if f.exists():
         d = extract_master(f)
         assert d["shipper_lines"] and "JIANGSU" in " ".join(d["shipper_lines"]) and "LOGISTEED" not in " ".join(d["shipper_lines"])

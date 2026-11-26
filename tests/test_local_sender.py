@@ -56,8 +56,8 @@ class FakeFwd:
 
 def setup(tmp_path):
     cfg = Config(root=tmp_path, config_dir=Config().root / "config")
-    cfg.settings["local_docs"].update(archive_after_send=True, skip_already_sent=True)   # legacy behaviour under test
-    kb = tmp_path / "knowledge_base"
+    cfg.settings["local_docs"].update(archive_after_send=True, skip_already_sent=True, subject_org_code=False)   # legacy behaviour under test (subject layout without the Org Code: tested apart)
+    kb = tmp_path / "knowledge_base" / "india"
     (kb / "consolidated").mkdir(parents=True)
     pdf = make_pdf(["MASTER AIR WAYBILL 176-12345675", "continuation page",
                     "HAWB No: UNF1001", "COMMERCIAL INVOICE", "PACKING LIST"])
@@ -178,3 +178,41 @@ def test_reuse_mode_keeps_files_and_sends_again(tmp_path):
     pdf = kb / "consolidated" / "scan_001.pdf"
     assert len(sender.send_all()) == 1 and pdf.exists() and not (kb / "sent").exists()
     assert len(sender.send_all()) == 1 and len(fwd.svc.sent) == 2             # same document, sent again
+
+
+def test_every_subject_ends_with_the_tenants_org_code(tmp_path):
+    """One mailbox for every tenant: Nexus routes a pre-alert by the Org Code in its subject (not case sensitive)."""
+    cfg, sender, fwd, kb = setup(tmp_path)
+    cfg.settings["local_docs"]["subject_org_code"] = True
+    cfg.settings["nexus"]["organisation_code"] = "LJP"
+    p = kb / "consolidated" / "scan_001.pdf"
+    sender.case_for_path[p] = "SEA-JPN-001"
+    subject, case = sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="R1", types="MASTER+HOUSE")
+    assert subject.startswith("SEA-JPN-001 | ") and subject.endswith(" | org : LJP") and case == "SEA-JPN-001"
+    cfg.settings["local_docs"]["subject_org_code"] = False
+    assert not sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="R1", types="X")[0].endswith("LJP")
+
+
+def test_org_code_wording_comes_from_settings(tmp_path):
+    cfg, sender, fwd, kb = setup(tmp_path)
+    cfg.settings["local_docs"].update(subject_org_code=True, subject_org_format=" | org : {org}")
+    cfg.settings["nexus"]["organisation_code"] = "LJP"
+    p = kb / "consolidated" / "scan_001.pdf"
+    sender.case_for_path[p] = "SEA-JPN-001"
+    subject = sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="JPN-REG-001", types="MASTER")[0]
+    assert subject.startswith("SEA-JPN-001 | ") and subject.endswith(" | org : LJP")
+
+
+def test_org_code_is_the_first_body_line_not_in_the_subject(tmp_path):
+    from nexus_agent.local_sender import build_message
+    cfg, sender, fwd, kb = setup(tmp_path)
+    cfg.settings["local_docs"].update(subject_org_code=False, body_org_code=True, body_org_format="org : {org}")
+    cfg.settings["nexus"]["organisation_code"] = "LJP"
+    p = kb / "consolidated" / "scan_001.pdf"
+    sender.case_for_path[p] = "SEA-JPN-001"
+    subject = sender._subject(cfg.settings["local_docs"]["consolidated_subject_template"], p, ref="JPN-REG-001", types="MASTER")[0]
+    assert "LJP" not in subject
+    msg = build_message(p, "x@y", subject, "JPN-REG-001", "", sender.org_line())
+    assert msg.get_body(preferencelist=("plain",)).get_content().splitlines()[0] == "org : LJP"
+    cfg.settings["local_docs"]["body_org_code"] = False
+    assert sender.org_line() == ""

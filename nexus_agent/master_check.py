@@ -485,9 +485,10 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
     res["ipa"] = info["ipa"]
     ui.expand_row(cell)
     records = ui.read_shipment_details()               # the Shipment Details table of the expanded row
-    mrec = next((r for r in records if r.get("Record Type", "").startswith("Master")), None)
+    from . import house_pick
+    mrec, _extra = house_pick.choose(records, "Master", printed_text=doc.get("text") or "")
     ui.open_viewer(cell, expanded=True)
-    master = next((o for o in ui.parent_options() if o.startswith("Master")), None)
+    master = house_pick.parent_for(ui.parent_options(), "Master", mrec)
     if master is None:
         res["message"] = "no Master parent in the viewer"
         return res
@@ -542,8 +543,9 @@ def write_report(cfg: Config, results: list[dict], prefix: str = "master_data") 
         w = csv.writer(fh)
         w.writerow(["case_id", "ipa", "source", "section", "field", "expected_from_document", "shown_in_nexus", "result", "note"])
         for r in results:
-            for x in r["rows"] or [{"field": "", "expected_from_document": "", "shown_in_nexus": "",
-                                    "result": r["verdict"], "note": r["message"]}]:
+            from .docextract import fill_blanks
+            for x in fill_blanks(r["rows"] or [{"field": "", "expected_from_document": "", "shown_in_nexus": "",
+                                                "result": r["verdict"], "note": r["message"]}]):
                 w.writerow([r["case_id"], r["ipa"], r["source"], x.get("section", ""), x["field"], x["expected_from_document"],
                             x["shown_in_nexus"], x["result"], x["note"]])
     return path

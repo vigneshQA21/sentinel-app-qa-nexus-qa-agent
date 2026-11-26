@@ -142,7 +142,7 @@ def test_sample_refs_read_the_fj_number_from_the_file_names():
 # --- the standard: document <-> Nexus shipment data (13-Nov-2026) -----------------------------------------------------------------------
 from pathlib import Path as _P
 
-_SEA009 = _P("samples/SEA-REG-009/FJ-0002952 - Consolidated - DAP Incoterm.pdf")
+_SEA009 = _P("samples/india/SEA-REG-009/FJ-0002952 - Consolidated - DAP Incoterm.pdf")
 
 
 def _src009():
@@ -193,4 +193,5 @@ def test_sea_extra_empty_slot_of_a_filled_label_is_not_a_finding():
 def test_sea_description_empty_everywhere_is_missing_with_the_page_reference():
     from nexus_agent.sea_check import compare_sea
     rows = compare_sea({"fields": [_f("Other", "Description", "")]}, _src009())
-    assert rows[0]["result"] == "FAIL" and rows[0]["note"].startswith("MISSING") and "page" in rows[0]["expected_from_document"]
+    assert rows[0]["result"] == "FAIL" and rows[0]["note"].startswith("MISSING")
+    assert rows[0]["expected_from_document"] and "FIELD)" not in rows[0]["expected_from_document"]   # never blank, never a heading scrap

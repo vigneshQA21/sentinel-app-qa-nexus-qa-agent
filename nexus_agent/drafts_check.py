@@ -86,7 +86,8 @@ def write_report(cfg: Config, rows: list[dict]) -> Path:
     with open(path, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=["case_id", "ipa", "check", "expected", "actual", "result", "note"])
         w.writeheader()
-        w.writerows(rows)
+        from .docextract import NO_VALUE
+        w.writerows([{**r, "expected": r.get("expected") if str(r.get("expected") or "").strip() else NO_VALUE} for r in rows])   # never blank
     return path
 
 

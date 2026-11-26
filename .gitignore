@@ -1,0 +1,13 @@
+# Never committed: credentials, sessions, local state
+.env
+secrets/
+state/
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Run output and customer data (shipment PDFs, Nexus screenshots, case workbooks).
+# Files committed before 2026-11-25 stay tracked until they are removed on purpose (see docs/CHANGELOG_FRAMEWORK.md).
+runs/
+samples/
+knowledge_base/

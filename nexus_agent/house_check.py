@@ -7,6 +7,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+from . import house_pick
 from .awb_extract import extract_master
 from .config import Config
 from .local_sender import LocalSender
@@ -243,9 +244,10 @@ def check_house_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_se
     res["ipa"] = info["ipa"]
     ui.expand_row(cell)
     records = ui.read_shipment_details()                # read BEFORE the viewer opens (the table is not on the viewer page)
-    rec = next((r for r in records if r.get("Record Type", "").startswith("House")), None)
+    sample_bill = src[2] or doc.get("house_number") or ""
+    rec, extras = house_pick.choose(records, "House", expected=[sample_bill], printed_text=doc.get("text") or "")
     ui.open_viewer(cell, expanded=True)
-    house = next((o for o in ui.parent_options() if o.startswith("House")), None)
+    house = house_pick.parent_for(ui.parent_options(), "House", rec)
     if house is None:
         res["message"] = "no House parent in the viewer"
         return res
@@ -261,6 +263,9 @@ def check_house_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_se
         from .master_check import ocr_adjust
         res["rows"] = ocr_adjust(res["rows"], doc.get("text") or "")
         res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
+    res["rows"] += house_pick.extra_rows(extras, "House", [(rec or {}).get("Bill No.", "") or sample_bill])
+    if extras:
+        res["extra_records"] = [x.get("Bill No.", "") or "(empty)" for x in extras]
     res["verdict"] = verdict(res["rows"])
     if rec is None:
         res["message"] = "the House row of the Shipment Details table was not found"

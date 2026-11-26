@@ -141,3 +141,596 @@ Drive upload: another upload is already running
 screenshots: 0 uploaded, 239 already there
 report: Automated test report 2026-11-16.pdf updated in '03 Report'
 Drive folder of 2026-11-16: https://drive.google.com/drive/folders/1JUTOfvTgATN-Cc2UD-BQPG6MaZxi257l
+
+--- 2026-11-18 16:31:43 auto upload started ---
+2026-11-18: 63 screenshot(s) in 8 case folder(s) to upload
+screenshots: 10 uploaded, 53 already there
+Drive upload 2026-11-18: attempt 1/4 failed (TimeoutError: The write operation timed out)
+2026-11-18: 63 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 63 already there
+
+--- 2026-11-18 16:37:37 auto upload started ---
+Drive upload: another upload is already running
+Drive upload 2026-11-18: attempt 2/4 failed (TimeoutError: The write operation timed out)
+
+--- 2026-11-18 16:38:00 auto upload started ---
+Drive upload: another upload is already running
+2026-11-18: 66 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 66 already there
+Drive upload 2026-11-18: attempt 3/4 failed (TimeoutError: The write operation timed out)
+2026-11-18: 66 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 66 already there
+
+--- 2026-11-18 16:44:47 auto upload started ---
+Drive upload: another upload is already running
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+
+--- 2026-11-18 16:46:14 auto upload started ---
+Drive upload: another upload is already running
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+2026-11-16: 239 screenshot(s) in 18 case folder(s) to upload
+
+--- 2026-11-18 16:47:26 auto upload started ---
+Drive upload: another upload is already running
+
+--- 2026-11-18 16:48:00 auto upload started ---
+Drive upload: another upload is already running
+
+--- 2026-11-18 16:48:30 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 239 already there
+
+--- 2026-11-18 16:49:19 auto upload started ---
+Drive upload: another upload is already running
+Drive upload 2026-11-16: attempt 1/4 failed (TimeoutError: The write operation timed out)
+2026-11-16: 239 screenshot(s) in 18 case folder(s) to upload
+screenshots: 0 uploaded, 239 already there
+Drive upload 2026-11-16: attempt 2/4 failed (TimeoutError: The write operation timed out)
+2026-11-16: 239 screenshot(s) in 18 case folder(s) to upload
+screenshots: 0 uploaded, 239 already there
+Drive upload 2026-11-16: attempt 3/4 failed (TimeoutError: The write operation timed out)
+2026-11-16: 239 screenshot(s) in 18 case folder(s) to upload
+
+--- 2026-11-18 17:02:38 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 239 already there
+Drive upload 2026-11-16: attempt 4/4 failed (TimeoutError: The write operation timed out)
+
+--- 2026-11-18 18:18:07 auto upload started ---
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+
+--- 2026-11-18 18:18:30 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 16 uploaded, 61 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+2026-11-16: 239 screenshot(s) in 18 case folder(s) to upload
+screenshots: 0 uploaded, 239 already there
+report: Automated test report 2026-11-16.pdf updated in '03 Report'
+Drive folder of 2026-11-16: https://drive.google.com/drive/folders/1JUTOfvTgATN-Cc2UD-BQPG6MaZxi257l
+
+--- 2026-11-18 18:33:43 auto upload started ---
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+
+--- 2026-11-18 18:35:00 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 10 uploaded, 67 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+
+--- 2026-11-18 18:35:26 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+2026-11-16: 239 screenshot(s) in 18 case folder(s) to upload
+screenshots: 0 uploaded, 239 already there
+report: Automated test report 2026-11-16.pdf updated in '03 Report'
+Drive folder of 2026-11-16: https://drive.google.com/drive/folders/1JUTOfvTgATN-Cc2UD-BQPG6MaZxi257l
+
+--- 2026-11-19 13:05:24 auto upload started ---
+2026-11-19: 2 screenshot(s) in 1 case folder(s) to upload
+screenshots: 2 uploaded, 0 already there
+report: no HTML report for this day yet (run ./nx runreport first)
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 3 uploaded, 74 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 13:14:52 auto upload started ---
+2026-11-19: 18 screenshot(s) in 9 case folder(s) to upload
+
+--- 2026-11-19 13:16:00 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 16 uploaded, 2 already there
+report: no HTML report for this day yet (run ./nx runreport first)
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 13:40:25 auto upload started ---
+2026-11-19: 20 screenshot(s) in 10 case folder(s) to upload
+screenshots: 2 uploaded, 18 already there
+report: no HTML report for this day yet (run ./nx runreport first)
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 14:31:00 auto upload started ---
+2026-11-19: 20 screenshot(s) in 10 case folder(s) to upload
+
+--- 2026-11-19 14:31:02 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 20 already there
+report: Automated test report 2026-11-19.pdf uploaded in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 14:54:05 auto upload started ---
+2026-11-19: 20 screenshot(s) in 10 case folder(s) to upload
+
+--- 2026-11-19 14:54:10 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 20 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+
+--- 2026-11-19 14:54:54 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 14:57:01 auto upload started ---
+2026-11-19: 20 screenshot(s) in 10 case folder(s) to upload
+screenshots: 0 uploaded, 20 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 14:59:43 auto upload started ---
+2026-11-19: 20 screenshot(s) in 10 case folder(s) to upload
+screenshots: 0 uploaded, 20 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 15:05:01 auto upload started ---
+2026-11-19: 20 screenshot(s) in 10 case folder(s) to upload
+screenshots: 0 uploaded, 20 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 15:07:04 auto upload started ---
+2026-11-19: 20 screenshot(s) in 10 case folder(s) to upload
+screenshots: 0 uploaded, 20 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 15:21:42 auto upload started ---
+2026-11-19: 59 screenshot(s) in 15 case folder(s) to upload
+
+--- 2026-11-19 15:21:44 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 39 uploaded, 20 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 15:29:19 auto upload started ---
+2026-11-19: 133 screenshot(s) in 16 case folder(s) to upload
+
+--- 2026-11-19 15:34:29 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 128 uploaded, 5 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+
+--- 2026-11-19 15:40:46 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 15:48:24 auto upload started ---
+2026-11-19: 191 screenshot(s) in 16 case folder(s) to upload
+screenshots: 86 uploaded, 105 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-19 16:10:15 auto upload started ---
+2026-11-19: 216 screenshot(s) in 16 case folder(s) to upload
+
+--- 2026-11-19 16:11:03 auto upload started ---
+Drive upload: another upload is already running
+
+--- 2026-11-19 16:11:49 auto upload started ---
+Drive upload: another upload is already running
+
+--- 2026-11-19 16:14:27 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 54 uploaded, 162 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+
+--- 2026-11-19 16:16:14 auto upload started ---
+Drive upload: another upload is already running
+
+--- 2026-11-19 16:16:43 auto upload started ---
+Drive upload: another upload is already running
+
+--- 2026-11-19 16:16:51 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+2026-11-17: 32 screenshot(s) in 4 case folder(s) to upload
+screenshots: 0 uploaded, 32 already there
+report: Automated test report 2026-11-17.pdf updated in '03 Report'
+Drive folder of 2026-11-17: https://drive.google.com/drive/folders/1FVkYC2M91E1a_8QmDHB-X4TB2iiygpdH
+
+--- 2026-11-20 15:42:42 auto upload started ---
+2026-11-20: 28 screenshot(s) in 14 case folder(s) to upload
+
+--- 2026-11-20 15:42:56 auto upload started ---
+Drive upload: another upload is already running
+
+--- 2026-11-20 15:44:55 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 28 uploaded, 0 already there
+report: no HTML report for this day yet (run ./nx runreport first)
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 45 uploaded, 191 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+
+--- 2026-11-20 17:32:19 auto upload started ---
+2026-11-20: 28 screenshot(s) in 14 case folder(s) to upload
+screenshots: 0 uploaded, 28 already there
+report: Automated test report 2026-11-20.pdf uploaded in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+
+--- 2026-11-20 19:23:50 auto upload started ---
+2026-11-20: 154 screenshot(s) in 15 case folder(s) to upload
+
+--- 2026-11-20 19:29:34 auto upload started ---
+Drive upload: another upload is already running
+Drive upload 2026-11-20: attempt 1/4 failed (TimeoutError: The read operation timed out)
+2026-11-20: 174 screenshot(s) in 15 case folder(s) to upload
+
+--- 2026-11-20 19:34:44 auto upload started ---
+Drive upload: another upload is already running
+
+--- 2026-11-20 19:41:30 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 129 uploaded, 45 already there
+
+--- 2026-11-20 19:43:21 auto upload started ---
+Drive upload: another upload is already running
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+
+--- 2026-11-20 19:43:53 auto upload started ---
+Drive upload: another upload is already running
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+
+--- 2026-11-23 09:52:05 auto upload started ---
+2026-11-23: 0 screenshot(s) in 0 case folder(s) to upload
+screenshots: 0 uploaded, 0 already there
+report: no HTML report for this day yet (run ./nx runreport first)
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 83 uploaded, 140 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+2026-11-18: 77 screenshot(s) in 8 case folder(s) to upload
+screenshots: 0 uploaded, 77 already there
+report: Automated test report 2026-11-18.pdf updated in '03 Report'
+Drive folder of 2026-11-18: https://drive.google.com/drive/folders/1EGbzb0YH5dkMY01I332SjKZ5ymKDBrKK
+
+--- 2026-11-23 10:34:46 auto upload started ---
+2026-11-23: 40 screenshot(s) in 20 case folder(s) to upload
+screenshots: 40 uploaded, 0 already there
+report: no HTML report for this day yet (run ./nx runreport first)
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+
+--- 2026-11-23 10:59:22 auto upload started ---
+2026-11-23: 40 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 40 already there
+report: no HTML report for this day yet (run ./nx runreport first)
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+
+--- 2026-11-23 13:11:48 auto upload started ---
+2026-11-23: 40 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 40 already there
+report: Automated test report 2026-11-23.pdf uploaded in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+
+--- 2026-11-23 14:03:28 auto upload started ---
+2026-11-23: 40 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 40 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+
+--- 2026-11-23 15:19:00 auto upload started ---
+2026-11-23: 41 screenshot(s) in 20 case folder(s) to upload
+screenshots: 1 uploaded, 40 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+
+--- 2026-11-23 15:57:57 auto upload started ---
+2026-11-23: 41 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 41 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+
+--- 2026-11-25 13:06:56 auto upload started ---
+[nexus-agent] tenant=india profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+2026-11-25: 0 screenshot(s) in 0 case folder(s) to upload
+screenshots: 0 uploaded, 0 already there
+report: no HTML report for this day yet (run ./nx runreport first)
+Drive folder of 2026-11-25: https://drive.google.com/drive/folders/1G9G5pfioIMh1Hbx0WXl9GeDzCl0SMI8-
+2026-11-23: 41 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 41 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+2026-11-19: 236 screenshot(s) in 23 case folder(s) to upload
+screenshots: 0 uploaded, 236 already there
+report: Automated test report 2026-11-19.pdf updated in '03 Report'
+Drive folder of 2026-11-19: https://drive.google.com/drive/folders/1-i71TAjra5QuHcULrEQUIYuRhRHS3OaN
+
+--- 2026-11-25 13:50:18 auto upload started ---
+[nexus-agent] tenant=india profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+2026-11-25: 3 screenshot(s) in 1 case folder(s) to upload
+screenshots: 3 uploaded, 0 already there
+report: Automated test report 2026-11-25.pdf uploaded in '03 Report'
+Drive folder of 2026-11-25: https://drive.google.com/drive/folders/1G9G5pfioIMh1Hbx0WXl9GeDzCl0SMI8-
+2026-11-23: 41 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 41 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+
+--- 2026-11-25 14:11:50 auto upload started ---
+[nexus-agent] tenant=india profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+2026-11-25: 125 screenshot(s) in 16 case folder(s) to upload
+
+--- 2026-11-25 14:18:52 auto upload started ---
+[nexus-agent] tenant=india profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+Drive upload: another upload is already running
+screenshots: 122 uploaded, 3 already there
+report: Automated test report 2026-11-25.pdf updated in '03 Report'
+Drive folder of 2026-11-25: https://drive.google.com/drive/folders/1G9G5pfioIMh1Hbx0WXl9GeDzCl0SMI8-
+2026-11-23: 41 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 41 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+
+--- 2026-11-25 14:25:52 auto upload started ---
+[nexus-agent] tenant=india profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+2026-11-25: 151 screenshot(s) in 16 case folder(s) to upload
+screenshots: 53 uploaded, 98 already there
+report: Automated test report 2026-11-25.pdf updated in '03 Report'
+Drive folder of 2026-11-25: https://drive.google.com/drive/folders/1G9G5pfioIMh1Hbx0WXl9GeDzCl0SMI8-
+2026-11-23: 41 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 41 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+
+--- 2026-11-25 14:34:08 auto upload started ---
+[nexus-agent] tenant=india profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+2026-11-25: 161 screenshot(s) in 16 case folder(s) to upload
+
+--- 2026-11-25 14:36:44 auto upload started ---
+[nexus-agent] tenant=india profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+Drive upload: another upload is already running
+screenshots: 38 uploaded, 123 already there
+report: Automated test report 2026-11-25.pdf updated in '03 Report'
+Drive folder of 2026-11-25: https://drive.google.com/drive/folders/1G9G5pfioIMh1Hbx0WXl9GeDzCl0SMI8-
+2026-11-23: 41 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 41 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+
+--- 2026-11-25 14:43:52 auto upload started ---
+[nexus-agent] tenant=india profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+2026-11-25: 172 screenshot(s) in 21 case folder(s) to upload
+screenshots: 12 uploaded, 160 already there
+report: Automated test report 2026-11-25.pdf updated in '03 Report'
+Drive folder of 2026-11-25: https://drive.google.com/drive/folders/1G9G5pfioIMh1Hbx0WXl9GeDzCl0SMI8-
+2026-11-23: 41 screenshot(s) in 20 case folder(s) to upload
+screenshots: 0 uploaded, 41 already there
+report: Automated test report 2026-11-23.pdf updated in '03 Report'
+Drive folder of 2026-11-23: https://drive.google.com/drive/folders/1XDcfUpg6ma3FueHEwcCMNMpH8c5g5Ebc
+2026-11-20: 223 screenshot(s) in 22 case folder(s) to upload
+screenshots: 0 uploaded, 223 already there
+report: Automated test report 2026-11-20.pdf updated in '03 Report'
+Drive folder of 2026-11-20: https://drive.google.com/drive/folders/1reHGYw0flS2djhk2FeMBJ48mZnAeudR-
+
+--- 2026-11-25 16:59:42 auto upload started ---
+[nexus-agent] tenant=india org=UNI profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+Drive upload: another upload is already running
+
+--- 2026-11-25 17:12:29 auto upload started ---
+[nexus-agent] tenant=india org=UNI profile=uat nexus=https://uat.sentinel.unifo.in config=/home/unifo/Downloads/nexus_agent/config db=/home/unifo/Downloads/nexus_agent/state/agent.db runs=/home/unifo/Downloads/nexus_agent/runs
+Drive upload: another upload is already running

@@ -20,6 +20,11 @@ from .config import Config
 
 log = logging.getLogger(__name__)
 ROOT = ["Regression testing", "Nexus Automated Test Evidence"]
+
+
+def root_path(cfg: Config) -> list[str]:
+    """India keeps today's folders; another tenant gets its own sub-folder (.../Nexus Automated Test Evidence/Japan/<date>/), never India's days."""
+    return ROOT if cfg.tenant == "india" else ROOT + [cfg.tenant.title()]
 RUNS, BUGS, REPORT = "01 Test runs", "02 Bugs", "03 Report"
 
 
@@ -67,6 +72,9 @@ def report_pdf(cfg: Config, date: str) -> Path | None:
 
 def upload_day(cfg: Config, date: str | None = None, dry_run: bool = False, out=print) -> str:
     date = date or datetime.now().strftime("%Y-%m-%d")
+    if cfg.unset(cfg.settings["bugsheet"].get("evidence_folder_id")):
+        out(f"no Drive evidence folder for tenant '{cfg.tenant}' (bugsheet.evidence_folder_id): nothing uploaded")
+        return ""
     day_dir = cfg.runs_dir / date
     from . import runreport as RR
     from .store import Store
@@ -82,7 +90,7 @@ def upload_day(cfg: Config, date: str | None = None, dry_run: bool = False, out=
     if dry_run:
         return ""
     drive = B.drive_service(cfg)
-    day = B.ensure_folder_path(drive, cfg.settings["bugsheet"]["evidence_folder_id"], ROOT + [date])
+    day = B.ensure_folder_path(drive, cfg.settings["bugsheet"]["evidence_folder_id"], root_path(cfg) + [date])
     runs = B.ensure_folder_path(drive, day, [RUNS])
     B.ensure_folder_path(drive, day, [BUGS])
     rep = B.ensure_folder_path(drive, day, [REPORT])
@@ -120,7 +128,7 @@ def upload_day(cfg: Config, date: str | None = None, dry_run: bool = False, out=
 
 # --- automatic, never-stopping upload ---------------------------------------------------------------
 AUTO_CMDS = {"suite", "validate", "validate-master", "validate-house", "validate-docs", "validate-mhfields", "validate-directbl",
-             "validate-drafts", "runreport", "delete", "run", "forward", "send-local"}
+             "validate-drafts", "runreport", "delete", "preflight", "run", "forward", "send-local"}
 
 
 def days_to_upload(cfg: Config, today: str | None = None) -> list[str]:

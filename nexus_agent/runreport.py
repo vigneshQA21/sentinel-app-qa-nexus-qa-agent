@@ -247,9 +247,28 @@ def build(store: Store, reports: Path, date: str, retested: dict[str, bool] | No
             passed.append({**item, "ipa": current[cid]["ipa"]})
         else:
             not_tested.append({**item, "why": f"{doc} data was not checked today"})
+    # cases checked today whose pre-alert was never found in the Pre-Alerts tab (their newest mapping check says NOT_RECEIVED)
+    last_status: dict[str, dict] = {}
+    for f in validates:
+        for r in _rows(f):
+            last_status[r["case_id"]] = r
+    missing = [{"case_id": cid, "details": r.get("details", ""), "evidence": r.get("evidence", "")}
+               for cid, r in sorted(last_status.items()) if cid not in current and r.get("nexus_status") == "NOT_RECEIVED"]
     return {"date": date, "cases": cases, "runs": runs, "attempts": dict(attempts), "sent": dict(sent), "new": new, "still": still, "accepted": accepted,
             "passed": sorted(passed, key=lambda x: x["row"] or "0"), "not_tested": not_tested, "already": already,
-            "sheet_read": retested is not None and bool(retested), "compare": cmp_}
+            "sheet_read": retested is not None and bool(retested), "compare": cmp_, "missing": missing,
+            "drafts": _newest_by_case(reports, f"drafts_data_{day}_*.csv"), "directbl": _newest_by_case(reports, f"directbl_data_{day}_*.csv")}
+
+
+def _newest_by_case(reports: Path, pattern: str) -> dict[str, list[dict]]:
+    """{case: rows of the newest report file of that kind that holds the case} (AMF drafts, Direct BL)."""
+    out: dict[str, list[dict]] = {}
+    for f in sorted(reports.glob(pattern), key=_stamp):
+        by: dict[str, list[dict]] = defaultdict(list)
+        for r in _rows(f):
+            by[r.get("case_id", "")].append(r)
+        out.update({k: v for k, v in by.items() if k})
+    return out
 
 
 def _line(x: dict) -> str:
@@ -347,7 +366,8 @@ def _traces(runs_dir: Path, date: str, cid: str, ipa: str) -> dict:
     """The newest trace folder of this pre-alert, and the newest one that holds the mapping screenshots (viewer parents)."""
     slug = re.sub(r"[^A-Za-z0-9]+", "-", ipa).strip("-")
     dirs = sorted((runs_dir / date / cid).glob(f"trace_*_{slug}"), key=lambda p: p.name)
-    mapping = next((d for d in reversed(dirs) if any(d.glob("*_parent_House.png"))), None)
+    # any viewer parent counts: a Manifest-first case (AMF) has a Master draft and a Manifest but no House parent
+    mapping = next((d for d in reversed(dirs) if any(d.glob("*_parent_*.png"))), None)
     return {"latest": dirs[-1] if dirs else None, "mapping": mapping}
 
 
@@ -456,7 +476,64 @@ def html_report(d: dict, reports: Path) -> str:
         if shots:
             sec.append("<h3>Screenshots (click to enlarge)</h3><div class='shots'>" + "".join(shots) + "</div>")
         details += "<section>" + "".join(sec) + "</section>"
-    for cid in [x for x in d["sent"] if x not in {c["case_id"] for c in d["cases"]}]:
+    day_dir = runs_dir / d["date"]
+
+    def _shots(cid: str, pats: list[tuple[str, str]]) -> str:
+        figs = []
+        for pat, cap in pats:
+            files = sorted((day_dir / cid).glob(pat), key=lambda p: p.stat().st_mtime) if (day_dir / cid).is_dir() else []
+            if files:
+                figs.append(f'<figure><a href="{rel(files[-1])}"><img src="{rel(files[-1])}" loading="lazy"></a><figcaption>{cap}</figcaption></figure>')
+        return ("<h3>Screenshots (click to enlarge)</h3><div class='shots'>" + "".join(figs) + "</div>") if figs else "<p class='sub'>no screenshot was taken</p>"
+
+    covered = {c["case_id"] for c in d["cases"]}
+    for m in d.get("missing", []):                           # never found in Pre-Alerts: say so, with the list as it was seen
+        covered.add(m["case_id"])
+        summary += (f'<tr><td><a href="#{m["case_id"]}"><b>{m["case_id"]}</b></a></td><td>{_chip("NOT RECEIVED", "FAIL")}</td><td>-</td><td>-</td>'
+                    f'<td colspan="3">{esc(m["details"])}</td></tr>')
+        details += (f'<section><h2 id="{m["case_id"]}">{m["case_id"]} · not received · {_chip("NOT RECEIVED", "FAIL")}</h2>'
+                    f'<p>{esc(m["details"])}. The email was sent today; no pre-alert with this case id was found in the Pre-Alerts tab, so nothing '
+                    f'could be compared. Check the Others tab (a follow-up of another job) before treating it as a delivery problem.</p>'
+                    + _shots(m["case_id"], [("not_received.png", "Pre-Alerts tab: the case was not found"), ("prealerts_list.png", "Pre-Alerts list"),
+                                            ("others_tab.png", "Others tab")]) + "</section>")
+
+    def _check_section(cid: str, title: str, rows: list[dict], cols: list[tuple[str, str]], pats: list[tuple[str, str]]) -> str:
+        cnt = defaultdict(int)
+        for x in rows:
+            cnt[x.get("result", "")] += 1
+        verdict = "FAIL" if cnt.get("FAIL") else "ERROR" if cnt.get("ERROR") else "REVIEW" if cnt.get("REVIEW") else "PASS"
+        ipa = next((x.get("ipa") for x in rows if x.get("ipa")), "")
+        head = ", ".join(f"{k} {v}" for k, v in sorted(cnt.items()))
+        body = "".join("<tr>" + "".join(f"<td>{_chip(x.get(k, ''), x.get(k, '')) if k == 'result' else esc((x.get(k) or '')[:160])}</td>" for k, _ in cols) + "</tr>"
+                       for x in rows)
+        nf = [x for x in rows if x.get("result") in ("ERROR", "FAIL") and re.search(r"no pre-alert", x.get("note", ""), re.I)]
+        why = (f"<p class='cause'><b>Not checked:</b> {esc(nf[0]['note'])}. If the pre-alert is in Nexus, this is a lookup problem of the check, not a Nexus bug.</p>"
+               if nf else "")
+        return (f'<section><h2 id="{cid}-{title.split()[0].lower()}">{cid} · {esc(title)} · {esc(ipa or "-")} · {_chip(verdict, verdict)}</h2>{why}'
+                f"<details open><summary>every point checked ({len(rows)}) · {esc(head)}</summary><table class='small'><tr>"
+                + "".join(f"<th>{esc(h)}</th>" for _, h in cols) + f"</tr>{body}</table></details>" + _shots(cid, pats) + "</section>"), verdict, ipa, head
+
+    for cid, rows in sorted(d.get("drafts", {}).items()):
+        sec, verdict, ipa, head = _check_section(cid, "AMF drafts (Manifest only)", rows,
+                                                 [("check", "Check"), ("expected", "Expected"), ("actual", "Nexus shows"), ("result", "Result"), ("note", "Note")],
+                                                 [("drafts_*_expanded.png", "Pre-Alerts row expanded: the Master and House drafts")])
+        details += sec
+        if cid not in covered:
+            summary += (f'<tr><td><a href="#{cid}-amf"><b>{cid}</b></a></td><td>{_chip(verdict, verdict)}</td><td>{esc(ipa or "-")}</td><td>-</td>'
+                        f'<td colspan="2">AMF drafts: {esc(head)}</td><td></td></tr>')
+            covered.add(cid)
+    for cid, rows in sorted(d.get("directbl", {}).items()):
+        sec, verdict, ipa, head = _check_section(cid, "Direct BL requirement points", rows,
+                                                 [("section", "Point"), ("field", "Check"), ("expected_from_document", "Expected"), ("shown_in_nexus", "Nexus shows"),
+                                                  ("result", "Result"), ("note", "Note")],
+                                                 [("directbl_row.png", "Shipment Details rows"), ("directbl_master.png", "Viewer: Master"),
+                                                  ("directbl_house.png", "Viewer: House (created from the Master)")])
+        details += sec
+        if cid not in covered:
+            summary += (f'<tr><td><a href="#{cid}-direct"><b>{cid}</b></a></td><td>{_chip(verdict, verdict)}</td><td>{esc(ipa or "-")}</td><td>-</td>'
+                        f'<td colspan="2">Direct BL: {esc(head)}</td><td></td></tr>')
+            covered.add(cid)
+    for cid in [x for x in d["sent"] if x not in covered]:
         summary += f'<tr><td><b>{cid}</b></td><td colspan="6">sent today ({d["sent"][cid]} email(s)) but not validated in Nexus yet</td></tr>'
 
     def bugs(title: str, items: list[dict], extra=lambda x: "") -> str:
@@ -477,7 +554,8 @@ def html_report(d: dict, reports: Path) -> str:
     cases = d["cases"]
     passed = sum(1 for c in cases if c["verdict"] == "PASS")
     failed = sum(1 for c in cases if c["verdict"] != "PASS")
-    unvalidated = [x for x in d["sent"] if x not in {c["case_id"] for c in cases}]
+    unvalidated = [x for x in d["sent"] if x not in {c["case_id"] for c in cases} | {m["case_id"] for m in d.get("missing", [])}
+                   | set(d.get("drafts", {})) | set(d.get("directbl", {}))]
     tiles = "".join(f'<div class="tile"><b>{v}</b><span>{esc(k)}</span></div>' for k, v in (
         ("cases validated", len(cases)), ("mapping PASS", passed), ("mapping not PASS", failed), ("sent, not validated", len(unvalidated)),
         ("run sessions today", len(d.get("runs", []))), ("new bug candidates", len(d["new"])), ("raised bugs still there", len(d["still"]))))

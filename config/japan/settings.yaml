@@ -1,0 +1,306 @@
+# Japan tenant (Org Code LJP). Created 25 Nov 2026 from India's settings; every India-specific value was removed or set to
+# TO-BE-PROVIDED: recipient mailbox, bug sheet, Drive evidence folder, case workbooks, samples, Direct BL rules, branch airports.
+# Fill them from the tenant's own requirements; never copy India's values.
+# Mapping validation (type aliases, document -> parent) is the same for every tenant.
+gmail:
+  query: in:inbox subject:(pre-alert OR prealert) has:attachment -label:Nexus/Forwarded newer_than:2d
+  forward_to: uat.prealert.nexus@unifo.in   # Japan test pre-alerts (user, 25 Nov 2026); the Org Code in the subject routes the email
+  processed_label: Nexus/Forwarded
+  credentials_file: secrets/gmail_credentials.json
+  token_file: secrets/gmail_token.json
+  max_messages_per_run: 50
+references:
+  match_by: hawb
+  hawb_pattern: \b(UNF\d{4,10})\b
+  job_pattern: '(?<![A-Za-z0-9])(JPN-REG-\d{3})(?!\d)'
+  mawb_pattern: \b(\d{3}-?\d{8})\b
+nexus:
+  base_url: https://uat.sentinel.unifo.in
+  home_path: /sentinel-nexus/email
+  login_path: /auth/logIn
+  organisation_code: LJP
+  session_file: state/japan/nexus_session.json
+  navigation_timeout_ms: 30000
+timing:
+  prealert_wait_seconds: 600
+  prealert_poll_seconds: 30
+  approval_wait_seconds: 900
+  approval_poll_seconds: 30
+  ui_retries: 2
+paths:
+  state_dir: state/japan
+  runs_dir: runs/japan
+  corrections_dir: corrections/japan
+xml_capture:
+  mode: text
+local_docs:
+  preflight_reuse_minutes: 60
+  email_gap_seconds: 30
+  case_email_gap_seconds:
+    REG-011: 60
+  root: knowledge_base/japan
+  consolidated_dir: consolidated
+  individual_dir: individual
+  subject_tag: QA agent trigger / Don't delete / Regression testing
+  subject_org_code: false   # the Org Code goes in the BODY, not the subject (user, 25 Nov 2026)
+  subject_org_format: ' | org : {org}'   # how the Org Code is written at the end of the subject (user, 25 Nov 2026)
+  body_org_code: true                      # first body line 'org : <Org Code>': one shared mailbox, Nexus routes by it
+  body_org_format: 'Org:{org}'   # exactly as Logisteed's own pre-alerts write it (e.g. 'Org:LJP', reference IPA/7 in Japan)
+  same_subject_cases:
+    UNR-001:
+      ref: FJ-0003315
+      types: MASTER+MANIFEST+HOUSE
+  priority: high
+  archive_after_send: false
+  sent_dir: sent
+  skip_already_sent: false
+  consolidated_subject_template: '{tag} | Pre-Alert {ref} | CONSOLIDATED ({types})'
+  subject_template: '{tag} | Pre-Alert {ref} | INDIVIDUAL | {doc}'
+  doc_labels:
+    MBL: MASTER
+    HBL: HOUSE
+    INVOICE: INVOICE
+    PACKING: PACKING LIST
+    MANIFEST: MANIFEST
+    SHIPPERDOC: SHIPPER DOC
+    DEBITNOTE: DEBIT NOTE
+    DELIVERY: DELIVERY NOTE
+    PO: PO
+    OTHER: DOCUMENT
+  filename_types:
+    MASTER: MBL
+    MBL: MBL
+    MAWB: MBL
+    HOUSE: HBL
+    HBL: HBL
+    HAWB: HBL
+    INVOICE: INVOICE
+    PACKING: PACKING
+    PACKINGLIST: PACKING
+    PL: PACKING
+    PKL: PACKING
+    MANIFEST: MANIFEST
+    SHIPPERDOC: SHIPPERDOC
+    SLI: SHIPPERDOC
+    CERTIFICATE: SHIPPERDOC
+    PO: PO
+    DEBITNOTE: DEBITNOTE
+    DELIVERY: DELIVERY
+    DELIVERYNOTE: DELIVERY
+screening:
+  required_types:
+  - MBL
+  - HBL
+  required_types_sea:
+  - MBL
+  - HBL
+pdf_split_sea:
+  house_ref_pattern: ^[A-Z]{2,10}\d{6,}[A-Z0-9]*$
+  carrier_form:
+  - WAYBILL
+  - BILL OF LADING
+  - SCAC
+  continuation_starts:
+  - 'B/L:'
+  - 'PAGE:'
+  invoice:
+  - COMMERCIAL INVOICE
+  - TAX INVOICE
+  - INVOICE NUMBER
+  - INVOICENUMBER
+  - INVOICE NO
+  packing:
+  - PACKING LIST
+  debitnote:
+  - DEBIT NOTE
+  agent_bill_to:                 # an INVOICE with one of these anywhere on it = Debit Note -> Master (debit_rule.py; Japan sheet Sl 19)
+  - LOGISTEED                    # any LOGISTEED party (Express, India Private Limited, China ...), partial match
+  agent_bill_starts:             # ... or an INVOICE that starts with one of these
+  - LOGISTEED
+  manifest:
+  - CARGO MANIFEST
+  - MANIFEST
+  head_chars: 300
+  ocr_scanned: true
+pdf_split:
+  keywords:
+    MBL:
+    - MASTER AIR WAYBILL
+    - MASTER AIR WAY BILL
+    - MASTER BILL OF LADING
+    - MASTER B/L
+    - MBL NO
+    AWBFORM:
+    - SHIPPER'S NAME AND ADDRESS
+    - SHIPPER’S NAME AND ADDRESS
+    - CHECK B/L
+    MANIFEST:
+    - CARGO MANIFEST
+    - FREIGHT MANIFEST
+    - CONSOLIDATED CARGO MANIFEST
+    - HOUSE AIRWAYBILL LIST
+    - HOUSE AIR WAYBILL LIST
+    DELIVERY:
+    - DELIVERY NOTE
+    - DELIVERY CHALLAN
+    INVOICE__1:
+    - COMMERCIAL INVOICE
+    - TAX INVOICE
+    PACKING:
+    - PACKING LIST
+    INVOICE:
+    - INVOICE NO
+    - INVOICE DATE
+    - THIS INVOICE
+    DEBITNOTE:
+    - DEBIT NOTE
+    PO:
+    - PO CONFIRMATION
+    - PURCHASE ORDER
+    - ORDER CONFIRMATION
+    SHIPPERDOC:
+    - SHIPPER'S LETTER OF INSTRUCTION
+    - SHIPPERS LETTER OF INSTRUCTION
+    - SHIPPING INSTRUCTION
+    HBL:
+    - HAWB
+    - HOUSE AIR WAYBILL
+    - HOUSE AIR WAY BILL
+    - HOUSE BILL OF LADING
+    - BILL OF LADING
+    - HBL
+    MBL_WEAK:
+    - MAWB
+    - MASTER AWB
+  hawb_label_pattern: \bHAWB\s*(?:NO\.?|NUMBER|#)?\s*[:：#]?\s*([A-Z0-9]+(?:\s?-\s?[A-Z0-9]+)*)
+testsuite:
+  workbook: knowledge_base/japan/testcases/Japan_Sea_Regression.xlsx
+  sheet_tab: Japan Sea - Regression
+  id_pattern: ^SEA-JPN-\d{3}$
+  scenarios:
+  - Consolidated Mapping
+  - Individual Mapping
+  exclude_doc_contains: []
+  sample_ref_pattern: (JPN-REG-\d{3})
+  extra_cases: []
+  sample_ref_overrides: {}
+  samples_dir: samples/japan
+  case_interval_seconds: 300
+  subject_includes_case_id: true
+  columns:
+    case_id: TC ID
+    scenario: Scenario
+    docs: Document Combination
+    expected_mapping: Expected Mapping
+    xml_rule: XML / CargoWise Validation
+    expected_result: Expected Result
+    quadance_job: Quadance Job no.
+    nexus_job: NexusJob no.
+testsuite_sea:
+  workbook: knowledge_base/japan/testcases/Japan_Sea_Regression.xlsx
+  sheet_tab: Japan Sea - Regression
+  id_pattern: ^(?!)$
+  scenarios: []
+  exclude_doc_contains: []
+  sample_ref_pattern: (FJ-\d{4,10})
+  columns:
+    case_id: TC ID
+    scenario: Scenario
+    mode: Mode
+    docs: Document Combination
+    expected_mapping: Expected Mapping
+    xml_rule: XML / CargoWise Validation
+    expected_result: Expected Result
+    quadance_job: Sample Files
+    nexus_job: Last Known Nexus Job
+validation:
+  type_aliases:
+    MASTER:
+    - MASTER
+    - MAWB
+    - MBL
+    - MASTER AWB
+    - MASTER AIR WAYBILL
+    HOUSE:
+    - HOUSE
+    - HAWB
+    - HBL
+    - HOUSE AWB
+    - HOUSE AIR WAYBILL
+    MANIFEST:
+    - MANIFEST
+    PACKING LIST:
+    - PACKING
+    INVOICE:
+    - INVOICE
+    DEBIT NOTE:
+    - DEBIT
+    DELIVERY NOTE:
+    - DELIVERY NOTE
+    - DELIVERYNOTE
+    - DLV
+    SHIPPER DOCUMENT:
+    - SHIPPER DOC
+    - SHIPPERDOC
+    - CERTIFICATE OF ORIGIN
+    - DECLARATION
+    PO:
+    - PO CONFIRMATION
+    - PURCHASE ORDER
+    - ORDER CONFIRMATION
+    - PO
+    CREDIT NOTE:
+    - CREDIT NOTE
+    - CREDIT
+  initial_wait_seconds: 180
+  poll_seconds: 20
+  max_wait_seconds: 420
+  expected_job_type: New Job
+  expected_master_status: CW Sync Pending
+  expected_house_status: CW Sync Pending
+  airport_names: {}
+  type_alternates:
+    PO:
+    - SHIPPER DOCUMENT
+  fail_on_unexpected: false
+  agent_debit_note_gap: known    # Nexus shows agent debit notes as Invoice/House: KNOWN until Nexus implements it, then 'fail'
+  evidence: true
+bugsheet:
+  spreadsheet_id: TO-BE-PROVIDED
+  tab_gid: 0
+  tab_name: ''
+  backend: auto
+  token_file: secrets/google_bugs_token.json
+  evidence_folder_id: 1eHTlsLWfCO0zNkMFEdYvsLVppRdXZVYe   # the team's evidence folder; this tenant writes only under its own 'Japan' sub-folder
+  evidence_path:
+  - Regression testing
+  - Nexus Automated Test Evidence
+  - Japan
+  - '{date}'
+  - 02 Bugs
+  evidence_date_format: '%Y-%m-%d'
+  reported_by: Vigneshwaran S
+  date_format: '%d/%m/%Y'
+  defaults:
+    Status: Not Taken
+    Severity: High
+    MOT: Air
+    Reported Team: QA Team
+  columns:
+  - Bug ID
+  - Date
+  - Module
+  - Test Case ID
+  - Quadance Job No
+  - Nexus Job No
+  - Bug Summary
+  - Expected Result
+  - Actual Result
+  - Severity
+  - Status
+  - Evidence
+  - Reported By
+air_manifest_scenarios:
+  folder: air manifest individual scenarios
+  cases: {}
+tenant: japan
