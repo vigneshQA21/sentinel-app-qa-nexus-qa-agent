@@ -122,3 +122,12 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | Verdicts | Unchanged (shown values only); deciding verdicts on the extracted value is a separate step, gated by the Golden baseline |
 | Japan | `_pages.json` per sample: exact Master / House pages; 008's Master from 009's document, 003's Houses from the telex release |
 | Tests | 234 passed |
+
+## Several Houses in one pre-alert: validate the sample's House, report the extra one (2026-11-26)
+| Item | Detail |
+| --- | --- |
+| Problem | Checkers took the FIRST House row / viewer parent. In IPA/11/2026-27 (SEA-JPN-001) the first House was an extra, empty House made from the MBL's terms page, so the real House GFSLHKG/NGO26003 was never validated and its "bugs" were the extra House's empty fields |
+| Rule | Validate the House whose bill is the sample's HBL (or printed on the sample's House pages, punctuation ignored); every other House (empty bill or not in the sample) is a FAIL row "Pre-alert · additional House" with its bill, parties, pages and status |
+| Files | new `nexus_agent/house_pick.py`; used by `sea_check.py`, `house_check.py`, `mhfields.py` (no crash on 'House 1'), `directbl.py`, `master_check.py`; tests `tests/test_house_pick.py` |
+| Extraction | Seal No never the container number; location codes (HKG / JP) say the document prints the port name instead of matching a random cell |
+| Tests | 250 passed |

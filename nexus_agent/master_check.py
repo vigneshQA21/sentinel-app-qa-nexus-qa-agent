@@ -485,9 +485,10 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
     res["ipa"] = info["ipa"]
     ui.expand_row(cell)
     records = ui.read_shipment_details()               # the Shipment Details table of the expanded row
-    mrec = next((r for r in records if r.get("Record Type", "").startswith("Master")), None)
+    from . import house_pick
+    mrec, _extra = house_pick.choose(records, "Master", printed_text=doc.get("text") or "")
     ui.open_viewer(cell, expanded=True)
-    master = next((o for o in ui.parent_options() if o.startswith("Master")), None)
+    master = house_pick.parent_for(ui.parent_options(), "Master", mrec)
     if master is None:
         res["message"] = "no Master parent in the viewer"
         return res

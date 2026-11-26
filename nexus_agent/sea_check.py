@@ -16,7 +16,7 @@ from .master_check import MONTHS, _legal, attach_details as attach_master, norm,
 from .house_check import attach_details as attach_house
 from .nexus.session import SessionExpired
 from .nexus.uat import UatPages, map_house_panel, map_master_panel, read_panel_inputs, read_party_ids
-from . import docextract, docvalue
+from . import docextract, house_pick, docvalue
 from .pdf_split import detect_parts_sea, page_texts_layout
 from .store import Store
 from .testsuite import Case, sample_files
@@ -302,8 +302,10 @@ def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str
     res["ipa"] = info["ipa"]
     ui.expand_row(cell)
     pick = (os.getenv("NEXUS_HOUSE_BILL") or "").strip() if kind == "HBL" else ""      # a pre-alert with several houses: check this bill
-    rows_ = [r for r in ui.read_shipment_details() if r.get("Record Type", "").startswith(title)]
-    rec = next((r for r in rows_ if pick and r.get("Bill No.", "").strip() == pick), None) or (rows_[0] if rows_ else None)
+    records = ui.read_shipment_details()
+    rows_ = [r for r in records if r.get("Record Type", "").startswith(title)]
+    # the House whose bill is printed on the sample's House pages, never simply the first row (the first can be an extra, empty House)
+    rec, extras = house_pick.choose(records, title, printed_text=(src or {}).get("text", ""), pick=pick)
     src = sea_source(cfg, case, kind, (rec or {}).get("Bill No.", "")) or src
     if not src:
         res["message"] = f"no {kind} found in samples/{case.id}/"
@@ -311,8 +313,7 @@ def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str
     pg = src["pages"]
     res["source"] = f"{src['pdf'].name} page {pg[0]}" + (f"-{pg[-1]}" if len(pg) > 1 else "")
     ui.open_viewer(cell, expanded=True)
-    parent = next((o for o in ui.parent_options() if o.startswith(title) and (not pick or o.rstrip().endswith(f"({pick})"))), None) \
-        or next((o for o in ui.parent_options() if o.startswith(title)), None)
+    parent = house_pick.parent_for(ui.parent_options(), title, rec)
     if parent is None:
         res["message"] = f"no {title} parent in the viewer"
         return res
@@ -326,7 +327,9 @@ def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str
     if inc is not None:
         fields.setdefault("fields", []).append({"section": "Incoterm", "label": "Incoterm", "value": inc, "readonly": False})
     (attach_master if kind == "MBL" else attach_house)(fields, rec)
-    res["rows"] = compare_sea(fields, src)
+    res["rows"] = compare_sea(fields, src) + house_pick.extra_rows(extras, title, [(rec or {}).get("Bill No.", "")])
+    if extras:
+        res["extra_records"] = [x.get("Bill No.", "") or "(empty)" for x in extras]
     res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL" if src["scanned"] else ""
     if rec is None:
         res["message"] = f"the {title} row of the Shipment Details table was not found"

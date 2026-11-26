@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import logging
 import re
+
+from . import house_pick
 from datetime import datetime
 from pathlib import Path
 
@@ -87,7 +89,7 @@ def evaluate(case_sample_ref: str, parents: list[str], records: list[dict], mast
     _row1 = lambda *a, **k: {**_row("1", *a, **k), "section": title1}
     m_rec = next((r for r in records if r.get("Record Type", "").startswith("Master")), {})
     h_recs = [r for r in records if r.get("Record Type", "").startswith("House")]
-    h_rec = h_recs[0] if h_recs else {}
+    h_rec = house_pick.choose(records, "House")[0] or {}                  # a House with a real bill, not an extra empty one
     m = {_key(f): f["value"] for f in master_fields}
     h = {_key(f): f["value"] for f in house_fields}
     mawb = m.get(("Air Waybill", "Air Waybill Number"), "") or m_rec.get("Bill No.", "")

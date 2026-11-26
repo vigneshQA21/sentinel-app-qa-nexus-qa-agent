@@ -56,7 +56,7 @@ FORMS: list[tuple[str, str]] = [
 PLACEHOLDER = re.compile(r"^\s*(?:enter\b.*|select(?:\s+option)?|choose\b.*|-+)\s*$", re.I)
 
 # value shape a labelled value must have (otherwise the next candidate is tried)
-SHAPE = {r"^seal( no\.?)?\d*$": r"[A-Z]{2,}\d{4,}|\d{6,}", r"^bill no\.?$|^b/?l no\.?$": r"\b(?=[A-Z0-9-]*\d)(?=[A-Z0-9-]*[A-Z])[A-Z0-9-]{6,}\b|\b\d{8,}\b",
+SHAPE = {r"^seal( no\.?)?\d*$": r"\b(?![A-Z]{4}\d{7}\b)[A-Z]{2,}\d{4,}\b|\b\d{6,}\b", r"^bill no\.?$|^b/?l no\.?$": r"\b(?=[A-Z0-9-]*\d)(?=[A-Z0-9-]*[A-Z])[A-Z0-9-]{6,}\b|\b\d{8,}\b",
          r"^booking( no\.?)?$": r"\d{4,}|[A-Z]{2,}\d{3,}", r"^voyage( no\.?| number)?$": r"\d"}
 
 
@@ -158,7 +158,14 @@ def extract_from_source(src: dict, label: str, value: str) -> tuple[str, str]:
                     return name, f"by position from the box 'VESSEL' on page {pg} (prints '{v}'; voyage {voy})"
             return v, f"by position from the box '{key.upper()}' on page {pg}"
     if PLACEHOLDER.match(value or ""):
-        value = ""                                                        # 'Enter No' / 'Select option': Nexus shows an empty field
+        value = ""
+    if re.search(r"^seal( no\.?)?\d*$", lab) and src.get("pdf") and not src.get("scanned") and value:
+        cell = next((c for c in _layout_cells(src) if re.search(r"\b" + re.escape(value.strip()) + r"\b", c)), "")
+        if cell:
+            return value.strip(), "the seal number printed on the document"
+                                                        # 'Enter No' / 'Select option': Nexus shows an empty field
+    if re.search(r"^ctn po[ld] (city|ctry)$", lab) and len((value or "").strip()) <= 3:
+        return f"{NO_VALUE} as a code (Nexus shows the location code '{value}'; the document prints the port name)", "location code"
     v, how = extract(label, value, src.get("text", ""))
     if how == "matching line on the document" and src.get("pdf") and not src.get("scanned"):
         cell = matching_cell(_layout_cells(src), value)
