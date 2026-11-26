@@ -131,3 +131,12 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | Files | new `nexus_agent/house_pick.py`; used by `sea_check.py`, `house_check.py`, `mhfields.py` (no crash on 'House 1'), `directbl.py`, `master_check.py`; tests `tests/test_house_pick.py` |
 | Extraction | Seal No never the container number; location codes (HKG / JP) say the document prints the port name instead of matching a random cell |
 | Tests | 250 passed |
+
+## Field-level precision + Japan test data corrections (2026-11-26)
+| Item | Detail |
+| --- | --- |
+| Strict layer | `nexus_agent/strict_check.py` in every Sea check: a field must be inside ITS OWN box (blank box with a Nexus value = REVIEW, value from another box = FAIL; text bills only); a party must be the same party (name at the start of its box, legal words / branch suffix ignored: CONTEC ≠ TAIWAN CONTEC, EVEX GLOBAL FREIGHT ≠ GLOBAL FREIGHT SOLUTION); Shipper and Consignee on one Party ID while the bill prints two parties = FAIL. Only makes rows stricter |
+| Label check | `nexus_agent/label_check.py`: a sample labelled with one document type whose printed title is another is listed before any run |
+| Japan workbook | SEA-JPN-002/102, 005/105, 008/108: the files filed as "DEBIT NOTE" print INVOICE -> expected Invoice -> House (files renamed). 006/106 keep the real Debit Note / Credit Note -> Master (rule: Debit Note always under Master) |
+| Found by it | IPA/11 shared Party ID CONCOLITM, IPA/11 Master Shipper EVEX vs GLOBAL FREIGHT SOLUTION, IPA/12 SERVIMEX vs SERPA, blank Place of Delivery boxes filled by Nexus (IPA/12, IPA/14) |
+| Tests | 258 passed |
