@@ -37,7 +37,8 @@ def write_csv(cfg: Config, results: list[dict]):
         w = csv.writer(fh)
         w.writerow(["record", "ipa", "source", "section", "field", "document_says", "nexus_shows", "class", "result", "note"])
         for r in results:
-            for x in r["rows"] or [{"field": "", "expected_from_document": "", "shown_in_nexus": "", "class": r["verdict"], "result": r["verdict"], "note": r["message"]}]:
+            from .docextract import fill_blanks
+            for x in fill_blanks(r["rows"] or [{"field": "", "expected_from_document": "", "shown_in_nexus": "", "class": r["verdict"], "result": r["verdict"], "note": r["message"]}]):
                 w.writerow([r["case_id"], r["ipa"], r["source"], x.get("section", ""), x["field"], x["expected_from_document"], x["shown_in_nexus"],
                             x.get("class", ""), x["result"], x["note"]])
     return path

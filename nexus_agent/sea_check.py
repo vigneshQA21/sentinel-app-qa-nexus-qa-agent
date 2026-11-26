@@ -16,7 +16,7 @@ from .master_check import MONTHS, _legal, attach_details as attach_master, norm,
 from .house_check import attach_details as attach_house
 from .nexus.session import SessionExpired
 from .nexus.uat import UatPages, map_house_panel, map_master_panel, read_panel_inputs, read_party_ids
-from . import docvalue
+from . import docextract, docvalue
 from .pdf_split import detect_parts_sea, page_texts_layout
 from .store import Store
 from .testsuite import Case, sample_files
@@ -30,11 +30,43 @@ HELD_BY_NEXUS = {"Job Number", "Page Nos.", "Branch", "Job Type", "Status", "Shi
 UNITS = {"KGS": {"K", "KG", "KGS", "KILOS"}, "KG": {"K", "KG", "KGS"}, "CBM": {"CBM", "M3"}, "PCS": {"PCS", "PC", "PKG", "PKGS"}}
 
 
+def page_map_source(cfg: Config, case: Case, kind: str, bill_no: str = "") -> dict | None:
+    """The bill's exact pages from samples/<case>/_pages.json ({"MBL": {"file": "<path under the samples folder>", "pages": [1, 2]}, "HBL": ...}),
+    written when a sample is built from known documents. With a bill number, the mapped bill that prints it wins."""
+    import json
+    from .testsuite import samples_root
+    pm = samples_root(cfg) / case.id / "_pages.json"
+    if not pm.exists():
+        return None
+    try:
+        m = json.loads(pm.read_text(encoding="utf-8"))
+    except ValueError:
+        return None
+    def load(entry):
+        f = samples_root(cfg) / entry["file"]
+        data = f.read_bytes()
+        raw = page_texts_layout(data, ocr=False)
+        idx = [p - 1 for p in entry["pages"] if 0 < p <= len(raw)]
+        scanned = {i for i in idx if len(raw[i].strip()) < 25}
+        texts = page_texts_layout(data, ocr=True) if scanned else raw
+        return {"pdf": f, "pages": [i + 1 for i in idx], "text": "\n".join(texts[i] for i in idx), "scanned": bool(scanned), "page_map": True}
+    cands = {k: v for k, v in m.items() if k in ("MBL", "HBL")}
+    if bill_no and norm(bill_no):
+        for k, e in cands.items():
+            src = load(e)
+            if norm(bill_no) in norm(src["text"]):
+                return src
+    return load(cands[kind]) if kind in cands else None
+
+
 def sea_source(cfg: Config, case: Case, kind: str, bill_no: str = "") -> dict | None:
     """The MBL / HBL part of the case's PDF: {pdf, pages (1-based), text, scanned}.
     With `bill_no` (the bill number Nexus shows) the bill that prints that number is used, whatever the screening called it:
     a sample may have two bills and Nexus may take the first one as the Master."""
     sea = cfg.settings["pdf_split_sea"]
+    mapped = page_map_source(cfg, case, kind, bill_no)
+    if mapped:
+        return mapped
     for f in [x for x in sample_files(cfg, case) if x.suffix.lower() == ".pdf"]:
         data = f.read_bytes()
         raw = page_texts_layout(data, ocr=False)
@@ -218,6 +250,15 @@ def compare_sea(fields: dict, src: dict) -> list[dict]:
             if res in ("FAIL", "REVIEW") and box_key and box_key in boxes and not doc_value:
                 doc_value = _box_value(boxes, box_key) + "  (Nexus value does not look like this box: check by eye)"
             r = row(name, doc_value, value, res, note)
+        doc_now = str(r.get("expected_from_document") or "").strip()
+        if not doc_now or doc_now.startswith("(printed on the bill"):          # rule: 'Document says' holds the extracted value, never blank
+            if label in HELD_BY_NEXUS:
+                r["expected_from_document"] = docextract.NO_VALUE + " (assigned or held by Nexus)"
+            else:
+                dv, how = docextract.extract_from_source(src, label, value)
+                r["expected_from_document"] = dv
+                if how:
+                    r["note"] = f"{r['note']} [document value read {how}, bill page {', '.join(str(p) for p in src.get('pages', []))}]".strip()
         r["section"], r["label"] = section, label
         rows.append(r)
     return rows

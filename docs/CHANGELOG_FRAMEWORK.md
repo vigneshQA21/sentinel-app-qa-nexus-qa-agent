@@ -112,3 +112,13 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | India unchanged | `./nx cases` finds every sample; an offline dry-run of the 23 daily cases lists the same 32 emails with no SAMPLE_MISSING |
 | Tests | Offline gate: 226 passed, 0 skipped |
 | Rollback | `git revert <commit>` |
+
+## Document says is never blank: precise extraction for the whole framework (2026-11-26)
+| Item | Detail |
+| --- | --- |
+| Rule | Every checked field shows the value extracted from the document; "no value found in the document" when there is none; never blank (all tenants, whole framework) |
+| Files | `nexus_agent/docextract.py` (new: labelled values, value forms, matching line, NO_VALUE, fill_blanks), `nexus_agent/docvalue.py` (small boxes read by position: heading must start its cell in capitals, value directly under it in its column, rejects terms text / heading rows / bracketed notes), `nexus_agent/sea_check.py` (page map `_pages.json`; every row gets the document value and where it was read), safety net in `master_check.write_report`, `mhfields`, `drafts_check`; tests `tests/test_docextract.py`, `tests/test_sea.py` |
+| Checked on a real bill (SEA-REG-009 sample) | Port of Discharge MUNDRA, INDIA; Place of Delivery PATLI, INDIA; Port of Loading FREDERICIA, DENMARK; Vessel ONE RELIABILITY 020E; Place of issue AARHUS; Bill No ONEYAARG05243800; Move Type FCL / FCL CY / CY; Voyage: no value found (printed inside the vessel box) |
+| Verdicts | Unchanged (shown values only); deciding verdicts on the extracted value is a separate step, gated by the Golden baseline |
+| Japan | `_pages.json` per sample: exact Master / House pages; 008's Master from 009's document, 003's Houses from the telex release |
+| Tests | 234 passed |

@@ -542,8 +542,9 @@ def write_report(cfg: Config, results: list[dict], prefix: str = "master_data") 
         w = csv.writer(fh)
         w.writerow(["case_id", "ipa", "source", "section", "field", "expected_from_document", "shown_in_nexus", "result", "note"])
         for r in results:
-            for x in r["rows"] or [{"field": "", "expected_from_document": "", "shown_in_nexus": "",
-                                    "result": r["verdict"], "note": r["message"]}]:
+            from .docextract import fill_blanks
+            for x in fill_blanks(r["rows"] or [{"field": "", "expected_from_document": "", "shown_in_nexus": "",
+                                                "result": r["verdict"], "note": r["message"]}]):
                 w.writerow([r["case_id"], r["ipa"], r["source"], x.get("section", ""), x["field"], x["expected_from_document"],
                             x["shown_in_nexus"], x["result"], x["note"]])
     return path
