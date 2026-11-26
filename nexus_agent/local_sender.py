@@ -177,9 +177,11 @@ class LocalSender:
         stem = path.stem.upper()
         if stem.startswith(ref.upper()):
             stem = stem[len(ref):]
-        for tok in re.split(r"[^A-Z0-9]+", stem):
-            if tok in self.ld["filename_types"]:
-                return self.ld["filename_types"][tok]
+        toks = [t for t in re.split(r"[^A-Z0-9]+", stem) if t]
+        for i, tok in enumerate(toks):
+            for cand in ((tok + toks[i + 1]) if i + 1 < len(toks) else "", tok):   # 'DEBIT NOTE' = DEBITNOTE, 'PACKING LIST' = PACKINGLIST
+                if cand and cand in self.ld["filename_types"]:
+                    return self.ld["filename_types"][cand]
         if path.suffix.lower() == ".pdf":
             try:
                 for lb in detect_parts(page_texts(path.read_bytes()), self.cfg.settings["pdf_split"]["keywords"]):

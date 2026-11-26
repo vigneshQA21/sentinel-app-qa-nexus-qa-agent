@@ -113,6 +113,10 @@ pdf_split_sea:
   - PACKING LIST
   debitnote:
   - DEBIT NOTE
+  agent_bill_to:                 # an INVOICE with one of these anywhere on it = Debit Note -> Master (debit_rule.py; Japan sheet Sl 19)
+  - LOGISTEED                    # any LOGISTEED party (Express, India Private Limited, China ...), partial match
+  agent_bill_starts:             # ... or an INVOICE that starts with one of these
+  - LOGISTEED
   manifest:
   - CARGO MANIFEST
   - MANIFEST
@@ -259,6 +263,7 @@ validation:
     PO:
     - SHIPPER DOCUMENT
   fail_on_unexpected: false
+  agent_debit_note_gap: known    # Nexus shows agent debit notes as Invoice/House: KNOWN until Nexus implements it, then 'fail'
   evidence: true
 bugsheet:
   spreadsheet_id: TO-BE-PROVIDED

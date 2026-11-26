@@ -51,6 +51,14 @@ cases from the IPA: IPA/1 -> SEA-JPN-007, IPA/2 -> SEA-JPN-005, IPA/6 -> SEA-JPN
 | 10 | IPA/2 | Carrier Code filled for Master and House | field check (Carrier Code is no longer "held by Nexus": empty = FAIL) | Yes |
 | 11 | IPA/1 | Voyage No. = the voyage printed ("639N", not "89 639N") | positional extraction of the vessel/voyage box, exact compare | Yes |
 | 12 | IPA/11 | Houses count = HBLs in the sample (1); no House created from an MBL continuation page (extra House = FAIL row 'Pre-alert · additional House'); the sample's House is the one validated | House check + Houses count vs page map (`_pages.json`) | Yes |
+| 13 | IPA/11 | House Shipper = the bill's Shipper party (not the Consignee's Party ID) | strict party / shared Party ID check | Yes |
+| 14 | IPA/11 | Master Shipper = the bill's party; a party not in the party master stays unmatched | strict party check | Yes |
+| 15 | IPA/12 | Master Shipper = SERPA LOGISTICA (not SERVIMEX) | strict party check | Yes |
+| 16 | IPA/14 | House Consignee Address = the bill's (Meguro-ku), not the party master's (Minato-ku) | Sea field check, address vs Consignee box | Yes |
+| 17 | IPA/11, 12, 14 | Master Consignee Address filled | Sea field check (empty in Nexus = FAIL) | Yes |
+| 18 | IPA/11 | House Consignee Address = the bill's (Komaki-city, Aichi) | Sea field check | Yes |
+| 19 | IPA/12, IPA/14 | Enhancement: an INVOICE with a LOGISTEED party = Debit Note -> Master, not in the Master Document XML | `debit_rule.py` (mapping + docs, KNOWN until built) + `./nx check-doc-xml` after a Push | Yes (XML: after a Push) |
+| 20 | IPA/12 | Booking confirmation: all 4 pages one Shipper Document under the House, none left in Unmatched | `validate.split_documents` in the mapping check | Yes |
 
 New rows added later are picked up automatically: a row without a mapped check is listed as "NO CHECK YET" in the report (never silently skipped).
 

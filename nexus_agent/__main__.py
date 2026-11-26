@@ -191,6 +191,10 @@ def _main(argv: list[str] | None = None) -> int:
     dbl.add_argument("--xml", help="folder with the XML files Nexus pushed (Job XMLs 'NEXUS PUSH CONSOL' / 'NEXUS PUSH HOUSE'); default samples/<case>/xml if it exists")
     dbl.add_argument("--headless", action="store_true", help="hide the browser (default: shown)")
 
+    dx = sub.add_parser("check-doc-xml", help="Japan bug sheet Sl 19: no Debit Note in the Master Document XML Nexus pushed to CargoWise ('NEXUS PUSH DOC', ForwardingConsol); reads the PDFs inside the XML")
+    dx.add_argument("--cases", nargs="+", required=True, help="case ids whose samples/<case>/xml folder holds the pushed XML files")
+    dx.add_argument("--xml", help="folder with the pushed XML files instead of samples/<case>/xml (one case)")
+
     vd = sub.add_parser("validate-drafts", help="air manifest scenarios: after ONLY the Manifest was sent, check the Master draft and House draft numbers in the Nexus UI")
     vd.add_argument("--cases", nargs="+", required=True, help="scenario case ids, e.g. AMF-001 AMF-002")
 
@@ -457,6 +461,20 @@ def _main(argv: list[str] | None = None) -> int:
         from . import bugs as B
         _note_bugs(cfg, groups=[(B.DOC_TITLES[k], [r for r in results if r["kind"] == k]) for k in shown_kinds])
         return 0 if all(r["verdict"] == "PASS" for r in results) else 2
+
+    if args.cmd == "check-doc-xml":
+        from . import doc_xml_check as DX
+        sea = cfg.settings.get("pdf_split_sea") or {}
+        bad = 0
+        for case in args.cases:
+            xdir = Path(args.xml) if args.xml else cfg.path(cfg.settings["testsuite"]["samples_dir"]) / case / "xml"
+            files = {f.name: f.read_bytes() for f in sorted(xdir.glob("*.xml"))} if xdir.is_dir() else {}
+            rows = DX.check_master_doc_xml(files, sea.get("agent_bill_to") or ["LOGISTEED"], sea.get("agent_bill_starts") or ["LOGISTEED"])
+            print(f"\n{case}  ({xdir})")
+            for r in rows:
+                print(f"  {r['result']:8} {r['label']}\n           Nexus: {r['shown_in_nexus']}\n           {r['note']}")
+            bad += sum(r["result"] == "FAIL" for r in rows)
+        return 2 if bad else 0
 
     if args.cmd == "validate-directbl":
         from . import directbl as DB

@@ -98,20 +98,25 @@ class Verdict:
     unexpected: list[str] = field(default_factory=list)
 
     def passed(self, fail_on_unexpected: bool = False) -> bool:
-        return all(r.status in ("PASS", "REVIEW") for r in self.results) and not (fail_on_unexpected and self.unexpected)
+        return all(r.status in ("PASS", "REVIEW", "KNOWN") for r in self.results) and not (fail_on_unexpected and self.unexpected)
 
 
 def compare(expected: dict[str, str | None], actual: list[dict], aliases: dict[str, list[str]],
-            accept: dict[str, set[str]] | None = None, alternates: dict[str, list[str]] | None = None) -> Verdict:
+            accept: dict[str, set[str]] | None = None, alternates: dict[str, list[str]] | None = None,
+            gaps: dict[str, tuple[str, str, str]] | None = None) -> Verdict:
     """actual = [{section, name, type}] from the Nexus page. accept = extra sections that count as correct for a
-    type, e.g. {"MANIFEST": {"Manifest"}}: Nexus lists the manifest as its own parent, tied to the master."""
+    type, e.g. {"MANIFEST": {"Manifest"}}: Nexus lists the manifest as its own parent, tied to the master.
+    gaps = {expected type: (type Nexus shows instead, verdict, note)} for a known Nexus feature gap, e.g. the agent's
+    debit note shown as an Invoice (debit_rule.py): reported with that verdict (KNOWN) instead of 'not found'."""
     accept = accept or {}
     alternates = alternates or {}
+    gaps = {k: g for k, g in (gaps or {}).items() if k in expected}
     found: dict[str, list[tuple[str, str]]] = {}
     unexpected = []
     for d in actual:
         canon = canonical(d.get("type", ""), aliases) or canonical(d.get("name", ""), aliases)
-        if not canon or (canon not in expected and not any(canon in alts for k, alts in alternates.items() if k in expected)):
+        if not canon or (canon not in expected and not any(canon in alts for k, alts in alternates.items() if k in expected)
+                         and not any(canon == g[0] for g in gaps.values())):
             unexpected.append(f"{d.get('name') or d.get('type')} in {d['section']}")
             continue
         found.setdefault(canon, []).append((d["section"], d.get("name", "")))
@@ -119,7 +124,11 @@ def compare(expected: dict[str, str | None], actual: list[dict], aliases: dict[s
     for canon, want in expected.items():
         have = found.get(canon, [])
         alt = [(sec, nm) for a in alternates.get(canon, []) for sec, nm in found.get(a, [])]
-        if not have and alt and (want is None or any(sec == want for sec, _ in alt)):
+        gap = gaps.get(canon)
+        if not have and gap and found.get(gap[0]):
+            where = ", ".join(sorted({sec for sec, _ in found[gap[0]]}))
+            v.results.append(DocResult(canon, want, gap[1], f"{gap[2]} (Nexus: {gap[0].title()} in {where}, expected {canon.title()} in {want})"))
+        elif not have and alt and (want is None or any(sec == want for sec, _ in alt)):
             v.results.append(DocResult(canon, want, "REVIEW", f"Nexus shows it as another type, in {alt[0][0]}"))
         elif not have:
             v.results.append(DocResult(canon, want, "FAIL", "not found in Nexus"))
@@ -130,6 +139,32 @@ def compare(expected: dict[str, str | None], actual: list[dict], aliases: dict[s
             where = ", ".join(sorted({sec for sec, _ in have}))
             v.results.append(DocResult(canon, want, "FAIL", f"found in {where}, expected {want}"))
     return v
+
+
+def split_documents(parents: list[dict]) -> list[dict]:
+    """One document split across Linked and Unmatched (IPA/12/2026-27, 26 Nov 2026: the 4-page booking confirmation had 1 page
+    linked as SHIPPERDOC under the House and 3 pages left in Unmatched Documents as SHIPPERDOC). Expected: all pages of a document
+    under one parent. The viewer repeats the same Unmatched list under every parent (max over parents, not the sum), and an
+    Unmatched list can repeat a linked document page for page - that is not a split, so only a different page count is one.
+    Returns [{label, parent_kind, linked, unmatched, detail}]."""
+    linked: dict[str, int] = {}
+    where: dict[str, list[str]] = {}
+    unmatched: dict[str, int] = {}
+    for p in parents:
+        for g in p.get("linked", []):
+            linked[g["label"]] = linked.get(g["label"], 0) + max(g.get("pages", 0), 1)
+            where.setdefault(g["label"], []).append(p.get("parent") or p.get("kind", ""))
+        for g in p.get("unmatched", []):
+            unmatched[g["label"]] = max(unmatched.get(g["label"], 0), max(g.get("pages", 0), 1))
+    out = []
+    for label, u in unmatched.items():
+        n = linked.get(label, 0)
+        if n and u != n:
+            parent = ", ".join(dict.fromkeys(where[label]))
+            out.append({"label": label, "parent_kind": parent.split(" ")[0], "linked": n, "unmatched": u,
+                        "detail": f"document split: {n} page(s) of {label} linked under {parent}, {u} more page(s) of {label} left in "
+                                  f"Unmatched Documents; all {n + u} pages should be one document under one parent"})
+    return out
 
 
 def plan_wait(elapsed_s: float | None, initial_s: float, max_s: float, explicit: float | None = None) -> tuple[float, float]:
@@ -294,6 +329,7 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     in_pre = pre_ipas
     in_others = ui.capture_others(f"{case.id} |") if row["evidence"] else []      # follow-ups / duplicates of this case
     in_others = [i for i in in_others if i and i != info["ipa"]]
+    splits = split_documents(parents)                    # before the filter below hides the Unmatched pages of a linked type
     linked_anywhere = {g["label"] for p in parents for g in p["linked"]}
     for p in parents:                          # a parent's Unmatched list repeats documents linked under other parents: those are not unmatched
         for k in ("unmatched", "unclassified"):
@@ -308,8 +344,15 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
         row.update(verdict="ERROR", details="could not read an expected mapping from the test case")
         return row
     alternates = {k: [x.upper() for x in vals] for k, vals in (cfg.settings["validation"].get("type_alternates") or {}).items()}
-    v = compare(expected, actual, cfg.settings["validation"]["type_aliases"], accept={"MANIFEST": {"Manifest"}}, alternates=alternates)
+    from . import debit_rule
+    gaps = ({"DEBIT NOTE": ("INVOICE", debit_rule.gap_result(cfg.settings["validation"]), debit_rule.GAP_NOTE)}
+            if "DEBIT NOTE" in expected and debit_rule.sample_has_agent_bill(cfg, case) else None)
+    v = compare(expected, actual, cfg.settings["validation"]["type_aliases"], accept={"MANIFEST": {"Manifest"}}, alternates=alternates,
+                gaps=gaps)
     ok = v.passed(cfg.settings["validation"].get("fail_on_unexpected", False))
+    for s in splits:
+        v.results.append(DocResult(s["label"], s["parent_kind"], "FAIL", s["detail"]))
+        ok = False
     mh_lines: list[str] = []
     if case.id.upper().startswith(("MH-", "SEA-MH-")):                      # air multi-house: House count, each HAWB, manifest, duplicate page
         from .multihouse import check_parents, expected_for_case, verdict as mh_verdict

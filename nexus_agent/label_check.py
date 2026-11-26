@@ -7,6 +7,8 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from .debit_rule import is_agent_bill
+
 # type label -> the title words that confirm it, and titles of other types that contradict it
 TITLES = {
     "DEBIT NOTE": r"\bDEBIT\s+NOTE\b",
@@ -25,29 +27,32 @@ def title_types(head: str) -> list[str]:
     return [t for _, t in sorted(hits)]
 
 
-def check_file(name: str, head: str) -> str:
-    """'' when fine; else why the label and the printed title disagree."""
+def check_file(name: str, head: str, billed_to: list[str] | tuple[str, ...] = (), starts: list[str] | tuple[str, ...] = ()) -> str:
+    """'' when fine; else why the label and the printed title disagree. An INVOICE billed to one of `billed_to` (LOGISTEED EXPRESS)
+    is the agent's Debit Note (debit_rule.py), so a DEBIT NOTE label on it is right, and an INVOICE label is the wrong one."""
     m = LABEL.match(name)
     if not m or m.group(1).strip() not in TITLES:
         return ""
     label = m.group(1).strip()
+    if is_agent_bill(head, billed_to, starts):
+        return "" if label == "DEBIT NOTE" else f"labelled {label} but it is an invoice with {(list(billed_to) + list(starts))[0]} on it: a DEBIT NOTE"
     found = title_types(head)
     if not found or label in found:
         return ""
     return f"labelled {label} but the document's title says {found[0]}"
 
 
-def scan(samples_dir: Path, head_chars: int = 400) -> list[tuple[str, str]]:
+def scan(samples_dir: Path, billed_to: list[str] | tuple[str, ...] = (), starts: list[str] | tuple[str, ...] = (), head_lines: int = 60) -> list[tuple[str, str]]:
     """[(file, problem)] for every labelled sample PDF whose printed title contradicts its label (text PDFs only)."""
-    import pdfplumber
+    from .pdf_split import page_texts_layout
     out = []
     for f in sorted(samples_dir.glob("*/*.pdf")):
         try:
-            with pdfplumber.open(f) as pdf:
-                head = (pdf.pages[0].extract_text() or "")[:head_chars]
+            first = page_texts_layout(f.read_bytes(), ocr=False)[0]
         except Exception:
             continue
-        why = check_file(f.name, head)
+        head = "\n".join([l for l in first.splitlines() if l.strip()][:head_lines])
+        why = check_file(f.name, head, billed_to, starts)
         if why:
             out.append((f"{f.parent.name}/{f.name}", why))
     return out

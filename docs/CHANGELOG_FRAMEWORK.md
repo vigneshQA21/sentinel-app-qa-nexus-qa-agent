@@ -140,3 +140,29 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | Japan workbook | SEA-JPN-002/102, 005/105, 008/108: the files filed as "DEBIT NOTE" print INVOICE -> expected Invoice -> House (files renamed). 006/106 keep the real Debit Note / Credit Note -> Master (rule: Debit Note always under Master) |
 | Found by it | IPA/11 shared Party ID CONCOLITM, IPA/11 Master Shipper EVEX vs GLOBAL FREIGHT SOLUTION, IPA/12 SERVIMEX vs SERPA, blank Place of Delivery boxes filled by Nexus (IPA/12, IPA/14) |
 | Tests | 258 passed |
+
+## Japan rule: invoice with LOGISTEED EXPRESS = Debit Note -> Master (2026-11-26)
+| Item | Detail |
+| --- | --- |
+| Rule (user) | A document titled INVOICE that has LOGISTEED EXPRESS anywhere on it, or that starts with LOGISTEED, is a Debit Note and belongs to the Master. Replaces the "Invoice -> House" correction above for 002/102, 005/105, 008/108 |
+| Nexus | Does not implement it yet (shows Invoice under House). Reported as KNOWN ("Nexus feature not implemented"), not FAIL, no new sheet bug; `validation.agent_debit_note_gap: fail` once Nexus has the feature |
+| Files | new `nexus_agent/debit_rule.py`; `pdf_split.sea_page_labels` (such pages = DEBITNOTE); `validate.compare` (`gaps` -> KNOWN, KNOWN passes); `docs_check` (Debit Note not under Master -> fields checked on the House Invoice panel + KNOWN type row); `label_check` (DEBIT NOTE label right for such invoices); `local_sender.individual_type` ('DEBIT NOTE' in a file name = DEBITNOTE); `config/japan/settings.yaml` (`agent_bill_to: [LOGISTEED EXPRESS]`, `agent_bill_starts: [LOGISTEED]`, `agent_debit_note_gap: known`) |
+| Japan workbook | 002/102, 005/105, 008/108 back to Debit Note -> Master; 008/108 has two (Airlog invoice 3014590 and the profit-share invoice 3014750); files renamed "DEBIT NOTE - ..." |
+| Not affected | SEA-JPN-001 commercial invoice (to CONTEC) stays Invoice -> House; 006/106 real debit note unchanged; India has no names configured (rule off) |
+| Tests | 264 passed (`tests/test_debit_rule.py`) |
+
+## Split-document check (2026-11-26)
+| Item | Detail |
+| --- | --- |
+| Found by eye | IPA/12/2026-27: the 4-page MAERSK booking amendment had 1 page linked as SHIPPERDOC under the House and 3 pages left in Unmatched Documents as SHIPPERDOC (Japan sheet Sl 20). Missed because the mapping check drops Unmatched groups whose label is linked somewhere (meant for the viewer repeating linked documents) |
+| Check | `validate.split_documents(parents)`, run before that filter: a label both linked and in Unmatched with a different page count = FAIL "document split: n page(s) linked under <parent>, m more left in Unmatched; all n+m pages should be one document". The same page count is still read as a repeat (a 1+1 split is not caught) |
+| Applies to | every UAT mapping check (Air and Sea, all tenants) |
+| Tests | 266 passed (`tests/test_split_documents.py`) |
+
+## LOGISTEED rule widened + Master Document XML check (2026-11-26)
+| Item | Detail |
+| --- | --- |
+| Rule | Japan sheet Sl 19 (Enhancement, Yamini): any LOGISTEED party (partial match: LOGISTEED EXPRESS, Logisteed India Private Limited ...) on an INVOICE = Debit Note -> Master. `agent_bill_to: [LOGISTEED]`. Same 7 sample documents as before; no India / Dubai sample matches |
+| XML check | new `nexus_agent/doc_xml_check.py` + `./nx check-doc-xml --cases <CASE> [--xml folder]`: every 'NEXUS PUSH DOC' XML of the Consol (ForwardingConsol) is read; a Debit Note attached (PDF titled DEBIT NOTE, an INVOICE with a LOGISTEED party, or Nexus type / file name saying Debit Note) = FAIL. The PDFs inside the XML are read, so a debit note pushed as 'INV' is caught. NOT_RUN without pushed files (the agent never pushes) |
+| Checked on | the India reference Master Document XML (PASS, 1 MBL); a scratch copy with the IPA/12 SERPA invoice added as 'INV' (FAIL, as expected) |
+| Tests | 269 passed (`tests/test_doc_xml_check.py`) |

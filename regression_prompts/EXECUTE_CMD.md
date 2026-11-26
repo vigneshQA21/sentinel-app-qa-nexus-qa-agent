@@ -166,5 +166,11 @@ No browser tab opens during a run any more. The live status page is still writte
 - Results are recorded in the Sea workbook (columns Last Known Nexus Job, Daily Result, Nexus Job (today), Tester / Remarks), today's run report (`./nx runreport`), the bug sheet (on your yes, with the screenshots and the pre-alert PDFs) and `docs/PROGRESS_LOG.md`.
 - Findings you confirmed as not a bug (party-master names/addresses/postal codes, carrier name, Pol/Pod codes, freight payment, FCL/LCL, volume and unit reviews) are marked NOT_A_BUG and shown as KNOWN in later runs.
 
+## Japan: debit notes, split documents, Master Document XML (26-Nov-2026)
+- Rule (Japan sheet Sl 19): a document titled INVOICE with a LOGISTEED party on it (or starting with LOGISTEED) is a Debit Note -> Master. Config: `config/japan/settings.yaml` `pdf_split_sea.agent_bill_to` / `agent_bill_starts`. Nexus does not do it yet: Invoice under House is reported KNOWN (`validation.agent_debit_note_gap: known`; set `fail` once Nexus has the feature).
+- Split documents (Japan sheet Sl 20): every mapping check reports FAIL when a document type is linked AND has more pages in Unmatched Documents (e.g. 1 page linked, 3 unmatched).
+- Debit Note in the CargoWise Master Document XML: after a Push, save the pushed XML files in `samples/japan/<CASE>/xml/` and run `./nx --tenant japan check-doc-xml --cases SEA-JPN-002` (or `--xml <folder>`). Reads the PDFs inside every 'NEXUS PUSH DOC' file of the Consol: a Debit Note there = FAIL. Nothing is pushed by the agent.
+- Reference only (never sent): `knowledge_base/japan/reference/debit_note_scenarios/` (grouped copies of the LOGISTEED-invoice shipments).
+
 ## Evidence in Google Drive
 `./nx upload-evidence [--date yyyy-mm-dd]` (also run by `run_regression.sh` at the end of every run) puts the day's evidence in `Regression testing / Nexus Automated Test Evidence / <yyyy-mm-dd> /`: `01 Test runs/<CASE> - <IPA>/` (screenshots), `02 Bugs/` (evidence of bugs logged that day) and `03 Report/` (the Automated test report as PDF). Bugs are therefore separated by date. Earlier bug evidence stays in `Reg - Air & Sea / dd-mm-yyyy`.
