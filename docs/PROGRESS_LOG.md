@@ -376,3 +376,4 @@ The agent (Claude) also adds an entry whenever we finish a piece of work.
 ## 2026-11-26
 
 - Rule applied to the whole framework: 'Document says' is never blank (extracted value or 'no value found in the document'); positional small-box reader; Japan page maps
+- Precise extraction, round 2: title-case box headings read by position when they fill their cell; empty boxes reported as 'no value found in the document (the box ... is blank)' instead of the next line; vessel box split into vessel + voyage; date taken from 'Place and date of issue'; banners crossing a box edge rejected; forms without printed labels give the exact value cell; addresses matched over up to 4 lines. Japan re-check: SEA-JPN-008 Place of Delivery box is blank on the bill while Nexus shows NAGOYA (word-presence verdict said PASS; to verify by eye). 241 tests.

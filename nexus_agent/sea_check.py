@@ -224,8 +224,15 @@ def compare_sea(fields: dict, src: dict) -> list[dict]:
                     r = row(name, "", "", "INFO", f"the bill has no '{box_key}' box that could be read; nothing to compare")
                 else:
                     why = empty_finding(section, label, text)
-                    r = (row(name, "", "", "REVIEW" if src["scanned"] else "FAIL", f"MISSING: empty in Nexus, but {why} (box not located by position: check by eye)")
-                         if why else row(name, "", "", "INFO", "empty field, nothing to compare"))
+                    party_name = next((g["value"] for g in flds if g["section"] == section and g["label"] == "Name" and (g["value"] or "").strip()), "")
+                    pname, paddr = docextract.party_block(docextract._layout_lines(src), party_name) if (party_name and not src.get("scanned")) else ("", "")
+                    found = paddr if label == "Address" else pname
+                    if why and found:
+                        r = row(name, f"{found}  [bill page {', '.join(str(p) for p in src.get('pages', []))}, block under '{pname}']", "",
+                                "FAIL", f"MISSING: empty in Nexus ({section}), the bill prints this {label.lower()} under the party name")
+                    else:
+                        r = (row(name, "", "", "REVIEW" if src["scanned"] else "FAIL", f"MISSING: empty in Nexus, but {why} (box not located by position: check by eye)")
+                             if why else row(name, "", "", "INFO", "empty field, nothing to compare"))
             else:
                 why = empty_finding(section, label, text)
                 if why:
