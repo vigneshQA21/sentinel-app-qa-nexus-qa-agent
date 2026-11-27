@@ -176,10 +176,11 @@ pdf_split:
 testsuite:
   workbook: knowledge_base/japan/testcases/Japan_Sea_Regression.xlsx
   sheet_tab: Japan Sea - Regression
-  id_pattern: ^SEA-JPN-\d{3}$
+  id_pattern: ^(SEA-JPN-\d{3}|JPN-AIR-\d{3})$   # JPN-AIR-nnn = Air cases (Air checkers), 27 Nov 2026
   scenarios:
   - Consolidated Mapping
   - Individual Mapping
+  - As Received
   exclude_doc_contains: []
   sample_ref_pattern: (JPN-REG-\d{3})
   extra_cases: []

@@ -65,7 +65,9 @@ def candidates_from_results(results: list[dict], title: str, cases: dict[str, Ca
             out.append({"case_id": r["case_id"], "fj": (case.sample_ref if case else "") or "", "ipa": r.get("ipa", ""),
                         "doc_file": re.sub(r" page [\d-]+$", "", r.get("source", "") or ""),
                         "document": title, "field": field, "expected": exp, "shown": shown, "result": x["result"],
-                        "note": x.get("note", ""), "evidence": str(evidence) if evidence.name and evidence.exists() else "",
+                        "note": x.get("note", ""),
+                        "evidence": x["shot"] if x.get("shot") and Path(x["shot"]).exists()        # the failing field itself (field_shots)
+                        else str(evidence) if evidence.name and evidence.exists() else "",
                         "fingerprint": fingerprint(r["case_id"], title, field, exp, shown)})
     return out
 

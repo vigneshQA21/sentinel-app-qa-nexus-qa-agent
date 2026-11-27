@@ -200,7 +200,13 @@ def compare_house(doc: dict, house_no: str | None, master_doc: dict | None, ui: 
     put("Reference", "Shippers Reference", _exact("", doc["reference"], ui.get("reference")))
     ex, ac = parse_date(doc["executed_on"]), parse_date(ui.get("executed_on"))
     put("Reference", "Executed On", row("", doc["executed_on"], ui.get("executed_on"), "NOT_VERIFIABLE" if not ex else "PASS" if ex == ac else "FAIL"))
-    put("Reference", "Incoterm", _exact("", doc["incoterm"], ui.get("incoterm")))
+    # Incoterm: the panel shows it in its own section ('Other' on Air House, 27 Nov 2026 IPA/22) and the dedicated reader can come back
+    # empty; use the panel's filled Incoterm field wherever it is, and compare the code ('EXW – Ex Works' = EXW).
+    from .incoterm_check import code_of
+    inc_field = next((f for f in ui.get("fields", []) if f["label"].strip().lower() == "incoterm" and (f.get("value") or "").strip()), None)
+    inc_ui = ui.get("incoterm") or (inc_field["value"] if inc_field else "")
+    put(inc_field["section"] if inc_field else "Reference", "Incoterm",
+        _exact("", doc["incoterm"], inc_ui, lambda a, b: bool(code_of(str(a))) and code_of(str(a)) == code_of(str(b))))
 
     rows, used = [], set()
     for f in ui.get("fields", []):
@@ -263,9 +269,15 @@ def check_house_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_se
         from .master_check import ocr_adjust
         res["rows"] = ocr_adjust(res["rows"], doc.get("text") or "")
         res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
-    res["rows"] += house_pick.extra_rows(extras, "House", [(rec or {}).get("Bill No.", "") or sample_bill])
+    consol = house_pick.consolidation_map(cfg.path(cfg.settings["testsuite"]["samples_dir"]), case.id,
+                                          [x.get("Bill No.", "") for x in extras]) if extras else {}
+    res["rows"] += house_pick.extra_rows(extras, "House", [(rec or {}).get("Bill No.", "") or sample_bill], consol)
     if extras:
         res["extra_records"] = [x.get("Bill No.", "") or "(empty)" for x in extras]
+    from .false_alarm import guard
+    guard(res["rows"], doc.get("text") or "", v.get("location_codes"))
+    from .field_shots import capture
+    capture(ui, res["rows"], cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id, "house")                  # field evidence in the run itself
     res["verdict"] = verdict(res["rows"])
     if rec is None:
         res["message"] = "the House row of the Shipment Details table was not found"

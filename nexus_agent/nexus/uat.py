@@ -65,6 +65,27 @@ def assign_columns(headers: list[tuple], leaves: list[tuple]) -> dict:
 RUN_STAMP = datetime.now().strftime("%H%M%S")        # one stamp per run, in the archive file names
 
 
+UNRESOLVED_DOC = re.compile(r"^(MBL|HBL|MAWB|HAWB|B/?L|AWB|AirManifest|Air Manifest|Manifest|Unclassified|Invoice|Packing ?List|ShipperDoc|"
+                            r"Shipper Document|Debit ?Note|Delivery ?Note|Direct ?BL|Others?)$", re.IGNORECASE)
+UNRESOLVED_REMARK = re.compile(r"duplicate|not (yet )?linked|unmatched|unclassified|could not be|classification|documents?$", re.IGNORECASE)
+
+
+def parse_unresolved_lines(body: list[str]) -> list[dict]:
+    """Lines of the 'Unresolved Documents' table -> [{document, remark}], one per row. A row starts at a document-type cell; its remark is
+    the cell that reads like one ('duplicate MBL', 'Duplicate' badge, 'Not yet linked to a house bill', 'Unclassified - ...', '2 documents')."""
+    rows: list[dict] = []
+    for line in body:
+        if UNRESOLVED_DOC.match(line):
+            rows.append({"document": line, "remark": "", "cells": []})
+        elif rows:
+            rows[-1]["cells"].append(line)
+            if not rows[-1]["remark"] and UNRESOLVED_REMARK.search(line):
+                rows[-1]["remark"] = line
+    for r in rows:
+        r.pop("cells", None)
+    return rows
+
+
 class UatPages:
     def __init__(self, page: Page, cfg: Config):
         self.page = page
@@ -177,7 +198,27 @@ class UatPages:
 
     def find_case_row(self, token: str):
         cells = self.case_cells(token)
-        return cells[0] if cells else None      # newest row first
+        if cells:
+            return cells[0]                     # newest row first
+        return self._row_by_ipa(token)
+
+    def _row_by_ipa(self, token: str):
+        """A case whose pre-alert was sent by someone else (another subject) is found by its IPA number from
+        `validation.case_ipa` ({'DXB-005': 'IPA/261/2026-27'}): the subject cell of the row that shows that IPA."""
+        case_id = token.split("|")[0].strip()
+        ipa = str(((self.cfg.settings.get("validation") or {}).get("case_ipa") or {}).get(case_id) or "").strip()
+        if not ipa:
+            return None
+        hit = self.page.get_by_text(ipa, exact=True)
+        if hit.count() == 0:
+            return None
+        node = hit.first
+        for _ in range(int(self.u.get("row_ancestor_levels", 8))):
+            node = node.locator("xpath=..")
+            sub = node.locator(self.u["row_marker"])
+            if sub.count():
+                return sub.first
+        return None
 
     def row_info(self, cell) -> dict:
         """IPA id and job progress of the row that holds this subject cell."""
@@ -269,7 +310,7 @@ class UatPages:
             block = head.evaluate("h => h.parentElement.innerText")
             lines = [x.strip() for x in block.splitlines() if x.strip()]
             body = lines[lines.index("Actions") + 1:] if "Actions" in lines else lines[1:]
-            rows = [{"document": body[0], "remark": next((x for x in body if re.search(r"not (yet )?linked|unmatched", x, re.I)), "")}] if body else []
+            rows = parse_unresolved_lines(body)
             head.scroll_into_view_if_needed()
             return {"count": count, "rows": rows, "lines": body}
         except Exception as exc:

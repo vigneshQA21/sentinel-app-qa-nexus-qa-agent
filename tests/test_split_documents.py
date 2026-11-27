@@ -19,3 +19,31 @@ def test_repeat_of_a_linked_document_or_plain_unmatched_is_not_a_split():
     assert split_documents([P("House (X)", [("INVOICE", 2)], [("INVOICE", 2)])]) == []          # same pages repeated
     assert split_documents([P("House (X)", [("HBL", 1)], [("SHIPPERDOC", 3)])]) == []            # unmatched only: other checks
     assert split_documents([P("House (X)", [("HBL", 1)])]) == []
+
+
+def test_duplicate_copies_after_follow_up_are_not_a_split():
+    from nexus_agent.validate import split_documents, duplicate_labels
+    parents = [{"kind": "Master", "parent": "Master (MBL-0001)", "linked": [{"label": "MBL", "pages": 2}], "unmatched": [{"label": "HBL", "pages": 2}]},
+               {"kind": "House", "parent": "House (HBL-0001-A)", "linked": [{"label": "HBL", "pages": 1}], "unmatched": [{"label": "HBL", "pages": 2}]}]
+    assert split_documents(parents)                                   # without the remark it looks like a split
+    unresolved = {"rows": [{"document": "MBL", "remark": "duplicate MBL"}, {"document": "HBL", "remark": "duplicate HBL"}]}
+    assert {"MBL", "HBL", "B/L"} <= duplicate_labels(unresolved)
+    assert split_documents(parents, duplicate_labels(unresolved)) == []
+
+
+def test_non_duplicate_unresolved_still_reported():
+    from nexus_agent.validate import duplicate_labels
+    assert duplicate_labels({"rows": [{"document": "Unclassified", "remark": "Unclassified - document type could not be determined"}]}) == set()
+
+
+def test_unresolved_rows_with_duplicate_badges():
+    from nexus_agent.nexus.uat import parse_unresolved_lines
+    from nexus_agent.validate import duplicate_labels
+    body = ["MBL", "MBL-0002", "3", "Duplicate", "HBL", "-", "1", "Duplicate", "Unclassified", "-", "2", "2 documents"]
+    rows = parse_unresolved_lines(body)
+    assert [r["document"] for r in rows] == ["MBL", "HBL", "Unclassified"]
+    assert [r["remark"] for r in rows] == ["Duplicate", "Duplicate", "2 documents"]
+    assert {"MBL", "HBL", "B/L"} <= duplicate_labels({"rows": rows})
+    body2 = ["MAWB", "123-45670000", "FORWARDER F", "LOGISTEED EXPRESS LTD", "1", "duplicate MAWB", "ShipperDoc", "SHIPPER B", "3",
+             "Not yet linked to a house bill"]
+    assert [r["remark"] for r in parse_unresolved_lines(body2)] == ["duplicate MAWB", "Not yet linked to a house bill"]

@@ -70,7 +70,9 @@ def test_invoice_panel_every_field_is_listed_and_checked():
              it("Name", "FABRIKAM ELECTRIC INFRASTRUCTURE LIMITED"), it("Address", "172 Example ByPass Road 600099 Chennai", "TEXTAREA"),
              it("Postal Code", "600099"), it("Order No", "243170288"), it("Customer No", "CUST0001"), it("Incoterm", "FCA")]
     r = rows("INVOICE", items, INVOICE_TEXT)
-    assert len(DC.compare_doc("INVOICE", items, INVOICE_TEXT)) == len(items)
+    got = DC.compare_doc("INVOICE", items, INVOICE_TEXT)
+    assert len([x for x in got if x["label"] != "Incoterm (selected value)"]) == len(items)
+    assert [x["result"] for x in got if x["label"] == "Incoterm (selected value)"] == ["FAIL"]      # a text box, not the dropdown
     for f in ("Invoice Number", "Invoice Date", "Grand Total", "Currency Code", "Po Number", "Order No", "Customer No", "Incoterm"):
         assert r[f]["result"] == "PASS", (f, r[f])
     assert r["Gross Weight"]["result"] == "INFO"

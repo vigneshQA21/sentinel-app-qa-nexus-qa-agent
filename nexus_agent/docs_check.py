@@ -230,6 +230,9 @@ def compare_doc(kind: str, items: list[dict], raw: str) -> list[dict]:
                 r = row("", None, value, "INFO", "shown by Nexus, no rule for this field" if value else "empty in Nexus")
         r.update(field=f"{section} · {label}", section=section, label=label)
         rows.append(r)
+        if label == "Incoterm":                                              # the selected value shows only the code (26-Nov-2026)
+            from .incoterm_check import display_row
+            rows += display_row(value, section, it.get("tag"))
     return rows
 
 
@@ -332,6 +335,10 @@ def check_docs_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_sec
                                             "expected_from_document": f"Debit Note under the Master (an invoice with a LOGISTEED party on it, {where})",
                                             "shown_in_nexus": f"Invoice under {house}", "result": gap, "note": debit_rule.GAP_NOTE}] + rows
                             res["message"] = debit_rule.GAP_NOTE + "; the fields are checked on the Invoice panel"
+                            from .false_alarm import guard
+                            guard(rows, raw, v.get("location_codes"))
+                            from .field_shots import capture
+                            capture(ui, rows, evidence, kind.lower())
                             res["verdict"] = "FAIL" if any(r["result"] == "FAIL" for r in rows) or gap == "FAIL" else "KNOWN"
                             continue
                     res["message"] = f"{kind.lower()} expected under {under} but Nexus has none linked"
@@ -349,6 +356,10 @@ def check_docs_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_sec
                 from .master_check import ocr_adjust                              # a value Nexus shows is looked up in the OCR text first
                 res["rows"] = ocr_adjust(res["rows"], raw)
                 res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
+            from .false_alarm import guard
+            guard(res["rows"], raw, v.get("location_codes"))
+            from .field_shots import capture
+            capture(ui, res["rows"], evidence, kind.lower())    # field evidence in the run itself
             res["verdict"] = "FAIL" if any(r["result"] == "FAIL" for r in res["rows"]) else "PASS"
         except SessionExpired:
             raise

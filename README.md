@@ -99,3 +99,6 @@ See [regression_prompts/EXECUTE_CMD.md](regression_prompts/EXECUTE_CMD.md). The 
 ## The earlier flow (still in the code, not used for the regression suite)
 The project started as a Gmail-to-Nexus-to-TMS agent (`python -m nexus_agent run`): forward pre-alerts from the inbox, fix shipper data, push the XML
 to the TMS and reconcile it. It is kept for reference; its settings are in `config/rules.yaml` and `config/xml_mapping.yaml`.
+
+## Sample gaps
+Scenarios that cannot run for lack of samples, per tenant, and what to request: [docs/SAMPLE_GAPS.md](docs/SAMPLE_GAPS.md).

@@ -16,7 +16,7 @@ from .master_check import MONTHS, _legal, attach_details as attach_master, norm,
 from .house_check import attach_details as attach_house
 from .nexus.session import SessionExpired
 from .nexus.uat import UatPages, map_house_panel, map_master_panel, read_panel_inputs, read_party_ids
-from . import docextract, house_pick, docvalue, strict_check
+from . import docextract, house_pick, docvalue, strict_check, incoterm_check
 from .pdf_split import detect_parts_sea, page_texts_layout
 from .store import Store
 from .testsuite import Case, sample_files
@@ -285,6 +285,33 @@ def read_incoterm(page) -> str | None:
         return None
 
 
+def _other_docs(cfg: Config, case: Case) -> list[tuple[str, str]]:
+    """[(where, text)] of the sample's invoice / debit note pages: Nexus may take the Incoterm from them."""
+    from .docs_check import doc_text
+    out = []
+    for kind in ("INVOICE", "DEBITNOTE"):
+        try:
+            got = doc_text(cfg, case, kind)
+        except Exception:
+            got = None
+        if got:
+            out.append((f"the {'invoice' if kind == 'INVOICE' else 'debit note'} ({got[1]})", got[0]))
+    return out
+
+
+def _shot_field(ui: UatPages, heading: str, path) -> None:
+    """Field-specific evidence: scroll the data panel to the field's heading and screenshot it with the bill beside it. The panel
+    screenshot shows only the top of the panel; a value that later changes by hand (IPA/14 Incoterm FOB, 26 Nov 2026) is otherwise
+    recorded only as text."""
+    try:
+        ui.page.evaluate("""h => { const el = [...document.querySelectorAll('legend, span, label, div')]
+            .find(e => e.children.length === 0 && e.textContent.trim().startsWith(h)); if (el) el.scrollIntoView({block: 'center'}); }""", heading)
+        ui.page.wait_for_timeout(600)
+        ui.screenshot(path)
+    except Exception as exc:
+        log.warning("could not capture the %s field: %s", heading, exc)
+
+
 def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str, wait_seconds: float | None) -> dict:
     v = cfg.settings["validation"]
     title = "Master" if kind == "MBL" else "House"
@@ -326,14 +353,24 @@ def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str
     inc = read_incoterm(ui.page)
     if inc is not None:
         fields.setdefault("fields", []).append({"section": "Incoterm", "label": "Incoterm", "value": inc, "readonly": False})
+        _shot_field(ui, "Incoterm", cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id / f"{title.lower()}_incoterm.png")
     (attach_master if kind == "MBL" else attach_house)(fields, rec)
     res["rows"] = strict_check.tighten(compare_sea(fields, src), src, _doc_boxes(src)) \
-        + house_pick.extra_rows(extras, title, [(rec or {}).get("Bill No.", "")])
+        + house_pick.extra_rows(extras, title, [(rec or {}).get("Bill No.", "")],
+                                house_pick.consolidation_map(cfg.path(cfg.settings["testsuite"]["samples_dir"]), case.id,
+                                                             [x.get("Bill No.", "") for x in extras]) if extras else {})
+    incoterm_check.fix_value_rows(res["rows"], src.get("text", ""), _other_docs(cfg, case))   # CIF from the invoice (IPA/11)
+    res["rows"] += incoterm_check.display_row(inc or next((r.get("shown_in_nexus", "") for r in res["rows"]
+                                                           if (r.get("label") or "").lower() == "incoterm"), ""), title)
     if extras:
         res["extra_records"] = [x.get("Bill No.", "") or "(empty)" for x in extras]
     res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL" if src["scanned"] else ""
     if rec is None:
         res["message"] = f"the {title} row of the Shipment Details table was not found"
+    from .false_alarm import guard
+    guard(res["rows"], src.get("text", ""), cfg.settings["validation"].get("location_codes"))
+    from .field_shots import capture
+    capture(ui, res["rows"], cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id, title.lower())            # field evidence in the run itself
     res["verdict"] = verdict(res["rows"])
     return res
 

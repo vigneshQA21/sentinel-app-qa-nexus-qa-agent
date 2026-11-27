@@ -141,7 +141,22 @@ def compare(expected: dict[str, str | None], actual: list[dict], aliases: dict[s
     return v
 
 
-def split_documents(parents: list[dict]) -> list[dict]:
+DUP_FAMILY = {"MBL": {"MBL", "B/L", "BL"}, "HBL": {"HBL", "B/L", "BL"}, "MAWB": {"MAWB", "AWB"}, "HAWB": {"HAWB", "AWB"},
+              "AIRMANIFEST": {"AIRMANIFEST", "MANIFEST", "MAN"}}
+
+
+def duplicate_labels(unresolved: dict | None) -> set[str]:
+    """Viewer labels covered by Unresolved rows whose remark starts with 'duplicate' ('duplicate MBL', 'duplicate HAWB', ...). A follow-up
+    email to an existing pre-alert makes Nexus list copies of the already linked documents there: expected (user, 27 Nov 2026), never a bug."""
+    out: set[str] = set()
+    for r in (unresolved or {}).get("rows", []):
+        if str(r.get("remark", "")).strip().lower().startswith("duplicate"):
+            doc = re.sub(r"[^A-Z]", "", str(r.get("document", "")).upper())
+            out |= DUP_FAMILY.get(doc, {doc})
+    return out
+
+
+def split_documents(parents: list[dict], duplicates: set[str] | None = None) -> list[dict]:
     """One document split across Linked and Unmatched (IPA/12/2026-27, 26 Nov 2026: the 4-page booking confirmation had 1 page
     linked as SHIPPERDOC under the House and 3 pages left in Unmatched Documents as SHIPPERDOC). Expected: all pages of a document
     under one parent. The viewer repeats the same Unmatched list under every parent (max over parents, not the sum), and an
@@ -159,6 +174,8 @@ def split_documents(parents: list[dict]) -> list[dict]:
     out = []
     for label, u in unmatched.items():
         n = linked.get(label, 0)
+        if label.upper() in (duplicates or set()):          # 'duplicate ...' copies after a follow-up email: expected, not a split
+            continue
         if n and u != n:
             parent = ", ".join(dict.fromkeys(where[label]))
             out.append({"label": label, "parent_kind": parent.split(" ")[0], "linked": n, "unmatched": u,
@@ -206,7 +223,8 @@ def root_causes(ref: str | None, ipa: str, parents: list[dict], results: list, i
     """Probable root cause of what the mapping check saw, from what the pages show (hints for the tester, not a verdict)."""
     out: list[str] = []
     house_ids = [m.group(1) for p in parents if p["kind"] == "House" for m in [re.search(r"\(([^)]+)\)", p["parent"])] if m]
-    wrong_house = bool(ref and house_ids and all(norm_id(h) != norm_id(ref) for h in house_ids) and not str(ref).startswith("FJ-"))
+    wrong_house = bool(ref and house_ids and all(norm_id(h) != norm_id(ref) for h in house_ids) and not str(ref).startswith("FJ-")
+                       and not re.search(r"-REG-\d{3}$", str(ref)) and not re.fullmatch(r"(SEA-)?[A-Z]{2,4}(-AIR)?-\d{3}", str(ref)))   # our case / sample refs are not bill numbers
     if wrong_house:
         out.append(f"The House number Nexus extracted ({house_ids[0]}) is not the HAWB number sent ({ref}): Nexus read the wrong value from the "
                    f"House Air Waybill (check the document for a phone / reference number printed near the HAWB number).")
@@ -222,7 +240,10 @@ def root_causes(ref: str | None, ipa: str, parents: list[dict], results: list, i
     linked_labels = {g["label"] for p in parents for g in p["linked"]}
     for r in (unresolved or {}).get("rows", []):
         doc = re.sub(r"[^A-Z]", "", r["document"].upper())
-        if doc and doc in linked_labels:
+        if str(r.get("remark", "")).strip().lower().startswith("duplicate"):
+            out.append(f"Unresolved Documents lists {r['document']} as '{r['remark']}': expected after a follow-up email (Nexus lists copies of "
+                       f"the already linked documents there) - not a bug.")
+        elif doc and doc in linked_labels:
             out.append(f"Inconsistent: the Pre-Alerts row lists {r['document']} under 'Unresolved Documents' ({r['remark'] or 'not linked'}) but the viewer "
                        f"shows {doc} under Linked documents (intermittent: the row and the viewer disagree).")
         elif doc:
@@ -329,7 +350,7 @@ def _validate_uat(cfg: Config, ui: UatPages, store: Store, case: Case, ref: str 
     in_pre = pre_ipas
     in_others = ui.capture_others(f"{case.id} |") if row["evidence"] else []      # follow-ups / duplicates of this case
     in_others = [i for i in in_others if i and i != info["ipa"]]
-    splits = split_documents(parents)                    # before the filter below hides the Unmatched pages of a linked type
+    splits = split_documents(parents, duplicate_labels(getattr(ui, "unresolved", None)))   # before the filter below hides the Unmatched pages of a linked type
     linked_anywhere = {g["label"] for p in parents for g in p["linked"]}
     for p in parents:                          # a parent's Unmatched list repeats documents linked under other parents: those are not unmatched
         for k in ("unmatched", "unclassified"):
