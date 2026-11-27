@@ -230,6 +230,9 @@ def compare_doc(kind: str, items: list[dict], raw: str) -> list[dict]:
                 r = row("", None, value, "INFO", "shown by Nexus, no rule for this field" if value else "empty in Nexus")
         r.update(field=f"{section} · {label}", section=section, label=label)
         rows.append(r)
+        if label == "Incoterm":                                              # the selected value shows only the code (26-Nov-2026)
+            from .incoterm_check import display_row
+            rows += display_row(value, section, it.get("tag"))
     return rows
 
 

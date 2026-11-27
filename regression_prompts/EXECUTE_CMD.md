@@ -172,5 +172,9 @@ No browser tab opens during a run any more. The live status page is still writte
 - Debit Note in the CargoWise Master Document XML: after a Push, save the pushed XML files in `samples/japan/<CASE>/xml/` and run `./nx --tenant japan check-doc-xml --cases SEA-JPN-002` (or `--xml <folder>`). Reads the PDFs inside every 'NEXUS PUSH DOC' file of the Consol: a Debit Note there = FAIL. Nothing is pushed by the agent.
 - Reference only (never sent): `knowledge_base/japan/reference/debit_note_scenarios/` (grouped copies of the LOGISTEED-invoice shipments).
 
+## Daily update (team format, rule 27-Nov-2026)
+- Format: one short paragraph, e.g. "Hi team, I have worked on date difference (reports) and custom description char length (export) testing." plus a one-line version. No headings or tables.
+- The automatic draft of `./nx post-update` is a raw list: write the message in the team format to `state/zoho_update.md` and post it with `./nx post-update --file state/zoho_update.md` (`--dry-run` to preview). Nothing is posted without your yes.
+
 ## Evidence in Google Drive
 `./nx upload-evidence [--date yyyy-mm-dd]` (also run by `run_regression.sh` at the end of every run) puts the day's evidence in `Regression testing / Nexus Automated Test Evidence / <yyyy-mm-dd> /`: `01 Test runs/<CASE> - <IPA>/` (screenshots), `02 Bugs/` (evidence of bugs logged that day) and `03 Report/` (the Automated test report as PDF). Bugs are therefore separated by date. Earlier bug evidence stays in `Reg - Air & Sea / dd-mm-yyyy`.

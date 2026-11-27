@@ -166,3 +166,11 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | XML check | new `nexus_agent/doc_xml_check.py` + `./nx check-doc-xml --cases <CASE> [--xml folder]`: every 'NEXUS PUSH DOC' XML of the Consol (ForwardingConsol) is read; a Debit Note attached (PDF titled DEBIT NOTE, an INVOICE with a LOGISTEED party, or Nexus type / file name saying Debit Note) = FAIL. The PDFs inside the XML are read, so a debit note pushed as 'INV' is caught. NOT_RUN without pushed files (the agent never pushes) |
 | Checked on | the India reference Master Document XML (PASS, 1 MBL); a scratch copy with the IPA/12 SERPA invoice added as 'INV' (FAIL, as expected) |
 | Tests | 269 passed (`tests/test_doc_xml_check.py`) |
+
+## Place of Delivery from POD accepted; Incoterm source + display (2026-11-26)
+| Item | Detail |
+| --- | --- |
+| Place of Delivery | User: not a bug when the bill's box is blank and Nexus fills it with the Port of Discharge -> INFO (`strict_check.FILLED_FROM`); any other value in a blank box stays REVIEW. IPA/12 Master, IPA/14 House + Master now INFO |
+| Incoterm source | `incoterm_check.fix_value_rows`: the code passes when printed on the bill OR on the sample's invoice / debit note (Nexus: "Incoterm · From Invoice"). IPA/11 CIF (invoice "CIF NAGOYA") and IPA/12 FCA (SERPA debit note "FCA BETIM") now PASS; IPA/14 FOB printed nowhere stays FAIL |
+| Incoterm display | `incoterm_check.display_row` (Sea House/Master and Invoice / Packing List panels): the Incoterm must be the dropdown and show only the code once selected; full wording selected = FAIL, a text box instead of the dropdown = FAIL (Japan sheet Sl 22) |
+| Tests | 273 passed (`tests/test_incoterm_check.py`) |

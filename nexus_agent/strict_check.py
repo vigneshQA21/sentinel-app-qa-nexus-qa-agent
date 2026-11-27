@@ -1,8 +1,9 @@
 """Field-level precision on top of the word-presence check (standard for every tenant, 26 Nov 2026).
 
 Word presence ("every word of the Nexus value is somewhere on the bill") hides real bugs:
-  * a field is compared with ITS OWN box on the bill, not with the whole page: Place of Delivery NAGOYA is not confirmed by
-    NAGOYA printed under Port of Discharge; an empty box with a Nexus value is reported;
+  * a field is compared with ITS OWN box on the bill, not with the whole page: a value printed only in another box is not
+    confirmed; an empty box with a Nexus value is reported (REVIEW) - except a blank Place of Delivery that Nexus fills with the
+    Port of Discharge, which the user accepted as not a bug (26-Nov-2026, FILLED_FROM);
   * a party is the SAME party, not a party whose words are inside another one: "CONTEC CO.,LTD." is not "TAIWAN CONTEC CO.,LTD",
     "EVEX GLOBAL FREIGHT LIMITED" is not "GLOBAL FREIGHT SOLUTION LTD." (legal words and a branch suffix are ignored);
   * Shipper and Consignee mapped to the same Party ID while the bill prints two different parties.
@@ -19,6 +20,11 @@ LEGAL = {"CO", "COMPANY", "LTD", "LIMITED", "INC", "CORP", "CORPORATION", "LLC",
 # Nexus label (lower case) -> must be inside the box read for it (BOX fields: ports, places, vessel, voyage, bill / booking no.)
 BOX_LABELS = re.compile(r"^(vessel( name)?|voyage( no\.?| number)?|port of loading|port of discharge|place of receipt|place of delivery|"
                         r"final destination|bill no\.?|booking( no\.?)?)$")
+
+
+# A blank box that Nexus fills from another box of the bill, accepted by the user (not a bug): Nexus label (lower case) -> source box.
+# Only when the Nexus value IS that box's value; anything else stays REVIEW.
+FILLED_FROM = {"place of delivery": "Port Of Discharge"}                  # IPA/12, IPA/14 (26-Nov-2026): blank box -> NAGOYA from POD
 
 
 def _toks(s: str) -> set[str]:
@@ -77,6 +83,14 @@ def box_fields(rows: list[dict], src: dict) -> None:
             continue                                                       # no box located: word presence stays the evidence
         if dv.startswith(docextract.NO_VALUE):
             if "is blank" in dv or "blank" in how:
+                source = FILLED_FROM.get(label)
+                if source:
+                    sv, shown_how = docextract.extract_from_source(src, source, nexus)
+                    if (shown_how.startswith(("by position", "after the label")) and not sv.startswith(docextract.NO_VALUE)
+                            and _toks(nexus) and not _toks(nexus) - _toks(sv)):
+                        _set(r, "INFO", f"the bill's box is blank; Nexus fills it from the {source} ('{sv}'): accepted, not a bug "
+                                        f"(user, 26-Nov-2026)", dv)
+                        continue
                 _set(r, "REVIEW", f"the bill's own box for this field is blank, but Nexus shows '{nexus}' (filled from another field?)", dv)
             continue
         if not _toks(nexus) - _toks(dv):

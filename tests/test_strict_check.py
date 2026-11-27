@@ -42,7 +42,22 @@ def test_a_field_must_be_inside_its_own_box(monkeypatch):
     rows = [{"label": k, "shown_in_nexus": v, "result": "PASS"} for k, v in
             [("Place Of Delivery", "NAGOYA"), ("Port Of Loading", "NAGOYA"), ("Port Of Discharge", "NAGOYA"), ("Vessel Name", "OOCL X")]]
     S.box_fields(rows, {})
-    assert [r["result"] for r in rows] == ["REVIEW", "FAIL", "PASS", "PASS"]      # no box located for the vessel: unchanged
+    assert [r["result"] for r in rows] == ["INFO", "FAIL", "PASS", "PASS"]        # no box located for the vessel: unchanged
+    assert "Port Of Discharge" in rows[0]["note"]                                  # blank Place of Delivery filled from POD: accepted
+
+
+def test_blank_place_of_delivery_not_from_the_port_of_discharge_stays_review(monkeypatch):
+    calls = {"Place Of Delivery": (f"{X.NO_VALUE} (the box 'PLACE OF DELIVERY' on page 1 is blank)", "by position: the box is blank"),
+             "Port Of Discharge": ("NAGOYA", "by position from the box 'PORT OF DISCHARGE' on page 1")}
+    monkeypatch.setattr(X, "extract_from_source", lambda src, label, value: calls[label])
+    rows = [{"label": "Place Of Delivery", "shown_in_nexus": "OSAKA", "result": "PASS"}]
+    S.box_fields(rows, {})
+    assert rows[0]["result"] == "REVIEW"
+    blank = {"Place Of Delivery": calls["Place Of Delivery"], "Port Of Discharge": (f"{X.NO_VALUE} (blank)", "by position: the box is blank")}
+    monkeypatch.setattr(X, "extract_from_source", lambda src, label, value: blank[label])
+    rows = [{"label": "Place Of Delivery", "shown_in_nexus": "NAGOYA", "result": "PASS"}]
+    S.box_fields(rows, {})
+    assert rows[0]["result"] == "REVIEW"                                            # POD blank too: nothing to fill from
 
 
 def test_party_box_read_as_one_line_is_cut_after_the_name():

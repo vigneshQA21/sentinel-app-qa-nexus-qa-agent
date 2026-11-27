@@ -16,7 +16,7 @@ from .master_check import MONTHS, _legal, attach_details as attach_master, norm,
 from .house_check import attach_details as attach_house
 from .nexus.session import SessionExpired
 from .nexus.uat import UatPages, map_house_panel, map_master_panel, read_panel_inputs, read_party_ids
-from . import docextract, house_pick, docvalue, strict_check
+from . import docextract, house_pick, docvalue, strict_check, incoterm_check
 from .pdf_split import detect_parts_sea, page_texts_layout
 from .store import Store
 from .testsuite import Case, sample_files
@@ -285,6 +285,20 @@ def read_incoterm(page) -> str | None:
         return None
 
 
+def _other_docs(cfg: Config, case: Case) -> list[tuple[str, str]]:
+    """[(where, text)] of the sample's invoice / debit note pages: Nexus may take the Incoterm from them."""
+    from .docs_check import doc_text
+    out = []
+    for kind in ("INVOICE", "DEBITNOTE"):
+        try:
+            got = doc_text(cfg, case, kind)
+        except Exception:
+            got = None
+        if got:
+            out.append((f"the {'invoice' if kind == 'INVOICE' else 'debit note'} ({got[1]})", got[0]))
+    return out
+
+
 def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str, wait_seconds: float | None) -> dict:
     v = cfg.settings["validation"]
     title = "Master" if kind == "MBL" else "House"
@@ -329,6 +343,9 @@ def check_sea_one(cfg: Config, ui: UatPages, store: Store, case: Case, kind: str
     (attach_master if kind == "MBL" else attach_house)(fields, rec)
     res["rows"] = strict_check.tighten(compare_sea(fields, src), src, _doc_boxes(src)) \
         + house_pick.extra_rows(extras, title, [(rec or {}).get("Bill No.", "")])
+    incoterm_check.fix_value_rows(res["rows"], src.get("text", ""), _other_docs(cfg, case))   # CIF from the invoice (IPA/11)
+    res["rows"] += incoterm_check.display_row(inc or next((r.get("shown_in_nexus", "") for r in res["rows"]
+                                                           if (r.get("label") or "").lower() == "incoterm"), ""), title)
     if extras:
         res["extra_records"] = [x.get("Bill No.", "") or "(empty)" for x in extras]
     res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL" if src["scanned"] else ""
