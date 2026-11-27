@@ -58,7 +58,8 @@ def parse_rows(rows: list[list], ts: dict) -> list[Case]:
             continue
         m = re.search(ts["sample_ref_pattern"], get(r, "quadance_job"), re.IGNORECASE)
         ref = (ts.get("sample_ref_overrides") or {}).get(cid) or (m.group(1).upper() if m else None)   # e.g. a sample built from another job's PDF
-        cases.append(Case(cid, scenario, "consolidated" if "consolidated" in sl else "individual", docs,
+        mode = "consolidated" if "consolidated" in sl else "email" if "as received" in (sl + " " + scenario.lower()) else "individual"
+        cases.append(Case(cid, scenario, mode, docs,
                           ref, get(r, "expected_mapping").replace("\n", " "),
                           get(r, "xml_rule"), get(r, "expected_result"), get(r, "nexus_job")))
     return cases
@@ -110,8 +111,10 @@ def samples_root(cfg: Config) -> Path:
 
 
 def sample_files(cfg: Config, case: Case) -> list[Path]:
+    """The documents of a case. Helper files of the folder ('_pages.json' page map, hidden files) are not documents: they are never
+    sent and never counted (26 Nov 2026: '_pages.json' made every Japan consolidated case 'needs exactly 1 file, found 2')."""
     d = samples_root(cfg) / case.id
-    return sorted(f for f in d.iterdir() if f.is_file()) if d.is_dir() else []
+    return sorted(f for f in d.iterdir() if f.is_file() and not f.name.startswith(("_", "."))) if d.is_dir() else []
 
 
 def ingest(cfg: Config, cases: list[Case]) -> tuple[dict[str, list[str]], list[str]]:
@@ -162,6 +165,9 @@ def stage(cfg: Config, sender: LocalSender, case: Case) -> tuple[list[Path], str
         if len(files) != 1:
             return [], f"NOT_STAGED: consolidated case needs exactly 1 file, found {len(files)}"
         targets = [sender._dir("consolidated_dir") / files[0].name]
+    elif case.mode == "email":                                # 'as received': one email with every document attached
+        targets = [sender._dir("individual_dir") / case.id / f.name for f in files]
+        sender.one_email.add(case.id)
     else:
         ref = individual_ref(cfg, case, files)
         targets = [sender._dir("individual_dir") / ref / f.name for f in files]
@@ -200,7 +206,7 @@ def run_suite(cfg: Config, sender: LocalSender, cases: list[Case], dry_run: bool
         try:
             sender.send_all(dry_run=dry_run, force=force, only=set(staged), resend=resend)
         finally:
-            handled = {r["path"] for r in sender.results[before:]}
+            handled = {q for r in sender.results[before:] for q in (r.get("paths") or [r["path"]])}   # 'as received': every attachment of the email
             for p in staged:                      # remove staged copies that were not sent (the sample stays in samples/)
                 if p.exists():
                     p.unlink()

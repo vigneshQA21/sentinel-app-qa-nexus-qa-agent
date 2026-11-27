@@ -22,7 +22,7 @@ from .store import Store
 from .testsuite import sample_files
 
 log = logging.getLogger(__name__)
-CASE_ID = re.compile(r"^((SEA-)?(REG|MH)-\d{3}|SEA-RT-\d{3}|SEA-JPN-\d{3}|DBL-\d{3}|UNR-\d{3}|AMF-\d{3})$")
+CASE_ID = re.compile(r"^((SEA-)?(REG|MH)-\d{3}|SEA-RT-\d{3}|SEA-JPN-\d{3}|JPN-AIR-\d{3}|(SEA-)?DXB-\d{3}|DBL-\d{3}|UNR-\d{3}|AMF-\d{3})$")
 IPA_ID = re.compile(r"^IPA/\d+/\d{4}-\d{2}$", re.IGNORECASE)
 TAG = "QA agent trigger"
 GROUPS = {"AIR-DAILY": ["REG-001", "REG-002", "REG-005", "REG-009", "REG-006", "REG-007"],

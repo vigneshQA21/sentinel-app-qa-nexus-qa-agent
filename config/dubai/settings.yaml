@@ -53,6 +53,7 @@ local_docs:
   archive_after_send: false
   sent_dir: sent
   skip_already_sent: false
+  email_subject_template: '{tag} | Pre-Alert {ref} | AS RECEIVED ({types})'   # one email, all documents attached
   consolidated_subject_template: '{tag} | Pre-Alert {ref} | CONSOLIDATED ({types})'
   subject_template: '{tag} | Pre-Alert {ref} | INDIVIDUAL | {doc}'
   doc_labels:
@@ -168,20 +169,18 @@ pdf_split:
     - MAWB
     - MASTER AWB
   hawb_label_pattern: \bHAWB\s*(?:NO\.?|NUMBER|#)?\s*[:：#]?\s*([A-Z0-9]+(?:\s?-\s?[A-Z0-9]+)*)
-testsuite:
-  workbook: knowledge_base/dubai/testcases/*.xlsx
-  sheet_tab: AIr Master and House - Single
-  id_pattern: ^REG-\d+$
+testsuite:                          # Dubai (LAE): 16 sets from the Dubai office / product team (samples/dubai/_inbox/SOURCES.md), 27 Nov 2026
+  workbook: knowledge_base/dubai/testcases/Dubai_Regression.xlsx
+  sheet_tab: Dubai - Regression
+  id_pattern: ^DXB-\d{3}$             # Air cases; Sea cases are SEA-DXB-nnn (testsuite_sea: the Sea checkers key on 'SEA-')
   scenarios:
-  - Consolidated Mapping
-  - Individual Mapping
-  exclude_doc_contains:
-  - multiple house
-  sample_ref_pattern: (FJ-\d{4,10})
+  - As Received
+  exclude_doc_contains: []
+  sample_ref_pattern: (DXB-REG-\d{3})
   extra_cases: []
   sample_ref_overrides: {}
   samples_dir: samples/dubai
-  case_interval_seconds: 300
+  case_interval_seconds: 30
   subject_includes_case_id: true
   columns:
     case_id: TC ID
@@ -193,23 +192,31 @@ testsuite:
     quadance_job: Quadance Job no.
     nexus_job: NexusJob no.
 testsuite_sea:
-  workbook: knowledge_base/dubai/testcases/Sea_*.xlsx
-  sheet_tab: Sea Single House - Daily
-  id_pattern: ^SEA-REG-\d+$
-  scenarios: []
+  workbook: knowledge_base/dubai/testcases/Dubai_Regression.xlsx
+  sheet_tab: Dubai - Regression
+  id_pattern: ^SEA-DXB-\d{3}$
+  scenarios:
+  - As Received
   exclude_doc_contains: []
-  sample_ref_pattern: (FJ-\d{4,10})
+  sample_ref_pattern: (DXB-REG-\d{3})
   columns:
     case_id: TC ID
     scenario: Scenario
-    mode: Mode
     docs: Document Combination
     expected_mapping: Expected Mapping
     xml_rule: XML / CargoWise Validation
     expected_result: Expected Result
-    quadance_job: Sample Files
-    nexus_job: Last Known Nexus Job
+    quadance_job: Quadance Job no.
+    nexus_job: NexusJob no.
 validation:
+  case_ipa:                        # sets already in Nexus under another subject: validated in place by IPA (27 Nov 2026)
+    SEA-DXB-002: IPA/219/2026-27
+    DXB-003: IPA/220/2026-27
+    DXB-005: IPA/261/2026-27       # another tester 'Master draft Enhan- 13'
+    DXB-007: IPA/256/2026-27       # another tester 'Retest- no 10'
+    DXB-010: IPA/197/2026-27
+    DXB-013: IPA/252/2026-27       # another tester 'Retest- no 4'
+    SEA-DXB-015: IPA/218/2026-27
   type_aliases:
     MASTER:
     - MASTER

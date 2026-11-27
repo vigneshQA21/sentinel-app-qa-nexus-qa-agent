@@ -176,5 +176,34 @@ No browser tab opens during a run any more. The live status page is still writte
 - Format: one short paragraph, e.g. "Hi team, I have worked on date difference (reports) and custom description char length (export) testing." plus a one-line version. No headings or tables.
 - The automatic draft of `./nx post-update` is a raw list: write the message in the team format to `state/zoho_update.md` and post it with `./nx post-update --file state/zoho_update.md` (`--dry-run` to preview). Nothing is posted without your yes.
 
+## Dubai (LAE) cases and sample gaps (27-Nov-2026)
+- 16 cases in `knowledge_base/dubai/testcases/Dubai_Regression.xlsx` (Air `DXB-0nn`, Sea `SEA-DXB-0nn`), samples in `samples/dubai/<CASE>/`.
+- Scenario "As Received": one email with every document of the case attached (like the real pre-alert). Send: `./run_regression.sh --tenant dubai DXB-004 ...`.
+- Cases already in Nexus under another subject are validated in place by IPA: `validation.case_ipa` in `config/dubai/settings.yaml`.
+- Validate: `./nx --tenant dubai validate|validate-master|validate-house|validate-docs --cases <ids> --wait 420`.
+- Scenarios blocked by missing samples (all tenants) and what to request: `docs/SAMPLE_GAPS.md`.
+
 ## Evidence in Google Drive
 `./nx upload-evidence [--date yyyy-mm-dd]` (also run by `run_regression.sh` at the end of every run) puts the day's evidence in `Regression testing / Nexus Automated Test Evidence / <yyyy-mm-dd> /`: `01 Test runs/<CASE> - <IPA>/` (screenshots), `02 Bugs/` (evidence of bugs logged that day) and `03 Report/` (the Automated test report as PDF). Bugs are therefore separated by date. Earlier bug evidence stays in `Reg - Air & Sea / dd-mm-yyyy`.
+
+### Japan Air (JPN-AIR-nnn, 27 Nov 2026)
+Air cases live in the Japan workbook next to the Sea cases (`id_pattern ^(SEA-JPN-\d{3}|JPN-AIR-\d{3})$`), scenario `As Received` (all files of the case in one email).
+- JPN-AIR-001: MAWB + HAWB + Manifest (first email of the the forwarder pre-alert); JPN-AIR-002: the agent's LOGISTEED invoice = Debit Note (second email, Sl 19 rule).
+- Send + validate: `./run_regression.sh --tenant japan JPN-AIR-001 JPN-AIR-002 --validate` (JPN-AIR-002 after 001, case interval 300 s).
+- Delete before a resend: `./nx --tenant japan delete JPN-AIR-001 JPN-AIR-002`.
+
+### False-alarm guard (27 Nov 2026)
+Every field check (Master, House, Sea, Invoice / Packing List / Manifest / Debit Note) runs `nexus_agent/false_alarm.py` `guard()` just before its verdict.
+A FAIL / REVIEW whose document value the checker could not read reliably becomes NOT_VERIFIABLE (listed for a check by eye, never a bug, never a pass);
+a difference that is not a data difference becomes INFO / PASS. The reason is in the row's note as `[checker guard: ...]`.
+Rules: text from another box (clauses, labels, cargo block), placeholders ('Select', 'AGENT'), rotated / letter-by-letter print, workflow status,
+'no value found in the document', flight / voyage number after a place name, one of several containers on the document, several candidate values,
+a name box that ran into the address, location code vs name (table `LOCATION_CODES` + `validation.location_codes`; a code of ANOTHER place stays FAIL).
+A blank document value (no reading, e.g. a scan) is never decided by the guard. Unresolved rows remarked 'duplicate ...' after a follow-up email are expected.
+New false alarm -> add a rule + a test from the real row (tests/test_false_alarm.py) and replay the LOGGED bugs of all tenants: none may become INFO / PASS.
+
+### Field evidence in the run itself (27 Nov 2026)
+Every check run (all tenants, all validate commands, `--validate` runs) captures each FAIL / REVIEW left after the false-alarm guard on the spot:
+the field is found inside its own section box, outlined red and screenshotted with the document beside it
+(`runs/<tenant>/<date>/<case>/<doc>_field_<Section>_<Label>.png`, max 15 per panel); the bug candidate uses that file as its evidence.
+No second visit to Nexus for screenshots. Unresolved Documents rows are read one by one with their remark ('duplicate MBL', 'Duplicate' badge, 'Not yet linked ...').

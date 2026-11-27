@@ -174,3 +174,18 @@ Plan: "Regression Quality Gate: Bug Patterns and Test Strategy" (approved 25 Nov
 | Incoterm source | `incoterm_check.fix_value_rows`: the code passes when printed on the bill OR on the sample's invoice / debit note (Nexus: "Incoterm · From Invoice"). IPA/11 CIF (invoice "CIF NAGOYA") and IPA/12 FCA (SERPA debit note "FCA BETIM") now PASS; IPA/14 FOB printed nowhere stays FAIL |
 | Incoterm display | `incoterm_check.display_row` (Sea House/Master and Invoice / Packing List panels): the Incoterm must be the dropdown and show only the code once selected; full wording selected = FAIL, a text box instead of the dropdown = FAIL (Japan sheet Sl 22) |
 | Tests | 273 passed (`tests/test_incoterm_check.py`) |
+
+## 2026-11-27 - Dubai / Japan Air runs, false-alarm guard, single-shot field evidence
+- Dubai: 16 regression cases (`SEA-DXB-nnn` Sea, `DXB-nnn` Air), scenario `As Received` = all files of a case in ONE email
+  (`email_subject_template`); sets already in Nexus validated in place by IPA (`validation.case_ipa`); delete / run_regression accept DXB ids.
+- Japan Air: `JPN-AIR-nnn` cases in the Japan workbook (Air checkers), id pattern / delete / run_regression accept them.
+- `false_alarm.guard` runs in every field checker before the verdict: checker misreads -> NOT_VERIFIABLE (check by eye), non-data
+  differences -> INFO / PASS, real differences stay FAIL; blank document values never decided. Replay of logged bugs: none hidden
+  except rows whose document value came from the wrong box (now NOT_VERIFIABLE).
+- `field_shots.capture`: every FAIL / REVIEW left after the guard is screenshotted in the same pass (field outlined in its own section
+  box, document beside it); the bug candidate uses that file. No second visit to Nexus.
+- Unresolved Documents parsed row by row with remarks; 'duplicate ...' rows after a follow-up email are expected (no split FAIL).
+- Extra House of the same MAWB (another sample prints its number and this case's MAWB) = expected consolidation (INFO).
+- House Incoterm read from the panel field in any section and compared by code; no 'House number is not the HAWB sent' hint for case refs.
+- Report fix: an 'as received' email lists all its attachments (no false ALREADY_SENT). `_pages.json` / helper files never sent.
+- Gate: 298 passed, 0 failed.

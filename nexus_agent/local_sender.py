@@ -44,20 +44,24 @@ class Item:
     subject: str
     screening: Screening | None = None
     case: str | None = None
+    paths: list[Path] | None = None          # 'as received' mode: every document of the case in ONE email
 
 
-def build_message(path: Path, to_addr: str, subject: str, ref: str, priority: str = "", org_line: str = "") -> EmailMessage:
-    """org_line (e.g. 'org : LJP') is the first line of the body: every tenant shares one mailbox and Nexus routes by it."""
+def build_message(path, to_addr: str, subject: str, ref: str, priority: str = "", org_line: str = "") -> EmailMessage:
+    """org_line (e.g. 'org : LJP') is the first line of the body: every tenant shares one mailbox and Nexus routes by it.
+    `path` is one file, or a list of files sent together in one email ('as received': a real pre-alert carries all its documents)."""
+    paths = list(path) if isinstance(path, (list, tuple)) else [path]
     msg = EmailMessage()
     msg["To"] = to_addr
     msg["Subject"] = subject
     if priority.lower() == "high":
         msg["X-Priority"] = "1 (Highest)"
         msg["Importance"] = "High"
-    msg.set_content((f"{org_line}\n\n" if org_line else "") + f"Pre-alert {ref}\n\nAttached document: {path.name}\n")
-    pdf = path.suffix.lower() == ".pdf"
-    msg.add_attachment(path.read_bytes(), maintype="application", subtype="pdf" if pdf else "octet-stream",
-                       filename=path.name)
+    names = ", ".join(p.name for p in paths)
+    msg.set_content((f"{org_line}\n\n" if org_line else "") + f"Pre-alert {ref}\n\nAttached document{'s' if len(paths) > 1 else ''}: {names}\n")
+    for p in paths:
+        pdf = p.suffix.lower() == ".pdf"
+        msg.add_attachment(p.read_bytes(), maintype="application", subtype="pdf" if pdf else "octet-stream", filename=p.name)
     return msg
 
 
@@ -103,6 +107,7 @@ class LocalSender:
         self.fwd = forwarder
         self.root = cfg.path(self.ld["root"])
         self.case_for_path: dict[Path, str] = {}     # staged file -> test case id (set by the test suite)
+        self.one_email: set[str] = set()              # individual folders sent as ONE email with every file attached ('as received')
         self.results: list[dict] = []                # one entry per email handled by send_all
 
     def _subject(self, template: str, path: Path, **kw) -> tuple[str, str | None]:
@@ -212,7 +217,16 @@ class LocalSender:
         for folder in sorted(p for p in ind.iterdir() if p.is_dir()) if ind.is_dir() else []:
             if wanted and folder.name.upper() not in wanted:
                 continue
-            for f in sorted(x for x in folder.iterdir() if x.is_file()):
+            if folder.name in self.one_email:                   # 'as received': all documents of the case in one email, like the real pre-alert
+                files = [x for x in sorted(folder.iterdir()) if x.is_file() and not x.name.startswith(("_", "."))
+                         and (only is None or x in only) and (skip_off or not self.store.was_doc_sent(folder.name, x.name))]
+                if files:
+                    types = "+".join(dict.fromkeys(self.label(self.individual_type(x, folder.name)) for x in files))
+                    tpl = self.ld.get("email_subject_template") or "{tag} | Pre-Alert {ref} | AS RECEIVED ({types})"
+                    subject, case = self._subject(tpl, files[0], ref=folder.name, types=types)
+                    items.append(Item(folder.name, files[0], subject, None, case, paths=files))
+                continue
+            for f in sorted(x for x in folder.iterdir() if x.is_file() and not x.name.startswith(("_", "."))):   # no helper files (_pages.json)
                 if only is not None and f not in only:
                     continue
                 if not skip_off and self.store.was_doc_sent(folder.name, f.name):
@@ -237,7 +251,7 @@ class LocalSender:
         sent_one = False                       # emails go strictly one by one: Nexus groups them wrongly when they arrive together
         for it in self.pending(refs, force or resend, only):
             sc = it.screening
-            row = {"path": it.path, "ref": it.ref, "subject": it.subject, "case": it.case, "status": "",
+            row = {"path": it.path, "paths": list(getattr(it, "paths", None) or [it.path]), "ref": it.ref, "subject": it.subject, "case": it.case, "status": "",
                    "sent_at": "", "screening": "", "warnings": ""}
             self.results.append(row)
             if sc:
@@ -252,10 +266,10 @@ class LocalSender:
                     log.warning("    SCREENING FAILED: %s not sent (fix the file or use --force)", it.path.name)
                     row["status"] = "SCREENING_FAILED"
                     continue
-            pa = PreAlert(ref=it.ref, subject=it.subject, attachment_count=1)
+            pa = PreAlert(ref=it.ref, subject=it.subject, attachment_count=len(it.paths or [it.path]))
             row["status"] = "DRY_RUN" if dry_run else "SENT"
             if dry_run:
-                log.info("[dry-run] would send '%s' (%s) to %s", it.subject, it.path.name, to)
+                log.info("[dry-run] would send '%s' (%s) to %s", it.subject, ", ".join(p.name for p in (it.paths or [it.path])), to)
             else:
                 wait = int((self.ld.get("case_email_gap_seconds") or {}).get(it.case, gap))     # a case can need a longer gap than the default
                 if sent_one and wait:
@@ -263,7 +277,7 @@ class LocalSender:
                     time.sleep(wait)
                 self.fwd = self.fwd or GmailForwarder(self.cfg, self.store)
                 users = self.fwd.svc.users()
-                msg = build_message(it.path, to, it.subject, it.ref, self.ld.get("priority", ""), self.org_line())
+                msg = build_message(it.paths or it.path, to, it.subject, it.ref, self.ld.get("priority", ""), self.org_line())
                 try:
                     with _SendGate(self.cfg, gap):
                         resp = self._send_once(users, msg, it.subject)
@@ -280,7 +294,8 @@ class LocalSender:
                     log.warning("could not label sent mail: %s", exc)
                 sent_one = True
                 row["sent_at"] = datetime.now().isoformat(timespec="seconds")
-                self.store.mark_doc_sent(pa, it.path.name)
+                for p_ in (it.paths or [it.path]):
+                    self.store.mark_doc_sent(pa, p_.name)
                 if self.ld.get("archive_after_send", False):
                     self._archive(it)
                 log.info("Sent '%s' to %s (message id %s)", it.subject, to, pa.gmail_id)

@@ -507,6 +507,10 @@ def _check_one(cfg: Config, ui: UatPages, store: Store, case: Case, wait_seconds
         res["message"] = "scanned page: read with OCR, differences are REVIEW, not FAIL"
     if mrec is None:
         res["message"] = "the Master row of the Shipment Details table was not found"
+    from .false_alarm import guard
+    guard(res["rows"], doc.get("text") or "", cfg.settings["validation"].get("location_codes"))
+    from .field_shots import capture
+    capture(ui, res["rows"], cfg.runs_dir / datetime.now().strftime("%Y-%m-%d") / case.id, "master")                 # field evidence in the run itself
     res["verdict"] = verdict(res["rows"])
     return res
 
